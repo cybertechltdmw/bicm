@@ -1,0 +1,677 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BICM - Settings</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;900&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Tailwind Config -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        black: '#000000',
+                        gold: '#D4AF37',
+                        grey: '#F5F5F5',
+                        green: '#1E3A2B',
+                    },
+                    fontFamily: {
+                        montserrat: ['Montserrat', 'sans-serif'],
+                        inter: ['Inter', 'sans-serif'],
+                    },
+                }
+            }
+        }
+    </script>
+    <style type="text/css">
+        /* Custom animations */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .animate-fade-in {
+            animation: fadeIn 0.5s ease-in-out forwards;
+        }
+        
+        /* Sidebar styling */
+        .sidebar-link {
+            transition: all 0.3s ease;
+        }
+        .sidebar-link:hover {
+            background-color: rgba(212, 175, 55, 0.1);
+        }
+        .sidebar-link.active {
+            background-color: rgba(212, 175, 55, 0.2);
+            border-left: 4px solid #D4AF37;
+        }
+        
+        /* Settings card styling */
+        .settings-card {
+            transition: all 0.3s ease;
+        }
+        .settings-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        }
+        
+        /* Toggle switch styling */
+        .toggle-switch {
+            position: relative;
+            display: inline-block;
+            width: 50px;
+            height: 24px;
+        }
+        .toggle-switch input {
+            opacity: 0;
+            width: 0;
+            height: 0;
+        }
+        .toggle-slider {
+            position: absolute;
+            cursor: pointer;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: #E5E7EB;
+            transition: .4s;
+            border-radius: 24px;
+        }
+        .toggle-slider:before {
+            position: absolute;
+            content: "";
+            height: 16px;
+            width: 16px;
+            left: 4px;
+            bottom: 4px;
+            background-color: white;
+            transition: .4s;
+            border-radius: 50%;
+        }
+        input:checked + .toggle-slider {
+            background-color: #D4AF37;
+        }
+        input:checked + .toggle-slider:before {
+            transform: translateX(26px);
+        }
+    </style>
+</head>
+<body class="font-inter bg-grey">
+    <!-- Dashboard Layout -->
+    <div class="flex h-screen overflow-hidden">
+        <!-- Sidebar -->
+        <div class="hidden md:flex md:flex-shrink-0">
+            <div class="flex flex-col w-64 bg-white border-r border-gray-200">
+                <div class="flex items-center justify-center h-16 px-4 border-b border-gray-200">
+                    <img src="https://res.cloudinary.com/dbed0vjcr/image/upload/v1750323428/bicm_f38w95-removebg-preview_vjoybh.png" alt="BICM Logo" class="h-10">
+                </div>
+                <div class="flex flex-col flex-grow px-4 py-4 overflow-y-auto">
+                    <!-- Company Profile -->
+                    <div class="flex items-center mb-8 p-2 rounded-lg bg-gold/10">
+                        <img src="https://res.cloudinary.com/dbed0vjcr/image/upload/v1750327890/default-placeholder-profile-icon_hxpj2a.webp" alt="Company" class="w-10 h-10 rounded-full mr-3">
+                        <div>
+                            <p class="font-medium">Welcome back,</p>
+                            <p class="font-bold">Company Name</p>
+                        </div>
+                    </div>
+                    
+                    <!-- Navigation -->
+                    <nav class="space-y-1">
+                        <a href="employer.html" class="sidebar-link flex items-center px-4 py-3 text-gray-900 rounded-lg">
+                            <i class="fas fa-tachometer-alt text-gray-500 mr-3"></i>
+                            Dashboard
+                        </a>
+                        <a href="employer-jobs.html" class="sidebar-link flex items-center px-4 py-3 text-gray-900 rounded-lg">
+                            <i class="fas fa-briefcase text-gray-500 mr-3"></i>
+                            Job Postings
+                        </a>
+                        <a href="employer-applicants.html" class="sidebar-link flex items-center px-4 py-3 text-gray-900 rounded-lg">
+                            <i class="fas fa-users text-gray-500 mr-3"></i>
+                            Applicants
+                        </a>
+                        <a href="employer-subscription.html" class="sidebar-link flex items-center px-4 py-3 text-gray-900 rounded-lg">
+                            <i class="fas fa-credit-card text-gray-500 mr-3"></i>
+                            Subscription
+                        </a>
+                        <a href="employer-invoices.html" class="sidebar-link flex items-center px-4 py-3 text-gray-900 rounded-lg">
+                            <i class="fas fa-file-invoice text-gray-500 mr-3"></i>
+                            Invoices
+                        </a>
+                        <a href="employer-settings.html" class="sidebar-link active flex items-center px-4 py-3 text-gray-900 rounded-lg">
+                            <i class="fas fa-cog text-gold mr-3"></i>
+                            Settings
+                        </a>
+                    </nav>
+                    
+                    <!-- Logout -->
+                    <div class="mt-auto pt-4">
+                        <a href="login.html" class="flex items-center px-4 py-3 text-gray-900 rounded-lg hover:bg-red-50">
+                            <i class="fas fa-sign-out-alt text-red-500 mr-3"></i>
+                            Logout
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Mobile sidebar -->
+        <div class="md:hidden fixed inset-0 z-40" id="mobile-sidebar" style="display: none;">
+            <div class="fixed inset-0 bg-gray-600 bg-opacity-75" id="sidebar-backdrop"></div>
+            <div class="relative flex flex-col w-72 max-w-xs h-full bg-white">
+                <div class="flex items-center justify-between h-16 px-4 border-b border-gray-200">
+                    <img src="https://res.cloudinary.com/dbed0vjcr/image/upload/v1750323428/bicm_f38w95-removebg-preview_vjoybh.png" alt="BICM Logo" class="h-10">
+                    <button id="close-sidebar" class="text-gray-500 hover:text-gray-600">
+                        <i class="fas fa-times"></i>
+                    </button>
+                </div>
+                <div class="flex flex-col flex-grow px-4 py-4 overflow-y-auto">
+                    <!-- Company Profile -->
+                    <div class="flex items-center mb-8 p-2 rounded-lg bg-gold/10">
+                        <img src="https://res.cloudinary.com/dbed0vjcr/image/upload/v1750327890/default-placeholder-profile-icon_hxpj2a.webp" alt="Company" class="w-10 h-10 rounded-full mr-3">
+                        <div>
+                            <p class="font-medium">Welcome back,</p>
+                            <p class="font-bold">Company Name</p>
+                        </div>
+                    </div>
+                    
+                    <!-- Navigation -->
+                    <nav class="space-y-1">
+                        <a href="employer.html" class="sidebar-link flex items-center px-4 py-3 text-gray-900 rounded-lg">
+                            <i class="fas fa-tachometer-alt text-gray-500 mr-3"></i>
+                            Dashboard
+                        </a>
+                        <a href="employer-jobs.html" class="sidebar-link flex items-center px-4 py-3 text-gray-900 rounded-lg">
+                            <i class="fas fa-briefcase text-gray-500 mr-3"></i>
+                            Job Postings
+                        </a>
+                        <a href="employer-applicants.html" class="sidebar-link flex items-center px-4 py-3 text-gray-900 rounded-lg">
+                            <i class="fas fa-users text-gray-500 mr-3"></i>
+                            Applicants
+                        </a>
+                        <a href="employer-subscription.html" class="sidebar-link flex items-center px-4 py-3 text-gray-900 rounded-lg">
+                            <i class="fas fa-credit-card text-gray-500 mr-3"></i>
+                            Subscription
+                        </a>
+                        <a href="employer-invoices.html" class="sidebar-link flex items-center px-4 py-3 text-gray-900 rounded-lg">
+                            <i class="fas fa-file-invoice text-gray-500 mr-3"></i>
+                            Invoices
+                        </a>
+                        <a href="employer-settings.html" class="sidebar-link active flex items-center px-4 py-3 text-gray-900 rounded-lg">
+                            <i class="fas fa-cog text-gold mr-3"></i>
+                            Settings
+                        </a>
+                    </nav>
+                    
+                    <!-- Logout -->
+                    <div class="mt-auto pt-4">
+                        <a href="login.html" class="flex items-center px-4 py-3 text-gray-900 rounded-lg hover:bg-red-50">
+                            <i class="fas fa-sign-out-alt text-red-500 mr-3"></i>
+                            Logout
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Main Content -->
+        <div class="flex flex-col flex-1 overflow-hidden">
+            <!-- Top Navigation -->
+            <header class="bg-white border-b border-gray-200">
+                <div class="flex items-center justify-between px-4 py-3">
+                    <!-- Mobile menu button -->
+                    <button id="open-sidebar" class="md:hidden text-gray-500 focus:outline-none">
+                        <i class="fas fa-bars text-xl"></i>
+                    </button>
+                    
+                    <!-- Search and company profile -->
+                    <div class="flex items-center space-x-4">
+                        <div class="relative hidden md:block">
+                            <input type="text" placeholder="Search..." class="pl-10 pr-4 py-2 border border-gray-300 rounded-full focus:outline-none focus:ring-2 focus:ring-gold focus:border-transparent">
+                            <i class="fas fa-search absolute left-3 top-3 text-gray-400"></i>
+                        </div>
+                        
+                        <div class="relative">
+                            <button id="company-menu-button" class="flex items-center focus:outline-none">
+                                <img src="https://res.cloudinary.com/dbed0vjcr/image/upload/v1750327890/default-placeholder-profile-icon_hxpj2a.webp" alt="Company" class="w-8 h-8 rounded-full">
+                                <span class="ml-2 hidden md:inline">Company Name</span>
+                                <i class="fas fa-chevron-down ml-1 text-xs hidden md:inline"></i>
+                            </button>
+                            
+                            <!-- Company dropdown menu -->
+                            <div id="company-menu" class="hidden absolute right-0 mt-2 w-48 bg-white rounded-md shadow-lg py-1 z-50">
+                                <a href="#" class="block px-4 py-2 text-gray-700 hover:bg-gray-100">Company Profile</a>
+                                <a href="employer-settings.html" class="block px-4 py-2 text-gray-700 hover:bg-gray-100">Settings</a>
+                                <a href="login.html" class="block px-4 py-2 text-gray-700 hover:bg-gray-100">Sign out</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </header>
+            
+            <!-- Main Content Area -->
+            <main class="flex-1 overflow-y-auto p-4 md:p-6">
+                <div class="max-w-4xl mx-auto">
+                    <!-- Page Header -->
+                    <div class="mb-6">
+                        <h1 class="text-2xl font-montserrat font-bold text-gray-900">Settings</h1>
+                        <p class="text-gray-600">Manage your company profile and account settings</p>
+                    </div>
+                    
+                    <!-- Settings Tabs -->
+                    <div class="flex border-b border-gray-200 mb-6">
+                        <button class="settings-tab active px-4 py-2 font-medium text-gold border-b-2 border-gold">
+                            Company Profile
+                        </button>
+                        <button class="settings-tab px-4 py-2 font-medium text-gray-500 hover:text-gold">
+                            Account Settings
+                        </button>
+                        <button class="settings-tab px-4 py-2 font-medium text-gray-500 hover:text-gold">
+                            Notifications
+                        </button>
+                        <button class="settings-tab px-4 py-2 font-medium text-gray-500 hover:text-gold">
+                            Security
+                        </button>
+                    </div>
+                    
+                    <!-- Company Profile Section -->
+                    <div class="settings-content active">
+                        <div class="bg-white rounded-lg shadow p-6 mb-6 animate-fade-in">
+                            <h2 class="text-xl font-montserrat font-bold mb-4">Company Information</h2>
+                            
+                            <form>
+                                <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+                                    <div>
+                                        <label class="block text-sm font-medium text-gray-700 mb-1">Company Name</label>
+                                        <input type="text" value="Company Name" class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-gold focus:border-transparent">
+                                    </div>
+                                    <div>
+                                        <label class="block text-sm font-medium text-gray-700 mb-1">Industry</label>
+                                        <select class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-gold focus:border-transparent">
+                                            <option>Information Technology</option>
+                                            <option>Finance</option>
+                                            <option>Healthcare</option>
+                                            <option>Education</option>
+                                            <option>Manufacturing</option>
+                                        </select>
+                                    </div>
+                                    <div>
+                                        <label class="block text-sm font-medium text-gray-700 mb-1">Email</label>
+                                        <input type="email" value="contact@company.com" class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-gold focus:border-transparent">
+                                    </div>
+                                    <div>
+                                        <label class="block text-sm font-medium text-gray-700 mb-1">Phone Number</label>
+                                        <input type="tel" value="+265 123 456 789" class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-gold focus:border-transparent">
+                                    </div>
+                                </div>
+                                
+                                <div class="mb-6">
+                                    <label class="block text-sm font-medium text-gray-700 mb-1">Company Description</label>
+                                    <textarea rows="4" class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-gold focus:border-transparent">We are a leading company in our industry with a strong commitment to excellence and innovation.</textarea>
+                                </div>
+                                
+                                <div class="mb-6">
+                                    <label class="block text-sm font-medium text-gray-700 mb-1">Company Logo</label>
+                                    <div class="flex items-center">
+                                        <img src="https://res.cloudinary.com/dbed0vjcr/image/upload/v1750327890/default-placeholder-profile-icon_hxpj2a.webp" alt="Company Logo" class="h-16 w-16 rounded-full mr-4">
+                                        <div>
+                                            <input type="file" id="logo-upload" class="hidden">
+                                            <label for="logo-upload" class="cursor-pointer bg-gold text-black px-4 py-2 rounded-md font-medium hover:bg-black hover:text-gold border-2 border-gold transition-colors duration-300 inline-block">
+                                                Change Logo
+                                            </label>
+                                            <p class="text-xs text-gray-500 mt-1">Recommended size: 200x200 pixels</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <div class="flex justify-end">
+                                    <button type="button" class="px-4 py-2 border border-gray-300 rounded-md text-gray-700 hover:bg-gray-100 mr-3">
+                                        Cancel
+                                    </button>
+                                    <button type="submit" class="px-4 py-2 bg-gold text-black rounded-md font-medium hover:bg-black hover:text-gold border-2 border-gold transition-colors duration-300">
+                                        Save Changes
+                                    </button>
+                                </div>
+                            </form>
+                        </div>
+                        
+                        <div class="bg-white rounded-lg shadow p-6 animate-fade-in delay-1">
+                            <h2 class="text-xl font-montserrat font-bold mb-4">Company Address</h2>
+                            
+                            <form>
+                                <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+                                    <div>
+                                        <label class="block text-sm font-medium text-gray-700 mb-1">Street Address</label>
+                                        <input type="text" value="123 Business Avenue" class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-gold focus:border-transparent">
+                                    </div>
+                                    <div>
+                                        <label class="block text-sm font-medium text-gray-700 mb-1">City</label>
+                                        <input type="text" value="Lilongwe" class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-gold focus:border-transparent">
+                                    </div>
+                                    <div>
+                                        <label class="block text-sm font-medium text-gray-700 mb-1">Country</label>
+                                        <select class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-gold focus:border-transparent">
+                                            <option>Malawi</option>
+                                            <option>Other Country</option>
+                                        </select>
+                                    </div>
+                                    <div>
+                                        <label class="block text-sm font-medium text-gray-700 mb-1">Postal Code</label>
+                                        <input type="text" value="265" class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-gold focus:border-transparent">
+                                    </div>
+                                </div>
+                                
+                                <div class="flex justify-end">
+                                    <button type="button" class="px-4 py-2 border border-gray-300 rounded-md text-gray-700 hover:bg-gray-100 mr-3">
+                                        Cancel
+                                    </button>
+                                    <button type="submit" class="px-4 py-2 bg-gold text-black rounded-md font-medium hover:bg-black hover:text-gold border-2 border-gold transition-colors duration-300">
+                                        Save Changes
+                                    </button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                    
+                    <!-- Account Settings Section (Hidden by default) -->
+                    <div class="settings-content hidden">
+                        <div class="bg-white rounded-lg shadow p-6 mb-6 animate-fade-in">
+                            <h2 class="text-xl font-montserrat font-bold mb-4">Account Information</h2>
+                            
+                            <form>
+                                <div class="mb-6">
+                                    <label class="block text-sm font-medium text-gray-700 mb-1">Full Name</label>
+                                    <input type="text" value="John Doe" class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-gold focus:border-transparent">
+                                </div>
+                                
+                                <div class="mb-6">
+                                    <label class="block text-sm font-medium text-gray-700 mb-1">Email</label>
+                                    <input type="email" value="john.doe@company.com" class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-gold focus:border-transparent">
+                                </div>
+                                
+                                <div class="mb-6">
+                                    <label class="block text-sm font-medium text-gray-700 mb-1">Profile Picture</label>
+                                    <div class="flex items-center">
+                                        <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="Profile" class="h-16 w-16 rounded-full mr-4">
+                                        <div>
+                                            <input type="file" id="profile-upload" class="hidden">
+                                            <label for="profile-upload" class="cursor-pointer bg-gold text-black px-4 py-2 rounded-md font-medium hover:bg-black hover:text-gold border-2 border-gold transition-colors duration-300 inline-block">
+                                                Change Photo
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <div class="flex justify-end">
+                                    <button type="button" class="px-4 py-2 border border-gray-300 rounded-md text-gray-700 hover:bg-gray-100 mr-3">
+                                        Cancel
+                                    </button>
+                                    <button type="submit" class="px-4 py-2 bg-gold text-black rounded-md font-medium hover:bg-black hover:text-gold border-2 border-gold transition-colors duration-300">
+                                        Save Changes
+                                    </button>
+                                </div>
+                            </form>
+                        </div>
+                        
+                        <div class="bg-white rounded-lg shadow p-6 animate-fade-in delay-1">
+                            <h2 class="text-xl font-montserrat font-bold mb-4">Change Password</h2>
+                            
+                            <form>
+                                <div class="mb-4">
+                                    <label class="block text-sm font-medium text-gray-700 mb-1">Current Password</label>
+                                    <input type="password" class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-gold focus:border-transparent">
+                                </div>
+                                
+                                <div class="mb-4">
+                                    <label class="block text-sm font-medium text-gray-700 mb-1">New Password</label>
+                                    <input type="password" class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-gold focus:border-transparent">
+                                </div>
+                                
+                                <div class="mb-6">
+                                    <label class="block text-sm font-medium text-gray-700 mb-1">Confirm New Password</label>
+                                    <input type="password" class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-gold focus:border-transparent">
+                                </div>
+                                
+                                <div class="flex justify-end">
+                                    <button type="button" class="px-4 py-2 border border-gray-300 rounded-md text-gray-700 hover:bg-gray-100 mr-3">
+                                        Cancel
+                                    </button>
+                                    <button type="submit" class="px-4 py-2 bg-gold text-black rounded-md font-medium hover:bg-black hover:text-gold border-2 border-gold transition-colors duration-300">
+                                        Change Password
+                                    </button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                    
+                    <!-- Notifications Section (Hidden by default) -->
+                    <div class="settings-content hidden">
+                        <div class="bg-white rounded-lg shadow p-6 animate-fade-in">
+                            <h2 class="text-xl font-montserrat font-bold mb-4">Notification Preferences</h2>
+                            
+                            <div class="space-y-4">
+                                <div class="flex items-center justify-between">
+                                    <div>
+                                        <h3 class="font-medium">Email Notifications</h3>
+                                        <p class="text-sm text-gray-500">Receive important updates via email</p>
+                                    </div>
+                                    <label class="toggle-switch">
+                                        <input type="checkbox" checked>
+                                        <span class="toggle-slider"></span>
+                                    </label>
+                                </div>
+                                
+                                <div class="flex items-center justify-between">
+                                    <div>
+                                        <h3 class="font-medium">New Applicants</h3>
+                                        <p class="text-sm text-gray-500">Get notified when new candidates apply</p>
+                                    </div>
+                                    <label class="toggle-switch">
+                                        <input type="checkbox" checked>
+                                        <span class="toggle-slider"></span>
+                                    </label>
+                                </div>
+                                
+                                <div class="flex items-center justify-between">
+                                    <div>
+                                        <h3 class="font-medium">Interview Reminders</h3>
+                                        <p class="text-sm text-gray-500">Receive reminders for scheduled interviews</p>
+                                    </div>
+                                    <label class="toggle-switch">
+                                        <input type="checkbox" checked>
+                                        <span class="toggle-slider"></span>
+                                    </label>
+                                </div>
+                                
+                                <div class="flex items-center justify-between">
+                                    <div>
+                                        <h3 class="font-medium">Subscription Updates</h3>
+                                        <p class="text-sm text-gray-500">Notifications about your subscription</p>
+                                    </div>
+                                    <label class="toggle-switch">
+                                        <input type="checkbox">
+                                        <span class="toggle-slider"></span>
+                                    </label>
+                                </div>
+                                
+                                <div class="flex items-center justify-between">
+                                    <div>
+                                        <h3 class="font-medium">Promotional Offers</h3>
+                                        <p class="text-sm text-gray-500">Receive special offers and discounts</p>
+                                    </div>
+                                    <label class="toggle-switch">
+                                        <input type="checkbox">
+                                        <span class="toggle-slider"></span>
+                                    </label>
+                                </div>
+                            </div>
+                            
+                            <div class="mt-6 flex justify-end">
+                                <button type="button" class="px-4 py-2 border border-gray-300 rounded-md text-gray-700 hover:bg-gray-100 mr-3">
+                                    Cancel
+                                </button>
+                                <button type="submit" class="px-4 py-2 bg-gold text-black rounded-md font-medium hover:bg-black hover:text-gold border-2 border-gold transition-colors duration-300">
+                                    Save Preferences
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Security Section (Hidden by default) -->
+                    <div class="settings-content hidden">
+                        <div class="bg-white rounded-lg shadow p-6 animate-fade-in">
+                            <h2 class="text-xl font-montserrat font-bold mb-4">Security Settings</h2>
+                            
+                            <div class="space-y-6">
+                                <div>
+                                    <h3 class="font-medium mb-2">Two-Factor Authentication</h3>
+                                    <div class="flex items-center justify-between">
+                                        <p class="text-sm text-gray-500">Add an extra layer of security to your account</p>
+                                        <button class="px-4 py-2 bg-black text-white rounded-md font-medium hover:bg-gray-800">
+                                            Enable 2FA
+                                        </button>
+                                    </div>
+                                </div>
+                                
+                                <div>
+                                    <h3 class="font-medium mb-2">Active Sessions</h3>
+                                    <div class="border border-gray-200 rounded-md overflow-hidden">
+                                        <div class="grid grid-cols-12 bg-gray-50 p-3 border-b border-gray-200">
+                                            <div class="col-span-4 font-medium text-sm">Device</div>
+                                            <div class="col-span-3 font-medium text-sm">Location</div>
+                                            <div class="col-span-3 font-medium text-sm">Last Active</div>
+                                            <div class="col-span-2 font-medium text-sm">Actions</div>
+                                        </div>
+                                        <div class="grid grid-cols-12 p-3 border-b border-gray-200 items-center">
+                                            <div class="col-span-4 flex items-center">
+                                                <i class="fas fa-laptop mr-2 text-gray-500"></i>
+                                                <span>Windows Chrome</span>
+                                            </div>
+                                            <div class="col-span-3 text-sm">Lilongwe, Malawi</div>
+                                            <div class="col-span-3 text-sm">Just now</div>
+                                            <div class="col-span-2">
+                                                <button class="text-red-500 hover:text-red-700 text-sm">
+                                                    <i class="fas fa-sign-out-alt"></i> Logout
+                                                </button>
+                                            </div>
+                                        </div>
+                                        <div class="grid grid-cols-12 p-3 items-center">
+                                            <div class="col-span-4 flex items-center">
+                                                <i class="fas fa-mobile-alt mr-2 text-gray-500"></i>
+                                                <span>iPhone Safari</span>
+                                            </div>
+                                            <div class="col-span-3 text-sm">Blantyre, Malawi</div>
+                                            <div class="col-span-3 text-sm">2 hours ago</div>
+                                            <div class="col-span-2">
+                                                <button class="text-red-500 hover:text-red-700 text-sm">
+                                                    <i class="fas fa-sign-out-alt"></i> Logout
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <div>
+                                    <h3 class="font-medium mb-2">Delete Account</h3>
+                                    <p class="text-sm text-gray-500 mb-4">Permanently delete your account and all associated data</p>
+                                    <button class="px-4 py-2 bg-red-500 text-white rounded-md font-medium hover:bg-red-600">
+                                        Delete Account
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </main>
+        </div>
+    </div>
+
+    <!-- JavaScript -->
+    <script>
+        // Mobile sidebar toggle
+        document.getElementById('open-sidebar').addEventListener('click', function() {
+            document.getElementById('mobile-sidebar').style.display = 'block';
+        });
+        
+        document.getElementById('close-sidebar').addEventListener('click', function() {
+            document.getElementById('mobile-sidebar').style.display = 'none';
+        });
+        
+        document.getElementById('sidebar-backdrop').addEventListener('click', function() {
+            document.getElementById('mobile-sidebar').style.display = 'none';
+        });
+        
+        // Company dropdown toggle
+        document.getElementById('company-menu-button').addEventListener('click', function() {
+            document.getElementById('company-menu').classList.toggle('hidden');
+        });
+        
+        // Close company dropdown when clicking outside
+        document.addEventListener('click', function(event) {
+            const companyMenu = document.getElementById('company-menu');
+            const companyButton = document.getElementById('company-menu-button');
+            
+            if (!companyButton.contains(event.target)) {
+                companyMenu.classList.add('hidden');
+            }
+        });
+        
+        // Sidebar link active state
+        const sidebarLinks = document.querySelectorAll('.sidebar-link');
+        sidebarLinks.forEach(link => {
+            link.addEventListener('click', function() {
+                sidebarLinks.forEach(l => l.classList.remove('active'));
+                this.classList.add('active');
+            });
+        });
+        
+        // Settings tabs functionality
+        const settingsTabs = document.querySelectorAll('.settings-tab');
+        const settingsContents = document.querySelectorAll('.settings-content');
+        
+        settingsTabs.forEach((tab, index) => {
+            tab.addEventListener('click', function() {
+                // Remove active class from all tabs
+                settingsTabs.forEach(t => t.classList.remove('active', 'text-gold', 'border-b-2', 'border-gold'));
+                settingsTabs.forEach(t => t.classList.add('text-gray-500'));
+                
+                // Add active class to clicked tab
+                this.classList.add('active', 'text-gold', 'border-b-2', 'border-gold');
+                this.classList.remove('text-gray-500');
+                
+                // Hide all content
+                settingsContents.forEach(content => content.classList.add('hidden'));
+                
+                // Show corresponding content
+                settingsContents[index].classList.remove('hidden');
+            });
+        });
+        
+        // File upload display for logo
+        document.getElementById('logo-upload')?.addEventListener('change', function(e) {
+            const fileName = e.target.files[0]?.name || 'No file selected';
+            alert(`Selected file: ${fileName}`);
+            // Here you would typically preview the image before upload
+        });
+        
+        // File upload display for profile picture
+        document.getElementById('profile-upload')?.addEventListener('change', function(e) {
+            const fileName = e.target.files[0]?.name || 'No file selected';
+            alert(`Selected file: ${fileName}`);
+            // Here you would typically preview the image before upload
+        });
+        
+        // Initialize the first tab as active
+        document.addEventListener('DOMContentLoaded', function() {
+            settingsTabs[0].classList.add('active', 'text-gold', 'border-b-2', 'border-gold');
+            settingsTabs[0].classList.remove('text-gray-500');
+            settingsContents[0].classList.remove('hidden');
+        });
+    </script>
+</body>
+</html>
