@@ -1,0 +1,1011 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BICM Group - Education & Training</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;900&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Tailwind Config -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        black: '#000000',
+                        gold: '#D4AF37',
+                        grey: '#F5F5F5',
+                        green: '#1E3A2B',
+                    },
+                    fontFamily: {
+                        montserrat: ['Montserrat', 'sans-serif'],
+                        inter: ['Inter', 'sans-serif'],
+                    },
+                }
+            }
+        }
+    </script>
+    <style type="text/css">
+        /* Custom animations */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .animate-fade-in {
+            animation: fadeIn 1s ease-in-out forwards;
+        }
+        .delay-1 { animation-delay: 0.2s; }
+        .delay-2 { animation-delay: 0.4s; }
+        .delay-3 { animation-delay: 0.6s; }
+        
+        /* Enhanced glass morphism effect */
+        .glass-nav {
+            background: rgba(255, 255, 255, 0.9);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+        }
+        .glass-nav.scrolled {
+            background: rgba(255, 255, 255, 0.95);
+            box-shadow: 0 2px 20px rgba(0, 0, 0, 0.1);
+        }
+        
+        /* Compact Modal styles */
+        .modal {
+            transition: opacity 0.3s ease, visibility 0.3s ease;
+        }
+        .modal-content {
+            transform: translateY(-10px);
+            transition: transform 0.3s ease;
+            max-height: 90vh;
+            overflow-y: auto;
+        }
+        .modal.active {
+            opacity: 1;
+            visibility: visible;
+        }
+        .modal.active .modal-content {
+            transform: translateY(0);
+        }
+        
+        /* Course card hover effect */
+        .course-card {
+            transition: all 0.3s ease;
+        }
+        .course-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+        }
+        
+        /* Simplified hero background */
+        .hero-gradient {
+            background: linear-gradient(135deg, rgba(30, 58, 43, 0.9) 0%, rgba(0, 0, 0, 0.8) 100%);
+        }
+        
+        /* Search bar */
+        .search-container {
+            position: relative;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        .search-container input {
+            padding-right: 50px;
+        }
+        .search-container button {
+            position: absolute;
+            right: 4px;
+            top: 4px;
+        }
+        
+        /* Course filter chips */
+        .filter-chip {
+            transition: all 0.2s ease;
+        }
+        .filter-chip.active {
+            background-color: #D4AF37;
+            color: black;
+        }
+    </style>
+</head>
+<body class="font-inter bg-white text-black">
+    <!-- Glass Navigation Bar -->
+    <nav class="fixed w-full glass-nav z-50 transition-all duration-300" id="navbar">
+        <div class="container mx-auto px-4 md:px-6 flex justify-between items-center">
+            <!-- Logo -->
+            <img src="https://res.cloudinary.com/dbed0vjcr/image/upload/v1750323428/bicm_f38w95-removebg-preview_vjoybh.png" alt="BICM Logo" class="h-14 transition-all duration-300" id="logo">
+
+            <!-- Desktop Menu -->
+            <ul class="hidden md:flex space-x-8 items-center">
+                <li><a href="index.html" class="text-black hover:text-gold font-medium transition-colors duration-300">About Us</a></li>
+                
+                <!-- Employment Center Dropdown -->
+                <li class="relative group">
+                    <a href="#" class="text-black hover:text-gold font-medium flex items-center transition-colors duration-300">
+                        Employment Center <i class="fas fa-chevron-down ml-2 text-xs"></i>
+                    </a>
+                    <div class="absolute left-0 mt-2 w-48 bg-white/95 shadow-lg rounded-md py-2 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 border-t-2 border-gold">
+                        <a href="#" class="block px-4 py-2 text-black hover:bg-gold/10 hover:text-gold">I'm a Job Seeker</a>
+                        <a href="#" class="block px-4 py-2 text-black hover:bg-gold/10 hover:text-gold">I'm an Employer</a>
+                    </div>
+                </li>
+                
+                <li><a href="index.html#services" class="text-black hover:text-gold font-medium transition-colors duration-300">Our Services</a></li>
+                <li><a href="education.html" class="text-gold font-medium transition-colors duration-300 relative after:absolute after:bottom-[-5px] after:left-0 after:w-full after:h-[2px] after:bg-gold">Education</a></li>
+                <li><a href="events.html" class="text-black hover:text-gold font-medium transition-colors duration-300">Events</a></li>
+                <li><a href="contact.html" class="text-black hover:text-gold font-medium transition-colors duration-300">Contact Us</a></li>
+                <li><a href="login.html" class="bg-gold text-black px-6 py-2 rounded-full font-medium hover:bg-black hover:text-gold border-2 border-gold transition-colors duration-300">Login</a></li>
+            </ul>
+
+            <!-- Mobile Menu Button -->
+            <button class="md:hidden text-black text-xl focus:outline-none" id="mobile-menu-button">
+                <i class="fas fa-bars"></i>
+            </button>
+        </div>
+
+        <!-- Mobile Menu -->
+        <div class="md:hidden hidden bg-white/95 w-full py-4 px-4" id="mobile-menu">
+            <a href="index.html" class="block py-2 text-black hover:text-gold">About Us</a>
+            
+            <div class="py-2">
+                <button class="flex items-center justify-between w-full text-black hover:text-gold" id="employment-dropdown-button">
+                    Employment Center <i class="fas fa-chevron-down ml-2 text-xs"></i>
+                </button>
+                <div class="hidden pl-4 mt-2" id="employment-dropdown">
+                    <a href="#" class="block py-2 text-black hover:text-gold">I'm a Job Seeker</a>
+                    <a href="#" class="block py-2 text-black hover:text-gold">I'm an Employer</a>
+                </div>
+            </div>
+            
+            <a href="index.html#services" class="block py-2 text-black hover:text-gold">Our Services</a>
+            <a href="education.html" class="block py-2 text-gold">Education</a>
+            <a href="events.html" class="block py-2 text-black hover:text-gold">Events</a>
+            <a href="contact.html" class="block py-2 text-black hover:text-gold">Contact Us</a>
+            <a href="login.html" class="block py-2 text-gold">Login</a>
+        </div>
+    </nav>
+
+    <!-- Hero Section with Simplified Background -->
+    <section class="pt-32 pb-20 md:pt-40 md:pb-28 hero-gradient relative">
+        <div class="container mx-auto px-4 md:px-6 text-center relative z-10">
+            <h1 class="text-4xl md:text-5xl lg:text-6xl font-montserrat font-bold mb-6 animate-fade-in text-white">BICM School of Management</h1>
+            <p class="text-xl md:text-2xl mb-10 max-w-2xl mx-auto animate-fade-in delay-1 text-grey">Developing leaders through practical, outcome-based education and training programs</p>
+            <div class="animate-fade-in delay-2">
+                <button onclick="openModal()" class="bg-gold text-black px-8 py-3 rounded-full font-medium hover:bg-black hover:text-gold border-2 border-gold transition-colors duration-300 mr-4">
+                    Apply Now
+                </button>
+                <a href="#courses" class="bg-transparent text-white px-8 py-3 rounded-full font-medium hover:bg-white hover:text-black border-2 border-white transition-colors duration-300">
+                    Explore Courses
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- About BICM Education -->
+    <section class="py-20 bg-white">
+        <div class="container mx-auto px-4 md:px-6">
+            <div class="flex flex-col md:flex-row items-center gap-12">
+                <div class="md:w-1/2 animate-fade-in">
+                    <h2 class="text-3xl md:text-4xl font-montserrat font-bold mb-6 relative pb-4">
+                        Our Educational Philosophy
+                        <span class="absolute bottom-0 left-0 w-20 h-1 bg-gold"></span>
+                    </h2>
+                    <p class="text-lg text-gray-700 mb-6">
+                        At BICM, we believe in training that is needs-based and can be evaluated for effectiveness and efficiency. Our approach is participant-centered and outcome-based, focusing on practical application in the workplace.
+                    </p>
+                    <p class="text-lg text-gray-700 mb-6">
+                        We follow a holistic and participatory approach where learning is focused on the results to be achieved, striving for competence in all domains of human performance.
+                    </p>
+                    <div class="bg-grey p-6 rounded-lg">
+                        <h3 class="text-xl font-montserrat font-bold mb-4 text-gold">Why Choose BICM?</h3>
+                        <ul class="space-y-3 text-gray-700">
+                            <li class="flex items-start">
+                                <i class="fas fa-check text-gold mr-3 mt-1"></i>
+                                <span>Practical, hands-on training focused on real-world applications</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-check text-gold mr-3 mt-1"></i>
+                                <span>Experienced instructors with industry expertise</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-check text-gold mr-3 mt-1"></i>
+                                <span>Customized programs tailored to organizational needs</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-check text-gold mr-3 mt-1"></i>
+                                <span>Follow-up support to ensure skills application</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="md:w-1/2 animate-fade-in delay-1">
+                    <div class="relative group overflow-hidden rounded-lg shadow-xl h-96">
+                        <img src="https://res.cloudinary.com/dbed0vjcr/image/upload/v1750326824/johannes-schenk-ncQLjWIoLPs-unsplash_t81cvp.jpg" alt="BICM Training Session" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105">
+                        <div class="absolute inset-0 bg-black/20 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                            <button onclick="openVideoModal()" class="bg-gold text-black p-4 rounded-full hover:bg-black hover:text-gold transition-colors duration-300">
+                                <i class="fas fa-play text-xl"></i>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="mt-8 bg-gold text-black p-6 rounded-lg">
+                        <h3 class="text-xl font-montserrat font-bold mb-4">BICM School of Management</h3>
+                        <p class="mb-4">Our flagship institution offering comprehensive management development programs designed to transform professionals into effective leaders.</p>
+                        <button onclick="openModal('BICM School of Management')" class="bg-black text-gold px-6 py-2 rounded-full font-medium hover:bg-white hover:text-black border-2 border-black transition-colors duration-300">
+                            Learn More
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Course Categories -->
+    <section class="py-20 bg-grey" id="courses">
+        <div class="container mx-auto px-4 md:px-6">
+            <h2 class="text-3xl md:text-4xl font-montserrat font-bold text-center mb-12 relative pb-4">
+                Our Course Categories
+                <span class="absolute bottom-0 left-1/2 transform -translate-x-1/2 w-20 h-1 bg-gold"></span>
+            </h2>
+            
+            <!-- Search and Filter Section -->
+            <div class="mb-12 animate-fade-in">
+                <div class="search-container">
+                    <input type="text" id="courseSearch" placeholder="Search courses..." class="w-full px-6 py-3 rounded-full border border-gray-300 focus:outline-none focus:ring-2 focus:ring-gold focus:border-transparent">
+                    <button onclick="searchCourses()" class="bg-gold text-black px-4 py-2 rounded-full font-medium hover:bg-black hover:text-gold transition-colors duration-300">
+                        <i class="fas fa-search"></i>
+                    </button>
+                </div>
+                
+                <div class="flex flex-wrap justify-center gap-3 mt-6">
+                    <button onclick="filterCourses('all')" class="filter-chip active bg-gold text-black px-4 py-2 rounded-full text-sm font-medium">All Courses</button>
+                    <button onclick="filterCourses('leadership')" class="filter-chip bg-black/10 hover:bg-black/20 px-4 py-2 rounded-full text-sm font-medium">Leadership</button>
+                    <button onclick="filterCourses('business')" class="filter-chip bg-black/10 hover:bg-black/20 px-4 py-2 rounded-full text-sm font-medium">Business Skills</button>
+                    <button onclick="filterCourses('hr')" class="filter-chip bg-black/10 hover:bg-black/20 px-4 py-2 rounded-full text-sm font-medium">HR Consulting</button>
+                    <button onclick="filterCourses('industrial')" class="filter-chip bg-black/10 hover:bg-black/20 px-4 py-2 rounded-full text-sm font-medium">Industrial Relations</button>
+                    <button onclick="filterCourses('life')" class="filter-chip bg-black/10 hover:bg-black/20 px-4 py-2 rounded-full text-sm font-medium">Life Skills</button>
+                    <button onclick="filterCourses('health')" class="filter-chip bg-black/10 hover:bg-black/20 px-4 py-2 rounded-full text-sm font-medium">Public Health</button>
+                </div>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8" id="coursesContainer">
+                <!-- Leadership Courses -->
+                <div class="bg-white p-8 rounded-lg shadow-md course-card animate-fade-in" data-category="leadership">
+                    <div class="text-gold text-4xl mb-6">
+                        <i class="fas fa-chess-king"></i>
+                    </div>
+                    <h3 class="text-xl font-montserrat font-bold mb-4">Leadership Courses</h3>
+                    <p class="text-gray-700 mb-6">Develop essential leadership skills to drive organizational success.</p>
+                    <ul class="space-y-2 text-gray-600">
+                        <li class="flex items-center">
+                            <i class="fas fa-check text-gold mr-2"></i>
+                            Management of Change
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-check text-gold mr-2"></i>
+                            Effective Supervisory Skills
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-check text-gold mr-2"></i>
+                            Team Building
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-check text-gold mr-2"></i>
+                            Training of Trainers
+                        </li>
+                    </ul>
+                    <div class="mt-6 flex justify-between items-center">
+                        <button onclick="openModal('Leadership Courses')" class="text-gold font-medium hover:text-black transition-colors duration-300 flex items-center">
+                            View All <i class="fas fa-arrow-right ml-2"></i>
+                        </button>
+                        <span class="bg-gold/10 text-gold px-3 py-1 rounded-full text-xs">4 Courses</span>
+                    </div>
+                </div>
+                
+                <!-- Business Skills -->
+                <div class="bg-white p-8 rounded-lg shadow-md course-card animate-fade-in delay-1" data-category="business">
+                    <div class="text-gold text-4xl mb-6">
+                        <i class="fas fa-briefcase"></i>
+                    </div>
+                    <h3 class="text-xl font-montserrat font-bold mb-4">Business Skills</h3>
+                    <p class="text-gray-700 mb-6">Master essential business competencies for professional growth.</p>
+                    <ul class="space-y-2 text-gray-600">
+                        <li class="flex items-center">
+                            <i class="fas fa-check text-gold mr-2"></i>
+                            Entrepreneurial Skills
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-check text-gold mr-2"></i>
+                            Business Process Re-engineering
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-check text-gold mr-2"></i>
+                            Developing Business Plans
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-check text-gold mr-2"></i>
+                            Business Strategic Development
+                        </li>
+                    </ul>
+                    <div class="mt-6 flex justify-between items-center">
+                        <button onclick="openModal('Business Skills')" class="text-gold font-medium hover:text-black transition-colors duration-300 flex items-center">
+                            View All <i class="fas fa-arrow-right ml-2"></i>
+                        </button>
+                        <span class="bg-gold/10 text-gold px-3 py-1 rounded-full text-xs">5 Courses</span>
+                    </div>
+                </div>
+                
+                <!-- HR Consulting -->
+                <div class="bg-white p-8 rounded-lg shadow-md course-card animate-fade-in delay-2" data-category="hr">
+                    <div class="text-gold text-4xl mb-6">
+                        <i class="fas fa-users"></i>
+                    </div>
+                    <h3 class="text-xl font-montserrat font-bold mb-4">HR Consulting</h3>
+                    <p class="text-gray-700 mb-6">Develop HR expertise to manage your organization's most valuable asset.</p>
+                    <ul class="space-y-2 text-gray-600">
+                        <li class="flex items-center">
+                            <i class="fas fa-check text-gold mr-2"></i>
+                            Performance Management
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-check text-gold mr-2"></i>
+                            Job Evaluation and Grading
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-check text-gold mr-2"></i>
+                            Training Needs Analysis
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-check text-gold mr-2"></i>
+                            Recruitment and Selection
+                        </li>
+                    </ul>
+                    <div class="mt-6 flex justify-between items-center">
+                        <button onclick="openModal('HR Consulting')" class="text-gold font-medium hover:text-black transition-colors duration-300 flex items-center">
+                            View All <i class="fas fa-arrow-right ml-2"></i>
+                        </button>
+                        <span class="bg-gold/10 text-gold px-3 py-1 rounded-full text-xs">6 Courses</span>
+                    </div>
+                </div>
+                
+                <!-- Industrial Relations -->
+                <div class="bg-white p-8 rounded-lg shadow-md course-card animate-fade-in" data-category="industrial">
+                    <div class="text-gold text-4xl mb-6">
+                        <i class="fas fa-handshake"></i>
+                    </div>
+                    <h3 class="text-xl font-montserrat font-bold mb-4">Industrial Relations</h3>
+                    <p class="text-gray-700 mb-6">Navigate workplace relations with confidence and expertise.</p>
+                    <ul class="space-y-2 text-gray-600">
+                        <li class="flex items-center">
+                            <i class="fas fa-check text-gold mr-2"></i>
+                            Introduction to IR
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-check text-gold mr-2"></i>
+                            Labour Laws
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-check text-gold mr-2"></i>
+                            Disciplinary Procedures
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-check text-gold mr-2"></i>
+                            Collective Bargaining
+                        </li>
+                    </ul>
+                    <div class="mt-6 flex justify-between items-center">
+                        <button onclick="openModal('Industrial Relations')" class="text-gold font-medium hover:text-black transition-colors duration-300 flex items-center">
+                            View All <i class="fas fa-arrow-right ml-2"></i>
+                        </button>
+                        <span class="bg-gold/10 text-gold px-3 py-1 rounded-full text-xs">4 Courses</span>
+                    </div>
+                </div>
+                
+                <!-- Life Skills -->
+                <div class="bg-white p-8 rounded-lg shadow-md course-card animate-fade-in delay-1" data-category="life">
+                    <div class="text-gold text-4xl mb-6">
+                        <i class="fas fa-brain"></i>
+                    </div>
+                    <h3 class="text-xl font-montserrat font-bold mb-4">Life Skills</h3>
+                    <p class="text-gray-700 mb-6">Enhance personal effectiveness and professional communication.</p>
+                    <ul class="space-y-2 text-gray-600">
+                        <li class="flex items-center">
+                            <i class="fas fa-check text-gold mr-2"></i>
+                            Effective Communication
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-check text-gold mr-2"></i>
+                            Customer Service
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-check text-gold mr-2"></i>
+                            Report/Appraisal Writing
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-check text-gold mr-2"></i>
+                            Time Management
+                        </li>
+                    </ul>
+                    <div class="mt-6 flex justify-between items-center">
+                        <button onclick="openModal('Life Skills')" class="text-gold font-medium hover:text-black transition-colors duration-300 flex items-center">
+                            View All <i class="fas fa-arrow-right ml-2"></i>
+                        </button>
+                        <span class="bg-gold/10 text-gold px-3 py-1 rounded-full text-xs">5 Courses</span>
+                    </div>
+                </div>
+                
+                <!-- Public Health -->
+                <div class="bg-white p-8 rounded-lg shadow-md course-card animate-fade-in delay-2" data-category="health">
+                    <div class="text-gold text-4xl mb-6">
+                        <i class="fas fa-medkit"></i>
+                    </div>
+                    <h3 class="text-xl font-montserrat font-bold mb-4">Public Health</h3>
+                    <p class="text-gray-700 mb-6">Specialized training for health and community development professionals.</p>
+                    <ul class="space-y-2 text-gray-600">
+                        <li class="flex items-center">
+                            <i class="fas fa-check text-gold mr-2"></i>
+                            Operational Research
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-check text-gold mr-2"></i>
+                            Project Development
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-check text-gold mr-2"></i>
+                            HIV/AIDS Programming
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-check text-gold mr-2"></i>
+                            Water Sanitation
+                        </li>
+                    </ul>
+                    <div class="mt-6 flex justify-between items-center">
+                        <button onclick="openModal('Public Health')" class="text-gold font-medium hover:text-black transition-colors duration-300 flex items-center">
+                            View All <i class="fas fa-arrow-right ml-2"></i>
+                        </button>
+                        <span class="bg-gold/10 text-gold px-3 py-1 rounded-full text-xs">4 Courses</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Custom Training Section -->
+    <section class="py-20 bg-white">
+        <div class="container mx-auto px-4 md:px-6">
+            <div class="bg-gold text-black p-12 rounded-lg relative overflow-hidden">
+                <div class="absolute inset-0 bg-black/10"></div>
+                <div class="relative z-10">
+                    <h2 class="text-3xl md:text-4xl font-montserrat font-bold mb-6">Customized Corporate Training</h2>
+                    <p class="text-xl mb-8 max-w-2xl">We design and deliver tailored training programs to meet your organization's specific needs and challenges.</p>
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                        <div class="bg-black/10 p-6 rounded-lg backdrop-blur-sm">
+                            <h3 class="text-xl font-montserrat font-bold mb-4">Needs Assessment</h3>
+                            <p>We conduct thorough assessments to identify your organization's unique training requirements.</p>
+                        </div>
+                        <div class="bg-black/10 p-6 rounded-lg backdrop-blur-sm">
+                            <h3 class="text-xl font-montserrat font-bold mb-4">Custom Content</h3>
+                            <p>Programs are tailored to your industry, culture, and specific business objectives.</p>
+                        </div>
+                        <div class="bg-black/10 p-6 rounded-lg backdrop-blur-sm">
+                            <h3 class="text-xl font-montserrat font-bold mb-4">Follow-up Support</h3>
+                            <p>We provide post-training support to ensure skills are effectively applied in the workplace.</p>
+                        </div>
+                    </div>
+                    <button onclick="openModal('Corporate Training')" class="mt-8 bg-black text-gold px-8 py-3 rounded-full font-medium hover:bg-white hover:text-black border-2 border-black transition-colors duration-300">
+                        Request Custom Training
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials with Interactive Carousel -->
+    <section class="py-20 bg-grey">
+        <div class="container mx-auto px-4 md:px-6">
+            <h2 class="text-3xl md:text-4xl font-montserrat font-bold text-center mb-12 relative pb-4">
+                What Our Clients Say
+                <span class="absolute bottom-0 left-1/2 transform -translate-x-1/2 w-20 h-1 bg-gold"></span>
+            </h2>
+            
+            <div class="relative">
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8" id="testimonialContainer">
+                    <div class="bg-white p-8 rounded-lg shadow-md animate-fade-in">
+                        <div class="text-gold text-2xl mb-4">
+                            <i class="fas fa-quote-left"></i>
+                        </div>
+                        <p class="text-gray-700 mb-6">"The leadership training from BICM transformed our management team. The practical approach made implementation seamless."</p>
+                        <div class="flex items-center">
+                            <div class="bg-gold w-12 h-12 rounded-full flex items-center justify-center text-black font-bold mr-4">GM</div>
+                            <div>
+                                <h4 class="font-montserrat font-bold">George Mwale</h4>
+                                <p class="text-gray-500">G4S Malawi</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="bg-white p-8 rounded-lg shadow-md animate-fade-in delay-1">
+                        <div class="text-gold text-2xl mb-4">
+                            <i class="fas fa-quote-left"></i>
+                        </div>
+                        <p class="text-gray-700 mb-6">"BICM's HR consulting services helped us revamp our entire performance management system with measurable results."</p>
+                        <div class="flex items-center">
+                            <div class="bg-gold w-12 h-12 rounded-full flex items-center justify-center text-black font-bold mr-4">AM</div>
+                            <div>
+                                <h4 class="font-montserrat font-bold">Alice Msiska</h4>
+                                <p class="text-gray-500">Air Malawi</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="bg-white p-8 rounded-lg shadow-md animate-fade-in delay-2">
+                        <div class="text-gold text-2xl mb-4">
+                            <i class="fas fa-quote-left"></i>
+                        </div>
+                        <p class="text-gray-700 mb-6">"The customized training program developed for our staff addressed our exact needs and improved productivity by 30%."</p>
+                        <div class="flex items-center">
+                            <div class="bg-gold w-12 h-12 rounded-full flex items-center justify-center text-black font-bold mr-4">MM</div>
+                            <div>
+                                <h4 class="font-montserrat font-bold">Mary Mwale</h4>
+                                <p class="text-gray-500">Malawi Red Cross</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="flex justify-center mt-8 space-x-2">
+                    <button onclick="showTestimonial(0)" class="w-3 h-3 rounded-full bg-gold focus:outline-none testimonial-dot active"></button>
+                    <button onclick="showTestimonial(1)" class="w-3 h-3 rounded-full bg-gray-300 focus:outline-none testimonial-dot"></button>
+                    <button onclick="showTestimonial(2)" class="w-3 h-3 rounded-full bg-gray-300 focus:outline-none testimonial-dot"></button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Application CTA -->
+    <section class="py-20 bg-white">
+        <div class="container mx-auto px-4 md:px-6 text-center">
+            <h2 class="text-3xl md:text-4xl font-montserrat font-bold mb-6">Ready to Transform Your Career or Organization?</h2>
+            <p class="text-xl mb-10 max-w-2xl mx-auto text-gray-700">Join our next training session or request a customized program for your team.</p>
+            <div class="flex flex-col sm:flex-row justify-center gap-4">
+                <button onclick="openModal()" class="bg-gold text-black px-8 py-3 rounded-full font-medium hover:bg-black hover:text-gold border-2 border-gold transition-colors duration-300">
+                    Apply Now
+                </button>
+                <a href="contact.html" class="bg-transparent text-black px-8 py-3 rounded-full font-medium hover:bg-grey border-2 border-black transition-colors duration-300">
+                    Contact Us
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Compact Application Modal -->
+    <div id="applicationModal" class="modal fixed inset-0 bg-black/50 z-50 flex items-center justify-center opacity-0 invisible transition-all duration-300 p-4">
+        <div class="modal-content bg-white rounded-lg w-full max-w-md p-6 relative">
+            <button onclick="closeModal()" class="absolute top-4 right-4 text-gray-500 hover:text-black">
+                <i class="fas fa-times text-xl"></i>
+            </button>
+            
+            <h2 class="text-2xl font-montserrat font-bold mb-6 text-center" id="modalTitle">Training Application</h2>
+            
+            <form id="applicationForm" class="space-y-4">
+                <div>
+                    <label for="applicantName" class="block text-gray-700 mb-2">Full Name*</label>
+                    <input type="text" id="applicantName" name="name" required 
+                        class="w-full px-4 py-2 border border-gray-300 rounded focus:outline-none focus:border-gold">
+                </div>
+                
+                <div>
+                    <label for="applicantEmail" class="block text-gray-700 mb-2">Email Address*</label>
+                    <input type="email" id="applicantEmail" name="email" required
+                        class="w-full px-4 py-2 border border-gray-300 rounded focus:outline-none focus:border-gold">
+                </div>
+                
+                <div>
+                    <label for="applicantPhone" class="block text-gray-700 mb-2">Phone Number*</label>
+                    <input type="tel" id="applicantPhone" name="phone" required
+                        class="w-full px-4 py-2 border border-gray-300 rounded focus:outline-none focus:border-gold">
+                </div>
+                
+                <div>
+                    <label for="courseInterest" class="block text-gray-700 mb-2">Course/Program Interest*</label>
+                    <select id="courseInterest" name="courseInterest" required
+                        class="w-full px-4 py-2 border border-gray-300 rounded focus:outline-none focus:border-gold">
+                        <option value="">Select course</option>
+                        <option value="Leadership Courses">Leadership Courses</option>
+                        <option value="Business Skills">Business Skills</option>
+                        <option value="HR Consulting">HR Consulting</option>
+                        <option value="Industrial Relations">Industrial Relations</option>
+                        <option value="Life Skills">Life Skills</option>
+                        <option value="Public Health">Public Health</option>
+                        <option value="Corporate Training">Corporate Training</option>
+                        <option value="BICM School of Management">BICM School of Management</option>
+                    </select>
+                </div>
+                
+                <button type="submit" 
+                    class="w-full bg-gold text-black px-6 py-3 rounded font-medium hover:bg-black hover:text-gold border-2 border-gold transition-colors duration-300">
+                    Submit Application
+                </button>
+                
+                <p class="text-sm text-gray-500 mt-4">We'll contact you within 48 hours to confirm your application and discuss next steps.</p>
+            </form>
+        </div>
+    </div>
+
+    <!-- Video Modal -->
+    <div id="videoModal" class="modal fixed inset-0 bg-black/50 z-50 flex items-center justify-center opacity-0 invisible transition-all duration-300 p-4">
+        <div class="modal-content bg-white rounded-lg w-full max-w-3xl p-6 relative">
+            <button onclick="closeVideoModal()" class="absolute top-4 right-4 text-gray-500 hover:text-black z-10">
+                <i class="fas fa-times text-xl"></i>
+            </button>
+            
+            <div class="aspect-w-16 aspect-h-9 w-full">
+                <iframe id="videoFrame" class="w-full h-96 rounded-lg" src="https://www.youtube.com/embed/example" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+            </div>
+        </div>
+    </div>
+
+    <!-- Course Details Modal -->
+    <div id="courseModal" class="modal fixed inset-0 bg-black/50 z-50 flex items-center justify-center opacity-0 invisible transition-all duration-300 p-4">
+        <div class="modal-content bg-white rounded-lg w-full max-w-2xl p-6 relative">
+            <button onclick="closeCourseModal()" class="absolute top-4 right-4 text-gray-500 hover:text-black">
+                <i class="fas fa-times text-xl"></i>
+            </button>
+            
+            <h2 class="text-2xl font-montserrat font-bold mb-6" id="courseModalTitle">Course Details</h2>
+            
+            <div class="space-y-6" id="courseModalContent">
+                <!-- Content will be dynamically inserted here -->
+            </div>
+            
+            <button onclick="openModal()" class="mt-6 bg-gold text-black px-6 py-2 rounded-full font-medium hover:bg-black hover:text-gold border-2 border-gold transition-colors duration-300">
+                Apply Now
+            </button>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="bg-black text-white py-16">
+        <div class="container mx-auto px-4 md:px-6">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-12">
+                <!-- About Column -->
+                <div>
+                    <span class="text-xl font-montserrat font-bold mb-14"> BICM </span>
+                    <p class="text-gray-400 mt-6 mb-6">BICM Group delivers comprehensive business solutions through our specialized divisions, serving clients across Malawi and beyond.</p>
+                    <div class="flex space-x-4">
+                        <a href="#" class="text-white hover:text-gold text-xl transition-colors duration-300"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" class="text-white hover:text-gold text-xl transition-colors duration-300"><i class="fab fa-whatsapp"></i></a>
+                        <a href="#" class="text-white hover:text-gold text-xl transition-colors duration-300"><i class="fab fa-linkedin-in"></i></a>
+                    </div>
+                </div>
+                
+                <!-- Quick Links -->
+                <div>
+                    <h3 class="text-xl font-montserrat font-bold mb-6">Quick Links</h3>
+                    <ul class="space-y-3">
+                        <li><a href="index.html#about" class="text-gray-400 hover:text-gold transition-colors duration-300">About Us</a></li>
+                        <li><a href="index.html#services" class="text-gray-400 hover:text-gold transition-colors duration-300">Our Services</a></li>
+                        <li><a href="education.html" class="text-gray-400 hover:text-gold transition-colors duration-300">Education</a></li>
+                        <li><a href="events.html" class="text-gray-400 hover:text-gold transition-colors duration-300">Event Management</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-gold transition-colors duration-300">Employment Center</a></li>
+                    </ul>
+                </div>
+                
+                <!-- Contact Info -->
+                <div>
+                    <h3 class="text-xl font-montserrat font-bold mb-6">Contact Us</h3>
+                    <div class="space-y-4 text-gray-400">
+                        <p class="flex items-start">
+                            <i class="fas fa-map-marker-alt text-gold mt-1 mr-3"></i>
+                            <span>P.O. Box 1859, Lilongwe, Malawi</span>
+                        </p>
+                        <p class="flex items-center">
+                            <i class="fas fa-phone-alt text-gold mr-3"></i>
+                            <span>+265 888 853 888 / +265 992 822 700</span>
+                        </p>
+                        <p class="flex items-center">
+                            <i class="fas fa-envelope text-gold mr-3"></i>
+                            <span>bicmhrconsultants@gmail.com</span>
+                        </p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="border-t border-gray-800 mt-12 pt-8 text-center text-gray-500">
+                <p>&copy; 2023 BICM Group of Companies. All Rights Reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Back to Top Button -->
+    <button id="back-to-top" class="fixed bottom-8 right-8 w-12 h-12 bg-gold text-black rounded-full flex items-center justify-center opacity-0 invisible transition-all duration-300 z-50">
+        <i class="fas fa-arrow-up"></i>
+    </button>
+
+    <!-- JavaScript -->
+    <script>
+        // Course data for search and filtering
+        const courses = {
+            "Leadership Courses": [
+                { name: "Management of Change", duration: "2 Days", description: "Learn strategies to effectively manage organizational change and transition." },
+                { name: "Effective Supervisory Skills", duration: "3 Days", description: "Develop essential skills for effective supervision and team leadership." },
+                { name: "Team Building", duration: "2 Days", description: "Master techniques for building and maintaining high-performing teams." },
+                { name: "Training of Trainers", duration: "5 Days", description: "Become a certified trainer capable of delivering impactful training sessions." }
+            ],
+            "Business Skills": [
+                { name: "Entrepreneurial Skills", duration: "3 Days", description: "Develop the mindset and skills needed to launch and grow a successful business." },
+                { name: "Business Process Re-engineering", duration: "2 Days", description: "Learn how to redesign business processes for maximum efficiency." },
+                { name: "Developing Business Plans", duration: "2 Days", description: "Master the art of creating comprehensive and compelling business plans." },
+                { name: "Business Strategic Development", duration: "3 Days", description: "Learn how to develop and implement effective business strategies." },
+                { name: "Financial Management Basics", duration: "2 Days", description: "Understand fundamental financial concepts for business success." }
+            ],
+            "HR Consulting": [
+                { name: "Performance Management", duration: "3 Days", description: "Learn to design and implement effective performance management systems." },
+                { name: "Job Evaluation and Grading", duration: "2 Days", description: "Master techniques for job evaluation and establishing fair grading systems." },
+                { name: "Training Needs Analysis", duration: "2 Days", description: "Learn how to conduct comprehensive training needs assessments." },
+                { name: "Recruitment and Selection", duration: "2 Days", description: "Master best practices for effective recruitment and selection processes." },
+                { name: "Compensation and Benefits", duration: "2 Days", description: "Learn to design competitive compensation and benefits packages." },
+                { name: "Employee Relations", duration: "2 Days", description: "Develop skills to manage and improve employee relations." }
+            ],
+            "Industrial Relations": [
+                { name: "Introduction to IR", duration: "2 Days", description: "Fundamentals of industrial relations and workplace dynamics." },
+                { name: "Labour Laws", duration: "3 Days", description: "Comprehensive overview of labor laws and regulations." },
+                { name: "Disciplinary Procedures", duration: "2 Days", description: "Learn to implement fair and effective disciplinary procedures." },
+                { name: "Collective Bargaining", duration: "2 Days", description: "Master the art of negotiation in collective bargaining processes." }
+            ],
+            "Life Skills": [
+                { name: "Effective Communication", duration: "2 Days", description: "Enhance your communication skills for professional success." },
+                { name: "Customer Service", duration: "2 Days", description: "Develop exceptional customer service skills for any industry." },
+                { name: "Report/Appraisal Writing", duration: "2 Days", description: "Learn to write clear, concise, and effective reports and appraisals." },
+                { name: "Time Management", duration: "1 Day", description: "Master techniques to maximize productivity through effective time management." },
+                { name: "Stress Management", duration: "1 Day", description: "Learn strategies to manage and reduce workplace stress." }
+            ],
+            "Public Health": [
+                { name: "Operational Research", duration: "3 Days", description: "Learn research methods for public health program improvement." },
+                { name: "Project Development", duration: "2 Days", description: "Master the process of developing public health projects." },
+                { name: "HIV/AIDS Programming", duration: "3 Days", description: "Specialized training for HIV/AIDS program development and management." },
+                { name: "Water Sanitation", duration: "2 Days", description: "Learn best practices in water sanitation and hygiene programs." }
+            ]
+        };
+
+        // Modal functions
+        function openModal(courseType = '') {
+            const modal = document.getElementById('applicationModal');
+            if (courseType) {
+                document.getElementById('modalTitle').textContent = `Apply for ${courseType}`;
+                document.getElementById('courseInterest').value = courseType;
+            }
+            modal.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+        
+        function closeModal() {
+            document.getElementById('applicationModal').classList.remove('active');
+            document.body.style.overflow = 'auto';
+        }
+        
+        function openVideoModal() {
+            const modal = document.getElementById('videoModal');
+            // Replace with your actual video ID
+            document.getElementById('videoFrame').src = "https://www.youtube.com/embed/example?autoplay=1";
+            modal.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+        
+        function closeVideoModal() {
+            const modal = document.getElementById('videoModal');
+            document.getElementById('videoFrame').src = "";
+            modal.classList.remove('active');
+            document.body.style.overflow = 'auto';
+        }
+        
+        function openCourseModal(courseCategory) {
+            const modal = document.getElementById('courseModal');
+            document.getElementById('courseModalTitle').textContent = courseCategory;
+            
+            const contentDiv = document.getElementById('courseModalContent');
+            contentDiv.innerHTML = '';
+            
+            // Add course list
+            const courseList = document.createElement('div');
+            courseList.className = 'space-y-6';
+            
+            courses[courseCategory].forEach(course => {
+                const courseDiv = document.createElement('div');
+                courseDiv.className = 'border-b border-gray-200 pb-4';
+                
+                const titleDiv = document.createElement('div');
+                titleDiv.className = 'flex justify-between items-start mb-2';
+                
+                const nameSpan = document.createElement('h3');
+                nameSpan.className = 'font-montserrat font-bold text-lg';
+                nameSpan.textContent = course.name;
+                
+                const durationSpan = document.createElement('span');
+                durationSpan.className = 'bg-gold/10 text-gold px-2 py-1 rounded-full text-xs';
+                durationSpan.textContent = course.duration;
+                
+                titleDiv.appendChild(nameSpan);
+                titleDiv.appendChild(durationSpan);
+                
+                const descP = document.createElement('p');
+                descP.className = 'text-gray-700';
+                descP.textContent = course.description;
+                
+                courseDiv.appendChild(titleDiv);
+                courseDiv.appendChild(descP);
+                
+                courseList.appendChild(courseDiv);
+            });
+            
+            contentDiv.appendChild(courseList);
+            
+            modal.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+        
+        function closeCourseModal() {
+            document.getElementById('courseModal').classList.remove('active');
+            document.body.style.overflow = 'auto';
+        }
+        
+        // Close modals when clicking outside
+        document.getElementById('applicationModal').addEventListener('click', function(e) {
+            if (e.target === this) {
+                closeModal();
+            }
+        });
+        
+        document.getElementById('videoModal').addEventListener('click', function(e) {
+            if (e.target === this) {
+                closeVideoModal();
+            }
+        });
+        
+        document.getElementById('courseModal').addEventListener('click', function(e) {
+            if (e.target === this) {
+                closeCourseModal();
+            }
+        });
+        
+        // Form submission
+        document.getElementById('applicationForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            alert('Thank you for your application! We will contact you shortly to discuss the next steps.');
+            this.reset();
+            closeModal();
+        });
+        
+        // Search functionality
+        function searchCourses() {
+            const searchTerm = document.getElementById('courseSearch').value.toLowerCase();
+            const courseCards = document.querySelectorAll('.course-card');
+            
+            courseCards.forEach(card => {
+                const title = card.querySelector('h3').textContent.toLowerCase();
+                const description = card.querySelector('p').textContent.toLowerCase();
+                
+                if (title.includes(searchTerm)) {
+                    card.style.display = 'block';
+                } else if (description.includes(searchTerm)) {
+                    card.style.display = 'block';
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+        }
+        
+        // Filter functionality
+        function filterCourses(category) {
+            const courseCards = document.querySelectorAll('.course-card');
+            const filterButtons = document.querySelectorAll('.filter-chip');
+            
+            // Update active filter button
+            filterButtons.forEach(button => {
+                if (button.textContent.toLowerCase().includes(category) || (category === 'all' && button.textContent === 'All Courses')) {
+                    button.classList.add('active', 'bg-gold', 'text-black');
+                    button.classList.remove('bg-black/10', 'hover:bg-black/20');
+                } else {
+                    button.classList.remove('active', 'bg-gold', 'text-black');
+                    button.classList.add('bg-black/10', 'hover:bg-black/20');
+                }
+            });
+            
+            // Show/hide courses based on filter
+            courseCards.forEach(card => {
+                if (category === 'all') {
+                    card.style.display = 'block';
+                } else {
+                    const cardCategory = card.getAttribute('data-category');
+                    if (cardCategory.includes(category)) {
+                        card.style.display = 'block';
+                    } else {
+                        card.style.display = 'none';
+                    }
+                }
+            });
+        }
+        
+        // Testimonial carousel
+        let currentTestimonial = 0;
+        const testimonials = document.querySelectorAll('#testimonialContainer > div');
+        const dots = document.querySelectorAll('.testimonial-dot');
+        
+        function showTestimonial(index) {
+            testimonials.forEach((testimonial, i) => {
+                if (i === index) {
+                    testimonial.style.display = 'block';
+                    dots[i].classList.add('bg-gold');
+                    dots[i].classList.remove('bg-gray-300');
+                } else {
+                    testimonial.style.display = 'none';
+                    dots[i].classList.remove('bg-gold');
+                    dots[i].classList.add('bg-gray-300');
+                }
+            });
+            currentTestimonial = index;
+        }
+        
+        // Auto-rotate testimonials
+        setInterval(() => {
+            currentTestimonial = (currentTestimonial + 1) % testimonials.length;
+            showTestimonial(currentTestimonial);
+        }, 5000);
+        
+        // Back to top button functionality
+        const backToTopButton = document.getElementById('back-to-top');
+        window.addEventListener('scroll', function() {
+            if (window.scrollY > 300) {
+                backToTopButton.classList.remove('opacity-0', 'invisible');
+                backToTopButton.classList.add('opacity-100', 'visible');
+            } else {
+                backToTopButton.classList.add('opacity-0', 'invisible');
+                backToTopButton.classList.remove('opacity-100', 'visible');
+            }
+        });
+        
+        backToTopButton.addEventListener('click', function() {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+        
+        // Mobile menu toggle
+        const mobileMenuButton = document.getElementById('mobile-menu-button');
+        const mobileMenu = document.getElementById('mobile-menu');
+        const employmentDropdownButton = document.getElementById('employment-dropdown-button');
+        const employmentDropdown = document.getElementById('employment-dropdown');
+        
+        mobileMenuButton.addEventListener('click', function() {
+            mobileMenu.classList.toggle('hidden');
+        });
+        
+        if (employmentDropdownButton && employmentDropdown) {
+            employmentDropdownButton.addEventListener('click', function() {
+                employmentDropdown.classList.toggle('hidden');
+            });
+        }
+        
+        // Search on Enter key press
+        document.getElementById('courseSearch').addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') {
+                searchCourses();
+            }
+        });
+        
+        // Initialize on DOM load
+        document.addEventListener('DOMContentLoaded', function() {
+            // Set first testimonial as active
+            showTestimonial(0);
+            
+            // Make course category buttons clickable to open modal
+            document.querySelectorAll('[onclick^="openModal"]').forEach(button => {
+                const match = button.getAttribute('onclick').match(/openModal\('([^']+)'\)/);
+                if (match) {
+                    button.onclick = function() { openCourseModal(match[1]) };
+                }
+            });
+        });
+    </script>
+</body>
+</html>

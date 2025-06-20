@@ -1,0 +1,394 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BICM Group - Contact Us</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;900&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Tailwind Config -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        black: '#000000',
+                        gold: '#D4AF37',
+                        grey: '#F5F5F5',
+                        green: '#1E3A2B',
+                    },
+                    fontFamily: {
+                        montserrat: ['Montserrat', 'sans-serif'],
+                        inter: ['Inter', 'sans-serif'],
+                    },
+                }
+            }
+        }
+    </script>
+    <style type="text/css">
+        /* Custom animations */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .animate-fade-in {
+            animation: fadeIn 1s ease-in-out forwards;
+        }
+        .delay-1 { animation-delay: 0.2s; }
+        .delay-2 { animation-delay: 0.4s; }
+        .delay-3 { animation-delay: 0.6s; }
+        
+        /* Enhanced glass morphism effect */
+        .glass-nav {
+            background: rgba(255, 255, 255, 0.9);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+        }
+        .glass-nav.scrolled {
+            background: rgba(255, 255, 255, 0.95);
+            box-shadow: 0 2px 20px rgba(0, 0, 0, 0.1);
+        }
+        
+        /* Modal styles */
+        .modal {
+            transition: opacity 0.3s ease, visibility 0.3s ease;
+        }
+        .modal-content {
+            transform: translateY(-20px);
+            transition: transform 0.3s ease;
+        }
+        .modal.active {
+            opacity: 1;
+            visibility: visible;
+        }
+        .modal.active .modal-content {
+            transform: translateY(0);
+        }
+    </style>
+</head>
+<body class="font-inter bg-white text-black">
+    <!-- Glass Navigation Bar -->
+    <nav class="fixed w-full glass-nav z-50 transition-all duration-300" id="navbar">
+        <div class="container mx-auto px-4 md:px-6 flex justify-between items-center">
+            <!-- Logo -->
+            <img src="https://res.cloudinary.com/dbed0vjcr/image/upload/v1750323428/bicm_f38w95-removebg-preview_vjoybh.png" alt="BICM Logo" class="h-14 transition-all duration-300" id="logo">
+
+            <!-- Desktop Menu -->
+            <ul class="hidden md:flex space-x-8 items-center">
+                <li><a href="index.html" class="text-black hover:text-gold font-medium transition-colors duration-300">About Us</a></li>
+                
+                <!-- Employment Center Dropdown -->
+                <li class="relative group">
+                    <a href="#" class="text-black hover:text-gold font-medium flex items-center transition-colors duration-300">
+                        Employment Center <i class="fas fa-chevron-down ml-2 text-xs"></i>
+                    </a>
+                    <div class="absolute left-0 mt-2 w-48 bg-white/95 shadow-lg rounded-md py-2 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 border-t-2 border-gold">
+                        <a href="#" class="block px-4 py-2 text-black hover:bg-gold/10 hover:text-gold">I'm a Job Seeker</a>
+                        <a href="#" class="block px-4 py-2 text-black hover:bg-gold/10 hover:text-gold">I'm an Employer</a>
+                    </div>
+                </li>
+                
+                <li><a href="index.html#services" class="text-black hover:text-gold font-medium transition-colors duration-300">Our Services</a></li>
+                <li><a href="education.html" class="text-black hover:text-gold font-medium transition-colors duration-300">Education</a></li>
+                <li><a href="events.html" class="text-black hover:text-gold font-medium transition-colors duration-300">Event Management</a></li>
+                <li><a href="contact.html" class="text-gold font-medium transition-colors duration-300 relative after:absolute after:bottom-[-5px] after:left-0 after:w-full after:h-[2px] after:bg-gold">Contact Us</a></li>
+                <li><a href="login.html" class="bg-gold text-black px-6 py-2 rounded-full font-medium hover:bg-black hover:text-gold border-2 border-gold transition-colors duration-300">Login</a></li>
+            </ul>
+
+            <!-- Mobile Menu Button -->
+            <button class="md:hidden text-black text-xl focus:outline-none" id="mobile-menu-button">
+                <i class="fas fa-bars"></i>
+            </button>
+        </div>
+
+        <!-- Mobile Menu -->
+        <div class="md:hidden hidden bg-white/95 w-full py-4 px-4" id="mobile-menu">
+            <a href="index.html" class="block py-2 text-black hover:text-gold">About Us</a>
+            
+            <div class="py-2">
+                <button class="flex items-center justify-between w-full text-black hover:text-gold" id="employment-dropdown-button">
+                    Employment Center <i class="fas fa-chevron-down ml-2 text-xs"></i>
+                </button>
+                <div class="hidden pl-4 mt-2" id="employment-dropdown">
+                    <a href="#" class="block py-2 text-black hover:text-gold">I'm a Job Seeker</a>
+                    <a href="#" class="block py-2 text-black hover:text-gold">I'm an Employer</a>
+                </div>
+            </div>
+            
+            <a href="index.html#services" class="block py-2 text-black hover:text-gold">Our Services</a>
+            <a href="education.html" class="block py-2 text-black hover:text-gold">Education</a>
+            <a href="events.html" class="block py-2 text-black hover:text-gold">Event Management</a>
+            <a href="contact.html" class="block py-2 text-gold">Contact Us</a>
+            <a href="login.html" class="block py-2 text-gold">Login</a>
+        </div>
+    </nav>
+
+    <!-- Hero Section - Consistent with other pages -->
+    <section class="pt-32 pb-20 md:pt-40 md:pb-28 bg-grey">
+        <div class="container mx-auto px-4 md:px-6 text-center">
+            <h1 class="text-4xl md:text-5xl lg:text-6xl font-montserrat font-bold mb-6 animate-fade-in text-black">Contact Us</h1>
+            <p class="text-xl md:text-2xl mb-10 max-w-2xl mx-auto animate-fade-in delay-1 text-gray-700">We'd love to hear from you. Contact us today to discuss how we can help your organization.</p>
+        </div>
+    </section>
+
+    <!-- Contact Content Section -->
+    <section class="py-20 bg-white">
+        <div class="container mx-auto px-4 md:px-6">
+            <div class="flex flex-col lg:flex-row gap-12">
+                <!-- Contact Form -->
+                <div class="lg:w-1/2 animate-fade-in">
+                    <h2 class="text-3xl font-montserrat font-bold mb-8 relative pb-4">
+                        Send Us a Message
+                        <span class="absolute bottom-0 left-0 w-20 h-1 bg-gold"></span>
+                    </h2>
+                    
+                    <form id="contactForm" class="space-y-6">
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                            <div>
+                                <label for="name" class="block text-gray-700 mb-2">Full Name*</label>
+                                <input type="text" id="name" name="name" required 
+                                    class="w-full px-4 py-2 border border-gray-300 rounded focus:outline-none focus:border-gold">
+                            </div>
+                            <div>
+                                <label for="email" class="block text-gray-700 mb-2">Email Address*</label>
+                                <input type="email" id="email" name="email" required 
+                                    class="w-full px-4 py-2 border border-gray-300 rounded focus:outline-none focus:border-gold">
+                            </div>
+                        </div>
+                        
+                        <div>
+                            <label for="subject" class="block text-gray-700 mb-2">Subject*</label>
+                            <input type="text" id="subject" name="subject" required 
+                                class="w-full px-4 py-2 border border-gray-300 rounded focus:outline-none focus:border-gold">
+                        </div>
+                        
+                        <div>
+                            <label for="message" class="block text-gray-700 mb-2">Your Message*</label>
+                            <textarea id="message" name="message" rows="5" required 
+                                class="w-full px-4 py-2 border border-gray-300 rounded focus:outline-none focus:border-gold"></textarea>
+                        </div>
+                        
+                        <button type="submit" 
+                            class="bg-gold text-black px-8 py-3 rounded-full font-medium hover:bg-black hover:text-gold border-2 border-gold transition-colors duration-300">
+                            Send Message
+                        </button>
+                    </form>
+                </div>
+                
+                <!-- Contact Info -->
+                <div class="lg:w-1/2 animate-fade-in delay-1">
+                    <h2 class="text-3xl font-montserrat font-bold mb-8 relative pb-4">
+                        Contact Information
+                        <span class="absolute bottom-0 left-0 w-20 h-1 bg-gold"></span>
+                    </h2>
+                    
+                    <div class="space-y-8">
+                        <div class="flex items-start">
+                            <div class="text-gold text-2xl mr-6 mt-1">
+                                <i class="fas fa-map-marker-alt"></i>
+                            </div>
+                            <div>
+                                <h3 class="text-xl font-montserrat font-bold mb-2">Our Office</h3>
+                                <p class="text-gray-700">P.O. Box 1859<br>Lilongwe, Malawi</p>
+                            </div>
+                        </div>
+                        
+                        <div class="flex items-start">
+                            <div class="text-gold text-2xl mr-6 mt-1">
+                                <i class="fas fa-phone-alt"></i>
+                            </div>
+                            <div>
+                                <h3 class="text-xl font-montserrat font-bold mb-2">Phone Numbers</h3>
+                                <p class="text-gray-700 mb-1">+265 888 853 888</p>
+                                <p class="text-gray-700">+265 992 822 700</p>
+                            </div>
+                        </div>
+                        
+                        <div class="flex items-start">
+                            <div class="text-gold text-2xl mr-6 mt-1">
+                                <i class="fas fa-envelope"></i>
+                            </div>
+                            <div>
+                                <h3 class="text-xl font-montserrat font-bold mb-2">Email Address</h3>
+                                <p class="text-gray-700">bicmhrconsultants@gmail.com</p>
+                            </div>
+                        </div>
+                        
+                        <div class="flex items-start">
+                            <div class="text-gold text-2xl mr-6 mt-1">
+                                <i class="fas fa-clock"></i>
+                            </div>
+                            <div>
+                                <h3 class="text-xl font-montserrat font-bold mb-2">Working Hours</h3>
+                                <p class="text-gray-700">Monday - Friday: 8:00 AM - 5:00 PM</p>
+                                <p class="text-gray-700">Saturday: 9:00 AM - 1:00 PM</p>
+                                <p class="text-gray-700">Sunday: Closed</p>
+                            </div>
+                        </div>
+                        
+                        <div class="pt-4">
+                            <h3 class="text-xl font-montserrat font-bold mb-4">Follow Us</h3>
+                            <div class="flex space-x-4">
+                                <a href="#" class="w-10 h-10 rounded-full bg-black text-white flex items-center justify-center hover:bg-gold hover:text-black transition-colors duration-300">
+                                    <i class="fab fa-facebook-f"></i>
+                                </a>
+                                <a href="#" class="w-10 h-10 rounded-full bg-black text-white flex items-center justify-center hover:bg-gold hover:text-black transition-colors duration-300">
+                                    <i class="fab fa-linkedin-in"></i>
+                                </a>
+                                <a href="#" class="w-10 h-10 rounded-full bg-black text-white flex items-center justify-center hover:bg-gold hover:text-black transition-colors duration-300">
+                                    <i class="fab fa-whatsapp"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer - Consistent with other pages -->
+    <footer class="bg-black text-white py-16">
+        <div class="container mx-auto px-4 md:px-6">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-12">
+                <!-- About Column -->
+                <div>
+                    <span class="text-xl font-montserrat font-bold mb-14"> BICM </span>
+                    <p class="text-gray-400 mt-6 mb-6">BICM Group delivers comprehensive business solutions through our specialized divisions, serving clients across Malawi and beyond.</p>
+                    <div class="flex space-x-4">
+                        <a href="#" class="text-white hover:text-gold text-xl transition-colors duration-300"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" class="text-white hover:text-gold text-xl transition-colors duration-300"><i class="fab fa-whatsapp"></i></a>
+                        <a href="#" class="text-white hover:text-gold text-xl transition-colors duration-300"><i class="fab fa-linkedin-in"></i></a>
+                    </div>
+                </div>
+                
+                <!-- Quick Links -->
+                <div>
+                    <h3 class="text-xl font-montserrat font-bold mb-6">Quick Links</h3>
+                    <ul class="space-y-3">
+                        <li><a href="index.html#about" class="text-gray-400 hover:text-gold transition-colors duration-300">About Us</a></li>
+                        <li><a href="index.html#services" class="text-gray-400 hover:text-gold transition-colors duration-300">Our Services</a></li>
+                        <li><a href="education.html" class="text-gray-400 hover:text-gold transition-colors duration-300">Education</a></li>
+                        <li><a href="events.html" class="text-gray-400 hover:text-gold transition-colors duration-300">Event Management</a></li>
+                        <li><a href="employment.html" class="text-gray-400 hover:text-gold transition-colors duration-300">Employment Center</a></li>
+                    </ul>
+                </div>
+                
+                <!-- Contact Info -->
+                <div>
+                    <h3 class="text-xl font-montserrat font-bold mb-6">Contact Us</h3>
+                    <div class="space-y-4 text-gray-400">
+                        <p class="flex items-start">
+                            <i class="fas fa-map-marker-alt text-gold mt-1 mr-3"></i>
+                            <span>P.O. Box 1859, Lilongwe, Malawi</span>
+                        </p>
+                        <p class="flex items-center">
+                            <i class="fas fa-phone-alt text-gold mr-3"></i>
+                            <span>+265 888 853 888 / +265 992 822 700</span>
+                        </p>
+                        <p class="flex items-center">
+                            <i class="fas fa-envelope text-gold mr-3"></i>
+                            <span>bicmhrconsultants@gmail.com</span>
+                        </p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="border-t border-gray-800 mt-12 pt-8 text-center text-gray-500">
+                <p>&copy; 2023 BICM Group of Companies. All Rights Reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Back to Top Button -->
+    <button id="back-to-top" class="fixed bottom-8 right-8 w-12 h-12 bg-gold text-black rounded-full flex items-center justify-center opacity-0 invisible transition-all duration-300 z-50">
+        <i class="fas fa-arrow-up"></i>
+    </button>
+
+    <!-- JavaScript -->
+    <script>
+        // Sticky Navbar
+        window.addEventListener('scroll', function() {
+            const navbar = document.getElementById('navbar');
+            const logo = document.getElementById('logo');
+            const backToTop = document.getElementById('back-to-top');
+            
+            if (window.scrollY > 100) {
+                navbar.classList.add('scrolled');
+                navbar.classList.add('py-2');
+                navbar.classList.remove('py-4');
+                logo.classList.add('h-10');
+                logo.classList.remove('h-14');
+                backToTop.classList.remove('opacity-0', 'invisible');
+                backToTop.classList.add('opacity-100', 'visible');
+            } else {
+                navbar.classList.remove('scrolled');
+                navbar.classList.remove('py-2');
+                navbar.classList.add('py-4');
+                logo.classList.remove('h-10');
+                logo.classList.add('h-14');
+                backToTop.classList.add('opacity-0', 'invisible');
+                backToTop.classList.remove('opacity-100', 'visible');
+            }
+        });
+
+        // Mobile Menu Toggle
+        const mobileMenuButton = document.getElementById('mobile-menu-button');
+        const mobileMenu = document.getElementById('mobile-menu');
+        const employmentDropdownButton = document.getElementById('employment-dropdown-button');
+        const employmentDropdown = document.getElementById('employment-dropdown');
+        
+        mobileMenuButton.addEventListener('click', function() {
+            mobileMenu.classList.toggle('hidden');
+        });
+        
+        if (employmentDropdownButton && employmentDropdown) {
+            employmentDropdownButton.addEventListener('click', function() {
+                employmentDropdown.classList.toggle('hidden');
+            });
+        }
+
+        // Back to Top Button
+        document.getElementById('back-to-top').addEventListener('click', function() {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        });
+
+        // Form Submission
+        document.getElementById('contactForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            alert('Thank you for your message! We will get back to you soon.');
+            this.reset();
+        });
+
+        // Intersection Observer for Animations
+        const animateOnScroll = () => {
+            const elements = document.querySelectorAll('.animate-fade-in');
+            
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('animate-fade-in');
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, { threshold: 0.1 });
+            
+            elements.forEach(element => {
+                observer.observe(element);
+            });
+        };
+
+        // Initialize on DOM load
+        document.addEventListener('DOMContentLoaded', function() {
+            animateOnScroll();
+        });
+    </script>
+</body>
+</html>
