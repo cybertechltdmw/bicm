@@ -1,0 +1,899 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BICM - Resume Builder</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;900&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Tailwind Config -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        black: '#000000',
+                        gold: '#D4AF37',
+                        grey: '#F5F5F5',
+                        green: '#1E3A2B',
+                    },
+                    fontFamily: {
+                        montserrat: ['Montserrat', 'sans-serif'],
+                        inter: ['Inter', 'sans-serif'],
+                    },
+                }
+            }
+        }
+    </script>
+    <style type="text/css">
+        /* Custom animations */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .animate-fade-in {
+            animation: fadeIn 0.5s ease-in-out forwards;
+        }
+        
+        /* Sidebar styling */
+        .sidebar-link {
+            transition: all 0.3s ease;
+        }
+        .sidebar-link:hover {
+            background-color: rgba(212, 175, 55, 0.1);
+        }
+        .sidebar-link.active {
+            background-color: rgba(212, 175, 55, 0.2);
+            border-left: 4px solid #D4AF37;
+        }
+        
+        /* Resume template styling */
+        .resume-template {
+            transition: all 0.3s ease;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+        .resume-template:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
+            border-color: #D4AF37;
+        }
+        .resume-template.selected {
+            border: 2px solid #D4AF37;
+            box-shadow: 0 0 0 3px rgba(212, 175, 55, 0.2);
+        }
+        
+        /* Form styling */
+        .form-input:focus {
+            outline: none;
+            box-shadow: 0 0 0 3px rgba(212, 175, 55, 0.3);
+            border-color: #D4AF37;
+        }
+        
+        /* Resume preview styling */
+        .resume-preview {
+            background-color: white;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+            min-height: 1122px; /* A4 height */
+        }
+        
+        /* Skill meter styling */
+        .skill-meter {
+            height: 6px;
+            background-color: #E5E7EB;
+            border-radius: 3px;
+        }
+        .skill-meter-fill {
+            height: 100%;
+            border-radius: 3px;
+            background-color: #D4AF37;
+        }
+        
+        /* Section editor styling */
+        .section-editor {
+            transition: all 0.3s ease;
+        }
+        .section-editor:hover {
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+    </style>
+</head>
+<body class="font-inter bg-grey">
+    <!-- Dashboard Layout -->
+    <div class="flex h-screen overflow-hidden">
+        <!-- Sidebar -->
+        <div class="hidden md:flex md:flex-shrink-0">
+            <div class="flex flex-col w-64 bg-white border-r border-gray-200">
+                <div class="flex items-center justify-center h-16 px-4 border-b border-gray-200">
+                    <img src="https://res.cloudinary.com/dbed0vjcr/image/upload/v1750323428/bicm_f38w95-removebg-preview_vjoybh.png" alt="BICM Logo" class="h-10">
+                </div>
+                <div class="flex flex-col flex-grow px-4 py-4 overflow-y-auto">
+                    <!-- User Profile -->
+                    <div class="flex items-center mb-8 p-2 rounded-lg bg-gold/10">
+                        <img src="https://res.cloudinary.com/dbed0vjcr/image/upload/v1750327890/default-placeholder-profile-icon_hxpj2a.webp" alt="User" class="w-10 h-10 rounded-full mr-3">
+                        <div>
+                            <p class="font-medium">Welcome back,</p>
+                            <p class="font-bold">New User</p>
+                        </div>
+                    </div>
+                    
+                    <!-- Navigation -->
+                    <nav class="space-y-1">
+                        <a href="seeker.html" class="sidebar-link flex items-center px-4 py-3 text-gray-900 rounded-lg">
+                            <i class="fas fa-tachometer-alt text-gray-500 mr-3"></i>
+                            Dashboard
+                        </a>
+                        <a href="employment.html" class="sidebar-link flex items-center px-4 py-3 text-gray-900 rounded-lg">
+                            <i class="fas fa-search text-gray-500 mr-3"></i>
+                            Find Jobs
+                        </a>
+                        <a href="companies.html" class="sidebar-link flex items-center px-4 py-3 text-gray-900 rounded-lg">
+                            <i class="fas fa-building text-gray-500 mr-3"></i>
+                            Companies
+                        </a>
+                        <a href="resume.html" class="sidebar-link active flex items-center px-4 py-3 text-gray-900 rounded-lg">
+                            <i class="fas fa-file-alt text-gold mr-3"></i>
+                            Resume Builder
+                        </a>
+                        <a href="alerts.html" class="sidebar-link flex items-center px-4 py-3 text-gray-900 rounded-lg">
+                            <i class="fas fa-bell text-gray-500 mr-3"></i>
+                            Job Alerts
+                        </a>
+                        <a href="settings.html" class="sidebar-link flex items-center px-4 py-3 text-gray-900 rounded-lg">
+                            <i class="fas fa-cog text-gray-500 mr-3"></i>
+                            Settings
+                        </a>
+                    </nav>
+                    
+                    <!-- Logout -->
+                    <div class="mt-auto pt-4">
+                        <a href="login.html" class="flex items-center px-4 py-3 text-gray-900 rounded-lg hover:bg-red-50">
+                            <i class="fas fa-sign-out-alt text-red-500 mr-3"></i>
+                            Logout
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Mobile sidebar -->
+        <div class="md:hidden fixed inset-0 z-40" id="mobile-sidebar" style="display: none;">
+            <div class="fixed inset-0 bg-gray-600 bg-opacity-75" id="sidebar-backdrop"></div>
+            <div class="relative flex flex-col w-72 max-w-xs h-full bg-white">
+                <div class="flex items-center justify-between h-16 px-4 border-b border-gray-200">
+                    <img src="https://res.cloudinary.com/dbed0vjcr/image/upload/v1750323428/bicm_f38w95-removebg-preview_vjoybh.png" alt="BICM Logo" class="h-10">
+                    <button id="close-sidebar" class="text-gray-500 hover:text-gray-600">
+                        <i class="fas fa-times"></i>
+                    </button>
+                </div>
+                <div class="flex flex-col flex-grow px-4 py-4 overflow-y-auto">
+                    <!-- User Profile -->
+                    <div class="flex items-center mb-8 p-2 rounded-lg bg-gold/10">
+                        <img src="https://res.cloudinary.com/dbed0vjcr/image/upload/v1750327890/default-placeholder-profile-icon_hxpj2a.webp" alt="User" class="w-10 h-10 rounded-full mr-3">
+                        <div>
+                            <p class="font-medium">Welcome back,</p>
+                            <p class="font-bold">New User</p>
+                        </div>
+                    </div>
+                    
+                    <!-- Navigation -->
+                    <nav class="space-y-1">
+                        <a href="seeker.html" class="sidebar-link flex items-center px-4 py-3 text-gray-900 rounded-lg">
+                            <i class="fas fa-tachometer-alt text-gray-500 mr-3"></i>
+                            Dashboard
+                        </a>
+                        <a href="employment.html" class="sidebar-link flex items-center px-4 py-3 text-gray-900 rounded-lg">
+                            <i class="fas fa-search text-gray-500 mr-3"></i>
+                            Find Jobs
+                        </a>
+                        <a href="companies.html" class="sidebar-link flex items-center px-4 py-3 text-gray-900 rounded-lg">
+                            <i class="fas fa-building text-gray-500 mr-3"></i>
+                            Companies
+                        </a>
+                        <a href="resume.html" class="sidebar-link active flex items-center px-4 py-3 text-gray-900 rounded-lg">
+                            <i class="fas fa-file-alt text-gold mr-3"></i>
+                            Resume Builder
+                        </a>
+                        <a href="alerts.html" class="sidebar-link flex items-center px-4 py-3 text-gray-900 rounded-lg">
+                            <i class="fas fa-bell text-gray-500 mr-3"></i>
+                            Job Alerts
+                        </a>
+                        <a href="settings.html" class="sidebar-link flex items-center px-4 py-3 text-gray-900 rounded-lg">
+                            <i class="fas fa-cog text-gray-500 mr-3"></i>
+                            Settings
+                        </a>
+                    </nav>
+                    
+                    <!-- Logout -->
+                    <div class="mt-auto pt-4">
+                        <a href="login.html" class="flex items-center px-4 py-3 text-gray-900 rounded-lg hover:bg-red-50">
+                            <i class="fas fa-sign-out-alt text-red-500 mr-3"></i>
+                            Logout
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Main Content -->
+        <div class="flex flex-col flex-1 overflow-hidden">
+            <!-- Top Navigation -->
+            <header class="bg-white border-b border-gray-200">
+                <div class="flex items-center justify-between px-4 py-3">
+                    <!-- Mobile menu button -->
+                    <button id="open-sidebar" class="md:hidden text-gray-500 focus:outline-none">
+                        <i class="fas fa-bars text-xl"></i>
+                    </button>
+                    
+                    <!-- Search and user profile -->
+                    <div class="flex items-center space-x-4">
+                        <div class="relative hidden md:block">
+                            <input type="text" placeholder="Search..." class="pl-10 pr-4 py-2 border border-gray-300 rounded-full focus:outline-none focus:ring-2 focus:ring-gold focus:border-transparent">
+                            <i class="fas fa-search absolute left-3 top-3 text-gray-400"></i>
+                        </div>
+                        
+                        <div class="relative">
+                            <button id="user-menu-button" class="flex items-center focus:outline-none">
+                                <img src="https://res.cloudinary.com/dbed0vjcr/image/upload/v1750327890/default-placeholder-profile-icon_hxpj2a.webp" alt="User" class="w-8 h-8 rounded-full">
+                                <span class="ml-2 hidden md:inline">New User</span>
+                                <i class="fas fa-chevron-down ml-1 text-xs hidden md:inline"></i>
+                            </button>
+                            
+                            <!-- User dropdown menu -->
+                            <div id="user-menu" class="hidden absolute right-0 mt-2 w-48 bg-white rounded-md shadow-lg py-1 z-50">
+                                <a href="#" class="block px-4 py-2 text-gray-700 hover:bg-gray-100">Your Profile</a>
+                                <a href="settings.html" class="block px-4 py-2 text-gray-700 hover:bg-gray-100">Settings</a>
+                                <a href="login.html" class="block px-4 py-2 text-gray-700 hover:bg-gray-100">Sign out</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </header>
+            
+            <!-- Main Content Area -->
+            <main class="flex-1 overflow-y-auto p-4 md:p-6">
+                <div class="max-w-7xl mx-auto">
+                    <!-- Page Header -->
+                    <div class="flex flex-col md:flex-row md:items-center md:justify-between mb-6">
+                        <div class="mb-4 md:mb-0">
+                            <h1 class="text-2xl font-montserrat font-bold text-gray-900">Resume Builder</h1>
+                            <p class="text-gray-600">Create a professional resume in minutes</p>
+                        </div>
+                        <div class="flex items-center space-x-2">
+                            <button id="upload-cv-btn" class="bg-white text-black px-4 py-2 rounded-lg font-medium hover:bg-grey border-2 border-gray-300 transition-colors duration-300">
+                                <i class="fas fa-upload mr-2"></i> Upload CV
+                            </button>
+                            <button id="download-resume-btn" class="bg-gold text-black px-4 py-2 rounded-lg font-medium hover:bg-black hover:text-gold border-2 border-gold transition-colors duration-300">
+                                <i class="fas fa-download mr-2"></i> Download PDF
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <!-- Resume Builder Content -->
+                    <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+                        <!-- Left Panel - Resume Sections -->
+                        <div class="lg:col-span-1 space-y-6">
+                            <!-- Choose Template -->
+                            <div class="bg-white rounded-lg shadow p-6">
+                                <h2 class="text-xl font-montserrat font-bold mb-4">Choose Template</h2>
+                                <div class="grid grid-cols-2 gap-4">
+                                    <div class="resume-template border-2 border-gray-200 rounded-lg p-2 cursor-pointer selected" data-template="classic">
+                                        <img src="https://res.cloudinary.com/dbed0vjcr/image/upload/v1750327890/default-placeholder-profile-icon_hxpj2a.webp" alt="Classic Template" class="w-full h-auto">
+                                        <p class="text-center mt-2 text-sm font-medium">Classic</p>
+                                    </div>
+                                    <div class="resume-template border-2 border-gray-200 rounded-lg p-2 cursor-pointer" data-template="modern">
+                                        <img src="https://res.cloudinary.com/dbed0vjcr/image/upload/v1750327890/default-placeholder-profile-icon_hxpj2a.webp" alt="Modern Template" class="w-full h-auto">
+                                        <p class="text-center mt-2 text-sm font-medium">Modern</p>
+                                    </div>
+                                    <div class="resume-template border-2 border-gray-200 rounded-lg p-2 cursor-pointer" data-template="executive">
+                                        <img src="https://res.cloudinary.com/dbed0vjcr/image/upload/v1750327890/default-placeholder-profile-icon_hxpj2a.webp" alt="Executive Template" class="w-full h-auto">
+                                        <p class="text-center mt-2 text-sm font-medium">Executive</p>
+                                    </div>
+                                    <div class="resume-template border-2 border-gray-200 rounded-lg p-2 cursor-pointer" data-template="creative">
+                                        <img src="https://res.cloudinary.com/dbed0vjcr/image/upload/v1750327890/default-placeholder-profile-icon_hxpj2a.webp" alt="Creative Template" class="w-full h-auto">
+                                        <p class="text-center mt-2 text-sm font-medium">Creative</p>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <!-- Resume Sections -->
+                            <div class="bg-white rounded-lg shadow p-6">
+                                <h2 class="text-xl font-montserrat font-bold mb-4">Resume Sections</h2>
+                                <div class="space-y-3">
+                                    <button class="section-btn w-full flex items-center justify-between px-4 py-3 bg-gold/10 rounded-lg font-medium" data-section="personal">
+                                        <span>Personal Information</span>
+                                        <i class="fas fa-chevron-down"></i>
+                                    </button>
+                                    <div id="personal-section" class="section-editor p-4 border border-gray-200 rounded-lg mb-3">
+                                        <div class="mb-4">
+                                            <label class="block text-gray-700 text-sm font-medium mb-1">Full Name</label>
+                                            <input type="text" class="form-input w-full px-3 py-2 border border-gray-300 rounded-lg" value="New User">
+                                        </div>
+                                        <div class="mb-4">
+                                            <label class="block text-gray-700 text-sm font-medium mb-1">Professional Title</label>
+                                            <input type="text" class="form-input w-full px-3 py-2 border border-gray-300 rounded-lg" placeholder="e.g. Software Developer">
+                                        </div>
+                                        <div class="mb-4">
+                                            <label class="block text-gray-700 text-sm font-medium mb-1">Email</label>
+                                            <input type="email" class="form-input w-full px-3 py-2 border border-gray-300 rounded-lg" placeholder="your.email@example.com">
+                                        </div>
+                                        <div class="mb-4">
+                                            <label class="block text-gray-700 text-sm font-medium mb-1">Phone</label>
+                                            <input type="tel" class="form-input w-full px-3 py-2 border border-gray-300 rounded-lg" placeholder="+265 XXX XXX XXX">
+                                        </div>
+                                        <div class="mb-4">
+                                            <label class="block text-gray-700 text-sm font-medium mb-1">Address</label>
+                                            <input type="text" class="form-input w-full px-3 py-2 border border-gray-300 rounded-lg" placeholder="City, Country">
+                                        </div>
+                                        <div class="mb-4">
+                                            <label class="block text-gray-700 text-sm font-medium mb-1">Profile Photo</label>
+                                            <div class="flex items-center">
+                                                <img src="https://res.cloudinary.com/dbed0vjcr/image/upload/v1750327890/default-placeholder-profile-icon_hxpj2a.webp" alt="Profile" class="w-12 h-12 rounded-full mr-3">
+                                                <button class="text-sm text-gold hover:text-black font-medium">Change Photo</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    
+                                    <button class="section-btn w-full flex items-center justify-between px-4 py-3 bg-gray-100 rounded-lg font-medium" data-section="summary">
+                                        <span>Professional Summary</span>
+                                        <i class="fas fa-chevron-down"></i>
+                                    </button>
+                                    <div id="summary-section" class="section-editor hidden p-4 border border-gray-200 rounded-lg mb-3">
+                                        <div class="mb-4">
+                                            <label class="block text-gray-700 text-sm font-medium mb-1">Summary</label>
+                                            <textarea class="form-input w-full px-3 py-2 border border-gray-300 rounded-lg" rows="4" placeholder="Briefly describe your professional background and key skills"></textarea>
+                                        </div>
+                                    </div>
+                                    
+                                    <button class="section-btn w-full flex items-center justify-between px-4 py-3 bg-gray-100 rounded-lg font-medium" data-section="experience">
+                                        <span>Work Experience</span>
+                                        <i class="fas fa-chevron-down"></i>
+                                    </button>
+                                    <div id="experience-section" class="section-editor hidden p-4 border border-gray-200 rounded-lg mb-3">
+                                        <div class="mb-4">
+                                            <div class="flex justify-between items-center mb-2">
+                                                <h3 class="font-medium">Experiences</h3>
+                                                <button class="text-sm text-gold hover:text-black font-medium" id="add-experience">+ Add Experience</button>
+                                            </div>
+                                            <div class="space-y-4">
+                                                <!-- Experience Item 1 -->
+                                                <div class="border border-gray-200 rounded-lg p-4">
+                                                    <div class="flex justify-between">
+                                                        <div>
+                                                            <input type="text" class="form-input font-medium mb-1 w-full" placeholder="Job Title" value="Frontend Developer">
+                                                        </div>
+                                                        <button class="text-red-500 hover:text-red-700">
+                                                            <i class="fas fa-trash"></i>
+                                                        </button>
+                                                    </div>
+                                                    <div class="grid grid-cols-2 gap-2 mb-2">
+                                                        <input type="text" class="form-input" placeholder="Company" value="CyberTech Ltd">
+                                                        <input type="text" class="form-input" placeholder="Location" value="Blantyre, Malawi">
+                                                    </div>
+                                                    <div class="grid grid-cols-2 gap-2 mb-2">
+                                                        <input type="text" class="form-input" placeholder="Start Date" value="Jan 2020">
+                                                        <input type="text" class="form-input" placeholder="End Date" value="Present">
+                                                    </div>
+                                                    <textarea class="form-input w-full" rows="3" placeholder="Describe your responsibilities and achievements">Developed responsive web applications using React.js and Node.js. Collaborated with design team to implement UI/UX improvements. Led a team of 3 junior developers.</textarea>
+                                                </div>
+                                                
+                                                <!-- Experience Item 2 -->
+                                                <div class="border border-gray-200 rounded-lg p-4">
+                                                    <div class="flex justify-between">
+                                                        <div>
+                                                            <input type="text" class="form-input font-medium mb-1 w-full" placeholder="Job Title" value="Junior Developer">
+                                                        </div>
+                                                        <button class="text-red-500 hover:text-red-700">
+                                                            <i class="fas fa-trash"></i>
+                                                        </button>
+                                                    </div>
+                                                    <div class="grid grid-cols-2 gap-2 mb-2">
+                                                        <input type="text" class="form-input" placeholder="Company" value="Tech Solutions Malawi">
+                                                        <input type="text" class="form-input" placeholder="Location" value="Lilongwe, Malawi">
+                                                    </div>
+                                                    <div class="grid grid-cols-2 gap-2 mb-2">
+                                                        <input type="text" class="form-input" placeholder="Start Date" value="Mar 2018">
+                                                        <input type="text" class="form-input" placeholder="End Date" value="Dec 2019">
+                                                    </div>
+                                                    <textarea class="form-input w-full" rows="3" placeholder="Describe your responsibilities and achievements">Assisted in developing and maintaining web applications. Fixed bugs and implemented new features. Participated in code reviews and team meetings.</textarea>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    
+                                    <button class="section-btn w-full flex items-center justify-between px-4 py-3 bg-gray-100 rounded-lg font-medium" data-section="education">
+                                        <span>Education</span>
+                                        <i class="fas fa-chevron-down"></i>
+                                    </button>
+                                    <div id="education-section" class="section-editor hidden p-4 border border-gray-200 rounded-lg mb-3">
+                                        <div class="mb-4">
+                                            <div class="flex justify-between items-center mb-2">
+                                                <h3 class="font-medium">Education</h3>
+                                                <button class="text-sm text-gold hover:text-black font-medium" id="add-education">+ Add Education</button>
+                                            </div>
+                                            <div class="space-y-4">
+                                                <!-- Education Item 1 -->
+                                                <div class="border border-gray-200 rounded-lg p-4">
+                                                    <div class="flex justify-between">
+                                                        <div>
+                                                            <input type="text" class="form-input font-medium mb-1 w-full" placeholder="Degree" value="BSc in Computer Science">
+                                                        </div>
+                                                        <button class="text-red-500 hover:text-red-700">
+                                                            <i class="fas fa-trash"></i>
+                                                        </button>
+                                                    </div>
+                                                    <div class="grid grid-cols-2 gap-2 mb-2">
+                                                        <input type="text" class="form-input" placeholder="Institution" value="University of Malawi">
+                                                        <input type="text" class="form-input" placeholder="Location" value="Zomba, Malawi">
+                                                    </div>
+                                                    <div class="grid grid-cols-2 gap-2 mb-2">
+                                                        <input type="text" class="form-input" placeholder="Start Date" value="2014">
+                                                        <input type="text" class="form-input" placeholder="End Date" value="2018">
+                                                    </div>
+                                                    <textarea class="form-input w-full" rows="2" placeholder="Additional information">Graduated with honors. Specialized in Software Engineering.</textarea>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    
+                                    <button class="section-btn w-full flex items-center justify-between px-4 py-3 bg-gray-100 rounded-lg font-medium" data-section="skills">
+                                        <span>Skills</span>
+                                        <i class="fas fa-chevron-down"></i>
+                                    </button>
+                                    <div id="skills-section" class="section-editor hidden p-4 border border-gray-200 rounded-lg mb-3">
+                                        <div class="mb-4">
+                                            <div class="flex justify-between items-center mb-2">
+                                                <h3 class="font-medium">Skills</h3>
+                                                <button class="text-sm text-gold hover:text-black font-medium" id="add-skill">+ Add Skill</button>
+                                            </div>
+                                            <div class="space-y-3">
+                                                <!-- Skill Item 1 -->
+                                                <div>
+                                                    <div class="flex justify-between mb-1">
+                                                        <span>JavaScript</span>
+                                                        <span>90%</span>
+                                                    </div>
+                                                    <div class="skill-meter">
+                                                        <div class="skill-meter-fill" style="width: 90%"></div>
+                                                    </div>
+                                                </div>
+                                                
+                                                <!-- Skill Item 2 -->
+                                                <div>
+                                                    <div class="flex justify-between mb-1">
+                                                        <span>React</span>
+                                                        <span>85%</span>
+                                                    </div>
+                                                    <div class="skill-meter">
+                                                        <div class="skill-meter-fill" style="width: 85%"></div>
+                                                    </div>
+                                                </div>
+                                                
+                                                <!-- Skill Item 3 -->
+                                                <div>
+                                                    <div class="flex justify-between mb-1">
+                                                        <span>HTML/CSS</span>
+                                                        <span>95%</span>
+                                                    </div>
+                                                    <div class="skill-meter">
+                                                        <div class="skill-meter-fill" style="width: 95%"></div>
+                                                    </div>
+                                                </div>
+                                                
+                                                <!-- Skill Item 4 -->
+                                                <div>
+                                                    <div class="flex justify-between mb-1">
+                                                        <span>Node.js</span>
+                                                        <span>75%</span>
+                                                    </div>
+                                                    <div class="skill-meter">
+                                                        <div class="skill-meter-fill" style="width: 75%"></div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    
+                                    <button class="section-btn w-full flex items-center justify-between px-4 py-3 bg-gray-100 rounded-lg font-medium" data-section="languages">
+                                        <span>Languages</span>
+                                        <i class="fas fa-chevron-down"></i>
+                                    </button>
+                                    <div id="languages-section" class="section-editor hidden p-4 border border-gray-200 rounded-lg mb-3">
+                                        <div class="mb-4">
+                                            <div class="flex justify-between items-center mb-2">
+                                                <h3 class="font-medium">Languages</h3>
+                                                <button class="text-sm text-gold hover:text-black font-medium" id="add-language">+ Add Language</button>
+                                            </div>
+                                            <div class="space-y-3">
+                                                <!-- Language Item 1 -->
+                                                <div>
+                                                    <div class="flex justify-between mb-1">
+                                                        <span>English</span>
+                                                        <span>Fluent</span>
+                                                    </div>
+                                                    <div class="skill-meter">
+                                                        <div class="skill-meter-fill" style="width: 100%"></div>
+                                                    </div>
+                                                </div>
+                                                
+                                                <!-- Language Item 2 -->
+                                                <div>
+                                                    <div class="flex justify-between mb-1">
+                                                        <span>Chichewa</span>
+                                                        <span>Native</span>
+                                                    </div>
+                                                    <div class="skill-meter">
+                                                        <div class="skill-meter-fill" style="width: 100%"></div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Right Panel - Resume Preview -->
+                        <div class="lg:col-span-2">
+                            <div class="bg-white resume-preview rounded-lg shadow p-8">
+                                <!-- Resume Header -->
+                                <div class="flex justify-between items-start mb-8">
+                                    <div>
+                                        <h1 class="text-3xl font-bold font-montserrat mb-1">New User</h1>
+                                        <p class="text-gold text-lg">Software Developer</p>
+                                    </div>
+                                    <div class="text-right">
+                                        <p class="text-sm">newuser@example.com</p>
+                                        <p class="text-sm">+265 XXX XXX XXX</p>
+                                        <p class="text-sm">Blantyre, Malawi</p>
+                                    </div>
+                                </div>
+                                
+                                <!-- Professional Summary -->
+                                <div class="mb-8">
+                                    <h2 class="text-xl font-bold font-montserrat border-b border-gray-300 pb-1 mb-4">Professional Summary</h2>
+                                    <p class="text-gray-700">Experienced software developer with 5+ years of experience in building web applications. Specialized in JavaScript, React, and Node.js. Passionate about creating efficient, scalable solutions with clean code.</p>
+                                </div>
+                                
+                                <!-- Work Experience -->
+                                <div class="mb-8">
+                                    <h2 class="text-xl font-bold font-montserrat border-b border-gray-300 pb-1 mb-4">Work Experience</h2>
+                                    
+                                    <div class="mb-6">
+                                        <div class="flex justify-between mb-1">
+                                            <h3 class="font-bold">Frontend Developer</h3>
+                                            <p class="text-gray-600">Jan 2020 - Present</p>
+                                        </div>
+                                        <p class="text-gold mb-2">CyberTech Ltd • Blantyre, Malawi</p>
+                                        <ul class="list-disc list-inside text-gray-700 space-y-1">
+                                            <li>Developed responsive web applications using React.js and Node.js</li>
+                                            <li>Collaborated with design team to implement UI/UX improvements</li>
+                                            <li>Led a team of 3 junior developers</li>
+                                            <li>Reduced page load time by 40% through performance optimization</li>
+                                        </ul>
+                                    </div>
+                                    
+                                    <div class="mb-6">
+                                        <div class="flex justify-between mb-1">
+                                            <h3 class="font-bold">Junior Developer</h3>
+                                            <p class="text-gray-600">Mar 2018 - Dec 2019</p>
+                                        </div>
+                                        <p class="text-gold mb-2">Tech Solutions Malawi • Lilongwe, Malawi</p>
+                                        <ul class="list-disc list-inside text-gray-700 space-y-1">
+                                            <li>Assisted in developing and maintaining web applications</li>
+                                            <li>Fixed bugs and implemented new features</li>
+                                            <li>Participated in code reviews and team meetings</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                                
+                                <!-- Education -->
+                                <div class="mb-8">
+                                    <h2 class="text-xl font-bold font-montserrat border-b border-gray-300 pb-1 mb-4">Education</h2>
+                                    
+                                    <div class="mb-4">
+                                        <div class="flex justify-between mb-1">
+                                            <h3 class="font-bold">BSc in Computer Science</h3>
+                                            <p class="text-gray-600">2014 - 2018</p>
+                                        </div>
+                                        <p class="text-gold">University of Malawi • Zomba, Malawi</p>
+                                        <p class="text-gray-700 italic">Graduated with honors. Specialized in Software Engineering.</p>
+                                    </div>
+                                </div>
+                                
+                                <!-- Skills -->
+                                <div class="mb-8">
+                                    <h2 class="text-xl font-bold font-montserrat border-b border-gray-300 pb-1 mb-4">Skills</h2>
+                                    <div class="grid grid-cols-2 gap-4">
+                                        <div>
+                                            <p class="font-medium mb-1">JavaScript</p>
+                                            <div class="skill-meter">
+                                                <div class="skill-meter-fill" style="width: 90%"></div>
+                                            </div>
+                                        </div>
+                                        <div>
+                                            <p class="font-medium mb-1">React</p>
+                                            <div class="skill-meter">
+                                                <div class="skill-meter-fill" style="width: 85%"></div>
+                                            </div>
+                                        </div>
+                                        <div>
+                                            <p class="font-medium mb-1">HTML/CSS</p>
+                                            <div class="skill-meter">
+                                                <div class="skill-meter-fill" style="width: 95%"></div>
+                                            </div>
+                                        </div>
+                                        <div>
+                                            <p class="font-medium mb-1">Node.js</p>
+                                            <div class="skill-meter">
+                                                <div class="skill-meter-fill" style="width: 75%"></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <!-- Languages -->
+                                <div>
+                                    <h2 class="text-xl font-bold font-montserrat border-b border-gray-300 pb-1 mb-4">Languages</h2>
+                                    <div class="grid grid-cols-2 gap-4">
+                                        <div>
+                                            <p class="font-medium mb-1">English</p>
+                                            <div class="skill-meter">
+                                                <div class="skill-meter-fill" style="width: 100%"></div>
+                                            </div>
+                                        </div>
+                                        <div>
+                                            <p class="font-medium mb-1">Chichewa</p>
+                                            <div class="skill-meter">
+                                                <div class="skill-meter-fill" style="width: 100%"></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <!-- Resume Actions -->
+                            <div class="flex justify-end space-x-3 mt-6">
+                                <button class="bg-white text-black px-6 py-2 rounded-lg font-medium hover:bg-grey border-2 border-gray-300 transition-colors duration-300">
+                                    Reset
+                                </button>
+                                <button class="bg-gold text-black px-6 py-2 rounded-lg font-medium hover:bg-black hover:text-gold border-2 border-gold transition-colors duration-300">
+                                    Save Resume
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </main>
+        </div>
+    </div>
+
+    <!-- JavaScript -->
+    <script>
+        // Mobile sidebar toggle
+        document.getElementById('open-sidebar').addEventListener('click', function() {
+            document.getElementById('mobile-sidebar').style.display = 'block';
+        });
+        
+        document.getElementById('close-sidebar').addEventListener('click', function() {
+            document.getElementById('mobile-sidebar').style.display = 'none';
+        });
+        
+        document.getElementById('sidebar-backdrop').addEventListener('click', function() {
+            document.getElementById('mobile-sidebar').style.display = 'none';
+        });
+        
+        // User dropdown toggle
+        document.getElementById('user-menu-button').addEventListener('click', function() {
+            document.getElementById('user-menu').classList.toggle('hidden');
+        });
+        
+        // Close user dropdown when clicking outside
+        document.addEventListener('click', function(event) {
+            const userMenu = document.getElementById('user-menu');
+            const userButton = document.getElementById('user-menu-button');
+            
+            if (!userButton.contains(event.target)) {
+                userMenu.classList.add('hidden');
+            }
+        });
+        
+        // Sidebar link active state
+        const sidebarLinks = document.querySelectorAll('.sidebar-link');
+        sidebarLinks.forEach(link => {
+            link.addEventListener('click', function() {
+                sidebarLinks.forEach(l => l.classList.remove('active'));
+                this.classList.add('active');
+            });
+        });
+        
+        // Template selection
+        const templates = document.querySelectorAll('.resume-template');
+        templates.forEach(template => {
+            template.addEventListener('click', function() {
+                templates.forEach(t => t.classList.remove('selected'));
+                this.classList.add('selected');
+                // Here you would typically update the resume preview with the selected template
+                console.log('Selected template:', this.dataset.template);
+            });
+        });
+        
+        // Section toggles
+        const sectionButtons = document.querySelectorAll('.section-btn');
+        sectionButtons.forEach(button => {
+            button.addEventListener('click', function() {
+                const sectionId = this.dataset.section + '-section';
+                const section = document.getElementById(sectionId);
+                
+                // Toggle section visibility
+                section.classList.toggle('hidden');
+                
+                // Toggle background color
+                if (section.classList.contains('hidden')) {
+                    this.classList.remove('bg-gold/10');
+                    this.classList.add('bg-gray-100');
+                } else {
+                    this.classList.remove('bg-gray-100');
+                    this.classList.add('bg-gold/10');
+                }
+                
+                // Rotate chevron icon
+                const icon = this.querySelector('i');
+                icon.classList.toggle('fa-chevron-down');
+                icon.classList.toggle('fa-chevron-up');
+            });
+        });
+        
+        // Add experience button
+        document.getElementById('add-experience').addEventListener('click', function() {
+            const experienceContainer = document.querySelector('#experience-section .space-y-4');
+            const newExperience = document.createElement('div');
+            newExperience.className = 'border border-gray-200 rounded-lg p-4';
+            newExperience.innerHTML = `
+                <div class="flex justify-between">
+                    <div>
+                        <input type="text" class="form-input font-medium mb-1 w-full" placeholder="Job Title">
+                    </div>
+                    <button class="text-red-500 hover:text-red-700 remove-experience">
+                        <i class="fas fa-trash"></i>
+                    </button>
+                </div>
+                <div class="grid grid-cols-2 gap-2 mb-2">
+                    <input type="text" class="form-input" placeholder="Company">
+                    <input type="text" class="form-input" placeholder="Location">
+                </div>
+                <div class="grid grid-cols-2 gap-2 mb-2">
+                    <input type="text" class="form-input" placeholder="Start Date">
+                    <input type="text" class="form-input" placeholder="End Date">
+                </div>
+                <textarea class="form-input w-full" rows="3" placeholder="Describe your responsibilities and achievements"></textarea>
+            `;
+            experienceContainer.appendChild(newExperience);
+            
+            // Add event listener to the new remove button
+            newExperience.querySelector('.remove-experience').addEventListener('click', function() {
+                newExperience.remove();
+            });
+        });
+        
+        // Add education button
+        document.getElementById('add-education').addEventListener('click', function() {
+            const educationContainer = document.querySelector('#education-section .space-y-4');
+            const newEducation = document.createElement('div');
+            newEducation.className = 'border border-gray-200 rounded-lg p-4';
+            newEducation.innerHTML = `
+                <div class="flex justify-between">
+                    <div>
+                        <input type="text" class="form-input font-medium mb-1 w-full" placeholder="Degree">
+                    </div>
+                    <button class="text-red-500 hover:text-red-700 remove-education">
+                        <i class="fas fa-trash"></i>
+                    </button>
+                </div>
+                <div class="grid grid-cols-2 gap-2 mb-2">
+                    <input type="text" class="form-input" placeholder="Institution">
+                    <input type="text" class="form-input" placeholder="Location">
+                </div>
+                <div class="grid grid-cols-2 gap-2 mb-2">
+                    <input type="text" class="form-input" placeholder="Start Date">
+                    <input type="text" class="form-input" placeholder="End Date">
+                </div>
+                <textarea class="form-input w-full" rows="2" placeholder="Additional information"></textarea>
+            `;
+            educationContainer.appendChild(newEducation);
+            
+            // Add event listener to the new remove button
+            newEducation.querySelector('.remove-education').addEventListener('click', function() {
+                newEducation.remove();
+            });
+        });
+        
+        // Add skill button
+        document.getElementById('add-skill').addEventListener('click', function() {
+            const skillsContainer = document.querySelector('#skills-section .space-y-3');
+            const newSkill = document.createElement('div');
+            newSkill.innerHTML = `
+                <div>
+                    <div class="flex justify-between mb-1">
+                        <input type="text" class="form-input w-1/2" placeholder="Skill Name">
+                        <input type="text" class="form-input w-1/4" placeholder="%">
+                    </div>
+                    <div class="skill-meter">
+                        <div class="skill-meter-fill" style="width: 50%"></div>
+                    </div>
+                    <button class="text-red-500 hover:text-red-700 text-sm mt-1 remove-skill">
+                        <i class="fas fa-trash mr-1"></i> Remove
+                    </button>
+                </div>
+            `;
+            skillsContainer.appendChild(newSkill);
+            
+            // Add event listener to the new remove button
+            newSkill.querySelector('.remove-skill').addEventListener('click', function() {
+                newSkill.remove();
+            });
+        });
+        
+        // Add language button
+        document.getElementById('add-language').addEventListener('click', function() {
+            const languagesContainer = document.querySelector('#languages-section .space-y-3');
+            const newLanguage = document.createElement('div');
+            newLanguage.innerHTML = `
+                <div>
+                    <div class="flex justify-between mb-1">
+                        <input type="text" class="form-input w-1/2" placeholder="Language">
+                        <input type="text" class="form-input w-1/4" placeholder="Level">
+                    </div>
+                    <div class="skill-meter">
+                        <div class="skill-meter-fill" style="width: 50%"></div>
+                    </div>
+                    <button class="text-red-500 hover:text-red-700 text-sm mt-1 remove-language">
+                        <i class="fas fa-trash mr-1"></i> Remove
+                    </button>
+                </div>
+            `;
+            languagesContainer.appendChild(newLanguage);
+            
+            // Add event listener to the new remove button
+            newLanguage.querySelector('.remove-language').addEventListener('click', function() {
+                newLanguage.remove();
+            });
+        });
+        
+        // Upload CV button
+        document.getElementById('upload-cv-btn').addEventListener('click', function() {
+            // Here you would typically open a file upload dialog
+            console.log('Upload CV clicked');
+            // For demo purposes, we'll just show an alert
+            alert('Upload CV');
+        });
+        
+        // Download PDF button
+        document.getElementById('download-resume-btn').addEventListener('click', function() {
+            // Here you would typically generate and download the PDF
+            console.log('Download PDF');
+            // For demo purposes, we'll just show an alert
+            alert('Resume PDF generated and downloaded');
+        });
+        
+        // Save Resume button
+        document.querySelector('button:contains("Save Resume")').addEventListener('click', function() {
+            // Here you would typically save the resume data
+            console.log('Save Resume');
+            // For demo purposes, we'll just show an alert
+            alert('Resume saved successfully');
+        });
+        
+        // Reset button
+        document.querySelector('button:contains("Reset")').addEventListener('click', function() {
+            // Here you would typically reset the form
+            console.log('Reset clicked');
+            // For demo purposes, we'll just show an alert
+            alert('Form reset');
+        });
+    </script>
+</body>
+</html>

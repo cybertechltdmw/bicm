@@ -1,0 +1,754 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BICM - Companies</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;900&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Tailwind Config -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        black: '#000000',
+                        gold: '#D4AF37',
+                        grey: '#F5F5F5',
+                        green: '#1E3A2B',
+                    },
+                    fontFamily: {
+                        montserrat: ['Montserrat', 'sans-serif'],
+                        inter: ['Inter', 'sans-serif'],
+                    },
+                }
+            }
+        }
+    </script>
+    <style type="text/css">
+        /* Custom animations */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .animate-fade-in {
+            animation: fadeIn 0.5s ease-in-out forwards;
+        }
+        
+        /* Sidebar styling */
+        .sidebar-link {
+            transition: all 0.3s ease;
+        }
+        .sidebar-link:hover {
+            background-color: rgba(212, 175, 55, 0.1);
+        }
+        .sidebar-link.active {
+            background-color: rgba(212, 175, 55, 0.2);
+            border-left: 4px solid #D4AF37;
+        }
+        
+        /* Company card styling */
+        .company-card {
+            transition: all 0.3s ease;
+        }
+        .company-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+            border-color: #D4AF37;
+        }
+        
+        /* Follow button styling */
+        .follow-btn {
+            transition: all 0.3s ease;
+        }
+        .follow-btn.following {
+            background-color: #D4AF37;
+            color: black;
+        }
+        
+        /* Company list item styling */
+        .company-list-item {
+            transition: all 0.3s ease;
+        }
+        .company-list-item:hover {
+            background-color: rgba(212, 175, 55, 0.05);
+        }
+    </style>
+</head>
+<body class="font-inter bg-grey">
+    <!-- Dashboard Layout -->
+    <div class="flex h-screen overflow-hidden">
+        <!-- Sidebar -->
+        <div class="hidden md:flex md:flex-shrink-0">
+            <div class="flex flex-col w-64 bg-white border-r border-gray-200">
+                <div class="flex items-center justify-center h-16 px-4 border-b border-gray-200">
+                    <img src="https://res.cloudinary.com/dbed0vjcr/image/upload/v1750323428/bicm_f38w95-removebg-preview_vjoybh.png" alt="BICM Logo" class="h-10">
+                </div>
+                <div class="flex flex-col flex-grow px-4 py-4 overflow-y-auto">
+                    <!-- User Profile -->
+                    <div class="flex items-center mb-8 p-2 rounded-lg bg-gold/10">
+                        <img src="https://res.cloudinary.com/dbed0vjcr/image/upload/v1750327890/default-placeholder-profile-icon_hxpj2a.webp" alt="User" class="w-10 h-10 rounded-full mr-3">
+                        <div>
+                            <p class="font-medium">Welcome back,</p>
+                            <p class="font-bold">New User</p>
+                        </div>
+                    </div>
+                    
+                    <!-- Navigation -->
+                    <nav class="space-y-1">
+                        <a href="seeker.html" class="sidebar-link flex items-center px-4 py-3 text-gray-900 rounded-lg">
+                            <i class="fas fa-tachometer-alt text-gray-500 mr-3"></i>
+                            Dashboard
+                        </a>
+                        <a href="employment.html" class="sidebar-link flex items-center px-4 py-3 text-gray-900 rounded-lg">
+                            <i class="fas fa-search text-gray-500 mr-3"></i>
+                            Find Jobs
+                        </a>
+                        <a href="companies.html" class="sidebar-link active flex items-center px-4 py-3 text-gray-900 rounded-lg">
+                            <i class="fas fa-building text-gold mr-3"></i>
+                            Companies
+                        </a>
+                        <a href="resume.html" class="sidebar-link flex items-center px-4 py-3 text-gray-900 rounded-lg">
+                            <i class="fas fa-file-alt text-gray-500 mr-3"></i>
+                            Resume Builder
+                        </a>
+                        <a href="alerts.html" class="sidebar-link flex items-center px-4 py-3 text-gray-900 rounded-lg">
+                            <i class="fas fa-bell text-gray-500 mr-3"></i>
+                            Job Alerts
+                        </a>
+                        <a href="settings.html" class="sidebar-link flex items-center px-4 py-3 text-gray-900 rounded-lg">
+                            <i class="fas fa-cog text-gray-500 mr-3"></i>
+                            Settings
+                        </a>
+                    </nav>
+                    
+                    <!-- Logout -->
+                    <div class="mt-auto pt-4">
+                        <a href="login.html" class="flex items-center px-4 py-3 text-gray-900 rounded-lg hover:bg-red-50">
+                            <i class="fas fa-sign-out-alt text-red-500 mr-3"></i>
+                            Logout
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Mobile sidebar -->
+        <div class="md:hidden fixed inset-0 z-40" id="mobile-sidebar" style="display: none;">
+            <div class="fixed inset-0 bg-gray-600 bg-opacity-75" id="sidebar-backdrop"></div>
+            <div class="relative flex flex-col w-72 max-w-xs h-full bg-white">
+                <div class="flex items-center justify-between h-16 px-4 border-b border-gray-200">
+                    <img src="https://res.cloudinary.com/dbed0vjcr/image/upload/v1750323428/bicm_f38w95-removebg-preview_vjoybh.png" alt="BICM Logo" class="h-10">
+                    <button id="close-sidebar" class="text-gray-500 hover:text-gray-600">
+                        <i class="fas fa-times"></i>
+                    </button>
+                </div>
+                <div class="flex flex-col flex-grow px-4 py-4 overflow-y-auto">
+                    <!-- User Profile -->
+                    <div class="flex items-center mb-8 p-2 rounded-lg bg-gold/10">
+                        <img src="https://res.cloudinary.com/dbed0vjcr/image/upload/v1750327890/default-placeholder-profile-icon_hxpj2a.webp" alt="User" class="w-10 h-10 rounded-full mr-3">
+                        <div>
+                            <p class="font-medium">Welcome back,</p>
+                            <p class="font-bold">New User</p>
+                        </div>
+                    </div>
+                    
+                    <!-- Navigation -->
+                    <nav class="space-y-1">
+                        <a href="seeker.html" class="sidebar-link flex items-center px-4 py-3 text-gray-900 rounded-lg">
+                            <i class="fas fa-tachometer-alt text-gray-500 mr-3"></i>
+                            Dashboard
+                        </a>
+                        <a href="employment.html" class="sidebar-link flex items-center px-4 py-3 text-gray-900 rounded-lg">
+                            <i class="fas fa-search text-gray-500 mr-3"></i>
+                            Find Jobs
+                        </a>
+                        <a href="companies.html" class="sidebar-link active flex items-center px-4 py-3 text-gray-900 rounded-lg">
+                            <i class="fas fa-building text-gold mr-3"></i>
+                            Companies
+                        </a>
+                        <a href="resume.html" class="sidebar-link flex items-center px-4 py-3 text-gray-900 rounded-lg">
+                            <i class="fas fa-file-alt text-gray-500 mr-3"></i>
+                            Resume Builder
+                        </a>
+                        <a href="alerts.html" class="sidebar-link flex items-center px-4 py-3 text-gray-900 rounded-lg">
+                            <i class="fas fa-bell text-gray-500 mr-3"></i>
+                            Job Alerts
+                        </a>
+                        <a href="settings.html" class="sidebar-link flex items-center px-4 py-3 text-gray-900 rounded-lg">
+                            <i class="fas fa-cog text-gray-500 mr-3"></i>
+                            Settings
+                        </a>
+                    </nav>
+                    
+                    <!-- Logout -->
+                    <div class="mt-auto pt-4">
+                        <a href="login.html" class="flex items-center px-4 py-3 text-gray-900 rounded-lg hover:bg-red-50">
+                            <i class="fas fa-sign-out-alt text-red-500 mr-3"></i>
+                            Logout
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Main Content -->
+        <div class="flex flex-col flex-1 overflow-hidden">
+            <!-- Top Navigation -->
+            <header class="bg-white border-b border-gray-200">
+                <div class="flex items-center justify-between px-4 py-3">
+                    <!-- Mobile menu button -->
+                    <button id="open-sidebar" class="md:hidden text-gray-500 focus:outline-none">
+                        <i class="fas fa-bars text-xl"></i>
+                    </button>
+                    
+                    <!-- Search and user profile -->
+                    <div class="flex items-center space-x-4">
+                        <div class="relative hidden md:block">
+                            <input type="text" placeholder="Search companies..." class="pl-10 pr-4 py-2 border border-gray-300 rounded-full focus:outline-none focus:ring-2 focus:ring-gold focus:border-transparent">
+                            <i class="fas fa-search absolute left-3 top-3 text-gray-400"></i>
+                        </div>
+                        
+                        <div class="relative">
+                            <button id="user-menu-button" class="flex items-center focus:outline-none">
+                                <img src="https://res.cloudinary.com/dbed0vjcr/image/upload/v1750327890/default-placeholder-profile-icon_hxpj2a.webp" alt="User" class="w-8 h-8 rounded-full">
+                                <span class="ml-2 hidden md:inline">New User</span>
+                                <i class="fas fa-chevron-down ml-1 text-xs hidden md:inline"></i>
+                            </button>
+                            
+                            <!-- User dropdown menu -->
+                            <div id="user-menu" class="hidden absolute right-0 mt-2 w-48 bg-white rounded-md shadow-lg py-1 z-50">
+                                <a href="#" class="block px-4 py-2 text-gray-700 hover:bg-gray-100">Your Profile</a>
+                                <a href="settings.html" class="block px-4 py-2 text-gray-700 hover:bg-gray-100">Settings</a>
+                                <a href="login.html" class="block px-4 py-2 text-gray-700 hover:bg-gray-100">Sign out</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </header>
+            
+            <!-- Main Content Area -->
+            <main class="flex-1 overflow-y-auto p-4 md:p-6">
+                <div class="max-w-7xl mx-auto">
+                    <!-- Page Header -->
+                    <div class="flex flex-col md:flex-row md:items-center md:justify-between mb-6">
+                        <div class="mb-4 md:mb-0">
+                            <h1 class="text-2xl font-montserrat font-bold text-gray-900">Companies</h1>
+                            <p class="text-gray-600">Explore and connect with potential employers</p>
+                        </div>
+                        <div class="flex items-center space-x-2">
+                            <span class="text-sm text-gray-600">Sort by:</span>
+                            <select class="border border-gray-300 rounded-lg px-3 py-1 text-sm focus:outline-none focus:ring-2 focus:ring-gold focus:border-transparent">
+                                <option>Most Popular</option>
+                                <option>Recently Added</option>
+                                <option>Most Viewed</option>
+                                <option>Most Jobs</option>
+                            </select>
+                        </div>
+                    </div>
+                    
+                    <!-- Companies Tabs -->
+                    <div class="bg-white rounded-lg shadow mb-6">
+                        <div class="border-b border-gray-200">
+                            <nav class="flex -mb-px">
+                                <button id="following-tab" class="tab-button active py-4 px-6 text-center border-b-2 font-medium text-sm border-gold text-gold">
+                                    Following (3)
+                                </button>
+                                <button id="viewers-tab" class="tab-button py-4 px-6 text-center border-b-2 font-medium text-sm border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300">
+                                    Viewed You (5)
+                                </button>
+                                <button id="recommended-tab" class="tab-button py-4 px-6 text-center border-b-2 font-medium text-sm border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300">
+                                    Recommended (12)
+                                </button>
+                            </nav>
+                        </div>
+                    </div>
+                    
+                    <!-- Following Companies Section -->
+                    <div id="following-section" class="tab-content">
+                        <div class="bg-white rounded-lg shadow mb-6">
+                            <div class="space-y-4 p-6">
+                                <!-- Company List Item 1 - ESCOM -->
+                                <div class="company-list-item flex items-center justify-between p-4 border border-gray-200 rounded-lg">
+                                    <div class="flex items-center space-x-4">
+                                        <img src="https://res.cloudinary.com/dbed0vjcr/image/upload/v1750327890/default-placeholder-profile-icon_hxpj2a.webp" alt="ESCOM Logo" class="w-16 h-16 rounded-lg">
+                                        <div>
+                                            <h3 class="font-bold text-lg">ESCOM</h3>
+                                            <p class="text-gray-500 text-sm">Electricity Generation & Distribution</p>
+                                            <div class="flex items-center mt-1 space-x-4 text-sm text-gray-500">
+                                                <span><i class="fas fa-briefcase mr-1"></i> 12 open jobs</span>
+                                                <span><i class="fas fa-users mr-1"></i> 1,500+ employees</span>
+                                            </div>
+                                            <p class="text-gray-600 text-sm mt-2">Malawi's national electricity provider with operations across the country.</p>
+                                            <div class="flex flex-wrap gap-2 mt-2">
+                                                <span class="px-2 py-1 bg-gray-100 text-gray-700 rounded-full text-xs">Energy</span>
+                                                <span class="px-2 py-1 bg-gray-100 text-gray-700 rounded-full text-xs">Government</span>
+                                                <span class="px-2 py-1 bg-gray-100 text-gray-700 rounded-full text-xs">Engineering</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="flex flex-col items-end space-y-3">
+                                        <button class="follow-btn following px-4 py-1 text-sm rounded-full border border-gold">
+                                            Following
+                                        </button>
+                                        <div class="flex space-x-2">
+                                            <button class="bg-white text-black px-4 py-2 rounded-lg font-medium hover:bg-grey border-2 border-gray-300 transition-colors duration-300">
+                                                View Jobs
+                                            </button>
+                                            <button class="bg-gold text-black px-4 py-2 rounded-lg font-medium hover:bg-black hover:text-gold border-2 border-gold transition-colors duration-300">
+                                                View Profile
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <!-- Company List Item 2 - Illovo -->
+                                <div class="company-list-item flex items-center justify-between p-4 border border-gray-200 rounded-lg">
+                                    <div class="flex items-center space-x-4">
+                                        <img src="https://res.cloudinary.com/dbed0vjcr/image/upload/v1750327890/default-placeholder-profile-icon_hxpj2a.webp" alt="Illovo Logo" class="w-16 h-16 rounded-lg">
+                                        <div>
+                                            <h3 class="font-bold text-lg">Illovo Sugar Malawi</h3>
+                                            <p class="text-gray-500 text-sm">Agriculture & Manufacturing</p>
+                                            <div class="flex items-center mt-1 space-x-4 text-sm text-gray-500">
+                                                <span><i class="fas fa-briefcase mr-1"></i> 8 open jobs</span>
+                                                <span><i class="fas fa-users mr-1"></i> 10,000+ employees</span>
+                                            </div>
+                                            <p class="text-gray-600 text-sm mt-2">Leading sugar producer in Malawi with operations in Nchalo and Dwangwa.</p>
+                                            <div class="flex flex-wrap gap-2 mt-2">
+                                                <span class="px-2 py-1 bg-gray-100 text-gray-700 rounded-full text-xs">Agriculture</span>
+                                                <span class="px-2 py-1 bg-gray-100 text-gray-700 rounded-full text-xs">Manufacturing</span>
+                                                <span class="px-2 py-1 bg-gray-100 text-gray-700 rounded-full text-xs">Sugar</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="flex flex-col items-end space-y-3">
+                                        <button class="follow-btn following px-4 py-1 text-sm rounded-full border border-gold">
+                                            Following
+                                        </button>
+                                        <div class="flex space-x-2">
+                                            <button class="bg-white text-black px-4 py-2 rounded-lg font-medium hover:bg-grey border-2 border-gray-300 transition-colors duration-300">
+                                                View Jobs
+                                            </button>
+                                            <button class="bg-gold text-black px-4 py-2 rounded-lg font-medium hover:bg-black hover:text-gold border-2 border-gold transition-colors duration-300">
+                                                View Profile
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <!-- Company List Item 3 - TTC -->
+                                <div class="company-list-item flex items-center justify-between p-4 border border-gray-200 rounded-lg">
+                                    <div class="flex items-center space-x-4">
+                                        <img src="https://res.cloudinary.com/dbed0vjcr/image/upload/v1750327890/default-placeholder-profile-icon_hxpj2a.webp" alt="TTC Logo" class="w-16 h-16 rounded-lg">
+                                        <div>
+                                            <h3 class="font-bold text-lg">Teachers Training College (TTC)</h3>
+                                            <p class="text-gray-500 text-sm">Education & Training</p>
+                                            <div class="flex items-center mt-1 space-x-4 text-sm text-gray-500">
+                                                <span><i class="fas fa-briefcase mr-1"></i> 5 open jobs</span>
+                                                <span><i class="fas fa-users mr-1"></i> 200+ employees</span>
+                                            </div>
+                                            <p class="text-gray-600 text-sm mt-2">Government institution responsible for training teachers across Malawi.</p>
+                                            <div class="flex flex-wrap gap-2 mt-2">
+                                                <span class="px-2 py-1 bg-gray-100 text-gray-700 rounded-full text-xs">Education</span>
+                                                <span class="px-2 py-1 bg-gray-100 text-gray-700 rounded-full text-xs">Government</span>
+                                                <span class="px-2 py-1 bg-gray-100 text-gray-700 rounded-full text-xs">Training</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="flex flex-col items-end space-y-3">
+                                        <button class="follow-btn following px-4 py-1 text-sm rounded-full border border-gold">
+                                            Following
+                                        </button>
+                                        <div class="flex space-x-2">
+                                            <button class="bg-white text-black px-4 py-2 rounded-lg font-medium hover:bg-grey border-2 border-gray-300 transition-colors duration-300">
+                                                View Jobs
+                                            </button>
+                                            <button class="bg-gold text-black px-4 py-2 rounded-lg font-medium hover:bg-black hover:text-gold border-2 border-gold transition-colors duration-300">
+                                                View Profile
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="text-center p-4 border-t border-gray-200">
+                                <button class="bg-white text-black px-6 py-2 rounded-lg font-medium hover:bg-grey border-2 border-gray-300 transition-colors duration-300">
+                                    View All Following
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Viewed You Companies Section (Hidden by default) -->
+                    <div id="viewers-section" class="tab-content hidden">
+                        <div class="bg-white rounded-lg shadow p-6 mb-6">
+                            <h2 class="text-xl font-montserrat font-bold mb-4">Companies That Viewed Your Profile</h2>
+                            <p class="text-gray-600 mb-6">These companies have shown interest in your profile recently.</p>
+                            
+                            <div class="space-y-4">
+                                <!-- Company Viewer 1 - MANEB -->
+                                <div class="flex items-center justify-between p-4 border border-gray-200 rounded-lg hover:bg-gray-50">
+                                    <div class="flex items-center">
+                                        <img src="https://res.cloudinary.com/dbed0vjcr/image/upload/v1750327890/default-placeholder-profile-icon_hxpj2a.webp" alt="MANEB Logo" class="w-10 h-10 rounded-lg mr-4">
+                                        <div>
+                                            <h3 class="font-bold">Malawi National Examinations Board (MANEB)</h3>
+                                            <p class="text-gray-500 text-sm">Viewed your profile 2 days ago</p>
+                                        </div>
+                                    </div>
+                                    <div class="flex space-x-2">
+                                        <button class="p-2 text-gray-400 hover:text-gold">
+                                            <i class="far fa-bookmark"></i>
+                                        </button>
+                                        <button class="bg-gold text-black px-4 py-2 rounded-lg font-medium hover:bg-black hover:text-gold border-2 border-gold transition-colors duration-300">
+                                            Follow
+                                        </button>
+                                    </div>
+                                </div>
+                                
+                                <!-- Company Viewer 2 - NBS Bank -->
+                                <div class="flex items-center justify-between p-4 border border-gray-200 rounded-lg hover:bg-gray-50">
+                                    <div class="flex items-center">
+                                        <img src="https://res.cloudinary.com/dbed0vjcr/image/upload/v1750327890/default-placeholder-profile-icon_hxpj2a.webp" alt="NBS Logo" class="w-10 h-10 rounded-lg mr-4">
+                                        <div>
+                                            <h3 class="font-bold">NBS Bank</h3>
+                                            <p class="text-gray-500 text-sm">Viewed your profile 3 days ago</p>
+                                        </div>
+                                    </div>
+                                    <div class="flex space-x-2">
+                                        <button class="p-2 text-gray-400 hover:text-gold">
+                                            <i class="far fa-bookmark"></i>
+                                        </button>
+                                        <button class="bg-gold text-black px-4 py-2 rounded-lg font-medium hover:bg-black hover:text-gold border-2 border-gold transition-colors duration-300">
+                                            Follow
+                                        </button>
+                                    </div>
+                                </div>
+                                
+                                <!-- Company Viewer 3 - Airtel Malawi -->
+                                <div class="flex items-center justify-between p-4 border border-gray-200 rounded-lg hover:bg-gray-50">
+                                    <div class="flex items-center">
+                                        <img src="https://res.cloudinary.com/dbed0vjcr/image/upload/v1750327890/default-placeholder-profile-icon_hxpj2a.webp" alt="Airtel Logo" class="w-10 h-10 rounded-lg mr-4">
+                                        <div>
+                                            <h3 class="font-bold">Airtel Malawi</h3>
+                                            <p class="text-gray-500 text-sm">Viewed your profile 1 week ago</p>
+                                        </div>
+                                    </div>
+                                    <div class="flex space-x-2">
+                                        <button class="p-2 text-gray-400 hover:text-gold">
+                                            <i class="far fa-bookmark"></i>
+                                        </button>
+                                        <button class="bg-gold text-black px-4 py-2 rounded-lg font-medium hover:bg-black hover:text-gold border-2 border-gold transition-colors duration-300">
+                                            Follow
+                                        </button>
+                                    </div>
+                                </div>
+                                
+                                <!-- Company Viewer 4 - Standard Bank -->
+                                <div class="flex items-center justify-between p-4 border border-gray-200 rounded-lg hover:bg-gray-50">
+                                    <div class="flex items-center">
+                                        <img src="https://res.cloudinary.com/dbed0vjcr/image/upload/v1750327890/default-placeholder-profile-icon_hxpj2a.webp" alt="Standard Bank Logo" class="w-10 h-10 rounded-lg mr-4">
+                                        <div>
+                                            <h3 class="font-bold">Standard Bank Malawi</h3>
+                                            <p class="text-gray-500 text-sm">Viewed your profile 1 week ago</p>
+                                        </div>
+                                    </div>
+                                    <div class="flex space-x-2">
+                                        <button class="p-2 text-gray-400 hover:text-gold">
+                                            <i class="far fa-bookmark"></i>
+                                        </button>
+                                        <button class="bg-gold text-black px-4 py-2 rounded-lg font-medium hover:bg-black hover:text-gold border-2 border-gold transition-colors duration-300">
+                                            Follow
+                                        </button>
+                                    </div>
+                                </div>
+                                
+                                <!-- Company Viewer 5 - TNM -->
+                                <div class="flex items-center justify-between p-4 border border-gray-200 rounded-lg hover:bg-gray-50">
+                                    <div class="flex items-center">
+                                        <img src="https://res.cloudinary.com/dbed0vjcr/image/upload/v1750327890/default-placeholder-profile-icon_hxpj2a.webp" alt="TNM Logo" class="w-10 h-10 rounded-lg mr-4">
+                                        <div>
+                                            <h3 class="font-bold">Telekom Networks Malawi (TNM)</h3>
+                                            <p class="text-gray-500 text-sm">Viewed your profile 2 weeks ago</p>
+                                        </div>
+                                    </div>
+                                    <div class="flex space-x-2">
+                                        <button class="p-2 text-gray-400 hover:text-gold">
+                                            <i class="far fa-bookmark"></i>
+                                        </button>
+                                        <button class="bg-gold text-black px-4 py-2 rounded-lg font-medium hover:bg-black hover:text-gold border-2 border-gold transition-colors duration-300">
+                                            Follow
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="flex justify-center mt-6">
+                                <nav class="flex items-center space-x-1">
+                                    <button class="pagination-item px-3 py-1 border border-gray-300 rounded-lg text-gray-700 hover:bg-gray-100">
+                                        <i class="fas fa-chevron-left"></i>
+                                    </button>
+                                    <button class="pagination-item active px-3 py-1 border border-gray-300 rounded-lg text-gray-700 hover:bg-gray-100">
+                                        1
+                                    </button>
+                                    <button class="pagination-item px-3 py-1 border border-gray-300 rounded-lg text-gray-700 hover:bg-gray-100">
+                                        2
+                                    </button>
+                                    <button class="pagination-item px-3 py-1 border border-gray-300 rounded-lg text-gray-700 hover:bg-gray-100">
+                                        <i class="fas fa-chevron-right"></i>
+                                    </button>
+                                </nav>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Recommended Companies Section (Hidden by default) -->
+                    <div id="recommended-section" class="tab-content hidden">
+                        <div class="bg-white rounded-lg shadow mb-6">
+                            <div class="space-y-4 p-6">
+                                <!-- Recommended Company 1 - Press Corporation -->
+                                <div class="company-list-item flex items-center justify-between p-4 border border-gray-200 rounded-lg">
+                                    <div class="flex items-center space-x-4">
+                                        <img src="https://res.cloudinary.com/dbed0vjcr/image/upload/v1750327890/default-placeholder-profile-icon_hxpj2a.webp" alt="Press Corp Logo" class="w-16 h-16 rounded-lg">
+                                        <div>
+                                            <h3 class="font-bold text-lg">Press Corporation Limited</h3>
+                                            <p class="text-gray-500 text-sm">Conglomerate</p>
+                                            <div class="flex items-center mt-1 space-x-4 text-sm text-gray-500">
+                                                <span><i class="fas fa-briefcase mr-1"></i> 15 open jobs</span>
+                                                <span><i class="fas fa-users mr-1"></i> 5,000+ employees</span>
+                                            </div>
+                                            <p class="text-gray-600 text-sm mt-2">Malawi's largest conglomerate with interests in banking, telecom, energy and more.</p>
+                                            <div class="flex flex-wrap gap-2 mt-2">
+                                                <span class="px-2 py-1 bg-gray-100 text-gray-700 rounded-full text-xs">Finance</span>
+                                                <span class="px-2 py-1 bg-gray-100 text-gray-700 rounded-full text-xs">Telecom</span>
+                                                <span class="px-2 py-1 bg-gray-100 text-gray-700 rounded-full text-xs">Energy</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="flex flex-col items-end space-y-3">
+                                        <button class="follow-btn px-4 py-1 text-sm rounded-full border border-gold hover:bg-gold hover:text-black">
+                                            Follow
+                                        </button>
+                                        <div class="flex space-x-2">
+                                            <button class="bg-white text-black px-4 py-2 rounded-lg font-medium hover:bg-grey border-2 border-gray-300 transition-colors duration-300">
+                                                View Jobs
+                                            </button>
+                                            <button class="bg-gold text-black px-4 py-2 rounded-lg font-medium hover:bg-black hover:text-gold border-2 border-gold transition-colors duration-300">
+                                                View Profile
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <!-- Recommended Company 2 - FDH Bank -->
+                                <div class="company-list-item flex items-center justify-between p-4 border border-gray-200 rounded-lg">
+                                    <div class="flex items-center space-x-4">
+                                        <img src="https://res.cloudinary.com/dbed0vjcr/image/upload/v1750327890/default-placeholder-profile-icon_hxpj2a.webp" alt="FDH Logo" class="w-16 h-16 rounded-lg">
+                                        <div>
+                                            <h3 class="font-bold text-lg">FDH Bank</h3>
+                                            <p class="text-gray-500 text-sm">Banking & Financial Services</p>
+                                            <div class="flex items-center mt-1 space-x-4 text-sm text-gray-500">
+                                                <span><i class="fas fa-briefcase mr-1"></i> 7 open jobs</span>
+                                                <span><i class="fas fa-users mr-1"></i> 800+ employees</span>
+                                            </div>
+                                            <p class="text-gray-600 text-sm mt-2">One of Malawi's fastest growing commercial banks with nationwide branches.</p>
+                                            <div class="flex flex-wrap gap-2 mt-2">
+                                                <span class="px-2 py-1 bg-gray-100 text-gray-700 rounded-full text-xs">Banking</span>
+                                                <span class="px-2 py-1 bg-gray-100 text-gray-700 rounded-full text-xs">Finance</span>
+                                                <span class="px-2 py-1 bg-gray-100 text-gray-700 rounded-full text-xs">Investment</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="flex flex-col items-end space-y-3">
+                                        <button class="follow-btn px-4 py-1 text-sm rounded-full border border-gold hover:bg-gold hover:text-black">
+                                            Follow
+                                        </button>
+                                        <div class="flex space-x-2">
+                                            <button class="bg-white text-black px-4 py-2 rounded-lg font-medium hover:bg-grey border-2 border-gray-300 transition-colors duration-300">
+                                                View Jobs
+                                            </button>
+                                            <button class="bg-gold text-black px-4 py-2 rounded-lg font-medium hover:bg-black hover:text-gold border-2 border-gold transition-colors duration-300">
+                                                View Profile
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <!-- Recommended Company 3 - Malawi Revenue Authority -->
+                                <div class="company-list-item flex items-center justify-between p-4 border border-gray-200 rounded-lg">
+                                    <div class="flex items-center space-x-4">
+                                        <img src="https://res.cloudinary.com/dbed0vjcr/image/upload/v1750327890/default-placeholder-profile-icon_hxpj2a.webp" alt="MRA Logo" class="w-16 h-16 rounded-lg">
+                                        <div>
+                                            <h3 class="font-bold text-lg">Malawi Revenue Authority (MRA)</h3>
+                                            <p class="text-gray-500 text-sm">Government Tax Administration</p>
+                                            <div class="flex items-center mt-1 space-x-4 text-sm text-gray-500">
+                                                <span><i class="fas fa-briefcase mr-1"></i> 9 open jobs</span>
+                                                <span><i class="fas fa-users mr-1"></i> 1,200+ employees</span>
+                                            </div>
+                                            <p class="text-gray-600 text-sm mt-2">Government body responsible for tax collection and revenue administration.</p>
+                                            <div class="flex flex-wrap gap-2 mt-2">
+                                                <span class="px-2 py-1 bg-gray-100 text-gray-700 rounded-full text-xs">Government</span>
+                                                <span class="px-2 py-1 bg-gray-100 text-gray-700 rounded-full text-xs">Taxation</span>
+                                                <span class="px-2 py-1 bg-gray-100 text-gray-700 rounded-full text-xs">Finance</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="flex flex-col items-end space-y-3">
+                                        <button class="follow-btn px-4 py-1 text-sm rounded-full border border-gold hover:bg-gold hover:text-black">
+                                            Follow
+                                        </button>
+                                        <div class="flex space-x-2">
+                                            <button class="bg-white text-black px-4 py-2 rounded-lg font-medium hover:bg-grey border-2 border-gray-300 transition-colors duration-300">
+                                                View Jobs
+                                            </button>
+                                            <button class="bg-gold text-black px-4 py-2 rounded-lg font-medium hover:bg-black hover:text-gold border-2 border-gold transition-colors duration-300">
+                                                View Profile
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="flex justify-center p-4 border-t border-gray-200">
+                                <nav class="flex items-center space-x-1">
+                                    <button class="pagination-item px-3 py-1 border border-gray-300 rounded-lg text-gray-700 hover:bg-gray-100">
+                                        <i class="fas fa-chevron-left"></i>
+                                    </button>
+                                    <button class="pagination-item active px-3 py-1 border border-gray-300 rounded-lg text-gray-700 hover:bg-gray-100">
+                                        1
+                                    </button>
+                                    <button class="pagination-item px-3 py-1 border border-gray-300 rounded-lg text-gray-700 hover:bg-gray-100">
+                                        2
+                                    </button>
+                                    <button class="pagination-item px-3 py-1 border border-gray-300 rounded-lg text-gray-700 hover:bg-gray-100">
+                                        3
+                                    </button>
+                                    <button class="pagination-item px-3 py-1 border border-gray-300 rounded-lg text-gray-700 hover:bg-gray-100">
+                                        <i class="fas fa-chevron-right"></i>
+                                    </button>
+                                </nav>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </main>
+        </div>
+    </div>
+
+    <!-- JavaScript -->
+    <script>
+        // Mobile sidebar toggle
+        document.getElementById('open-sidebar').addEventListener('click', function() {
+            document.getElementById('mobile-sidebar').style.display = 'block';
+        });
+        
+        document.getElementById('close-sidebar').addEventListener('click', function() {
+            document.getElementById('mobile-sidebar').style.display = 'none';
+        });
+        
+        document.getElementById('sidebar-backdrop').addEventListener('click', function() {
+            document.getElementById('mobile-sidebar').style.display = 'none';
+        });
+        
+        // User dropdown toggle
+        document.getElementById('user-menu-button').addEventListener('click', function() {
+            document.getElementById('user-menu').classList.toggle('hidden');
+        });
+        
+        // Close user dropdown when clicking outside
+        document.addEventListener('click', function(event) {
+            const userMenu = document.getElementById('user-menu');
+            const userButton = document.getElementById('user-menu-button');
+            
+            if (!userButton.contains(event.target)) {
+                userMenu.classList.add('hidden');
+            }
+        });
+        
+        // Sidebar link active state
+        const sidebarLinks = document.querySelectorAll('.sidebar-link');
+        sidebarLinks.forEach(link => {
+            link.addEventListener('click', function() {
+                sidebarLinks.forEach(l => l.classList.remove('active'));
+                this.classList.add('active');
+            });
+        });
+        
+        // Tab functionality
+        const tabs = document.querySelectorAll('.tab-button');
+        const tabContents = document.querySelectorAll('.tab-content');
+        
+        tabs.forEach(tab => {
+            tab.addEventListener('click', function() {
+                // Remove active class from all tabs
+                tabs.forEach(t => t.classList.remove('active', 'border-gold', 'text-gold'));
+                tabs.forEach(t => t.classList.add('border-transparent', 'text-gray-500'));
+                
+                // Add active class to clicked tab
+                this.classList.add('active', 'border-gold', 'text-gold');
+                this.classList.remove('border-transparent', 'text-gray-500');
+                
+                // Hide all tab contents
+                tabContents.forEach(content => content.classList.add('hidden'));
+                
+                // Show the corresponding tab content
+                const tabId = this.id.replace('-tab', '-section');
+                document.getElementById(tabId).classList.remove('hidden');
+            });
+        });
+        
+        // Follow button functionality
+        document.querySelectorAll('.follow-btn').forEach(button => {
+            button.addEventListener('click', function() {
+                this.classList.toggle('following');
+                this.classList.toggle('hover:bg-gold');
+                this.classList.toggle('hover:text-black');
+                
+                if (this.classList.contains('following')) {
+                    this.textContent = 'Following';
+                    // Here you would typically send a request to follow the company
+                    console.log('Following company');
+                } else {
+                    this.textContent = 'Follow';
+                    // Here you would typically send a request to unfollow the company
+                    console.log('Unfollowed company');
+                }
+            });
+        });
+        
+        // Bookmark functionality
+        document.querySelectorAll('.fa-bookmark').forEach(bookmark => {
+            bookmark.addEventListener('click', function() {
+                this.classList.toggle('far');
+                this.classList.toggle('fas');
+                this.classList.toggle('text-gold');
+                
+                if (this.classList.contains('fas')) {
+                    // Here you would typically bookmark the company
+                    console.log('Bookmarked company');
+                } else {
+                    // Here you would typically remove bookmark
+                    console.log('Removed bookmark');
+                }
+            });
+        });
+        
+        // Pagination functionality
+        document.querySelectorAll('.pagination-item:not(.active)').forEach(item => {
+            item.addEventListener('click', function() {
+                // Remove active class from all pagination items
+                document.querySelectorAll('.pagination-item').forEach(i => i.classList.remove('active'));
+                
+                // Add active class to clicked item
+                this.classList.add('active');
+                
+                // Here you would typically load the corresponding page
+                console.log('Loading page:', this.textContent.trim());
+            });
+        });
+    </script>
+</body>
+</html>

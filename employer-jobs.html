@@ -1,0 +1,559 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BICM - Job Postings</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;900&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Tailwind Config -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        black: '#000000',
+                        gold: '#D4AF37',
+                        grey: '#F5F5F5',
+                        green: '#1E3A2B',
+                    },
+                    fontFamily: {
+                        montserrat: ['Montserrat', 'sans-serif'],
+                        inter: ['Inter', 'sans-serif'],
+                    },
+                }
+            }
+        }
+    </script>
+    <style type="text/css">
+        /* Custom animations */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .animate-fade-in {
+            animation: fadeIn 0.5s ease-in-out forwards;
+        }
+        
+        /* Sidebar styling */
+        .sidebar-link {
+            transition: all 0.3s ease;
+        }
+        .sidebar-link:hover {
+            background-color: rgba(212, 175, 55, 0.1);
+        }
+        .sidebar-link.active {
+            background-color: rgba(212, 175, 55, 0.2);
+            border-left: 4px solid #D4AF37;
+        }
+        
+        /* Job card styling */
+        .job-card {
+            transition: all 0.3s ease;
+        }
+        .job-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        }
+        
+        /* Status badges */
+        .status-badge {
+            font-size: 0.75rem;
+            padding: 0.25rem 0.5rem;
+            border-radius: 9999px;
+        }
+        .status-active {
+            background-color: #D1FAE5;
+            color: #065F46;
+        }
+        .status-draft {
+            background-color: #FEF3C7;
+            color: #92400E;
+        }
+        .status-closed {
+            background-color: #FEE2E2;
+            color: #991B1B;
+        }
+        
+        /* Pagination */
+        .pagination-link {
+            transition: all 0.3s ease;
+        }
+        .pagination-link:hover {
+            background-color: rgba(212, 175, 55, 0.1);
+        }
+        .pagination-link.active {
+            background-color: #D4AF37;
+            color: white;
+        }
+    </style>
+</head>
+<body class="font-inter bg-grey">
+    <!-- Dashboard Layout -->
+    <div class="flex h-screen overflow-hidden">
+        <!-- Sidebar -->
+        <div class="hidden md:flex md:flex-shrink-0">
+            <div class="flex flex-col w-64 bg-white border-r border-gray-200">
+                <div class="flex items-center justify-center h-16 px-4 border-b border-gray-200">
+                    <img src="https://res.cloudinary.com/dbed0vjcr/image/upload/v1750323428/bicm_f38w95-removebg-preview_vjoybh.png" alt="BICM Logo" class="h-10">
+                </div>
+                <div class="flex flex-col flex-grow px-4 py-4 overflow-y-auto">
+                    <!-- Company Profile -->
+                    <div class="flex items-center mb-8 p-2 rounded-lg bg-gold/10">
+                        <img src="https://res.cloudinary.com/dbed0vjcr/image/upload/v1750327890/default-placeholder-profile-icon_hxpj2a.webp" alt="Company" class="w-10 h-10 rounded-full mr-3">
+                        <div>
+                            <p class="font-medium">Welcome back,</p>
+                            <p class="font-bold">Company Name</p>
+                        </div>
+                    </div>
+                    
+                    <!-- Navigation -->
+                    <nav class="space-y-1">
+                        <a href="employer.html" class="sidebar-link flex items-center px-4 py-3 text-gray-900 rounded-lg">
+                            <i class="fas fa-tachometer-alt text-gray-500 mr-3"></i>
+                            Dashboard
+                        </a>
+                        <a href="employer-jobs.html" class="sidebar-link active flex items-center px-4 py-3 text-gray-900 rounded-lg">
+                            <i class="fas fa-briefcase text-gold mr-3"></i>
+                            Job Postings
+                        </a>
+                        <a href="employer-applicants.html" class="sidebar-link flex items-center px-4 py-3 text-gray-900 rounded-lg">
+                            <i class="fas fa-users text-gray-500 mr-3"></i>
+                            Applicants
+                        </a>
+                        <a href="employer-subscription.html" class="sidebar-link flex items-center px-4 py-3 text-gray-900 rounded-lg">
+                            <i class="fas fa-credit-card text-gray-500 mr-3"></i>
+                            Subscription
+                        </a>
+                        <a href="employer-invoices.html" class="sidebar-link flex items-center px-4 py-3 text-gray-900 rounded-lg">
+                            <i class="fas fa-file-invoice text-gray-500 mr-3"></i>
+                            Invoices
+                        </a>
+                        <a href="employer-settings.html" class="sidebar-link flex items-center px-4 py-3 text-gray-900 rounded-lg">
+                            <i class="fas fa-cog text-gray-500 mr-3"></i>
+                            Settings
+                        </a>
+                    </nav>
+                    
+                    <!-- Logout -->
+                    <div class="mt-auto pt-4">
+                        <a href="login.html" class="flex items-center px-4 py-3 text-gray-900 rounded-lg hover:bg-red-50">
+                            <i class="fas fa-sign-out-alt text-red-500 mr-3"></i>
+                            Logout
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Mobile sidebar -->
+        <div class="md:hidden fixed inset-0 z-40" id="mobile-sidebar" style="display: none;">
+            <div class="fixed inset-0 bg-gray-600 bg-opacity-75" id="sidebar-backdrop"></div>
+            <div class="relative flex flex-col w-72 max-w-xs h-full bg-white">
+                <div class="flex items-center justify-between h-16 px-4 border-b border-gray-200">
+                    <img src="https://res.cloudinary.com/dbed0vjcr/image/upload/v1750323428/bicm_f38w95-removebg-preview_vjoybh.png" alt="BICM Logo" class="h-10">
+                    <button id="close-sidebar" class="text-gray-500 hover:text-gray-600">
+                        <i class="fas fa-times"></i>
+                    </button>
+                </div>
+                <div class="flex flex-col flex-grow px-4 py-4 overflow-y-auto">
+                    <!-- Company Profile -->
+                    <div class="flex items-center mb-8 p-2 rounded-lg bg-gold/10">
+                        <img src="https://res.cloudinary.com/dbed0vjcr/image/upload/v1750327890/default-placeholder-profile-icon_hxpj2a.webp" alt="Company" class="w-10 h-10 rounded-full mr-3">
+                        <div>
+                            <p class="font-medium">Welcome back,</p>
+                            <p class="font-bold">Company Name</p>
+                        </div>
+                    </div>
+                    
+                    <!-- Navigation -->
+                    <nav class="space-y-1">
+                        <a href="employer.html" class="sidebar-link flex items-center px-4 py-3 text-gray-900 rounded-lg">
+                            <i class="fas fa-tachometer-alt text-gray-500 mr-3"></i>
+                            Dashboard
+                        </a>
+                        <a href="employer-jobs.html" class="sidebar-link active flex items-center px-4 py-3 text-gray-900 rounded-lg">
+                            <i class="fas fa-briefcase text-gold mr-3"></i>
+                            Job Postings
+                        </a>
+                        <a href="employer-applicants.html" class="sidebar-link flex items-center px-4 py-3 text-gray-900 rounded-lg">
+                            <i class="fas fa-users text-gray-500 mr-3"></i>
+                            Applicants
+                        </a>
+                        <a href="employer-subscription.html" class="sidebar-link flex items-center px-4 py-3 text-gray-900 rounded-lg">
+                            <i class="fas fa-credit-card text-gray-500 mr-3"></i>
+                            Subscription
+                        </a>
+                        <a href="employer-invoices.html" class="sidebar-link flex items-center px-4 py-3 text-gray-900 rounded-lg">
+                            <i class="fas fa-file-invoice text-gray-500 mr-3"></i>
+                            Invoices
+                        </a>
+                        <a href="employer-settings.html" class="sidebar-link flex items-center px-4 py-3 text-gray-900 rounded-lg">
+                            <i class="fas fa-cog text-gray-500 mr-3"></i>
+                            Settings
+                        </a>
+                    </nav>
+                    
+                    <!-- Logout -->
+                    <div class="mt-auto pt-4">
+                        <a href="login.html" class="flex items-center px-4 py-3 text-gray-900 rounded-lg hover:bg-red-50">
+                            <i class="fas fa-sign-out-alt text-red-500 mr-3"></i>
+                            Logout
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Main Content -->
+        <div class="flex flex-col flex-1 overflow-hidden">
+            <!-- Top Navigation -->
+            <header class="bg-white border-b border-gray-200">
+                <div class="flex items-center justify-between px-4 py-3">
+                    <!-- Mobile menu button -->
+                    <button id="open-sidebar" class="md:hidden text-gray-500 focus:outline-none">
+                        <i class="fas fa-bars text-xl"></i>
+                    </button>
+                    
+                    <!-- Search and company profile -->
+                    <div class="flex items-center space-x-4">
+                        <div class="relative hidden md:block">
+                            <input type="text" placeholder="Search jobs..." class="pl-10 pr-4 py-2 border border-gray-300 rounded-full focus:outline-none focus:ring-2 focus:ring-gold focus:border-transparent">
+                            <i class="fas fa-search absolute left-3 top-3 text-gray-400"></i>
+                        </div>
+                        
+                        <div class="relative">
+                            <button id="company-menu-button" class="flex items-center focus:outline-none">
+                                <img src="https://res.cloudinary.com/dbed0vjcr/image/upload/v1750327890/default-placeholder-profile-icon_hxpj2a.webp" alt="Company" class="w-8 h-8 rounded-full">
+                                <span class="ml-2 hidden md:inline">Company Name</span>
+                                <i class="fas fa-chevron-down ml-1 text-xs hidden md:inline"></i>
+                            </button>
+                            
+                            <!-- Company dropdown menu -->
+                            <div id="company-menu" class="hidden absolute right-0 mt-2 w-48 bg-white rounded-md shadow-lg py-1 z-50">
+                                <a href="#" class="block px-4 py-2 text-gray-700 hover:bg-gray-100">Company Profile</a>
+                                <a href="employer-settings.html" class="block px-4 py-2 text-gray-700 hover:bg-gray-100">Settings</a>
+                                <a href="login.html" class="block px-4 py-2 text-gray-700 hover:bg-gray-100">Sign out</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </header>
+            
+            <!-- Main Content Area -->
+            <main class="flex-1 overflow-y-auto p-4 md:p-6">
+                <div class="max-w-7xl mx-auto">
+                    <!-- Page Header -->
+                    <div class="flex justify-between items-center mb-6">
+                        <div>
+                            <h1 class="text-2xl font-montserrat font-bold text-gray-900">Job Postings</h1>
+                            <p class="text-gray-600">Manage your current job listings and create new ones</p>
+                        </div>
+                        <button class="bg-gold text-black px-4 py-2 rounded-lg font-medium hover:bg-black hover:text-gold border-2 border-gold transition-colors duration-300">
+                            <i class="fas fa-plus mr-2"></i> Post New Job
+                        </button>
+                    </div>
+                    
+                    <!-- Filters -->
+                    <div class="bg-white rounded-lg shadow p-4 mb-6 animate-fade-in">
+                        <div class="flex flex-col md:flex-row md:items-center md:justify-between space-y-4 md:space-y-0">
+                            <div class="flex space-x-2">
+                                <button class="px-3 py-1 rounded-full bg-black text-white text-sm">All Jobs</button>
+                                <button class="px-3 py-1 rounded-full bg-gray-100 text-gray-700 hover:bg-gray-200 text-sm">Active</button>
+                                <button class="px-3 py-1 rounded-full bg-gray-100 text-gray-700 hover:bg-gray-200 text-sm">Drafts</button>
+                                <button class="px-3 py-1 rounded-full bg-gray-100 text-gray-700 hover:bg-gray-200 text-sm">Closed</button>
+                            </div>
+                            <div class="relative">
+                                <select class="appearance-none bg-gray-100 border border-gray-300 rounded-lg pl-3 pr-8 py-1 focus:outline-none focus:ring-2 focus:ring-gold focus:border-transparent">
+                                    <option>Sort by: Newest</option>
+                                    <option>Sort by: Oldest</option>
+                                    <option>Sort by: Most Applicants</option>
+                                </select>
+                                <i class="fas fa-chevron-down absolute right-3 top-2 text-gray-500 pointer-events-none"></i>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Job Listings -->
+                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-6">
+                        <!-- Job Card 1 -->
+                        <div class="bg-white rounded-lg shadow job-card p-6 animate-fade-in">
+                            <div class="flex justify-between items-start mb-4">
+                                <div>
+                                    <h3 class="font-bold text-lg">Frontend Developer</h3>
+                                    <p class="text-gray-500 text-sm">Posted: 15 Nov 2023</p>
+                                </div>
+                                <span class="status-badge status-active">Active</span>
+                            </div>
+                            <div class="flex items-center text-sm mb-4">
+                                <i class="fas fa-map-marker-alt text-gray-400 mr-2"></i>
+                                <span class="text-gray-600">Lilongwe, Malawi</span>
+                            </div>
+                            <div class="flex justify-between text-sm mb-4">
+                                <div>
+                                    <p class="text-gray-500">Applicants</p>
+                                    <p class="font-bold">24</p>
+                                </div>
+                                <div>
+                                    <p class="text-gray-500">Views</p>
+                                    <p class="font-bold">156</p>
+                                </div>
+                                <div>
+                                    <p class="text-gray-500">CV Downloads</p>
+                                    <p class="font-bold">8</p>
+                                </div>
+                            </div>
+                            <div class="flex space-x-2">
+                                <button class="flex-1 bg-gold/10 text-gold px-3 py-2 rounded-lg text-sm font-medium hover:bg-gold/20">
+                                    <i class="fas fa-eye mr-1"></i> View
+                                </button>
+                                <button class="flex-1 bg-gold/10 text-gold px-3 py-2 rounded-lg text-sm font-medium hover:bg-gold/20">
+                                    <i class="fas fa-edit mr-1"></i> Edit
+                                </button>
+                                <button class="flex-1 bg-gold/10 text-gold px-3 py-2 rounded-lg text-sm font-medium hover:bg-gold/20">
+                                    <i class="fas fa-users mr-1"></i> Applicants
+                                </button>
+                            </div>
+                        </div>
+                        
+                        <!-- Job Card 2 -->
+                        <div class="bg-white rounded-lg shadow job-card p-6 animate-fade-in delay-1">
+                            <div class="flex justify-between items-start mb-4">
+                                <div>
+                                    <h3 class="font-bold text-lg">HR Consultant</h3>
+                                    <p class="text-gray-500 text-sm">Posted: 10 Nov 2023</p>
+                                </div>
+                                <span class="status-badge status-active">Active</span>
+                            </div>
+                            <div class="flex items-center text-sm mb-4">
+                                <i class="fas fa-map-marker-alt text-gray-400 mr-2"></i>
+                                <span class="text-gray-600">Blantyre, Malawi</span>
+                            </div>
+                            <div class="flex justify-between text-sm mb-4">
+                                <div>
+                                    <p class="text-gray-500">Applicants</p>
+                                    <p class="font-bold">18</p>
+                                </div>
+                                <div>
+                                    <p class="text-gray-500">Views</p>
+                                    <p class="font-bold">98</p>
+                                </div>
+                                <div>
+                                    <p class="text-gray-500">CV Downloads</p>
+                                    <p class="font-bold">5</p>
+                                </div>
+                            </div>
+                            <div class="flex space-x-2">
+                                <button class="flex-1 bg-gold/10 text-gold px-3 py-2 rounded-lg text-sm font-medium hover:bg-gold/20">
+                                    <i class="fas fa-eye mr-1"></i> View
+                                </button>
+                                <button class="flex-1 bg-gold/10 text-gold px-3 py-2 rounded-lg text-sm font-medium hover:bg-gold/20">
+                                    <i class="fas fa-edit mr-1"></i> Edit
+                                </button>
+                                <button class="flex-1 bg-gold/10 text-gold px-3 py-2 rounded-lg text-sm font-medium hover:bg-gold/20">
+                                    <i class="fas fa-users mr-1"></i> Applicants
+                                </button>
+                            </div>
+                        </div>
+                        
+                        <!-- Job Card 3 -->
+                        <div class="bg-white rounded-lg shadow job-card p-6 animate-fade-in delay-2">
+                            <div class="flex justify-between items-start mb-4">
+                                <div>
+                                    <h3 class="font-bold text-lg">Project Manager</h3>
+                                    <p class="text-gray-500 text-sm">Posted: 5 Nov 2023</p>
+                                </div>
+                                <span class="status-badge status-active">Active</span>
+                            </div>
+                            <div class="flex items-center text-sm mb-4">
+                                <i class="fas fa-map-marker-alt text-gray-400 mr-2"></i>
+                                <span class="text-gray-600">Remote</span>
+                            </div>
+                            <div class="flex justify-between text-sm mb-4">
+                                <div>
+                                    <p class="text-gray-500">Applicants</p>
+                                    <p class="font-bold">32</p>
+                                </div>
+                                <div>
+                                    <p class="text-gray-500">Views</p>
+                                    <p class="font-bold">210</p>
+                                </div>
+                                <div>
+                                    <p class="text-gray-500">CV Downloads</p>
+                                    <p class="font-bold">12</p>
+                                </div>
+                            </div>
+                            <div class="flex space-x-2">
+                                <button class="flex-1 bg-gold/10 text-gold px-3 py-2 rounded-lg text-sm font-medium hover:bg-gold/20">
+                                    <i class="fas fa-eye mr-1"></i> View
+                                </button>
+                                <button class="flex-1 bg-gold/10 text-gold px-3 py-2 rounded-lg text-sm font-medium hover:bg-gold/20">
+                                    <i class="fas fa-edit mr-1"></i> Edit
+                                </button>
+                                <button class="flex-1 bg-gold/10 text-gold px-3 py-2 rounded-lg text-sm font-medium hover:bg-gold/20">
+                                    <i class="fas fa-users mr-1"></i> Applicants
+                                </button>
+                            </div>
+                        </div>
+                        
+                        <!-- Job Card 4 -->
+                        <div class="bg-white rounded-lg shadow job-card p-6 animate-fade-in">
+                            <div class="flex justify-between items-start mb-4">
+                                <div>
+                                    <h3 class="font-bold text-lg">Marketing Specialist</h3>
+                                    <p class="text-gray-500 text-sm">Posted: 25 Oct 2023</p>
+                                </div>
+                                <span class="status-badge status-closed">Closed</span>
+                            </div>
+                            <div class="flex items-center text-sm mb-4">
+                                <i class="fas fa-map-marker-alt text-gray-400 mr-2"></i>
+                                <span class="text-gray-600">Lilongwe, Malawi</span>
+                            </div>
+                            <div class="flex justify-between text-sm mb-4">
+                                <div>
+                                    <p class="text-gray-500">Applicants</p>
+                                    <p class="font-bold">45</p>
+                                </div>
+                                <div>
+                                    <p class="text-gray-500">Views</p>
+                                    <p class="font-bold">287</p>
+                                </div>
+                                <div>
+                                    <p class="text-gray-500">CV Downloads</p>
+                                    <p class="font-bold">18</p>
+                                </div>
+                            </div>
+                            <div class="flex space-x-2">
+                                <button class="flex-1 bg-gold/10 text-gold px-3 py-2 rounded-lg text-sm font-medium hover:bg-gold/20">
+                                    <i class="fas fa-eye mr-1"></i> View
+                                </button>
+                                <button class="flex-1 bg-gold/10 text-gold px-3 py-2 rounded-lg text-sm font-medium hover:bg-gold/20">
+                                    <i class="fas fa-edit mr-1"></i> Edit
+                                </button>
+                                <button class="flex-1 bg-gold/10 text-gold px-3 py-2 rounded-lg text-sm font-medium hover:bg-gold/20">
+                                    <i class="fas fa-users mr-1"></i> Applicants
+                                </button>
+                            </div>
+                        </div>
+                        
+                        <!-- Job Card 5 -->
+                        <div class="bg-white rounded-lg shadow job-card p-6 animate-fade-in delay-1">
+                            <div class="flex justify-between items-start mb-4">
+                                <div>
+                                    <h3 class="font-bold text-lg">Financial Analyst</h3>
+                                    <p class="text-gray-500 text-sm">Posted: 15 Oct 2023</p>
+                                </div>
+                                <span class="status-badge status-draft">Draft</span>
+                            </div>
+                            <div class="flex items-center text-sm mb-4">
+                                <i class="fas fa-map-marker-alt text-gray-400 mr-2"></i>
+                                <span class="text-gray-600">Blantyre, Malawi</span>
+                            </div>
+                            <div class="flex justify-between text-sm mb-4">
+                                <div>
+                                    <p class="text-gray-500">Applicants</p>
+                                    <p class="font-bold">0</p>
+                                </div>
+                                <div>
+                                    <p class="text-gray-500">Views</p>
+                                    <p class="font-bold">0</p>
+                                </div>
+                                <div>
+                                    <p class="text-gray-500">CV Downloads</p>
+                                    <p class="font-bold">0</p>
+                                </div>
+                            </div>
+                            <div class="flex space-x-2">
+                                <button class="flex-1 bg-gold/10 text-gold px-3 py-2 rounded-lg text-sm font-medium hover:bg-gold/20">
+                                    <i class="fas fa-eye mr-1"></i> View
+                                </button>
+                                <button class="flex-1 bg-gold/10 text-gold px-3 py-2 rounded-lg text-sm font-medium hover:bg-gold/20">
+                                    <i class="fas fa-edit mr-1"></i> Edit
+                                </button>
+                                <button class="flex-1 bg-gold/10 text-gold px-3 py-2 rounded-lg text-sm font-medium hover:bg-gold/20">
+                                    <i class="fas fa-check mr-1"></i> Publish
+                                </button>
+                            </div>
+                        </div>
+                        
+                        <!-- Empty State for New Job -->
+                        <div class="bg-white rounded-lg shadow border-2 border-dashed border-gray-300 p-6 flex flex-col items-center justify-center animate-fade-in delay-2 hover:border-gold transition-colors duration-300">
+                            <div class="bg-gold/10 p-4 rounded-full mb-4">
+                                <i class="fas fa-plus text-gold text-2xl"></i>
+                            </div>
+                            <h3 class="font-bold text-lg mb-2">Post a New Job</h3>
+                            <p class="text-gray-500 text-sm text-center mb-4">Fill your vacancies quickly with qualified candidates</p>
+                            <button class="bg-gold text-black px-4 py-2 rounded-lg font-medium hover:bg-black hover:text-gold border-2 border-gold transition-colors duration-300">
+                                Create Job Posting
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <!-- Pagination -->
+                    <div class="bg-white rounded-lg shadow p-4 animate-fade-in">
+                        <div class="flex justify-between items-center">
+                            <div class="text-sm text-gray-500">
+                                Showing <span class="font-medium">1</span> to <span class="font-medium">6</span> of <span class="font-medium">12</span> jobs
+                            </div>
+                            <div class="flex space-x-1">
+                                <button class="pagination-link w-8 h-8 flex items-center justify-center rounded-lg">
+                                    <i class="fas fa-chevron-left"></i>
+                                </button>
+                                <button class="pagination-link active w-8 h-8 flex items-center justify-center rounded-lg">1</button>
+                                <button class="pagination-link w-8 h-8 flex items-center justify-center rounded-lg">2</button>
+                                <button class="pagination-link w-8 h-8 flex items-center justify-center rounded-lg">
+                                    <i class="fas fa-chevron-right"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </main>
+        </div>
+    </div>
+
+    <!-- JavaScript -->
+    <script>
+        // Mobile sidebar toggle
+        document.getElementById('open-sidebar').addEventListener('click', function() {
+            document.getElementById('mobile-sidebar').style.display = 'block';
+        });
+        
+        document.getElementById('close-sidebar').addEventListener('click', function() {
+            document.getElementById('mobile-sidebar').style.display = 'none';
+        });
+        
+        document.getElementById('sidebar-backdrop').addEventListener('click', function() {
+            document.getElementById('mobile-sidebar').style.display = 'none';
+        });
+        
+        // Company dropdown toggle
+        document.getElementById('company-menu-button').addEventListener('click', function() {
+            document.getElementById('company-menu').classList.toggle('hidden');
+        });
+        
+        // Close company dropdown when clicking outside
+        document.addEventListener('click', function(event) {
+            const companyMenu = document.getElementById('company-menu');
+            const companyButton = document.getElementById('company-menu-button');
+            
+            if (!companyButton.contains(event.target)) {
+                companyMenu.classList.add('hidden');
+            }
+        });
+        
+        // Sidebar link active state
+        const sidebarLinks = document.querySelectorAll('.sidebar-link');
+        sidebarLinks.forEach(link => {
+            link.addEventListener('click', function() {
+                sidebarLinks.forEach(l => l.classList.remove('active'));
+                this.classList.add('active');
+            });
+        });
+    </script>
+</body>
+</html>

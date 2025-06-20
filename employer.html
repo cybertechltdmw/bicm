@@ -1,0 +1,628 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BICM - Employer Dashboard</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;900&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Tailwind Config -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        black: '#000000',
+                        gold: '#D4AF37',
+                        grey: '#F5F5F5',
+                        green: '#1E3A2B',
+                    },
+                    fontFamily: {
+                        montserrat: ['Montserrat', 'sans-serif'],
+                        inter: ['Inter', 'sans-serif'],
+                    },
+                }
+            }
+        }
+    </script>
+    <style type="text/css">
+        /* Custom animations */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .animate-fade-in {
+            animation: fadeIn 0.5s ease-in-out forwards;
+        }
+        
+        /* Sidebar styling */
+        .sidebar-link {
+            transition: all 0.3s ease;
+        }
+        .sidebar-link:hover {
+            background-color: rgba(212, 175, 55, 0.1);
+        }
+        .sidebar-link.active {
+            background-color: rgba(212, 175, 55, 0.2);
+            border-left: 4px solid #D4AF37;
+        }
+        
+        /* Stats card styling */
+        .stat-card {
+            transition: all 0.3s ease;
+        }
+        .stat-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        }
+        
+        /* Progress bar styling */
+        .progress-bar {
+            height: 8px;
+            border-radius: 4px;
+            background-color: #E5E7EB;
+        }
+        .progress-fill {
+            height: 100%;
+            border-radius: 4px;
+            background-color: #D4AF37;
+            transition: width 0.5s ease;
+        }
+        
+        /* Application status badges */
+        .status-badge {
+            font-size: 0.75rem;
+            padding: 0.25rem 0.5rem;
+            border-radius: 9999px;
+        }
+        .status-new {
+            background-color: #DBEAFE;
+            color: #1E40AF;
+        }
+        .status-review {
+            background-color: #FEF3C7;
+            color: #92400E;
+        }
+        .status-interview {
+            background-color: #D1FAE5;
+            color: #065F46;
+        }
+        .status-rejected {
+            background-color: #FEE2E2;
+            color: #991B1B;
+        }
+    </style>
+</head>
+<body class="font-inter bg-grey">
+    <!-- Dashboard Layout -->
+    <div class="flex h-screen overflow-hidden">
+        <!-- Sidebar -->
+        <div class="hidden md:flex md:flex-shrink-0">
+            <div class="flex flex-col w-64 bg-white border-r border-gray-200">
+                <div class="flex items-center justify-center h-16 px-4 border-b border-gray-200">
+                    <img src="https://res.cloudinary.com/dbed0vjcr/image/upload/v1750323428/bicm_f38w95-removebg-preview_vjoybh.png" alt="BICM Logo" class="h-10">
+                </div>
+                <div class="flex flex-col flex-grow px-4 py-4 overflow-y-auto">
+                    <!-- Company Profile -->
+                    <div class="flex items-center mb-8 p-2 rounded-lg bg-gold/10">
+                        <img src="https://res.cloudinary.com/dbed0vjcr/image/upload/v1750327890/default-placeholder-profile-icon_hxpj2a.webp" alt="Company" class="w-10 h-10 rounded-full mr-3">
+                        <div>
+                            <p class="font-medium">Welcome back,</p>
+                            <p class="font-bold">Company Name</p>
+                        </div>
+                    </div>
+                    
+                    <!-- Navigation -->
+                    <nav class="space-y-1">
+                        <a href="#" class="sidebar-link active flex items-center px-4 py-3 text-gray-900 rounded-lg">
+                            <i class="fas fa-tachometer-alt text-gold mr-3"></i>
+                            Dashboard
+                        </a>
+                        <a href="employer-jobs.html" class="sidebar-link flex items-center px-4 py-3 text-gray-900 rounded-lg">
+                            <i class="fas fa-briefcase text-gray-500 mr-3"></i>
+                            Job Postings
+                        </a>
+                        <a href="employer-applicants.html" class="sidebar-link flex items-center px-4 py-3 text-gray-900 rounded-lg">
+                            <i class="fas fa-users text-gray-500 mr-3"></i>
+                            Applicants
+                        </a>
+                        <a href="employer-subscription.html" class="sidebar-link flex items-center px-4 py-3 text-gray-900 rounded-lg">
+                            <i class="fas fa-credit-card text-gray-500 mr-3"></i>
+                            Subscription
+                        </a>
+                        <a href="employer-invoices.html" class="sidebar-link flex items-center px-4 py-3 text-gray-900 rounded-lg">
+                            <i class="fas fa-file-invoice text-gray-500 mr-3"></i>
+                            Invoices
+                        </a>
+                        <a href="employer-settings.html" class="sidebar-link flex items-center px-4 py-3 text-gray-900 rounded-lg">
+                            <i class="fas fa-cog text-gray-500 mr-3"></i>
+                            Settings
+                        </a>
+                    </nav>
+                    
+                    <!-- Logout -->
+                    <div class="mt-auto pt-4">
+                        <a href="login.html" class="flex items-center px-4 py-3 text-gray-900 rounded-lg hover:bg-red-50">
+                            <i class="fas fa-sign-out-alt text-red-500 mr-3"></i>
+                            Logout
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Mobile sidebar -->
+        <div class="md:hidden fixed inset-0 z-40" id="mobile-sidebar" style="display: none;">
+            <div class="fixed inset-0 bg-gray-600 bg-opacity-75" id="sidebar-backdrop"></div>
+            <div class="relative flex flex-col w-72 max-w-xs h-full bg-white">
+                <div class="flex items-center justify-between h-16 px-4 border-b border-gray-200">
+                    <img src="https://res.cloudinary.com/dbed0vjcr/image/upload/v1750323428/bicm_f38w95-removebg-preview_vjoybh.png" alt="BICM Logo" class="h-10">
+                    <button id="close-sidebar" class="text-gray-500 hover:text-gray-600">
+                        <i class="fas fa-times"></i>
+                    </button>
+                </div>
+                <div class="flex flex-col flex-grow px-4 py-4 overflow-y-auto">
+                    <!-- Company Profile -->
+                    <div class="flex items-center mb-8 p-2 rounded-lg bg-gold/10">
+                        <img src="https://res.cloudinary.com/dbed0vjcr/image/upload/v1750327890/default-placeholder-profile-icon_hxpj2a.webp" alt="Company" class="w-10 h-10 rounded-full mr-3">
+                        <div>
+                            <p class="font-medium">Welcome back,</p>
+                            <p class="font-bold">Company Name</p>
+                        </div>
+                    </div>
+                    
+                    <!-- Navigation -->
+                    <nav class="space-y-1">
+                        <a href="#" class="sidebar-link active flex items-center px-4 py-3 text-gray-900 rounded-lg">
+                            <i class="fas fa-tachometer-alt text-gold mr-3"></i>
+                            Dashboard
+                        </a>
+                        <a href="employer-jobs.html" class="sidebar-link flex items-center px-4 py-3 text-gray-900 rounded-lg">
+                            <i class="fas fa-briefcase text-gray-500 mr-3"></i>
+                            Job Postings
+                        </a>
+                        <a href="employer-applicants.html" class="sidebar-link flex items-center px-4 py-3 text-gray-900 rounded-lg">
+                            <i class="fas fa-users text-gray-500 mr-3"></i>
+                            Applicants
+                        </a>
+                        <a href="employer-subscription.html" class="sidebar-link flex items-center px-4 py-3 text-gray-900 rounded-lg">
+                            <i class="fas fa-credit-card text-gray-500 mr-3"></i>
+                            Subscription
+                        </a>
+                        <a href="employer-invoices.html" class="sidebar-link flex items-center px-4 py-3 text-gray-900 rounded-lg">
+                            <i class="fas fa-file-invoice text-gray-500 mr-3"></i>
+                            Invoices
+                        </a>
+                        <a href="employer-settings.html" class="sidebar-link flex items-center px-4 py-3 text-gray-900 rounded-lg">
+                            <i class="fas fa-cog text-gray-500 mr-3"></i>
+                            Settings
+                        </a>
+                    </nav>
+                    
+                    <!-- Logout -->
+                    <div class="mt-auto pt-4">
+                        <a href="login.html" class="flex items-center px-4 py-3 text-gray-900 rounded-lg hover:bg-red-50">
+                            <i class="fas fa-sign-out-alt text-red-500 mr-3"></i>
+                            Logout
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Main Content -->
+        <div class="flex flex-col flex-1 overflow-hidden">
+            <!-- Top Navigation -->
+            <header class="bg-white border-b border-gray-200">
+                <div class="flex items-center justify-between px-4 py-3">
+                    <!-- Mobile menu button -->
+                    <button id="open-sidebar" class="md:hidden text-gray-500 focus:outline-none">
+                        <i class="fas fa-bars text-xl"></i>
+                    </button>
+                    
+                    <!-- Search and company profile -->
+                    <div class="flex items-center space-x-4">
+                        <div class="relative hidden md:block">
+                            <input type="text" placeholder="Search..." class="pl-10 pr-4 py-2 border border-gray-300 rounded-full focus:outline-none focus:ring-2 focus:ring-gold focus:border-transparent">
+                            <i class="fas fa-search absolute left-3 top-3 text-gray-400"></i>
+                        </div>
+                        
+                        <div class="relative">
+                            <button id="company-menu-button" class="flex items-center focus:outline-none">
+                                <img src="https://res.cloudinary.com/dbed0vjcr/image/upload/v1750327890/default-placeholder-profile-icon_hxpj2a.webp" alt="Company" class="w-8 h-8 rounded-full">
+                                <span class="ml-2 hidden md:inline">Company Name</span>
+                                <i class="fas fa-chevron-down ml-1 text-xs hidden md:inline"></i>
+                            </button>
+                            
+                            <!-- Company dropdown menu -->
+                            <div id="company-menu" class="hidden absolute right-0 mt-2 w-48 bg-white rounded-md shadow-lg py-1 z-50">
+                                <a href="#" class="block px-4 py-2 text-gray-700 hover:bg-gray-100">Company Profile</a>
+                                <a href="employer-settings.html" class="block px-4 py-2 text-gray-700 hover:bg-gray-100">Settings</a>
+                                <a href="login.html" class="block px-4 py-2 text-gray-700 hover:bg-gray-100">Sign out</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </header>
+            
+            <!-- Main Content Area -->
+            <main class="flex-1 overflow-y-auto p-4 md:p-6">
+                <div class="max-w-7xl mx-auto">
+                    <!-- Welcome Banner -->
+                    <div class="bg-white rounded-lg shadow p-6 mb-6 animate-fade-in">
+                        <h1 class="text-2xl font-montserrat font-bold text-gray-900 mb-2">Welcome back, Company Name!</h1>
+                        <p class="text-gray-600">Here's an overview of your recruitment activities</p>
+                    </div>
+                    
+                    <!-- Stats Cards -->
+                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-6">
+                        <!-- Active Jobs Card -->
+                        <div class="bg-white rounded-lg shadow stat-card p-6 animate-fade-in">
+                            <div class="flex items-center justify-between">
+                                <div>
+                                    <p class="text-gray-500 text-sm font-medium">Active Jobs</p>
+                                    <h3 class="text-2xl font-bold mt-1">5</h3>
+                                    <p class="text-green-500 text-xs mt-1">
+                                        <i class="fas fa-arrow-up mr-1"></i> 1 from last month
+                                    </p>
+                                </div>
+                                <div class="bg-gold/10 p-3 rounded-full">
+                                    <i class="fas fa-briefcase text-gold text-xl"></i>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Total Applicants Card -->
+                        <div class="bg-white rounded-lg shadow stat-card p-6 animate-fade-in delay-1">
+                            <div class="flex items-center justify-between">
+                                <div>
+                                    <p class="text-gray-500 text-sm font-medium">Total Applicants</p>
+                                    <h3 class="text-2xl font-bold mt-1">42</h3>
+                                    <p class="text-green-500 text-xs mt-1">
+                                        <i class="fas fa-arrow-up mr-1"></i> 12 from last month
+                                    </p>
+                                </div>
+                                <div class="bg-gold/10 p-3 rounded-full">
+                                    <i class="fas fa-users text-gold text-xl"></i>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- New Applications Card -->
+                        <div class="bg-white rounded-lg shadow stat-card p-6 animate-fade-in delay-2">
+                            <div class="flex items-center justify-between">
+                                <div>
+                                    <p class="text-gray-500 text-sm font-medium">New Applications</p>
+                                    <h3 class="text-2xl font-bold mt-1">8</h3>
+                                    <p class="text-green-500 text-xs mt-1">
+                                        <i class="fas fa-arrow-up mr-1"></i> 3 from last week
+                                    </p>
+                                </div>
+                                <div class="bg-gold/10 p-3 rounded-full">
+                                    <i class="fas fa-file-alt text-gold text-xl"></i>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- CV Downloads Card -->
+                        <div class="bg-white rounded-lg shadow stat-card p-6 animate-fade-in delay-3">
+                            <div class="flex items-center justify-between">
+                                <div>
+                                    <p class="text-gray-500 text-sm font-medium">CV Downloads</p>
+                                    <h3 class="text-2xl font-bold mt-1">15</h3>
+                                    <p class="text-green-500 text-xs mt-1">
+                                        <i class="fas fa-arrow-up mr-1"></i> 5 from last week
+                                    </p>
+                                </div>
+                                <div class="bg-gold/10 p-3 rounded-full">
+                                    <i class="fas fa-download text-gold text-xl"></i>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Main Content Grid -->
+                    <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+                        <!-- Recent Activity and Applications -->
+                        <div class="lg:col-span-2 space-y-6">
+                            <!-- Recent Activity -->
+                            <div class="bg-white rounded-lg shadow p-6 animate-fade-in">
+                                <div class="flex justify-between items-center mb-4">
+                                    <h2 class="text-xl font-montserrat font-bold">Recent Activity</h2>
+                                    <a href="#" class="text-sm text-gold hover:text-black">View All</a>
+                                </div>
+                                
+                                <div class="space-y-4">
+                                    <div class="flex items-start p-3 rounded-lg hover:bg-gray-50">
+                                        <div class="bg-gold/10 p-2 rounded-full mr-4">
+                                            <i class="fas fa-user-plus text-gold"></i>
+                                        </div>
+                                        <div>
+                                            <p class="font-medium">New application for <span class="text-gold">Frontend Developer</span> from John Doe</p>
+                                            <p class="text-gray-500 text-sm">2 hours ago</p>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="flex items-start p-3 rounded-lg hover:bg-gray-50">
+                                        <div class="bg-gold/10 p-2 rounded-full mr-4">
+                                            <i class="fas fa-download text-gold"></i>
+                                        </div>
+                                        <div>
+                                            <p class="font-medium">You downloaded the CV of <span class="text-gold">Jane Smith</span></p>
+                                            <p class="text-gray-500 text-sm">1 day ago</p>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="flex items-start p-3 rounded-lg hover:bg-gray-50">
+                                        <div class="bg-gold/10 p-2 rounded-full mr-4">
+                                            <i class="fas fa-briefcase text-gold"></i>
+                                        </div>
+                                        <div>
+                                            <p class="font-medium">You posted a new job: <span class="text-gold">Project Manager</span></p>
+                                            <p class="text-gray-500 text-sm">2 days ago</p>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="flex items-start p-3 rounded-lg hover:bg-gray-50">
+                                        <div class="bg-gold/10 p-2 rounded-full mr-4">
+                                            <i class="fas fa-envelope text-gold"></i>
+                                        </div>
+                                        <div>
+                                            <p class="font-medium">You scheduled an interview with <span class="text-gold">Michael Brown</span></p>
+                                            <p class="text-gray-500 text-sm">3 days ago</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <!-- Recent Applications -->
+                            <div class="bg-white rounded-lg shadow p-6 animate-fade-in delay-1">
+                                <div class="flex justify-between items-center mb-4">
+                                    <h2 class="text-xl font-montserrat font-bold">Recent Applications</h2>
+                                    <a href="employer-applicants.html" class="text-sm text-gold hover:text-black">View All</a>
+                                </div>
+                                
+                                <div class="overflow-x-auto">
+                                    <table class="min-w-full divide-y divide-gray-200">
+                                        <thead class="bg-gray-50">
+                                            <tr>
+                                                <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Applicant</th>
+                                                <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Position</th>
+                                                <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Date</th>
+                                                <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Status</th>
+                                                <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Actions</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody class="bg-white divide-y divide-gray-200">
+                                            <tr>
+                                                <td class="px-6 py-4 whitespace-nowrap">
+                                                    <div class="flex items-center">
+                                                        <div class="flex-shrink-0 h-10 w-10">
+                                                            <img class="h-10 w-10 rounded-full" src="https://randomuser.me/api/portraits/men/32.jpg" alt="">
+                                                        </div>
+                                                        <div class="ml-4">
+                                                            <div class="text-sm font-medium text-gray-900">John Doe</div>
+                                                            <div class="text-sm text-gray-500">john.doe@example.com</div>
+                                                        </div>
+                                                    </div>
+                                                </td>
+                                                <td class="px-6 py-4 whitespace-nowrap">
+                                                    <div class="text-sm text-gray-900">Frontend Developer</div>
+                                                </td>
+                                                <td class="px-6 py-4 whitespace-nowrap">
+                                                    <div class="text-sm text-gray-500">2 hours ago</div>
+                                                </td>
+                                                <td class="px-6 py-4 whitespace-nowrap">
+                                                    <span class="status-badge status-new">New</span>
+                                                </td>
+                                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                                                    <button class="text-gold hover:text-black mr-3">
+                                                        <i class="fas fa-eye"></i>
+                                                    </button>
+                                                    <button class="text-gold hover:text-black">
+                                                        <i class="fas fa-download"></i>
+                                                    </button>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td class="px-6 py-4 whitespace-nowrap">
+                                                    <div class="flex items-center">
+                                                        <div class="flex-shrink-0 h-10 w-10">
+                                                            <img class="h-10 w-10 rounded-full" src="https://randomuser.me/api/portraits/women/44.jpg" alt="">
+                                                        </div>
+                                                        <div class="ml-4">
+                                                            <div class="text-sm font-medium text-gray-900">Jane Smith</div>
+                                                            <div class="text-sm text-gray-500">jane.smith@example.com</div>
+                                                        </div>
+                                                    </div>
+                                                </td>
+                                                <td class="px-6 py-4 whitespace-nowrap">
+                                                    <div class="text-sm text-gray-900">HR Consultant</div>
+                                                </td>
+                                                <td class="px-6 py-4 whitespace-nowrap">
+                                                    <div class="text-sm text-gray-500">1 day ago</div>
+                                                </td>
+                                                <td class="px-6 py-4 whitespace-nowrap">
+                                                    <span class="status-badge status-review">Under Review</span>
+                                                </td>
+                                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                                                    <button class="text-gold hover:text-black mr-3">
+                                                        <i class="fas fa-eye"></i>
+                                                    </button>
+                                                    <button class="text-gold hover:text-black">
+                                                        <i class="fas fa-download"></i>
+                                                    </button>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td class="px-6 py-4 whitespace-nowrap">
+                                                    <div class="flex items-center">
+                                                        <div class="flex-shrink-0 h-10 w-10">
+                                                            <img class="h-10 w-10 rounded-full" src="https://randomuser.me/api/portraits/men/75.jpg" alt="">
+                                                        </div>
+                                                        <div class="ml-4">
+                                                            <div class="text-sm font-medium text-gray-900">Michael Brown</div>
+                                                            <div class="text-sm text-gray-500">michael.b@example.com</div>
+                                                        </div>
+                                                    </div>
+                                                </td>
+                                                <td class="px-6 py-4 whitespace-nowrap">
+                                                    <div class="text-sm text-gray-900">Project Manager</div>
+                                                </td>
+                                                <td class="px-6 py-4 whitespace-nowrap">
+                                                    <div class="text-sm text-gray-500">3 days ago</div>
+                                                </td>
+                                                <td class="px-6 py-4 whitespace-nowrap">
+                                                    <span class="status-badge status-interview">Interview</span>
+                                                </td>
+                                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                                                    <button class="text-gold hover:text-black mr-3">
+                                                        <i class="fas fa-eye"></i>
+                                                    </button>
+                                                    <button class="text-gold hover:text-black">
+                                                        <i class="fas fa-download"></i>
+                                                    </button>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Right Sidebar -->
+                        <div class="space-y-6">
+                            <!-- Subscription Status -->
+                            <div class="bg-white rounded-lg shadow p-6 animate-fade-in">
+                                <h2 class="text-xl font-montserrat font-bold mb-4">Subscription Status</h2>
+                                <div class="mb-4">
+                                    <div class="flex justify-between text-sm mb-1">
+                                        <span>Premium Plan</span>
+                                        <span class="text-green-500">Active</span>
+                                    </div>
+                                    <div class="text-xs text-gray-500 mb-4">Renews on: 15 Jan 2024</div>
+                                    <div class="progress-bar">
+                                        <div class="progress-fill" style="width: 65%"></div>
+                                    </div>
+                                    <div class="flex justify-between text-xs text-gray-500 mt-1">
+                                        <span>Started: 15 Jan 2023</span>
+                                        <span>Ends: 15 Jan 2024</span>
+                                    </div>
+                                </div>
+                                <button class="w-full bg-gold text-black px-4 py-2 rounded-lg font-medium hover:bg-black hover:text-gold border-2 border-gold transition-colors duration-300">
+                                    Manage Subscription
+                                </button>
+                            </div>
+                            
+                            <!-- Post a Job -->
+                            <div class="bg-white rounded-lg shadow p-6 animate-fade-in delay-1">
+                                <h2 class="text-xl font-montserrat font-bold mb-4">Post a New Job</h2>
+                                <p class="text-gray-600 mb-4">Fill your vacancies quickly with qualified candidates</p>
+                                <button class="w-full bg-gold text-black px-4 py-2 rounded-lg font-medium hover:bg-black hover:text-gold border-2 border-gold transition-colors duration-300">
+                                    Create Job Posting
+                                </button>
+                            </div>
+                            
+                            <!-- Recent Invoices -->
+                            <div class="bg-white rounded-lg shadow p-6 animate-fade-in delay-2">
+                                <div class="flex justify-between items-center mb-4">
+                                    <h2 class="text-xl font-montserrat font-bold">Recent Invoices</h2>
+                                    <a href="employer-invoices.html" class="text-sm text-gold hover:text-black">View All</a>
+                                </div>
+                                
+                                <div class="space-y-4">
+                                    <div class="border border-gray-200 rounded-lg p-4 hover:border-gold transition-colors duration-300">
+                                        <div class="flex justify-between items-start">
+                                            <div>
+                                                <h3 class="font-bold">Invoice #INV-2023-11-001</h3>
+                                                <p class="text-gray-500 text-sm">CV Downloads (5)</p>
+                                            </div>
+                                            <span class="bg-green-100 text-green-800 text-xs px-2 py-1 rounded-full">Paid</span>
+                                        </div>
+                                        <div class="flex justify-between items-center mt-3">
+                                            <span class="text-sm text-gray-600">MK 25,000</span>
+                                            <button class="text-sm text-gold hover:text-black font-medium">View</button>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="border border-gray-200 rounded-lg p-4 hover:border-gold transition-colors duration-300">
+                                        <div class="flex justify-between items-start">
+                                            <div>
+                                                <h3 class="font-bold">Invoice #INV-2023-10-003</h3>
+                                                <p class="text-gray-500 text-sm">CV Downloads (8)</p>
+                                            </div>
+                                            <span class="bg-green-100 text-green-800 text-xs px-2 py-1 rounded-full">Paid</span>
+                                        </div>
+                                        <div class="flex justify-between items-center mt-3">
+                                            <span class="text-sm text-gray-600">MK 40,000</span>
+                                            <button class="text-sm text-gold hover:text-black font-medium">View</button>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="border border-gray-200 rounded-lg p-4 hover:border-gold transition-colors duration-300">
+                                        <div class="flex justify-between items-start">
+                                            <div>
+                                                <h3 class="font-bold">Invoice #INV-2023-10-002</h3>
+                                                <p class="text-gray-500 text-sm">Annual Subscription</p>
+                                            </div>
+                                            <span class="bg-green-100 text-green-800 text-xs px-2 py-1 rounded-full">Paid</span>
+                                        </div>
+                                        <div class="flex justify-between items-center mt-3">
+                                            <span class="text-sm text-gray-600">MK 120,000</span>
+                                            <button class="text-sm text-gold hover:text-black font-medium">View</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </main>
+        </div>
+    </div>
+
+    <!-- JavaScript -->
+    <script>
+        // Mobile sidebar toggle
+        document.getElementById('open-sidebar').addEventListener('click', function() {
+            document.getElementById('mobile-sidebar').style.display = 'block';
+        });
+        
+        document.getElementById('close-sidebar').addEventListener('click', function() {
+            document.getElementById('mobile-sidebar').style.display = 'none';
+        });
+        
+        document.getElementById('sidebar-backdrop').addEventListener('click', function() {
+            document.getElementById('mobile-sidebar').style.display = 'none';
+        });
+        
+        // Company dropdown toggle
+        document.getElementById('company-menu-button').addEventListener('click', function() {
+            document.getElementById('company-menu').classList.toggle('hidden');
+        });
+        
+        // Close company dropdown when clicking outside
+        document.addEventListener('click', function(event) {
+            const companyMenu = document.getElementById('company-menu');
+            const companyButton = document.getElementById('company-menu-button');
+            
+            if (!companyButton.contains(event.target)) {
+                companyMenu.classList.add('hidden');
+            }
+        });
+        
+        // Sidebar link active state
+        const sidebarLinks = document.querySelectorAll('.sidebar-link');
+        sidebarLinks.forEach(link => {
+            link.addEventListener('click', function() {
+                sidebarLinks.forEach(l => l.classList.remove('active'));
+                this.classList.add('active');
+            });
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,640 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BICM - Applicants</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;900&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Tailwind Config -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        black: '#000000',
+                        gold: '#D4AF37',
+                        grey: '#F5F5F5',
+                        green: '#1E3A2B',
+                    },
+                    fontFamily: {
+                        montserrat: ['Montserrat', 'sans-serif'],
+                        inter: ['Inter', 'sans-serif'],
+                    },
+                }
+            }
+        }
+    </script>
+    <style type="text/css">
+        /* Custom animations */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .animate-fade-in {
+            animation: fadeIn 0.5s ease-in-out forwards;
+        }
+        
+        /* Sidebar styling */
+        .sidebar-link {
+            transition: all 0.3s ease;
+        }
+        .sidebar-link:hover {
+            background-color: rgba(212, 175, 55, 0.1);
+        }
+        .sidebar-link.active {
+            background-color: rgba(212, 175, 55, 0.2);
+            border-left: 4px solid #D4AF37;
+        }
+        
+        /* Applicant card styling */
+        .applicant-card {
+            transition: all 0.3s ease;
+        }
+        .applicant-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        }
+        
+        /* Status badges */
+        .status-badge {
+            font-size: 0.75rem;
+            padding: 0.25rem 0.5rem;
+            border-radius: 9999px;
+        }
+        .status-new {
+            background-color: #DBEAFE;
+            color: #1E40AF;
+        }
+        .status-review {
+            background-color: #FEF3C7;
+            color: #92400E;
+        }
+        .status-interview {
+            background-color: #D1FAE5;
+            color: #065F46;
+        }
+        .status-offer {
+            background-color: #E0F2FE;
+            color: #0369A1;
+        }
+        .status-rejected {
+            background-color: #FEE2E2;
+            color: #991B1B;
+        }
+        .status-hired {
+            background-color: #D1FAE5;
+            color: #065F46;
+        }
+        
+        /* Rating stars */
+        .rating-star {
+            color: #E5E7EB;
+        }
+        .rating-star.active {
+            color: #F59E0B;
+        }
+        
+        /* Custom checkbox */
+        .custom-checkbox {
+            appearance: none;
+            -webkit-appearance: none;
+            width: 18px;
+            height: 18px;
+            border: 2px solid #D1D5DB;
+            border-radius: 4px;
+            cursor: pointer;
+            position: relative;
+        }
+        .custom-checkbox:checked {
+            background-color: #D4AF37;
+            border-color: #D4AF37;
+        }
+        .custom-checkbox:checked::after {
+            content: '\f00c';
+            font-family: 'Font Awesome 6 Free';
+            font-weight: 900;
+            position: absolute;
+            color: white;
+            font-size: 12px;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+    </style>
+</head>
+<body class="font-inter bg-grey">
+    <!-- Dashboard Layout -->
+    <div class="flex h-screen overflow-hidden">
+        <!-- Sidebar -->
+        <div class="hidden md:flex md:flex-shrink-0">
+            <div class="flex flex-col w-64 bg-white border-r border-gray-200">
+                <div class="flex items-center justify-center h-16 px-4 border-b border-gray-200">
+                    <img src="https://res.cloudinary.com/dbed0vjcr/image/upload/v1750323428/bicm_f38w95-removebg-preview_vjoybh.png" alt="BICM Logo" class="h-10">
+                </div>
+                <div class="flex flex-col flex-grow px-4 py-4 overflow-y-auto">
+                    <!-- Company Profile -->
+                    <div class="flex items-center mb-8 p-2 rounded-lg bg-gold/10">
+                        <img src="https://res.cloudinary.com/dbed0vjcr/image/upload/v1750327890/default-placeholder-profile-icon_hxpj2a.webp" alt="Company" class="w-10 h-10 rounded-full mr-3">
+                        <div>
+                            <p class="font-medium">Welcome back,</p>
+                            <p class="font-bold">Company Name</p>
+                        </div>
+                    </div>
+                    
+                    <!-- Navigation -->
+                    <nav class="space-y-1">
+                        <a href="employer.html" class="sidebar-link flex items-center px-4 py-3 text-gray-900 rounded-lg">
+                            <i class="fas fa-tachometer-alt text-gray-500 mr-3"></i>
+                            Dashboard
+                        </a>
+                        <a href="employer-jobs.html" class="sidebar-link flex items-center px-4 py-3 text-gray-900 rounded-lg">
+                            <i class="fas fa-briefcase text-gray-500 mr-3"></i>
+                            Job Postings
+                        </a>
+                        <a href="employer-applicants.html" class="sidebar-link active flex items-center px-4 py-3 text-gray-900 rounded-lg">
+                            <i class="fas fa-users text-gold mr-3"></i>
+                            Applicants
+                        </a>
+                        <a href="employer-subscription.html" class="sidebar-link flex items-center px-4 py-3 text-gray-900 rounded-lg">
+                            <i class="fas fa-credit-card text-gray-500 mr-3"></i>
+                            Subscription
+                        </a>
+                        <a href="employer-invoices.html" class="sidebar-link flex items-center px-4 py-3 text-gray-900 rounded-lg">
+                            <i class="fas fa-file-invoice text-gray-500 mr-3"></i>
+                            Invoices
+                        </a>
+                        <a href="employer-settings.html" class="sidebar-link flex items-center px-4 py-3 text-gray-900 rounded-lg">
+                            <i class="fas fa-cog text-gray-500 mr-3"></i>
+                            Settings
+                        </a>
+                    </nav>
+                    
+                    <!-- Logout -->
+                    <div class="mt-auto pt-4">
+                        <a href="login.html" class="flex items-center px-4 py-3 text-gray-900 rounded-lg hover:bg-red-50">
+                            <i class="fas fa-sign-out-alt text-red-500 mr-3"></i>
+                            Logout
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Mobile sidebar -->
+        <div class="md:hidden fixed inset-0 z-40" id="mobile-sidebar" style="display: none;">
+            <div class="fixed inset-0 bg-gray-600 bg-opacity-75" id="sidebar-backdrop"></div>
+            <div class="relative flex flex-col w-72 max-w-xs h-full bg-white">
+                <div class="flex items-center justify-between h-16 px-4 border-b border-gray-200">
+                    <img src="https://res.cloudinary.com/dbed0vjcr/image/upload/v1750323428/bicm_f38w95-removebg-preview_vjoybh.png" alt="BICM Logo" class="h-10">
+                    <button id="close-sidebar" class="text-gray-500 hover:text-gray-600">
+                        <i class="fas fa-times"></i>
+                    </button>
+                </div>
+                <div class="flex flex-col flex-grow px-4 py-4 overflow-y-auto">
+                    <!-- Company Profile -->
+                    <div class="flex items-center mb-8 p-2 rounded-lg bg-gold/10">
+                        <img src="https://res.cloudinary.com/dbed0vjcr/image/upload/v1750327890/default-placeholder-profile-icon_hxpj2a.webp" alt="Company" class="w-10 h-10 rounded-full mr-3">
+                        <div>
+                            <p class="font-medium">Welcome back,</p>
+                            <p class="font-bold">Company Name</p>
+                        </div>
+                    </div>
+                    
+                    <!-- Navigation -->
+                    <nav class="space-y-1">
+                        <a href="employer.html" class="sidebar-link flex items-center px-4 py-3 text-gray-900 rounded-lg">
+                            <i class="fas fa-tachometer-alt text-gray-500 mr-3"></i>
+                            Dashboard
+                        </a>
+                        <a href="employer-jobs.html" class="sidebar-link flex items-center px-4 py-3 text-gray-900 rounded-lg">
+                            <i class="fas fa-briefcase text-gray-500 mr-3"></i>
+                            Job Postings
+                        </a>
+                        <a href="employer-applicants.html" class="sidebar-link active flex items-center px-4 py-3 text-gray-900 rounded-lg">
+                            <i class="fas fa-users text-gold mr-3"></i>
+                            Applicants
+                        </a>
+                        <a href="employer-subscription.html" class="sidebar-link flex items-center px-4 py-3 text-gray-900 rounded-lg">
+                            <i class="fas fa-credit-card text-gray-500 mr-3"></i>
+                            Subscription
+                        </a>
+                        <a href="employer-invoices.html" class="sidebar-link flex items-center px-4 py-3 text-gray-900 rounded-lg">
+                            <i class="fas fa-file-invoice text-gray-500 mr-3"></i>
+                            Invoices
+                        </a>
+                        <a href="employer-settings.html" class="sidebar-link flex items-center px-4 py-3 text-gray-900 rounded-lg">
+                            <i class="fas fa-cog text-gray-500 mr-3"></i>
+                            Settings
+                        </a>
+                    </nav>
+                    
+                    <!-- Logout -->
+                    <div class="mt-auto pt-4">
+                        <a href="login.html" class="flex items-center px-4 py-3 text-gray-900 rounded-lg hover:bg-red-50">
+                            <i class="fas fa-sign-out-alt text-red-500 mr-3"></i>
+                            Logout
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Main Content -->
+        <div class="flex flex-col flex-1 overflow-hidden">
+            <!-- Top Navigation -->
+            <header class="bg-white border-b border-gray-200">
+                <div class="flex items-center justify-between px-4 py-3">
+                    <!-- Mobile menu button -->
+                    <button id="open-sidebar" class="md:hidden text-gray-500 focus:outline-none">
+                        <i class="fas fa-bars text-xl"></i>
+                    </button>
+                    
+                    <!-- Search and company profile -->
+                    <div class="flex items-center space-x-4">
+                        <div class="relative hidden md:block">
+                            <input type="text" placeholder="Search applicants..." class="pl-10 pr-4 py-2 border border-gray-300 rounded-full focus:outline-none focus:ring-2 focus:ring-gold focus:border-transparent">
+                            <i class="fas fa-search absolute left-3 top-3 text-gray-400"></i>
+                        </div>
+                        
+                        <div class="relative">
+                            <button id="company-menu-button" class="flex items-center focus:outline-none">
+                                <img src="https://res.cloudinary.com/dbed0vjcr/image/upload/v1750327890/default-placeholder-profile-icon_hxpj2a.webp" alt="Company" class="w-8 h-8 rounded-full">
+                                <span class="ml-2 hidden md:inline">Company Name</span>
+                                <i class="fas fa-chevron-down ml-1 text-xs hidden md:inline"></i>
+                            </button>
+                            
+                            <!-- Company dropdown menu -->
+                            <div id="company-menu" class="hidden absolute right-0 mt-2 w-48 bg-white rounded-md shadow-lg py-1 z-50">
+                                <a href="#" class="block px-4 py-2 text-gray-700 hover:bg-gray-100">Company Profile</a>
+                                <a href="employer-settings.html" class="block px-4 py-2 text-gray-700 hover:bg-gray-100">Settings</a>
+                                <a href="login.html" class="block px-4 py-2 text-gray-700 hover:bg-gray-100">Sign out</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </header>
+            
+            <!-- Main Content Area -->
+            <main class="flex-1 overflow-y-auto p-4 md:p-6">
+                <div class="max-w-7xl mx-auto">
+                    <!-- Page Header -->
+                    <div class="flex flex-col md:flex-row md:items-center md:justify-between mb-6">
+                        <div class="mb-4 md:mb-0">
+                            <h1 class="text-2xl font-montserrat font-bold text-gray-900">Applicants</h1>
+                            <p class="text-gray-600">Review and manage all job applicants</p>
+                        </div>
+                        <div class="flex space-x-3">
+                            <div class="relative">
+                                <select class="appearance-none bg-white border border-gray-300 rounded-lg pl-3 pr-8 py-2 focus:outline-none focus:ring-2 focus:ring-gold focus:border-transparent">
+                                    <option>All Jobs</option>
+                                    <option>Frontend Developer</option>
+                                    <option>HR Consultant</option>
+                                    <option>Project Manager</option>
+                                </select>
+                                <i class="fas fa-chevron-down absolute right-3 top-3 text-gray-500 pointer-events-none"></i>
+                            </div>
+                            <button class="bg-gold text-black px-4 py-2 rounded-lg font-medium hover:bg-black hover:text-gold border-2 border-gold transition-colors duration-300">
+                                <i class="fas fa-download mr-2"></i> Export
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <!-- Filters -->
+                    <div class="bg-white rounded-lg shadow p-4 mb-6 animate-fade-in">
+                        <div class="flex flex-col md:flex-row md:items-center md:justify-between space-y-4 md:space-y-0">
+                            <div class="flex flex-wrap gap-2">
+                                <button class="px-3 py-1 rounded-full bg-black text-white text-sm">All Applicants</button>
+                                <button class="px-3 py-1 rounded-full bg-gray-100 text-gray-700 hover:bg-gray-200 text-sm">New</button>
+                                <button class="px-3 py-1 rounded-full bg-gray-100 text-gray-700 hover:bg-gray-200 text-sm">Under Review</button>
+                                <button class="px-3 py-1 rounded-full bg-gray-100 text-gray-700 hover:bg-gray-200 text-sm">Interview</button>
+                                <button class="px-3 py-1 rounded-full bg-gray-100 text-gray-700 hover:bg-gray-200 text-sm">Offer</button>
+                                <button class="px-3 py-1 rounded-full bg-gray-100 text-gray-700 hover:bg-gray-200 text-sm">Hired</button>
+                                <button class="px-3 py-1 rounded-full bg-gray-100 text-gray-700 hover:bg-gray-200 text-sm">Rejected</button>
+                            </div>
+                            <div class="flex items-center space-x-2">
+                                <span class="text-sm text-gray-600">Sort by:</span>
+                                <select class="appearance-none bg-white border border-gray-300 rounded-lg pl-3 pr-8 py-1 focus:outline-none focus:ring-2 focus:ring-gold focus:border-transparent">
+                                    <option>Most Recent</option>
+                                    <option>Highest Rating</option>
+                                    <option>Name (A-Z)</option>
+                                    <option>Name (Z-A)</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Applicant List -->
+                    <div class="bg-white rounded-lg shadow overflow-hidden animate-fade-in">
+                        <!-- Table Header -->
+                        <div class="grid grid-cols-12 gap-4 bg-gray-50 p-4 border-b border-gray-200">
+                            <div class="col-span-1 flex items-center">
+                                <input type="checkbox" class="custom-checkbox">
+                            </div>
+                            <div class="col-span-4 md:col-span-3 text-sm font-medium text-gray-500 uppercase tracking-wider">Applicant</div>
+                            <div class="hidden md:block md:col-span-2 text-sm font-medium text-gray-500 uppercase tracking-wider">Job Applied</div>
+                            <div class="col-span-3 md:col-span-2 text-sm font-medium text-gray-500 uppercase tracking-wider">Status</div>
+                            <div class="hidden md:block md:col-span-2 text-sm font-medium text-gray-500 uppercase tracking-wider">Rating</div>
+                            <div class="col-span-4 md:col-span-2 text-sm font-medium text-gray-500 uppercase tracking-wider">Actions</div>
+                        </div>
+                        
+                        <!-- Applicant Row 1 -->
+                        <div class="grid grid-cols-12 gap-4 p-4 border-b border-gray-200 hover:bg-gray-50 applicant-card">
+                            <div class="col-span-1 flex items-center">
+                                <input type="checkbox" class="custom-checkbox">
+                            </div>
+                            <div class="col-span-4 md:col-span-3 flex items-center">
+                                <img class="h-10 w-10 rounded-full mr-3" src="https://randomuser.me/api/portraits/men/32.jpg" alt="">
+                                <div>
+                                    <div class="font-medium">John Doe</div>
+                                    <div class="text-sm text-gray-500">john.doe@example.com</div>
+                                </div>
+                            </div>
+                            <div class="hidden md:block md:col-span-2 flex items-center text-sm text-gray-900">
+                                Frontend Developer
+                            </div>
+                            <div class="col-span-3 md:col-span-2 flex items-center">
+                                <span class="status-badge status-new">New</span>
+                            </div>
+                            <div class="hidden md:block md:col-span-2 flex items-center">
+                                <div class="flex">
+                                    <i class="fas fa-star rating-star active"></i>
+                                    <i class="fas fa-star rating-star active"></i>
+                                    <i class="fas fa-star rating-star active"></i>
+                                    <i class="fas fa-star rating-star active"></i>
+                                    <i class="fas fa-star rating-star"></i>
+                                </div>
+                            </div>
+                            <div class="col-span-4 md:col-span-2 flex items-center justify-end space-x-2">
+                                <button class="text-gold hover:text-black p-2 rounded-full hover:bg-gold/10">
+                                    <i class="fas fa-eye"></i>
+                                </button>
+                                <button class="text-gold hover:text-black p-2 rounded-full hover:bg-gold/10">
+                                    <i class="fas fa-download"></i>
+                                </button>
+                                <button class="text-gold hover:text-black p-2 rounded-full hover:bg-gold/10">
+                                    <i class="fas fa-ellipsis-v"></i>
+                                </button>
+                            </div>
+                        </div>
+                        
+                        <!-- Applicant Row 2 -->
+                        <div class="grid grid-cols-12 gap-4 p-4 border-b border-gray-200 hover:bg-gray-50 applicant-card">
+                            <div class="col-span-1 flex items-center">
+                                <input type="checkbox" class="custom-checkbox">
+                            </div>
+                            <div class="col-span-4 md:col-span-3 flex items-center">
+                                <img class="h-10 w-10 rounded-full mr-3" src="https://randomuser.me/api/portraits/women/44.jpg" alt="">
+                                <div>
+                                    <div class="font-medium">Jane Smith</div>
+                                    <div class="text-sm text-gray-500">jane.smith@example.com</div>
+                                </div>
+                            </div>
+                            <div class="hidden md:block md:col-span-2 flex items-center text-sm text-gray-900">
+                                HR Consultant
+                            </div>
+                            <div class="col-span-3 md:col-span-2 flex items-center">
+                                <span class="status-badge status-review">Under Review</span>
+                            </div>
+                            <div class="hidden md:block md:col-span-2 flex items-center">
+                                <div class="flex">
+                                    <i class="fas fa-star rating-star active"></i>
+                                    <i class="fas fa-star rating-star active"></i>
+                                    <i class="fas fa-star rating-star active"></i>
+                                    <i class="fas fa-star rating-star active"></i>
+                                    <i class="fas fa-star rating-star active"></i>
+                                </div>
+                            </div>
+                            <div class="col-span-4 md:col-span-2 flex items-center justify-end space-x-2">
+                                <button class="text-gold hover:text-black p-2 rounded-full hover:bg-gold/10">
+                                    <i class="fas fa-eye"></i>
+                                </button>
+                                <button class="text-gold hover:text-black p-2 rounded-full hover:bg-gold/10">
+                                    <i class="fas fa-download"></i>
+                                </button>
+                                <button class="text-gold hover:text-black p-2 rounded-full hover:bg-gold/10">
+                                    <i class="fas fa-ellipsis-v"></i>
+                                </button>
+                            </div>
+                        </div>
+                        
+                        <!-- Applicant Row 3 -->
+                        <div class="grid grid-cols-12 gap-4 p-4 border-b border-gray-200 hover:bg-gray-50 applicant-card">
+                            <div class="col-span-1 flex items-center">
+                                <input type="checkbox" class="custom-checkbox">
+                            </div>
+                            <div class="col-span-4 md:col-span-3 flex items-center">
+                                <img class="h-10 w-10 rounded-full mr-3" src="https://randomuser.me/api/portraits/men/75.jpg" alt="">
+                                <div>
+                                    <div class="font-medium">Michael Brown</div>
+                                    <div class="text-sm text-gray-500">michael.b@example.com</div>
+                                </div>
+                            </div>
+                            <div class="hidden md:block md:col-span-2 flex items-center text-sm text-gray-900">
+                                Project Manager
+                            </div>
+                            <div class="col-span-3 md:col-span-2 flex items-center">
+                                <span class="status-badge status-interview">Interview</span>
+                            </div>
+                            <div class="hidden md:block md:col-span-2 flex items-center">
+                                <div class="flex">
+                                    <i class="fas fa-star rating-star active"></i>
+                                    <i class="fas fa-star rating-star active"></i>
+                                    <i class="fas fa-star rating-star active"></i>
+                                    <i class="fas fa-star rating-star"></i>
+                                    <i class="fas fa-star rating-star"></i>
+                                </div>
+                            </div>
+                            <div class="col-span-4 md:col-span-2 flex items-center justify-end space-x-2">
+                                <button class="text-gold hover:text-black p-2 rounded-full hover:bg-gold/10">
+                                    <i class="fas fa-eye"></i>
+                                </button>
+                                <button class="text-gold hover:text-black p-2 rounded-full hover:bg-gold/10">
+                                    <i class="fas fa-download"></i>
+                                </button>
+                                <button class="text-gold hover:text-black p-2 rounded-full hover:bg-gold/10">
+                                    <i class="fas fa-ellipsis-v"></i>
+                                </button>
+                            </div>
+                        </div>
+                        
+                        <!-- Applicant Row 4 -->
+                        <div class="grid grid-cols-12 gap-4 p-4 border-b border-gray-200 hover:bg-gray-50 applicant-card">
+                            <div class="col-span-1 flex items-center">
+                                <input type="checkbox" class="custom-checkbox">
+                            </div>
+                            <div class="col-span-4 md:col-span-3 flex items-center">
+                                <img class="h-10 w-10 rounded-full mr-3" src="https://randomuser.me/api/portraits/women/68.jpg" alt="">
+                                <div>
+                                    <div class="font-medium">Sarah Johnson</div>
+                                    <div class="text-sm text-gray-500">sarah.j@example.com</div>
+                                </div>
+                            </div>
+                            <div class="hidden md:block md:col-span-2 flex items-center text-sm text-gray-900">
+                                Marketing Specialist
+                            </div>
+                            <div class="col-span-3 md:col-span-2 flex items-center">
+                                <span class="status-badge status-offer">Offer Sent</span>
+                            </div>
+                            <div class="hidden md:block md:col-span-2 flex items-center">
+                                <div class="flex">
+                                    <i class="fas fa-star rating-star active"></i>
+                                    <i class="fas fa-star rating-star active"></i>
+                                    <i class="fas fa-star rating-star active"></i>
+                                    <i class="fas fa-star rating-star active"></i>
+                                    <i class="fas fa-star rating-star"></i>
+                                </div>
+                            </div>
+                            <div class="col-span-4 md:col-span-2 flex items-center justify-end space-x-2">
+                                <button class="text-gold hover:text-black p-2 rounded-full hover:bg-gold/10">
+                                    <i class="fas fa-eye"></i>
+                                </button>
+                                <button class="text-gold hover:text-black p-2 rounded-full hover:bg-gold/10">
+                                    <i class="fas fa-download"></i>
+                                </button>
+                                <button class="text-gold hover:text-black p-2 rounded-full hover:bg-gold/10">
+                                    <i class="fas fa-ellipsis-v"></i>
+                                </button>
+                            </div>
+                        </div>
+                        
+                        <!-- Applicant Row 5 -->
+                        <div class="grid grid-cols-12 gap-4 p-4 hover:bg-gray-50 applicant-card">
+                            <div class="col-span-1 flex items-center">
+                                <input type="checkbox" class="custom-checkbox">
+                            </div>
+                            <div class="col-span-4 md:col-span-3 flex items-center">
+                                <img class="h-10 w-10 rounded-full mr-3" src="https://randomuser.me/api/portraits/men/22.jpg" alt="">
+                                <div>
+                                    <div class="font-medium">David Wilson</div>
+                                    <div class="text-sm text-gray-500">david.w@example.com</div>
+                                </div>
+                            </div>
+                            <div class="hidden md:block md:col-span-2 flex items-center text-sm text-gray-900">
+                                Financial Analyst
+                            </div>
+                            <div class="col-span-3 md:col-span-2 flex items-center">
+                                <span class="status-badge status-hired">Hired</span>
+                            </div>
+                            <div class="hidden md:block md:col-span-2 flex items-center">
+                                <div class="flex">
+                                    <i class="fas fa-star rating-star active"></i>
+                                    <i class="fas fa-star rating-star active"></i>
+                                    <i class="fas fa-star rating-star active"></i>
+                                    <i class="fas fa-star rating-star"></i>
+                                    <i class="fas fa-star rating-star"></i>
+                                </div>
+                            </div>
+                            <div class="col-span-4 md:col-span-2 flex items-center justify-end space-x-2">
+                                <button class="text-gold hover:text-black p-2 rounded-full hover:bg-gold/10">
+                                    <i class="fas fa-eye"></i>
+                                </button>
+                                <button class="text-gold hover:text-black p-2 rounded-full hover:bg-gold/10">
+                                    <i class="fas fa-download"></i>
+                                </button>
+                                <button class="text-gold hover:text-black p-2 rounded-full hover:bg-gold/10">
+                                    <i class="fas fa-ellipsis-v"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Pagination -->
+                    <div class="bg-white rounded-lg shadow p-4 mt-6 animate-fade-in">
+                        <div class="flex justify-between items-center">
+                            <div class="text-sm text-gray-500">
+                                Showing <span class="font-medium">1</span> to <span class="font-medium">5</span> of <span class="font-medium">24</span> applicants
+                            </div>
+                            <div class="flex space-x-1">
+                                <button class="w-8 h-8 flex items-center justify-center rounded-lg border border-gray-300 hover:bg-gray-100">
+                                    <i class="fas fa-chevron-left"></i>
+                                </button>
+                                <button class="w-8 h-8 flex items-center justify-center rounded-lg bg-gold text-white">1</button>
+                                <button class="w-8 h-8 flex items-center justify-center rounded-lg border border-gray-300 hover:bg-gray-100">2</button>
+                                <button class="w-8 h-8 flex items-center justify-center rounded-lg border border-gray-300 hover:bg-gray-100">3</button>
+                                <button class="w-8 h-8 flex items-center justify-center rounded-lg border border-gray-300 hover:bg-gray-100">4</button>
+                                <button class="w-8 h-8 flex items-center justify-center rounded-lg border border-gray-300 hover:bg-gray-100">5</button>
+                                <button class="w-8 h-8 flex items-center justify-center rounded-lg border border-gray-300 hover:bg-gray-100">
+                                    <i class="fas fa-chevron-right"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </main>
+        </div>
+    </div>
+
+    <!-- JavaScript -->
+    <script>
+        // Mobile sidebar toggle
+        document.getElementById('open-sidebar').addEventListener('click', function() {
+            document.getElementById('mobile-sidebar').style.display = 'block';
+        });
+        
+        document.getElementById('close-sidebar').addEventListener('click', function() {
+            document.getElementById('mobile-sidebar').style.display = 'none';
+        });
+        
+        document.getElementById('sidebar-backdrop').addEventListener('click', function() {
+            document.getElementById('mobile-sidebar').style.display = 'none';
+        });
+        
+        // Company dropdown toggle
+        document.getElementById('company-menu-button').addEventListener('click', function() {
+            document.getElementById('company-menu').classList.toggle('hidden');
+        });
+        
+        // Close company dropdown when clicking outside
+        document.addEventListener('click', function(event) {
+            const companyMenu = document.getElementById('company-menu');
+            const companyButton = document.getElementById('company-menu-button');
+            
+            if (!companyButton.contains(event.target)) {
+                companyMenu.classList.add('hidden');
+            }
+        });
+        
+        // Sidebar link active state
+        const sidebarLinks = document.querySelectorAll('.sidebar-link');
+        sidebarLinks.forEach(link => {
+            link.addEventListener('click', function() {
+                sidebarLinks.forEach(l => l.classList.remove('active'));
+                this.classList.add('active');
+            });
+        });
+        
+        // Custom checkbox functionality
+        const checkboxes = document.querySelectorAll('.custom-checkbox');
+        checkboxes.forEach(checkbox => {
+            checkbox.addEventListener('change', function() {
+                const row = this.closest('.applicant-card');
+                if (this.checked) {
+                    row.classList.add('bg-gold/10');
+                } else {
+                    row.classList.remove('bg-gold/10');
+                }
+            });
+        });
+        
+        // Select all checkbox functionality
+        const selectAllCheckbox = document.querySelector('.custom-checkbox');
+        selectAllCheckbox.addEventListener('change', function() {
+            const isChecked = this.checked;
+            checkboxes.forEach(checkbox => {
+                checkbox.checked = isChecked;
+                const row = checkbox.closest('.applicant-card');
+                if (isChecked) {
+                    row.classList.add('bg-gold/10');
+                } else {
+                    row.classList.remove('bg-gold/10');
+                }
+            });
+        });
+    </script>
+</body>
+</html>

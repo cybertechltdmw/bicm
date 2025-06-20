@@ -1,163 +1,151 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>BICM Group - About Us</title>
-    <!-- Tailwind CSS -->
-    <script src="https://cdn.tailwindcss.com"></script>
-    <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;900&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
-    <!-- Font Awesome -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <!-- Tailwind Config -->
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    colors: {
-                        black: '#000000',
-                        gold: '#D4AF37',
-                        grey: '#F5F5F5',
-                        green: '#1E3A2B',
-                    },
-                    fontFamily: {
-                        montserrat: ['Montserrat', 'sans-serif'],
-                        inter: ['Inter', 'sans-serif'],
-                    },
-                }
-            }
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>BICM Group - About Us</title>
+
+  <!-- SEO Meta -->
+  <meta name="description" content="BICM HR Consultants delivers strategic HR solutions, training, event management, ICT, recruitment, and consultancy services tailored for organizations in Malawi and beyond.">
+
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;900&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+  <!-- Tailwind Config -->
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            black: '#000000',
+            gold: '#D4AF37',
+            grey: '#F5F5F5',
+            green: '#1E3A2B',
+          },
+          fontFamily: {
+            montserrat: ['Montserrat', 'sans-serif'],
+            inter: ['Inter', 'sans-serif'],
+          },
         }
-    </script>
-    <style type="text/css">
-        /* Custom animations */
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-        .animate-fade-in {
-            animation: fadeIn 1s ease-in-out forwards;
-        }
-        .delay-1 { animation-delay: 0.2s; }
-        .delay-2 { animation-delay: 0.4s; }
-        .delay-3 { animation-delay: 0.6s; }
-        
-        /* Enhanced glass morphism effect */
-        .glass-nav {
-            background: rgba(255, 255, 255, 0.9);
-            backdrop-filter: blur(10px);
-            -webkit-backdrop-filter: blur(10px);
-            border-bottom: 1px solid rgba(0, 0, 0, 0.1);
-        }
-        .glass-nav.scrolled {
-            background: rgba(255, 255, 255, 0.95);
-            box-shadow: 0 2px 20px rgba(0, 0, 0, 0.1);
-        }
-    </style>
+      }
+    }
+  </script>
+
+  <style>
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    .animate-fade-in { animation: fadeIn 1s ease-in-out forwards; }
+    .delay-1 { animation-delay: 0.2s; }
+    .delay-2 { animation-delay: 0.4s; }
+    .delay-3 { animation-delay: 0.6s; }
+
+    .glass-nav {
+      background: rgba(255, 255, 255, 0.9);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+    }
+    .glass-nav.scrolled {
+      background: rgba(255, 255, 255, 0.95);
+      box-shadow: 0 2px 20px rgba(0, 0, 0, 0.1);
+    }
+  </style>
 </head>
+
 <body class="font-inter bg-white text-black">
-    <!-- Glass Navigation Bar -->
-    <nav class="fixed w-full glass-nav z-50 transition-all duration-300" id="navbar">
-        <div class="container mx-auto px-4 md:px-6 flex justify-between items-center">
-            <!-- Logo - Increased size by 8px (from h-10 to h-14) -->
-            <img src="https://res.cloudinary.com/dbed0vjcr/image/upload/v1750323428/bicm_f38w95-removebg-preview_vjoybh.png" alt="BICM Logo" class="h-14 transition-all duration-300" id="logo">
+  <!-- Navigation -->
+  <nav class="fixed w-full glass-nav z-50 transition-all duration-300" id="navbar">
+    <div class="container mx-auto px-4 md:px-6 flex justify-between items-center py-4">
+      <img src="https://res.cloudinary.com/dbed0vjcr/image/upload/v1750323428/bicm_f38w95-removebg-preview_vjoybh.png" alt="BICM Logo" class="h-14 transition-all duration-300" id="logo">
+      <ul class="hidden md:flex space-x-8 items-center">
+        <li><a href="#about" class="text-black hover:text-gold font-medium transition-colors duration-300 relative after:absolute after:bottom-[-5px] after:left-0 after:w-0 after:h-[2px] after:bg-gold after:transition-all after:duration-300 hover:after:w-full">About Us</a></li>
+        <li class="relative group">
+          <a href="#" class="text-black hover:text-gold font-medium flex items-center transition-colors duration-300">
+            Employment Center <i class="fas fa-chevron-down ml-2 text-xs"></i>
+          </a>
+          <div class="absolute left-0 mt-2 w-48 bg-white/95 shadow-lg rounded-md py-2 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 border-t-2 border-gold">
+            <a href="#" class="block px-4 py-2 text-black hover:bg-gold/10 hover:text-gold">I'm a Job Seeker</a>
+            <a href="#" class="block px-4 py-2 text-black hover:bg-gold/10 hover:text-gold">I'm an Employer</a>
+          </div>
+        </li>
+        <li><a href="#services" class="text-black hover:text-gold font-medium transition-colors duration-300">Our Services</a></li>
+        <li><a href="education.html" class="text-black hover:text-gold font-medium transition-colors duration-300">Education</a></li>
+        <li><a href="events.html" class="text-black hover:text-gold font-medium transition-colors duration-300">Events</a></li>
+        <li><a href="contact.html" class="text-black hover:text-gold font-medium transition-colors duration-300">Contact Us</a></li>
+        <li><a href="login.html" class="bg-gold text-black px-6 py-2 rounded-full font-medium hover:bg-black hover:text-gold border-2 border-gold transition-colors duration-300">Login</a></li>
+      </ul>
+      <button class="md:hidden text-black text-xl focus:outline-none" id="mobile-menu-button">
+        <i class="fas fa-bars"></i>
+      </button>
+    </div>
 
-            <!-- Desktop Menu -->
-            <ul class="hidden md:flex space-x-8 items-center">
-                <li><a href="#" class="text-black hover:text-gold font-medium transition-colors duration-300 relative after:absolute after:bottom-[-5px] after:left-0 after:w-0 after:h-[2px] after:bg-gold after:transition-all after:duration-300 hover:after:w-full">About Us</a></li>
-                
-                <!-- Employment Center Dropdown -->
-                <li class="relative group">
-                    <a href="#" class="text-black hover:text-gold font-medium flex items-center transition-colors duration-300">
-                        Employment Center <i class="fas fa-chevron-down ml-2 text-xs"></i>
-                    </a>
-                    <div class="absolute left-0 mt-2 w-48 bg-white/95 shadow-lg rounded-md py-2 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 border-t-2 border-gold">
-                        <a href="#" class="block px-4 py-2 text-black hover:bg-gold/10 hover:text-gold">I'm a Job Seeker</a>
-                        <a href="#" class="block px-4 py-2 text-black hover:bg-gold/10 hover:text-gold">I'm an Employer</a>
-                </li>
-                
-                <li><a href="#services" class="text-black hover:text-gold font-medium transition-colors duration-300">Our Services</a></li>
-                <li><a href="education.html" class="text-black hover:text-gold font-medium transition-colors duration-300">Education</a></li>
-                <li><a href="events.html" class="text-black hover:text-gold font-medium transition-colors duration-300">Events</a></li>
-                <li><a href="contact.html" class="text-black hover:text-gold font-medium transition-colors duration-300">Contact Us</a></li>
-                <li><a href="login.html" class="bg-gold text-black px-6 py-2 rounded-full font-medium hover:bg-black hover:text-gold border-2 border-gold transition-colors duration-300">Login</a></li>
-            </ul>
-
-            <!-- Mobile Menu Button -->
-            <button class="md:hidden text-black text-xl focus:outline-none" id="mobile-menu-button">
-                <i class="fas fa-bars"></i>
-            </button>
+    <!-- Mobile Menu -->
+    <div class="md:hidden hidden bg-white/95 w-full py-4 px-4" id="mobile-menu">
+      <a href="#about" class="block py-2 text-black hover:text-gold">About Us</a>
+      <div class="py-2">
+        <button class="flex items-center justify-between w-full text-black hover:text-gold" id="employment-dropdown-button">
+          Employment Center <i class="fas fa-chevron-down ml-2 text-xs"></i>
+        </button>
+        <div class="hidden pl-4 mt-2" id="employment-dropdown">
+          <a href="#" class="block py-2 text-black hover:text-gold">I'm a Job Seeker</a>
+          <a href="#" class="block py-2 text-black hover:text-gold">I'm an Employer</a>
         </div>
+      </div>
+      <a href="#services" class="block py-2 text-black hover:text-gold">Our Services</a>
+      <a href="education.html" class="block py-2 text-black hover:text-gold">Education</a>
+      <a href="events.html" class="block py-2 text-black hover:text-gold">Events</a>
+      <a href="contact.html" class="block py-2 text-black hover:text-gold">Contact Us</a>
+      <a href="login.html" class="block py-2 text-gold">Login</a>
+    </div>
+  </nav>
 
-        <!-- Mobile Menu -->
-        <div class="md:hidden hidden bg-white/95 w-full py-4 px-4" id="mobile-menu">
-            <a href="#" class="block py-2 text-black hover:text-gold">About Us</a>
-            <div class="py-2">
-                <button class="flex items-center justify-between w-full text-black hover:text-gold" id="employment-dropdown-button">
-                    Employment Center <i class="fas fa-chevron-down ml-2 text-xs"></i>
-                </button>
-                <div class="hidden pl-4 mt-2" id="employment-dropdown">
-                    <a href="#" class="block py-2 text-black hover:text-gold">I'm a Job Seeker</a>
-                    <a href="#" class="block py-2 text-black hover:text-gold">I'm an Employer</a>
-                </div>
-            </div>
-            <a href="#services" class="block py-2 text-black hover:text-gold">Our Services</a>
-            <a href="education.html" class="block py-2 text-black hover:text-gold">Education</a>
-            <a href="events.html" class="block py-2 text-black hover:text-gold">Events Management</a>
-            <a href="contact.html" class="block py-2 text-black hover:text-gold">Contact Us</a>
-            <a href="login.html" class="block py-2 text-gold">Login</a>
-        </div>
-    </nav>
+  <!-- Hero Section -->
+  <section class="h-screen flex items-center justify-center bg-[url('https://res.cloudinary.com/dbed0vjcr/image/upload/v1750326824/johannes-schenk-ncQLjWIoLPs-unsplash_t81cvp.jpg')] bg-cover bg-center relative">
+    <div class="absolute inset-0 bg-black/50"></div>
+    <div class="container mx-auto px-4 md:px-6 z-10 text-center text-white">
+      <h1 class="text-4xl md:text-6xl font-montserrat font-bold mb-6 animate-fade-in">BICM Group of Companies</h1>
+      <p class="text-xl md:text-2xl mb-10 max-w-2xl mx-auto animate-fade-in delay-1">Behaviour, Intelligence & Competency Managers</p>
+      <div class="flex flex-col sm:flex-row justify-center gap-4 animate-fade-in delay-2">
+        <a href="#services" class="bg-gold text-black px-8 py-3 rounded-full font-medium hover:bg-transparent hover:text-gold border-2 border-gold transition-colors duration-300">Our Services</a>
+        <a href="#" class="bg-transparent text-white px-8 py-3 rounded-full font-medium hover:bg-white hover:text-black border-2 border-white transition-colors duration-300">Explore Employment Center</a>
+      </div>
+    </div>
+  </section>
 
-    <!-- Hero Section -->
-    <section class="h-screen flex items-center justify-center bg-[url('https://res.cloudinary.com/dbed0vjcr/image/upload/v1750326824/johannes-schenk-ncQLjWIoLPs-unsplash_t81cvp.jpg')] bg-cover bg-center relative">
-        <div class="absolute inset-0 bg-black/50"></div>
-        <div class="container mx-auto px-4 md:px-6 z-10 text-center text-white">
-            <h1 class="text-4xl md:text-6xl font-montserrat font-bold mb-6 animate-fade-in">BICM Group of Companies</h1>
-            <p class="text-xl md:text-2xl mb-10 max-w-2xl mx-auto animate-fade-in delay-1">Behaviour, Intelligence & Competency Managers</p>
-            <div class="flex flex-col sm:flex-row justify-center gap-4 animate-fade-in delay-2">
-                <a href="#services" class="bg-gold text-black px-8 py-3 rounded-full font-medium hover:bg-transparent hover:text-gold border-2 border-gold transition-colors duration-300">Our Services</a>
-                <a href="#" class="bg-transparent text-white px-8 py-3 rounded-full font-medium hover:bg-white hover:text-black border-2 border-white transition-colors duration-300">Explore Employment Center</a>
-            </div>
-        </div>
-    </section>
+  <!-- About Us Section -->
+  <section class="py-20 bg-white" id="about">
+    <div class="container mx-auto px-4 md:px-6">
+      <h2 class="text-3xl md:text-4xl font-montserrat font-bold text-center mb-12 relative pb-4">
+        Who We Are
+        <span class="absolute bottom-0 left-1/2 transform -translate-x-1/2 w-20 h-1 bg-gold"></span>
+      </h2>
+      <p class="text-lg text-gray-700 text-center max-w-3xl mx-auto mb-16">
+        Behaviour, Intelligence and Competency Managers (BICM) is an international firm offering a diverse range of services including Human Resource Consulting, Management Training, Event Planning, Education Services, ICT Solutions, and Printing. Our team blends knowledge, skill, and experience to implement strategic policies and frameworks aligned with the operational goals of our clients. We are committed to delivering top-tier, cost-effective solutions that yield measurable value.
+      </p>
 
-    <!-- About Us Section -->
-    <section class="py-20 bg-white" id="about">
-        <div class="container mx-auto px-4 md:px-6">
-            <h2 class="text-3xl md:text-4xl font-montserrat font-bold text-center mb-12 relative pb-4">
-                Who We Are
-                <span class="absolute bottom-0 left-1/2 transform -translate-x-1/2 w-20 h-1 bg-gold"></span>
-            </h2>
-            <p class="text-lg text-gray-700 text-center max-w-3xl mx-auto mb-16">
-                BICM Group of Companies is dedicated to Human Resource Training, 
-                Education, and Development, alongside comprehensive Management Consulting and Organization Development initiatives.  
-                We focus on planning, developing, and implementing strategic policies and frameworks that align with our clients' objectives, 
-                ensuring tangible outcomes and a strong return on investment.
-            </p>
-            
-            <!-- Mission & Vision -->
-            <div class="flex flex-col md:flex-row justify-center gap-12 mt-12">
-                <!-- Mission -->
-                <div class="bg-grey p-8 rounded-lg shadow-md text-center max-w-md animate-fade-in">
-                    <div class="text-gold text-4xl mb-6">
-                        <i class="fas fa-bullseye"></i>
-                    </div>
-                    <h3 class="text-2xl font-montserrat font-bold mb-4">Our Mission</h3>
-                    <p class="text-gray-700">To deliver business solutions that transform organizations across Malawi.</p>
-                </div>
-                
-                <!-- Vision -->
-                <div class="bg-grey p-8 rounded-lg shadow-md text-center max-w-md animate-fade-in delay-1">
-                    <div class="text-gold text-4xl mb-6">
-                        <i class="fas fa-eye"></i>
-                    </div>
-                    <h3 class="text-2xl font-montserrat font-bold mb-4">Our Vision</h3>
-                    <p class="text-gray-700">To be the leading multidisciplinary consultancy group in Southern Africa.</p>
-                </div>
-            </div>
+      <div class="flex flex-col md:flex-row justify-center gap-12 mt-12">
+        <div class="bg-grey p-8 rounded-lg shadow-md text-center max-w-md animate-fade-in">
+          <div class="text-gold text-4xl mb-6"><i class="fas fa-bullseye"></i></div>
+          <h3 class="text-2xl font-montserrat font-bold mb-4">Our Mission</h3>
+          <p class="text-gray-700">To provide impactful, value-driven solutions that empower organizations and individuals to thrive through capacity building, strategic planning, and innovative consulting services.</p>
         </div>
-    </section>
+        <div class="bg-grey p-8 rounded-lg shadow-md text-center max-w-md animate-fade-in delay-1">
+          <div class="text-gold text-4xl mb-6"><i class="fas fa-eye"></i></div>
+          <h3 class="text-2xl font-montserrat font-bold mb-4">Our Vision</h3>
+          <p class="text-gray-700">To be the world class provider of socio-economic innovations, training & education, and entrepreneurship services to our esteemed clients.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
 
     <!-- Services Section -->
     <section class="py-20 bg-grey" id="services">
@@ -295,6 +283,8 @@
                     </div>
                 </div>
             </div>
+
+            
         </div>
     </section>
 
