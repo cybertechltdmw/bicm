@@ -62,7 +62,7 @@
 
     /* Hero section background with overlay */
     .hero-background {
-      background-image: url('https://res.cloudinary.com/dbed0vjcr/image/upload/v1750325091/bicmservices1.jpeg-962f7365-1036-42e9-b7bd-b47c8f261341'); /* Use the uploaded image */
+      background-image: url('https://res.cloudinary.com/dbed0vjcr/image/upload/v1750325091/bicmservices1.jpeg-962f7365-1036-42e9-b7bd-b47c8f261341');
       background-size: cover;
       background-position: center;
       position: relative;
@@ -75,12 +75,57 @@
       left: 0;
       right: 0;
       bottom: 0;
-      background: rgba(0, 0, 0, 0.6); /* Dark overlay */
+      background: rgba(0, 0, 0, 0.6);
       z-index: 1;
     }
     .hero-content {
       position: relative;
       z-index: 2;
+    }
+
+    /* Smooth scrolling */
+    html {
+      scroll-behavior: smooth;
+    }
+
+    /* Gradient text */
+    .text-gradient-gold {
+      background: linear-gradient(90deg, #D4AF37, #F9E076);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+
+    /* Modern button hover effects */
+    .btn-hover-effect {
+      transition: all 0.3s ease;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .btn-hover-effect:after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+      transition: all 0.5s ease;
+    }
+
+    .btn-hover-effect:hover:after {
+      left: 100%;
+    }
+
+    /* Bounce animation for scroll indicator */
+    @keyframes bounce {
+      0%, 20%, 50%, 80%, 100% {transform: translateY(0);}
+      40% {transform: translateY(-20px);}
+      60% {transform: translateY(-10px);}
+    }
+    .animate-bounce {
+      animation: bounce 2s infinite;
     }
   </style>
 </head>
@@ -111,7 +156,7 @@
         <li><a href="education.html" class="text-black hover:text-gold font-medium transition-colors duration-300 relative after:absolute after:bottom-[-5px] after:left-0 after:w-0 after:h-[2px] after:bg-gold after:transition-all after:duration-300 hover:after:w-full">Education</a></li>
         <li><a href="events.html" class="text-black hover:text-gold font-medium transition-colors duration-300 relative after:absolute after:bottom-[-5px] after:left-0 after:w-0 after:h-[2px] after:bg-gold after:transition-all after:duration-300 hover:after:w-full">Events</a></li>
         <li><a href="contact.html" class="text-black hover:text-gold font-medium transition-colors duration-300 relative after:absolute after:bottom-[-5px] after:left-0 after:w-0 after:h-[2px] after:bg-gold after:transition-all after:duration-300 hover:after:w-full">Contact Us</a></li>
-        <li><a href="login.html" class="bg-gold text-black px-6 py-2 rounded-full font-medium hover:bg-black hover:text-gold border-2 border-gold transition-colors duration-300">Login</a></li>
+        <li><a href="login.html" class="bg-gold text-black px-6 py-2 rounded-full font-medium hover:bg-black hover:text-gold border-2 border-gold transition-colors duration-300 btn-hover-effect">Login</a></li>
       </ul>
       <button class="md:hidden text-black text-xl focus:outline-none" id="mobile-menu-button">
         <i class="fas fa-bars"></i>
@@ -140,27 +185,41 @@
   </nav>
 
   <!-- Hero Section -->
-  <section class="hero-background min-h-screen flex items-center justify-center text-white py-20">
-    <div class="hero-content container mx-auto px-4 md:px-6 text-center">
-      <h1 class="text-2xl md:text-6xl lg:text-7xl font-montserrat font-bold mb-6 animate-fade-in drop-shadow-lg">
-        Empowering Growth Through <span class="text-gold">Intelligence</span> and <span class="text-gold">Competency</span>
-      </h1>
-      <p class="text-lg md:text-xl lg:text-2xl mb-10 max-w-3xl mx-auto animate-fade-in delay-1 opacity-90">
-        Providing strategic Human Resource, Management, Training, and Business Consulting services for a thriving future.
-      </p>
-      <div class="animate-fade-in delay-2">
-        <a href="#services" class="bg-gold text-black px-8 py-3 rounded-full text-lg font-semibold hover:bg-black hover:text-gold border-2 border-gold transition-colors duration-300 shadow-lg mr-4">
-          Explore Services
-        </a>
-        <a href="contact.html" class="bg-transparent text-gold px-8 py-3 rounded-full text-lg font-semibold hover:bg-gold hover:text-black border-2 border-gold transition-colors duration-300 shadow-lg">
-          Contact Us
-        </a>
+  <section class="hero-background min-h-screen flex items-center justify-center text-white pt-32 pb-20 md:pt-40">
+    <div class="hero-content container mx-auto px-4 md:px-6">
+      <div class="max-w-4xl">
+        <h1 class="text-4xl md:text-6xl lg:text-7xl font-montserrat font-bold mb-6 animate-fade-in leading-tight">
+          <span class="inline-block mb-4">Empowering Growth Through</span>
+          <span class="text-gold bg-black/60 px-4 py-2 rounded-lg">Intelligence</span> 
+          <span class="text-white">and</span> 
+          <span class="text-gold bg-black/60 px-4 py-2 rounded-lg">Competency</span>
+        </h1>
+        <p class="text-lg md:text-xl lg:text-2xl mb-10 opacity-90 animate-fade-in delay-1 bg-black/40 p-4 rounded-lg">
+          Providing strategic Human Resource, Management, Training, and Business Consulting services for a thriving future.
+        </p>
+        <div class="flex flex-col sm:flex-row gap-4 animate-fade-in delay-2">
+          <a href="#services" class="bg-gold text-black px-8 py-4 rounded-full text-lg font-semibold hover:bg-black hover:text-gold border-2 border-gold transition-all duration-300 shadow-lg hover:shadow-gold/40 flex items-center justify-center btn-hover-effect">
+            <span>Explore Services</span>
+            <i class="fas fa-arrow-down ml-2"></i>
+          </a>
+          <a href="contact.html" class="bg-transparent text-white px-8 py-4 rounded-full text-lg font-semibold hover:bg-gold hover:text-black border-2 border-white hover:border-gold transition-all duration-300 shadow-lg hover:shadow-gold/40 flex items-center justify-center btn-hover-effect">
+            <span>Contact Us</span>
+            <i class="fas fa-phone-alt ml-2"></i>
+          </a>
+        </div>
       </div>
+    </div>
+    
+    <!-- Scroll indicator -->
+    <div class="absolute bottom-8 left-1/2 transform -translate-x-1/2 animate-bounce">
+      <a href="#about" class="text-white hover:text-gold transition-colors duration-300">
+        <i class="fas fa-chevron-down text-2xl"></i>
+      </a>
     </div>
   </section>
 
   <!-- About Us Short Section -->
-  <section class="py-20 bg-grey">
+  <section class="py-20 bg-grey" id="about">
     <div class="container mx-auto px-4 md:px-6 text-center">
       <h2 class="text-3xl md:text-4xl font-montserrat font-bold mb-6 relative pb-4 animate-fade-in">
         Who We Are
@@ -169,7 +228,7 @@
       <p class="text-lg text-gray-700 max-w-4xl mx-auto mb-10 animate-fade-in delay-1">
         Behaviour, Intelligence and Competency Managers (BICM) is a leading Malawian-owned company dedicated to empowering organizations and individuals. We specialize in Human Resource training, management services, business consulting, and organizational development, focusing on delivering impactful and sustainable solutions tailored to your unique needs.
       </p>
-      <a href="about.html" class="inline-block bg-black text-gold px-6 py-3 rounded-full font-semibold hover:bg-gold hover:text-black border-2 border-black hover:border-gold transition-colors duration-300 animate-fade-in delay-2">
+      <a href="about.html" class="inline-block bg-black text-gold px-6 py-3 rounded-full font-semibold hover:bg-gold hover:text-black border-2 border-black hover:border-gold transition-colors duration-300 animate-fade-in delay-2 btn-hover-effect">
         Learn More About Us <i class="fas fa-arrow-right ml-2"></i>
       </a>
     </div>
@@ -178,156 +237,269 @@
   <!-- Our Services Section -->
   <section class="py-20 bg-white" id="services">
     <div class="container mx-auto px-4 md:px-6">
-      <h2 class="text-3xl md:text-4xl font-montserrat font-bold text-center mb-12 relative pb-4 animate-fade-in">
-        Our Diverse Services
-        <span class="absolute bottom-0 left-1/2 transform -translate-x-1/2 w-20 h-1 bg-gold"></span>
-      </h2>
+      <div class="text-center max-w-3xl mx-auto mb-16">
+        <span class="text-gold font-semibold tracking-wider">OUR SERVICES</span>
+        <h2 class="text-3xl md:text-4xl font-montserrat font-bold mt-4 relative pb-4">
+          Comprehensive Business Solutions
+          <span class="absolute bottom-0 left-1/2 transform -translate-x-1/2 w-20 h-1 bg-gold"></span>
+        </h2>
+        <p class="text-gray-600 mt-6">
+          We deliver tailored services designed to meet your specific business needs and drive sustainable growth.
+        </p>
+      </div>
+      
       <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
         <!-- Service Card 1: Management Consulting -->
-        <div class="bg-grey p-8 rounded-lg shadow-md hover:shadow-xl transition-shadow duration-300 animate-fade-in">
-          <div class="text-gold text-5xl mb-6"><i class="fas fa-briefcase"></i></div>
-          <h3 class="text-2xl font-montserrat font-bold mb-4">Management Consulting</h3>
-          <p class="text-gray-700 mb-6">
-            Expert guidance in Human Resources, Administration, Finance, ICT, Marketing, Public Policy, and more to optimize your operations.
-          </p>
-          <a href="about.html#about" class="text-gold hover:text-black font-semibold flex items-center">
-            Read More <i class="fas fa-chevron-right ml-2 text-sm"></i>
-          </a>
+        <div class="group relative overflow-hidden rounded-xl shadow-lg hover:shadow-xl transition-all duration-500 h-full animate-fade-in">
+          <div class="absolute inset-0 bg-gradient-to-br from-gold/10 to-black/50 z-10"></div>
+          <div class="relative z-20 p-8 h-full flex flex-col">
+            <div class="text-gold text-4xl mb-6 group-hover:text-white transition-colors duration-500">
+              <i class="fas fa-briefcase"></i>
+            </div>
+            <h3 class="text-2xl font-montserrat font-bold mb-4 text-black group-hover:text-white transition-colors duration-500">
+              Management Consulting
+            </h3>
+            <p class="text-gray-700 mb-6 group-hover:text-gray-200 transition-colors duration-500">
+              Expert guidance in Human Resources, Administration, Finance, ICT, Marketing, Public Policy, and more to optimize your operations.
+            </p>
+            <div class="mt-auto">
+              <a href="about.html#about" class="inline-flex items-center text-gold group-hover:text-white font-semibold transition-colors duration-500">
+                Read More
+                <i class="fas fa-arrow-right ml-2 group-hover:translate-x-1 transition-transform duration-300"></i>
+              </a>
+            </div>
+          </div>
+          <div class="absolute inset-0 bg-gradient-to-br from-black to-green opacity-0 group-hover:opacity-90 transition-opacity duration-500 z-0"></div>
         </div>
 
         <!-- Service Card 2: Recruitment & Staffing -->
-        <div class="bg-grey p-8 rounded-lg shadow-md hover:shadow-xl transition-shadow duration-300 animate-fade-in delay-1">
-          <div class="text-gold text-5xl mb-6"><i class="fas fa-users"></i></div>
-          <h3 class="text-2xl font-montserrat font-bold mb-4">Recruitment & Staffing</h3>
-          <p class="text-gray-700 mb-6">
-            Streamlined recruitment, executive placements, CV development, and vacancy management for the best talent.
-          </p>
-          <a href="employer.html" class="text-gold hover:text-black font-semibold flex items-center">
-            For Employers <i class="fas fa-chevron-right ml-2 text-sm"></i>
-          </a>
+        <div class="group relative overflow-hidden rounded-xl shadow-lg hover:shadow-xl transition-all duration-500 h-full animate-fade-in delay-1">
+          <div class="absolute inset-0 bg-gradient-to-br from-gold/10 to-black/50 z-10"></div>
+          <div class="relative z-20 p-8 h-full flex flex-col">
+            <div class="text-gold text-4xl mb-6 group-hover:text-white transition-colors duration-500">
+              <i class="fas fa-users"></i>
+            </div>
+            <h3 class="text-2xl font-montserrat font-bold mb-4 text-black group-hover:text-white transition-colors duration-500">
+              Recruitment & Staffing
+            </h3>
+            <p class="text-gray-700 mb-6 group-hover:text-gray-200 transition-colors duration-500">
+              Streamlined recruitment, executive placements, CV development, and vacancy management for the best talent.
+            </p>
+            <div class="mt-auto">
+              <a href="employer.html" class="inline-flex items-center text-gold group-hover:text-white font-semibold transition-colors duration-500">
+                For Employers
+                <i class="fas fa-arrow-right ml-2 group-hover:translate-x-1 transition-transform duration-300"></i>
+              </a>
+            </div>
+          </div>
+          <div class="absolute inset-0 bg-gradient-to-br from-black to-green opacity-0 group-hover:opacity-90 transition-opacity duration-500 z-0"></div>
         </div>
 
         <!-- Service Card 3: Training & Education -->
-        <div class="bg-grey p-8 rounded-lg shadow-md hover:shadow-xl transition-shadow duration-300 animate-fade-in delay-2">
-          <div class="text-gold text-5xl mb-6"><i class="fas fa-graduation-cap"></i></div>
-          <h3 class="text-2xl font-montserrat font-bold mb-4">Training & Education</h3>
-          <p class="text-gray-700 mb-6">
-            From short courses in IT skills to comprehensive management training and support for private schools.
-          </p>
-          <a href="education.html" class="text-gold hover:text-black font-semibold flex items-center">
-            Explore Courses <i class="fas fa-chevron-right ml-2 text-sm"></i>
-          </a>
+        <div class="group relative overflow-hidden rounded-xl shadow-lg hover:shadow-xl transition-all duration-500 h-full animate-fade-in delay-2">
+          <div class="absolute inset-0 bg-gradient-to-br from-gold/10 to-black/50 z-10"></div>
+          <div class="relative z-20 p-8 h-full flex flex-col">
+            <div class="text-gold text-4xl mb-6 group-hover:text-white transition-colors duration-500">
+              <i class="fas fa-graduation-cap"></i>
+            </div>
+            <h3 class="text-2xl font-montserrat font-bold mb-4 text-black group-hover:text-white transition-colors duration-500">
+              Training & Education
+            </h3>
+            <p class="text-gray-700 mb-6 group-hover:text-gray-200 transition-colors duration-500">
+              From short courses in IT skills to comprehensive management training and support for private schools.
+            </p>
+            <div class="mt-auto">
+              <a href="education.html" class="inline-flex items-center text-gold group-hover:text-white font-semibold transition-colors duration-500">
+                Explore Courses
+                <i class="fas fa-arrow-right ml-2 group-hover:translate-x-1 transition-transform duration-300"></i>
+              </a>
+            </div>
+          </div>
+          <div class="absolute inset-0 bg-gradient-to-br from-black to-green opacity-0 group-hover:opacity-90 transition-opacity duration-500 z-0"></div>
         </div>
 
         <!-- Service Card 4: Event Management -->
-        <div class="bg-grey p-8 rounded-lg shadow-md hover:shadow-xl transition-shadow duration-300 animate-fade-in delay-3">
-            <div class="text-gold text-5xl mb-6"><i class="fas fa-calendar-alt"></i></div>
-            <h3 class="text-2xl font-montserrat font-bold mb-4">Event Management</h3>
-            <p class="text-gray-700 mb-6">
+        <div class="group relative overflow-hidden rounded-xl shadow-lg hover:shadow-xl transition-all duration-500 h-full animate-fade-in delay-3">
+          <div class="absolute inset-0 bg-gradient-to-br from-gold/10 to-black/50 z-10"></div>
+          <div class="relative z-20 p-8 h-full flex flex-col">
+            <div class="text-gold text-4xl mb-6 group-hover:text-white transition-colors duration-500">
+              <i class="fas fa-calendar-alt"></i>
+            </div>
+            <h3 class="text-2xl font-montserrat font-bold mb-4 text-black group-hover:text-white transition-colors duration-500">
+              Event Management
+            </h3>
+            <p class="text-gray-700 mb-6 group-hover:text-gray-200 transition-colors duration-500">
               Full-service event planning, equipment hire, and coordination for seamless workshops, meetings, and special occasions.
             </p>
-            <a href="events.html" class="text-gold hover:text-black font-semibold flex items-center">
-              Discover Events <i class="fas fa-chevron-right ml-2 text-sm"></i>
-            </a>
+            <div class="mt-auto">
+              <a href="events.html" class="inline-flex items-center text-gold group-hover:text-white font-semibold transition-colors duration-500">
+                Discover Events
+                <i class="fas fa-arrow-right ml-2 group-hover:translate-x-1 transition-transform duration-300"></i>
+              </a>
+            </div>
           </div>
+          <div class="absolute inset-0 bg-gradient-to-br from-black to-green opacity-0 group-hover:opacity-90 transition-opacity duration-500 z-0"></div>
+        </div>
 
         <!-- Service Card 5: ICT Solutions -->
-        <div class="bg-grey p-8 rounded-lg shadow-md hover:shadow-xl transition-shadow duration-300 animate-fade-in delay-4">
-            <div class="text-gold text-5xl mb-6"><i class="fas fa-laptop-code"></i></div>
-            <h3 class="text-2xl font-montserrat font-bold mb-4">ICT Solutions</h3>
-            <p class="text-gray-700 mb-6">
+        <div class="group relative overflow-hidden rounded-xl shadow-lg hover:shadow-xl transition-all duration-500 h-full animate-fade-in delay-4">
+          <div class="absolute inset-0 bg-gradient-to-br from-gold/10 to-black/50 z-10"></div>
+          <div class="relative z-20 p-8 h-full flex flex-col">
+            <div class="text-gold text-4xl mb-6 group-hover:text-white transition-colors duration-500">
+              <i class="fas fa-laptop-code"></i>
+            </div>
+            <h3 class="text-2xl font-montserrat font-bold mb-4 text-black group-hover:text-white transition-colors duration-500">
+              ICT Solutions
+            </h3>
+            <p class="text-gray-700 mb-6 group-hover:text-gray-200 transition-colors duration-500">
               Graphics design, hardware/software installation, system upgrades, networking, website, and software development.
             </p>
-            <a href="education.html#ICT" class="text-gold hover:text-black font-semibold flex items-center">
-              Learn More <i class="fas fa-chevron-right ml-2 text-sm"></i>
-            </a>
+            <div class="mt-auto">
+              <a href="education.html#ICT" class="inline-flex items-center text-gold group-hover:text-white font-semibold transition-colors duration-500">
+                Learn More
+                <i class="fas fa-arrow-right ml-2 group-hover:translate-x-1 transition-transform duration-300"></i>
+              </a>
+            </div>
+          </div>
+          <div class="absolute inset-0 bg-gradient-to-br from-black to-green opacity-0 group-hover:opacity-90 transition-opacity duration-500 z-0"></div>
         </div>
 
         <!-- Service Card 6: Advertising & Supplies -->
-        <div class="bg-grey p-8 rounded-lg shadow-md hover:shadow-xl transition-shadow duration-300 animate-fade-in delay-5">
-            <div class="text-gold text-5xl mb-6"><i class="fas fa-lightbulb"></i></div>
-            <h3 class="text-2xl font-montserrat font-bold mb-4">Advertising & Supplies</h3>
-            <p class="text-gray-700 mb-6">
+        <div class="group relative overflow-hidden rounded-xl shadow-lg hover:shadow-xl transition-all duration-500 h-full animate-fade-in delay-5">
+          <div class="absolute inset-0 bg-gradient-to-br from-gold/10 to-black/50 z-10"></div>
+          <div class="relative z-20 p-8 h-full flex flex-col">
+            <div class="text-gold text-4xl mb-6 group-hover:text-white transition-colors duration-500">
+              <i class="fas fa-lightbulb"></i>
+            </div>
+            <h3 class="text-2xl font-montserrat font-bold mb-4 text-black group-hover:text-white transition-colors duration-500">
+              Advertising & Supplies
+            </h3>
+            <p class="text-gray-700 mb-6 group-hover:text-gray-200 transition-colors duration-500">
               Billboards, digital marketing, branding, logo design, printing services, and comprehensive stationary supplies.
             </p>
-            <a href="contact.html" class="text-gold hover:text-black font-semibold flex items-center">
-              Get a Quote <i class="fas fa-chevron-right ml-2 text-sm"></i>
-            </a>
+            <div class="mt-auto">
+              <a href="contact.html" class="inline-flex items-center text-gold group-hover:text-white font-semibold transition-colors duration-500">
+                Get a Quote
+                <i class="fas fa-arrow-right ml-2 group-hover:translate-x-1 transition-transform duration-300"></i>
+              </a>
+            </div>
+          </div>
+          <div class="absolute inset-0 bg-gradient-to-br from-black to-green opacity-0 group-hover:opacity-90 transition-opacity duration-500 z-0"></div>
         </div>
       </div>
     </div>
   </section>
 
   <!-- Call to Action Section -->
-  <section class="bg-green text-white py-20 text-center">
-    <div class="container mx-auto px-4 md:px-6">
-      <h2 class="text-3xl md:text-4xl font-montserrat font-bold mb-6 animate-fade-in">Ready to Transform Your Business?</h2>
-      <p class="text-xl mb-10 max-w-2xl mx-auto animate-fade-in delay-1">
-        Partner with BICM Group for innovative solutions that drive growth and efficiency.
-      </p>
-      <a href="contact.html" class="bg-gold text-black px-8 py-3 rounded-full text-lg font-semibold hover:bg-black hover:text-gold border-2 border-gold transition-colors duration-300 shadow-lg animate-fade-in delay-2">
-        Get in Touch Today!
-      </a>
+  <section class="relative py-24 overflow-hidden">
+    <div class="absolute inset-0 bg-green/90 z-0">
+      <div class="absolute inset-0 bg-[url('https://res.cloudinary.com/dbed0vjcr/image/upload/v1750325091/bicmservices1.jpeg-962f7365-1036-42e9-b7bd-b47c8f261341')] bg-cover bg-center opacity-20"></div>
+    </div>
+    
+    <div class="container mx-auto px-4 md:px-6 relative z-10">
+      <div class="max-w-3xl mx-auto text-center">
+        <h2 class="text-3xl md:text-4xl font-montserrat font-bold mb-6 text-white">
+          Ready to Transform Your Business?
+        </h2>
+        <p class="text-xl mb-10 text-gray-200">
+          Partner with BICM Group for innovative solutions that drive growth and efficiency.
+        </p>
+        <div class="flex flex-col sm:flex-row gap-4 justify-center">
+          <a href="contact.html" class="bg-gold text-black px-8 py-4 rounded-full text-lg font-semibold hover:bg-black hover:text-gold border-2 border-gold transition-all duration-300 shadow-lg hover:shadow-gold/40 flex items-center justify-center btn-hover-effect">
+            <span>Get in Touch</span>
+            <i class="fas fa-paper-plane ml-2"></i>
+          </a>
+          <a href="tel:+265888853888" class="bg-transparent text-white px-8 py-4 rounded-full text-lg font-semibold hover:bg-white hover:text-black border-2 border-white transition-all duration-300 shadow-lg hover:shadow-white/40 flex items-center justify-center btn-hover-effect">
+            <span>Call Now</span>
+            <i class="fas fa-phone-alt ml-2"></i>
+          </a>
+        </div>
+      </div>
     </div>
   </section>
 
   <!-- Footer -->
-  <footer class="bg-black text-white py-16">
+  <footer class="bg-black text-white pt-20 pb-10">
     <div class="container mx-auto px-4 md:px-6">
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-12">
-            <!-- About Column -->
-            <div>
-                <span class="text-xl font-montserrat font-bold mb-14"> BICM </span>
-                <p class="text-gray-400 mt-6 mb-6">BICM Group delivers comprehensive business solutions through our specialized divisions, serving clients across Malawi and beyond.</p>
-                <div class="flex space-x-4">
-                    <a href="#" class="text-white hover:text-gold text-xl transition-colors duration-300"><i class="fab fa-facebook-f"></i></a>
-                    <a href="#" class="text-white hover:text-gold text-xl transition-colors duration-300"><i class="fab fa-whatsapp"></i></a>
-                    <a href="#" class="text-white hover:text-gold text-xl transition-colors duration-300"><i class="fab fa-linkedin-in"></i></a>
-                </div>
-            </div>
-            
-            <!-- Quick Links -->
-            <div>
-                <h3 class="text-xl font-montserrat font-bold mb-6">Quick Links</h3>
-                <ul class="space-y-3">
-                    <li><a href="index.html" class="text-gray-400 hover:text-gold transition-colors duration-300">Home</a></li>
-                    <li><a href="about.html" class="text-gray-400 hover:text-gold transition-colors duration-300">About Us</a></li>
-                    <li><a href="#services" class="text-gray-400 hover:text-gold transition-colors duration-300">Our Services</a></li>
-                    <li><a href="education.html" class="text-gray-400 hover:text-gold transition-colors duration-300">Education</a></li>
-                    <li><a href="events.html" class="text-gray-400 hover:text-gold transition-colors duration-300">Events Management</a></li>
-                    <li><a href="contact.html" class="text-gray-400 hover:text-gold transition-colors duration-300">Contact Us</a></li>
-                    <li><a href="login.html" class="text-gray-400 hover:text-gold transition-colors duration-300">Login</a></li>
-                </ul>
-            </div>
-            
-            <!-- Contact Info -->
-            <div>
-                <h3 class="text-xl font-montserrat font-bold mb-6">Contact Us</h3>
-                <div class="space-y-4 text-gray-400">
-                    <p class="flex items-start">
-                        <i class="fas fa-map-marker-alt text-gold mt-1 mr-3"></i>
-                        <span>P.O. Box 1859, Lilongwe, Malawi</span>
-                    </p>
-                    <p class="flex items-center">
-                        <i class="fas fa-phone-alt text-gold mr-3"></i>
-                        <span>+265 888 853 888 / +265 992 822 700</span>
-                    </p>
-                    <p class="flex items-center">
-                        <i class="fas fa-envelope text-gold mr-3"></i>
-                        <span>bicmhrconsultants@gmail.com</span>
-                    </p>
-                </div>
-            </div>
+      <div class="grid grid-cols-1 md:grid-cols-4 gap-12">
+        <!-- Logo and About -->
+        <div class="md:col-span-2">
+          <div class="flex items-center mb-6">
+            <img src="https://res.cloudinary.com/dbed0vjcr/image/upload/v1750323428/bicm_f38w95-removebg-preview_vjoybh.png" alt="BICM Logo" class="h-16 mr-4">
+            <span class="text-2xl font-montserrat font-bold">BICM Group</span>
+          </div>
+          <p class="text-gray-400 mb-6">
+            Delivering comprehensive business solutions through our specialized divisions, serving clients across Malawi and beyond.
+          </p>
+          <div class="flex space-x-4">
+            <a href="#" class="w-10 h-10 rounded-full bg-green hover:bg-gold text-white flex items-center justify-center transition-colors duration-300">
+              <i class="fab fa-facebook-f"></i>
+            </a>
+            <a href="#" class="w-10 h-10 rounded-full bg-green hover:bg-gold text-white flex items-center justify-center transition-colors duration-300">
+              <i class="fab fa-whatsapp"></i>
+            </a>
+            <a href="#" class="w-10 h-10 rounded-full bg-green hover:bg-gold text-white flex items-center justify-center transition-colors duration-300">
+              <i class="fab fa-linkedin-in"></i>
+            </a>
+          </div>
         </div>
         
-        <div class="border-t border-gray-800 mt-12 pt-8 text-center text-gray-500">
-            <p>&copy; 2023 BICM Group of Companies. All Rights Reserved.</p>
+        <!-- Quick Links -->
+        <div>
+          <h3 class="text-lg font-montserrat font-bold mb-6 pb-2 border-b border-gold/30">Quick Links</h3>
+          <ul class="space-y-3">
+            <li><a href="index.html" class="text-gray-400 hover:text-gold transition-colors duration-300 flex items-center">
+              <i class="fas fa-chevron-right text-xs text-gold mr-2"></i> Home
+            </a></li>
+            <li><a href="about.html" class="text-gray-400 hover:text-gold transition-colors duration-300 flex items-center">
+              <i class="fas fa-chevron-right text-xs text-gold mr-2"></i> About Us
+            </a></li>
+            <li><a href="#services" class="text-gray-400 hover:text-gold transition-colors duration-300 flex items-center">
+              <i class="fas fa-chevron-right text-xs text-gold mr-2"></i> Our Services
+            </a></li>
+            <li><a href="education.html" class="text-gray-400 hover:text-gold transition-colors duration-300 flex items-center">
+              <i class="fas fa-chevron-right text-xs text-gold mr-2"></i> Education
+            </a></li>
+            <li><a href="events.html" class="text-gray-400 hover:text-gold transition-colors duration-300 flex items-center">
+              <i class="fas fa-chevron-right text-xs text-gold mr-2"></i> Events Management
+            </a></li>
+            <li><a href="contact.html" class="text-gray-400 hover:text-gold transition-colors duration-300 flex items-center">
+              <i class="fas fa-chevron-right text-xs text-gold mr-2"></i> Contact Us
+            </a></li>
+            <li><a href="login.html" class="text-gray-400 hover:text-gold transition-colors duration-300 flex items-center">
+              <i class="fas fa-chevron-right text-xs text-gold mr-2"></i> Login
+            </a></li>
+          </ul>
         </div>
+        
+        <!-- Contact Info -->
+        <div>
+          <h3 class="text-lg font-montserrat font-bold mb-6 pb-2 border-b border-gold/30">Contact Us</h3>
+          <div class="space-y-4 text-gray-400">
+            <div class="flex items-start">
+              <i class="fas fa-map-marker-alt text-gold mt-1 mr-3"></i>
+              <span>P.O. Box 1859, Lilongwe, Malawi</span>
+            </div>
+            <div class="flex items-center">
+              <i class="fas fa-phone-alt text-gold mr-3"></i>
+              <span>+265 888 853 888<br>+265 992 822 700</span>
+            </div>
+            <div class="flex items-center">
+              <i class="fas fa-envelope text-gold mr-3"></i>
+              <span>bicmhrconsultants@gmail.com</span>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <div class="border-t border-gray-800 mt-12 pt-8 text-center text-gray-500">
+        <p>&copy; 2023 BICM Group of Companies. All Rights Reserved.</p>
+      </div>
     </div>
   </footer>
 
   <!-- Back to Top Button -->
-  <button id="back-to-top" class="fixed bottom-8 right-8 w-12 h-12 bg-gold text-black rounded-full flex items-center justify-center opacity-0 invisible transition-all duration-300 z-50">
+  <button id="back-to-top" class="fixed bottom-8 right-8 w-12 h-12 bg-gold text-black rounded-full flex items-center justify-center opacity-0 invisible transition-all duration-300 z-50 hover:bg-black hover:text-gold border-2 border-gold">
       <i class="fas fa-arrow-up"></i>
   </button>
 
@@ -393,7 +565,7 @@
                     observer.unobserve(entry.target);
                 }
             });
-        }, { threshold: 0.1 }); // Trigger when 10% of the element is visible
+        }, { threshold: 0.1 });
         
         elements.forEach(element => {
             observer.observe(element);
