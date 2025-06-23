@@ -1,0 +1,424 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>BICM Group - About Us</title>
+
+  <!-- SEO Meta -->
+  <meta name="description" content="BICM HR Consultants delivers strategic HR solutions, training, event management, ICT, recruitment, and consultancy services tailored for organizations in Malawi and beyond.">
+
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;900&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+  <!-- Tailwind Config -->
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            black: '#000000',
+            gold: '#D4AF37',
+            grey: '#F5F5F5',
+            green: '#1E3A2B',
+          },
+          fontFamily: {
+            montserrat: ['Montserrat', 'sans-serif'],
+            inter: ['Inter', 'sans-serif'],
+          },
+        }
+      }
+    }
+  </script>
+
+  <style>
+    /* Custom animations for fade-in effect */
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    .animate-fade-in { animation: fadeIn 1s ease-in-out forwards; }
+    .delay-1 { animation-delay: 0.2s; }
+    .delay-2 { animation-delay: 0.4s; }
+    .delay-3 { animation-delay: 0.6s; }
+
+    /* Glass effect for navigation bar */
+    .glass-nav {
+      background: rgba(255, 255, 255, 0.9);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+    }
+    .glass-nav.scrolled {
+      background: rgba(255, 255, 255, 0.95);
+      box-shadow: 0 2px 20px rgba(0, 0, 0, 0.1);
+    }
+  </style>
+</head>
+
+<body class="font-inter bg-white text-black">
+  <!-- Navigation -->
+  <nav class="fixed w-full glass-nav z-50 transition-all duration-300" id="navbar">
+    <div class="container mx-auto px-4 md:px-6 flex justify-between items-center py-4">
+      <!-- Logo -->
+      <a href="index.html">
+        <img src="https://res.cloudinary.com/dbed0vjcr/image/upload/v1750323428/bicm_f38w95-removebg-preview_vjoybh.png" alt="BICM Logo" class="h-14 transition-all duration-300" id="logo">
+      </a>
+      
+      <!-- Desktop Menu -->
+      <ul class="hidden md:flex space-x-8 items-center">
+        <li><a href="index.html" class="text-black hover:text-gold font-medium transition-colors duration-300 relative after:absolute after:bottom-[-5px] after:left-0 after:w-0 after:h-[2px] after:bg-gold after:transition-all after:duration-300 hover:after:w-full">Home</a></li>
+        <li><a href="about.html" class="text-gold font-medium transition-colors duration-300 relative after:absolute after:bottom-[-5px] after:left-0 after:w-full after:h-[2px] after:bg-gold">About Us</a></li>
+        <li class="relative group">
+          <a href="#" class="text-black hover:text-gold font-medium flex items-center transition-colors duration-300">
+            Employment Center <i class="fas fa-chevron-down ml-2 text-xs"></i>
+          </a>
+          <div class="absolute left-0 mt-2 w-48 bg-white/95 shadow-lg rounded-md py-2 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 border-t-2 border-gold">
+            <a href="seeker.html" class="block px-4 py-2 text-black hover:bg-gold/10 hover:text-gold">I'm a Job Seeker</a>
+            <a href="employer.html" class="block px-4 py-2 text-black hover:bg-gold/10 hover:text-gold">I'm an Employer</a>
+          </div>
+        </li>
+        <li><a href="index.html#services" class="text-black hover:text-gold font-medium transition-colors duration-300">Our Services</a></li>
+        <li><a href="education.html" class="text-black hover:text-gold font-medium transition-colors duration-300">Education</a></li>
+        <li><a href="events.html" class="text-black hover:text-gold font-medium transition-colors duration-300">Events</a></li>
+        <li><a href="contact.html" class="text-black hover:text-gold font-medium transition-colors duration-300">Contact Us</a></li>
+        <li><a href="login.html" class="bg-gold text-black px-6 py-2 rounded-full font-medium hover:bg-black hover:text-gold border-2 border-gold transition-colors duration-300">Login</a></li>
+      </ul>
+      <button class="md:hidden text-black text-xl focus:outline-none" id="mobile-menu-button">
+        <i class="fas fa-bars"></i>
+      </button>
+    </div>
+
+    <!-- Mobile Menu -->
+    <div class="md:hidden hidden bg-white/95 w-full py-4 px-4" id="mobile-menu">
+      <a href="index.html" class="block py-2 text-black hover:text-gold">Home</a>
+      <a href="about.html" class="block py-2 text-gold">About Us</a>
+      <div class="py-2">
+        <button class="flex items-center justify-between w-full text-black hover:text-gold" id="employment-dropdown-button">
+          Employment Center <i class="fas fa-chevron-down ml-2 text-xs"></i>
+        </button>
+        <div class="hidden pl-4 mt-2" id="employment-dropdown">
+          <a href="seeker.html" class="block py-2 text-black hover:text-gold">I'm a Job Seeker</a>
+          <a href="employer.html" class="block py-2 text-black hover:text-gold">I'm an Employer</a>
+        </div>
+      </div>
+      <a href="index.html#services" class="block py-2 text-black hover:text-gold">Our Services</a>
+      <a href="education.html" class="block py-2 text-black hover:text-gold">Education</a>
+      <a href="events.html" class="block py-2 text-black hover:text-gold">Events</a>
+      <a href="contact.html" class="block py-2 text-black hover:text-gold">Contact Us</a>
+      <a href="login.html" class="block py-2 text-gold">Login</a>
+    </div>
+  </nav>
+
+  <!-- Hero Section for About Us -->
+  <section class="pt-32 pb-20 md:pt-40 md:pb-28 bg-grey">
+    <div class="container mx-auto px-4 md:px-6 text-center">
+      <h1 class="text-4xl md:text-5xl lg:text-6xl font-montserrat font-bold mb-6 animate-fade-in text-black">Who We Are</h1>
+      <p class="text-xl md:text-2xl mb-10 max-w-2xl mx-auto animate-fade-in delay-1 text-gray-700">Get to know Behaviour, Intelligence & Competency Managers (BICM)</p>
+    </div>
+  </section>
+
+  <!-- About Us Section Content -->
+  <section class="py-20 bg-white" id="about">
+    <div class="container mx-auto px-4 md:px-6">
+      <h2 class="text-3xl md:text-4xl font-montserrat font-bold text-center mb-12 relative pb-4">
+        Our Story and Philosophy
+        <span class="absolute bottom-0 left-1/2 transform -translate-x-1/2 w-20 h-1 bg-gold"></span>
+      </h2>
+      <p class="text-lg text-gray-700 text-center max-w-3xl mx-auto mb-16 animate-fade-in">
+        Behaviour, Intelligence and Competency Managers (BICM) is a citizen owned company devoted to Human Resource Training, Education and Development, as well as provision of Management Services, Business Consulting and Organisation Development initiatives. Our focus and pride on the planning, development, budgeting, implementation, monitoring and evaluation of contemporary and strategic policies, procedures, systems and frameworks that are in line with the operational objectives of our esteemed clients.
+        <br><br>
+        Its partners and consulting personnel possess a unique blend of knowledge, skill, attitudes and experience in a broad range of disciplines that include but not limited to Institutional Development, Economic and Policy Analysis, Capacity Building, Financial and Project Management, Organisation Development, Baseline Surveys, Job Evaluation and Salary restructuring, Functional Reviews, General Management, Terms and Conditions of Service, Training Needs Assessment and Training Plan Development, Training Evaluation, Organizational Analysis and Design, Performance Management, Micro-finance; Facilitation of Workshops and Seminars, Monitoring and Evaluation, Impact Assessments, Strategic Planning, Recruitment and Selection, Capacity Assessments, Environmental Assessment & Management, integrated Gender, HIV and AIDS Management, e.t.c.
+      </p>
+
+      <div class="flex flex-col md:flex-row justify-center gap-12 mt-12">
+        <div class="bg-grey p-8 rounded-lg shadow-md text-center max-w-md animate-fade-in delay-1">
+          <div class="text-gold text-4xl mb-6"><i class="fas fa-bullseye"></i></div>
+          <h3 class="text-2xl font-montserrat font-bold mb-4">Our Mission</h3>
+          <p class="text-gray-700">To provide impactful, value-driven solutions that empower organizations and individuals to thrive through capacity building, strategic planning, and innovative consulting services.</p>
+        </div>
+        <div class="bg-grey p-8 rounded-lg shadow-md text-center max-w-md animate-fade-in delay-2">
+          <div class="text-gold text-4xl mb-6"><i class="fas fa-eye"></i></div>
+          <h3 class="text-2xl font-montserrat font-bold mb-4">Our Vision</h3>
+          <p class="text-gray-700">To be the world class provider of socio-economic innovations, training & education, and entrepreneurship services to our esteemed clients.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+<!-- Leadership -->
+<section class="py-20 bg-white">
+    <div class="container mx-auto px-4 md:px-6">
+        <h2 class="text-3xl md:text-4xl font-montserrat font-bold text-center mb-12 relative pb-4">
+            Our Leadership Team
+            <span class="absolute bottom-0 left-1/2 transform -translate-x-1/2 w-20 h-1 bg-gold"></span>
+        </h2>
+        
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-8">
+            <!-- Christopher Mchenga -->
+            <div class="bg-grey p-6 rounded-lg shadow-md hover:shadow-xl transition-shadow duration-300 animate-fade-in flex flex-col items-center h-full">
+                <img src="https://res.cloudinary.com/dbed0vjcr/image/upload/v1750326058/images_jpp7gg.jpg" alt="Christopher Mchenga" class="w-32 h-32 rounded-full object-cover border-4 border-gold mb-6">
+                <div class="text-center flex-grow">
+                    <h3 class="text-xl font-montserrat font-bold mb-2 min-h-[3rem] flex items-center justify-center">Christopher Mchenga</h3>
+                    <p class="text-gold mb-4 min-h-[2.5rem] flex items-center justify-center">Managing Consultant</p>
+                    <p class="text-sm text-gray-600">IMPA; BA: hrm; DipEd</p>
+                </div>
+                <div class="mt-auto pt-4">
+                    <a href="#" class="text-gold hover:text-black transition-colors duration-300">
+                        <i class="fab fa-linkedin-in text-xl"></i>
+                    </a>
+                </div>
+            </div>
+            
+            <!-- Peter Mwanza -->
+            <div class="bg-grey p-6 rounded-lg shadow-md hover:shadow-xl transition-shadow duration-300 animate-fade-in delay-1 flex flex-col items-center h-full">
+                <img src="https://res.cloudinary.com/dbed0vjcr/image/upload/v1750327890/default-placeholder-profile-icon_hxpj2a.webp" alt="Peter Mwanza" class="w-32 h-32 rounded-full object-cover border-4 border-gold mb-6">
+                <div class="text-center flex-grow">
+                    <h3 class="text-xl font-montserrat font-bold mb-2 min-h-[3rem] flex items-center justify-center">Peter Mwanza</h3>
+                    <p class="text-gold mb-4 min-h-[2.5rem] flex items-center justify-center">Management Development Consultant</p>
+                    <p class="text-sm text-gray-600">MSc. Development Economics</p>
+                </div>
+                <div class="mt-auto pt-4">
+                    <a href="#" class="text-gold hover:text-black transition-colors duration-300">
+                        <i class="fab fa-linkedin-in text-xl"></i>
+                    </a>
+                </div>
+            </div>
+            
+            <!-- Charles Mtonga -->
+            <div class="bg-grey p-6 rounded-lg shadow-md hover:shadow-xl transition-shadow duration-300 animate-fade-in delay-2 flex flex-col items-center h-full">
+                <img src="https://res.cloudinary.com/dbed0vjcr/image/upload/v1750327890/default-placeholder-profile-icon_hxpj2a.webp" alt="Charles Mtonga" class="w-32 h-32 rounded-full object-cover border-4 border-gold mb-6">
+                <div class="text-center flex-grow">
+                    <h3 class="text-xl font-montserrat font-bold mb-2 min-h-[3rem] flex items-center justify-center">Charles Mtonga</h3>
+                    <p class="text-gold mb-4 min-h-[2.5rem] flex items-center justify-center">Principal Researcher</p>
+                    <p class="text-sm text-gray-600">Bachelors Degree in Economics, Masters Degree in Development Studies (current)</p>
+                </div>
+                <div class="mt-auto pt-4">
+                    <a href="#" class="text-gold hover:text-black transition-colors duration-300">
+                        <i class="fab fa-linkedin-in text-xl"></i>
+                    </a>
+                </div>
+            </div>
+            
+            <!-- Shepherd Musvibe -->
+            <div class="bg-grey p-6 rounded-lg shadow-md hover:shadow-xl transition-shadow duration-300 animate-fade-in delay-3 flex flex-col items-center h-full">
+                <img src="https://res.cloudinary.com/dbed0vjcr/image/upload/v1750327890/default-placeholder-profile-icon_hxpj2a.webp" alt="Shepherd Musvibe" class="w-32 h-32 rounded-full object-cover border-4 border-gold mb-6">
+                <div class="text-center flex-grow">
+                    <h3 class="text-xl font-montserrat font-bold mb-2 min-h-[3rem] flex items-center justify-center">Shepherd Musvibe</h3>
+                    <p class="text-gold mb-4 min-h-[2.5rem] flex items-center justify-center">HR Training & Development Practitioner</p>
+                    <p class="text-sm text-gray-600">MSc. Business Administration; BSc. Public Administration; Dip. Adult Education; Dip. Training Management</p>
+                </div>
+                <div class="mt-auto pt-4">
+                    <a href="#" class="text-gold hover:text-black transition-colors duration-300">
+                        <i class="fab fa-linkedin-in text-xl"></i>
+                    </a>
+                </div>
+            </div>
+            
+            <!-- Mathias Mbendela -->
+            <div class="bg-grey p-6 rounded-lg shadow-md hover:shadow-xl transition-shadow duration-300 animate-fade-in delay-4 flex flex-col items-center h-full">
+                <img src="https://res.cloudinary.com/dbed0vjcr/image/upload/v1750327890/default-placeholder-profile-icon_hxpj2a.webp" alt="Mathias Mbendela" class="w-32 h-32 rounded-full object-cover border-4 border-gold mb-6">
+                <div class="text-center flex-grow">
+                    <h3 class="text-xl font-montserrat font-bold mb-2 min-h-[3rem] flex items-center justify-center">Mathias Mbendela</h3>
+                    <p class="text-gold mb-4 min-h-[2.5rem] flex items-center justify-center">Development Specialist</p>
+                    <p class="text-sm text-gray-600">Masters Degree in Development Studies; Bachelors Degree in Agricultural Economics</p>
+                </div>
+                <div class="mt-auto pt-4">
+                    <a href="#" class="text-gold hover:text-black transition-colors duration-300">
+                        <i class="fab fa-linkedin-in text-xl"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+    <!-- Clients Section -->
+    <section class="py-20 bg-grey">
+        <div class="container mx-auto px-4 md:px-6">
+            <h2 class="text-3xl md:text-4xl font-montserrat font-bold text-center mb-12 relative pb-4">
+                Our Esteemed Clients
+                <span class="absolute bottom-0 left-1/2 transform -translate-x-1/2 w-20 h-1 bg-gold"></span>
+            </h2>
+            
+            <div class="flex flex-wrap justify-center items-center gap-12 md:gap-20">
+                <img src="https://res.cloudinary.com/dbed0vjcr/image/upload/v1750323644/g4s-logo-vector-400x400_y1iyez.webp" alt="G4S" class="h-12 md:h-16 grayscale hover:grayscale-0 opacity-70 hover:opacity-100 transition-all duration-300">
+                <img src="https://res.cloudinary.com/dbed0vjcr/image/upload/v1750323797/Air_Malawi-Logo.wine-removebg-preview_o3omfm.png" alt="Air Malawi" class="h-12 md:h-16 grayscale hover:grayscale-0 opacity-70 hover:opacity-100 transition-all duration-300">
+                <img src="https://res.cloudinary.com/dbed0vjcr/image/upload/v1750323966/MISA_Malawi_logo-removebg-preview_ftx3c5.png" alt="MISA" class="h-12 md:h-16 grayscale hover:grayscale-0 opacity-70 hover:opacity-100 transition-all duration-300">
+                <img src="https://res.cloudinary.com/dbed0vjcr/image/upload/v1750324355/undp-logo-blue.4f32e17f_wl7bxd.jpg" alt="UNDP" class="h-12 md:h-16 grayscale hover:grayscale-0 opacity-70 hover:opacity-100 transition-all duration-300">
+                <img src="https://res.cloudinary.com/dbed0vjcr/image/upload/v1750324228/mrcs-logo_0-removebg-preview_kbsuws.png" alt="Malawi Red Cross" class="h-12 md:h-16 grayscale hover:grayscale-0 opacity-70 hover:opacity-100 transition-all duration-300">
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-black text-white py-16">
+        <div class="container mx-auto px-4 md:px-6">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-12">
+                <!-- About Column -->
+                <div>
+                    <span class="text-xl font-montserrat font-bold mb-14"> BICM </span>
+                    <p class="text-gray-400 mt-6 mb-6">BICM Group delivers comprehensive business solutions through our specialized divisions, serving clients across Malawi and beyond.</p>
+                    <div class="flex space-x-4">
+                        <a href="#" class="text-white hover:text-gold text-xl transition-colors duration-300"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" class="text-white hover:text-gold text-xl transition-colors duration-300"><i class="fab fa-whatsapp"></i></a>
+                        <a href="#" class="text-white hover:text-gold text-xl transition-colors duration-300"><i class="fab fa-linkedin-in"></i></a>
+                    </div>
+                </div>
+                
+                <!-- Quick Links -->
+                <div>
+                    <h3 class="text-xl font-montserrat font-bold mb-6">Quick Links</h3>
+                    <ul class="space-y-3">
+                        <li><a href="index.html" class="text-gray-400 hover:text-gold transition-colors duration-300">Home</a></li>
+                        <li><a href="about.html" class="text-gray-400 hover:text-gold transition-colors duration-300">About Us</a></li>
+                        <li><a href="index.html#services" class="text-gray-400 hover:text-gold transition-colors duration-300">Our Services</a></li>
+                        <li><a href="education.html" class="text-gray-400 hover:text-gold transition-colors duration-300">Education</a></li>
+                        <li><a href="events.html" class="text-gray-400 hover:text-gold transition-colors duration-300">Events Management</a></li>
+                        <li><a href="contact.html" class="text-gray-400 hover:text-gold transition-colors duration-300">Contact Us</a></li>
+                        <li><a href="login.html" class="text-gray-400 hover:text-gold transition-colors duration-300">Login</a></li>
+                    </ul>
+                </div>
+                
+                <!-- Contact Info -->
+                <div>
+                    <h3 class="text-xl font-montserrat font-bold mb-6">Contact Us</h3>
+                    <div class="space-y-4 text-gray-400">
+                        <p class="flex items-start">
+                            <i class="fas fa-map-marker-alt text-gold mt-1 mr-3"></i>
+                            <span>P.O. Box 1859, Lilongwe, Malawi</span>
+                        </p>
+                        <p class="flex items-center">
+                            <i class="fas fa-phone-alt text-gold mr-3"></i>
+                            <span>+265 888 853 888 / +265 992 822 700</span>
+                        </p>
+                        <p class="flex items-center">
+                            <i class="fas fa-envelope text-gold mr-3"></i>
+                            <span>bicmhrconsultants@gmail.com</span>
+                        </p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="border-t border-gray-800 mt-12 pt-8 text-center text-gray-500">
+                <p>&copy; 2023 BICM Group of Companies. All Rights Reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Back to Top Button -->
+    <button id="back-to-top" class="fixed bottom-8 right-8 w-12 h-12 bg-gold text-black rounded-full flex items-center justify-center opacity-0 invisible transition-all duration-300 z-50">
+        <i class="fas fa-arrow-up"></i>
+    </button>
+
+    <!-- JavaScript -->
+    <script>
+        // Sticky Navbar
+        window.addEventListener('scroll', function() {
+            const navbar = document.getElementById('navbar');
+            const logo = document.getElementById('logo');
+            const backToTop = document.getElementById('back-to-top');
+            
+            if (window.scrollY > 100) {
+                navbar.classList.add('scrolled');
+                navbar.classList.add('py-2');
+                navbar.classList.remove('py-4');
+                logo.classList.add('h-10');
+                logo.classList.remove('h-14');
+                backToTop.classList.remove('opacity-0', 'invisible');
+                backToTop.classList.add('opacity-100', 'visible');
+            } else {
+                navbar.classList.remove('scrolled');
+                navbar.classList.remove('py-2');
+                navbar.classList.add('py-4');
+                logo.classList.remove('h-10');
+                logo.classList.add('h-14');
+                backToTop.classList.add('opacity-0', 'invisible');
+                backToTop.classList.remove('opacity-100', 'visible');
+            }
+        });
+
+        // Mobile Menu Toggle
+        const mobileMenuButton = document.getElementById('mobile-menu-button');
+        const mobileMenu = document.getElementById('mobile-menu');
+        const employmentDropdownButton = document.getElementById('employment-dropdown-button');
+        const employmentDropdown = document.getElementById('employment-dropdown');
+        
+        mobileMenuButton.addEventListener('click', function() {
+            mobileMenu.classList.toggle('hidden');
+        });
+        
+        if (employmentDropdownButton && employmentDropdown) {
+            employmentDropdownButton.addEventListener('click', function() {
+                employmentDropdown.classList.toggle('hidden');
+            });
+        }
+
+        // Back to Top Button
+        document.getElementById('back-to-top').addEventListener('click', function() {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        });
+
+        // Count Up Animation for Stats (if any are added)
+        const countUpElements = document.querySelectorAll('.count-up'); // Ensure this matches any elements you want to animate
+        
+        const animateCountUp = () => {
+            countUpElements.forEach(element => {
+                const target = parseInt(element.getAttribute('data-count'));
+                const duration = 2000; // 2 seconds
+                const step = target / (duration / 16); // 60fps
+                let current = 0;
+                
+                const updateCount = () => {
+                    current += step;
+                    if (current < target) {
+                        element.textContent = Math.floor(current);
+                        requestAnimationFrame(updateCount);
+                    } else {
+                        element.textContent = target;
+                    }
+                };
+                
+                updateCount();
+            });
+        };
+
+        // Intersection Observer for Animations
+        const animateOnScroll = () => {
+            const elements = document.querySelectorAll('.animate-fade-in');
+            
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('animate-fade-in');
+                        observer.unobserve(entry.target);
+                        
+                        // Trigger count-up when achievements section is visible
+                        if (entry.target.classList.contains('count-up')) {
+                            animateCountUp();
+                        }
+                    }
+                });
+            }, { threshold: 0.1 });
+            
+            elements.forEach(element => {
+                observer.observe(element);
+            });
+        };
+
+        // Initialize on DOM load
+        document.addEventListener('DOMContentLoaded', function() {
+            animateOnScroll();
+        });
+    </script>
+</body>
+</html>
