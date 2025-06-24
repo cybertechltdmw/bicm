@@ -93,52 +93,7 @@
     .client-logo:hover {
         transform: scale(1.1);
     }
-
-    /* Accordion styles for expertise section */
-    .accordion-button {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        width: 100%;
-        padding: 1.5rem;
-        background-color: #F5F5F5;
-        border-radius: 0.5rem;
-        font-weight: 700;
-        text-align: left;
-        cursor: pointer;
-        transition: background-color 0.3s ease;
-    }
-    .accordion-button:hover {
-        background-color: #eaeaea;
-    }
-    .accordion-button .fas {
-        transition: transform 0.3s ease;
-    }
-    .accordion-button[aria-expanded="true"] .fas {
-        transform: rotate(180deg);
-    }
-    .accordion-content {
-        max-height: 0;
-        overflow: hidden;
-        transition: max-height 0.5s ease-out, padding 0.5s ease-out;
-        background-color: #ffffff;
-        border-radius: 0.5rem;
-        margin-top: 0.5rem;
-    }
-    .accordion-content.expanded {
-        max-height: 500px; /* Increased max-height to ensure all content is visible */
-        padding: 1.5rem; /* Increased padding for better spacing */
-    }
-    .accordion-content ul {
-        list-style: disc;
-        padding-left: 1.5rem; /* Adjusted padding for list items */
-    }
-    .accordion-content li {
-        margin-bottom: 0.5rem; /* Added margin between list items */
-        line-height: 1.5; /* Improved line height for readability */
-    }
-
-
+    
     /* Adjusting leadership card height for consistent alignment */
     .leadership-card-content {
         display: flex;
@@ -256,98 +211,63 @@
         <p class="text-lg text-gray-700 text-center mb-10">
             Our partners and consulting personnel possess a unique blend of knowledge, skill, attitudes and experience in a broad range of disciplines that include but not limited to:
         </p>
-        <div id="expertise-accordion" class="space-y-4">
-            <div class="accordion-item rounded-lg shadow-md">
-                <button class="accordion-button" aria-expanded="false" aria-controls="content-hr">
-                    <span class="flex items-center space-x-4">
-                        <i class="fas fa-users-cog text-gold text-xl"></i>
-                        <span class="text-lg font-bold">HR & Organizational Development</span>
-                    </span>
-                    <i class="fas fa-chevron-down text-gold"></i>
-                </button>
-                <div id="content-hr" class="accordion-content">
-                    <ul class="list-disc pl-5 space-y-2 text-gray-700 text-base">
-                        <li>Job Evaluation and Salary Restructuring</li>
-                        <li>Functional Reviews</li>
-                        <li>Terms and Conditions of Service</li>
-                        <li>Organizational Analysis and Design</li>
-                        <li>Performance Management</li>
-                        <li>Recruitment and Selection</li>
-                    </ul>
-                </div>
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+            <div class="bg-grey p-6 rounded-lg shadow-md text-center flex flex-col items-center justify-start">
+                <i class="fas fa-users-cog text-gold text-3xl mb-4"></i>
+                <h4 class="text-lg font-bold mb-3">HR & Organizational Development</h4>
+                <ul class="text-gray-700 text-sm list-none p-0 text-left w-full">
+                    <li class="mb-1 flex items-start"><i class="fas fa-check-circle text-gold mr-2 mt-1"></i>Job Evaluation and Salary Restructuring</li>
+                    <li class="mb-1 flex items-start"><i class="fas fa-check-circle text-gold mr-2 mt-1"></i>Functional Reviews</li>
+                    <li class="mb-1 flex items-start"><i class="fas fa-check-circle text-gold mr-2 mt-1"></i>Terms and Conditions of Service</li>
+                    <li class="mb-1 flex items-start"><i class="fas fa-check-circle text-gold mr-2 mt-1"></i>Organizational Analysis and Design</li>
+                    <li class="mb-1 flex items-start"><i class="fas fa-check-circle text-gold mr-2 mt-1"></i>Performance Management</li>
+                    <li class="mb-1 flex items-start"><i class="fas fa-check-circle text-gold mr-2 mt-1"></i>Recruitment and Selection</li>
+                </ul>
             </div>
 
-            <div class="accordion-item rounded-lg shadow-md">
-                <button class="accordion-button" aria-expanded="false" aria-controls="content-economic">
-                    <span class="flex items-center space-x-4">
-                        <i class="fas fa-chart-line text-gold text-xl"></i>
-                        <span class="text-lg font-bold">Economic & Financial Consulting</span>
-                    </span>
-                    <i class="fas fa-chevron-down text-gold"></i>
-                </button>
-                <div id="content-economic" class="accordion-content">
-                    <ul class="list-disc pl-5 space-y-2 text-gray-700 text-base">
-                        <li>Economic and Policy Analysis</li>
-                        <li>Financial and Project Management</li>
-                        <li>Micro-finance</li>
-                    </ul>
-                </div>
+            <div class="bg-grey p-6 rounded-lg shadow-md text-center flex flex-col items-center justify-start">
+                <i class="fas fa-chart-line text-gold text-3xl mb-4"></i>
+                <h4 class="text-lg font-bold mb-3">Economic & Financial Consulting</h4>
+                <ul class="text-gray-700 text-sm list-none p-0 text-left w-full">
+                    <li class="mb-1 flex items-start"><i class="fas fa-check-circle text-gold mr-2 mt-1"></i>Economic and Policy Analysis</li>
+                    <li class="mb-1 flex items-start"><i class="fas fa-check-circle text-gold mr-2 mt-1"></i>Financial and Project Management</li>
+                    <li class="mb-1 flex items-start"><i class="fas fa-check-circle text-gold mr-2 mt-1"></i>Micro-finance</li>
+                </ul>
             </div>
 
-            <div class="accordion-item rounded-lg shadow-md">
-                <button class="accordion-button" aria-expanded="false" aria-controls="content-research">
-                    <span class="flex items-center space-x-4">
-                        <i class="fas fa-search text-gold text-xl"></i>
-                        <span class="text-lg font-bold">Research & Strategy</span>
-                    </span>
-                    <i class="fas fa-chevron-down text-gold"></i>
-                </button>
-                <div id="content-research" class="accordion-content">
-                    <ul class="list-disc pl-5 space-y-2 text-gray-700 text-base">
-                        <li>Baseline Surveys</li>
-                        <li>Monitoring and Evaluation</li>
-                        <li>Impact Assessments</li>
-                        <li>Strategic Planning</li>
-                        <li>Environmental Assessment & Management</li>
-                    </ul>
-                </div>
+            <div class="bg-grey p-6 rounded-lg shadow-md text-center flex flex-col items-center justify-start">
+                <i class="fas fa-search text-gold text-3xl mb-4"></i>
+                <h4 class="text-lg font-bold mb-3">Research & Strategy</h4>
+                <ul class="text-gray-700 text-sm list-none p-0 text-left w-full">
+                    <li class="mb-1 flex items-start"><i class="fas fa-check-circle text-gold mr-2 mt-1"></i>Baseline Surveys</li>
+                    <li class="mb-1 flex items-start"><i class="fas fa-check-circle text-gold mr-2 mt-1"></i>Monitoring and Evaluation</li>
+                    <li class="mb-1 flex items-start"><i class="fas fa-check-circle text-gold mr-2 mt-1"></i>Impact Assessments</li>
+                    <li class="mb-1 flex items-start"><i class="fas fa-check-circle text-gold mr-2 mt-1"></i>Strategic Planning</li>
+                    <li class="mb-1 flex items-start"><i class="fas fa-check-circle text-gold mr-2 mt-1"></i>Environmental Assessment & Management</li>
+                </ul>
             </div>
 
-            <div class="accordion-item rounded-lg shadow-md">
-                <button class="accordion-button" aria-expanded="false" aria-controls="content-training">
-                    <span class="flex items-center space-x-4">
-                        <i class="fas fa-chalkboard-teacher text-gold text-xl"></i>
-                        <span class="text-lg font-bold">Training & Capacity Building</span>
-                    </span>
-                    <i class="fas fa-chevron-down text-gold"></i>
-                </button>
-                <div id="content-training" class="accordion-content">
-                    <ul class="list-disc pl-5 space-y-2 text-gray-700 text-base">
-                        <li>Capacity Building</li>
-                        <li>Training Needs Assessment and Training Plan Development</li>
-                        <li>Training Evaluation</li>
-                        <li>Facilitation of Workshops and Seminars</li>
-                        <li>Capacity Assessments</li>
-                    </ul>
-                </div>
+            <div class="bg-grey p-6 rounded-lg shadow-md text-center flex flex-col items-center justify-start">
+                <i class="fas fa-chalkboard-teacher text-gold text-3xl mb-4"></i>
+                <h4 class="text-lg font-bold mb-3">Training & Capacity Building</h4>
+                <ul class="text-gray-700 text-sm list-none p-0 text-left w-full">
+                    <li class="mb-1 flex items-start"><i class="fas fa-check-circle text-gold mr-2 mt-1"></i>Capacity Building</li>
+                    <li class="mb-1 flex items-start"><i class="fas fa-check-circle text-gold mr-2 mt-1"></i>Training Needs Assessment and Training Plan Development</li>
+                    <li class="mb-1 flex items-start"><i class="fas fa-check-circle text-gold mr-2 mt-1"></i>Training Evaluation</li>
+                    <li class="mb-1 flex items-start"><i class="fas fa-check-circle text-gold mr-2 mt-1"></i>Facilitation of Workshops and Seminars</li>
+                    <li class="mb-1 flex items-start"><i class="fas fa-check-circle text-gold mr-2 mt-1"></i>Capacity Assessments</li>
+                </ul>
             </div>
 
-            <div class="accordion-item rounded-lg shadow-md">
-                <button class="accordion-button" aria-expanded="false" aria-controls="content-general">
-                    <span class="flex items-center space-x-4">
-                        <i class="fas fa-cogs text-gold text-xl"></i>
-                        <span class="text-lg font-bold">General Management & Cross-cutting Issues</span>
-                    </span>
-                    <i class="fas fa-chevron-down text-gold"></i>
-                </button>
-                <div id="content-general" class="accordion-content">
-                    <ul class="list-disc pl-5 space-y-2 text-gray-700 text-base">
-                        <li>Institutional Development</li>
-                        <li>Organisation Development</li>
-                        <li>General Management</li>
-                        <li>Integrated Gender, HIV and AIDS Management</li>
-                    </ul>
-                </div>
+            <div class="bg-grey p-6 rounded-lg shadow-md text-center flex flex-col items-center justify-start col-span-1 sm:col-span-2 lg:col-span-4">
+                <i class="fas fa-cogs text-gold text-3xl mb-4"></i>
+                <h4 class="text-lg font-bold mb-3">General Management & Cross-cutting Issues</h4>
+                <ul class="text-gray-700 text-sm list-none p-0 text-left w-full grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-y-1 gap-x-4">
+                    <li class="mb-1 flex items-start"><i class="fas fa-check-circle text-gold mr-2 mt-1"></i>Institutional Development</li>
+                    <li class="mb-1 flex items-start"><i class="fas fa-check-circle text-gold mr-2 mt-1"></i>Organisation Development</li>
+                    <li class="mb-1 flex items-start"><i class="fas fa-check-circle text-gold mr-2 mt-1"></i>General Management</li>
+                    <li class="mb-1 flex items-start"><i class="fas fa-check-circle text-gold mr-2 mt-1"></i>Integrated Gender, HIV and AIDS Management</li>
+                </ul>
             </div>
         </div>
       </div>
@@ -606,39 +526,8 @@
         });
     };
 
-    // Accordion functionality for Expertise section
+    // Initialize animations
     document.addEventListener('DOMContentLoaded', () => {
-        const accordionButtons = document.querySelectorAll('.accordion-button');
-
-        accordionButtons.forEach(button => {
-            button.addEventListener('click', () => {
-                const content = document.getElementById(button.getAttribute('aria-controls'));
-                const isExpanded = button.getAttribute('aria-expanded') === 'true';
-
-                // Close all other open accordions
-                accordionButtons.forEach(otherButton => {
-                    if (otherButton !== button) {
-                        const otherContent = document.getElementById(otherButton.getAttribute('aria-controls'));
-                        otherButton.setAttribute('aria-expanded', 'false');
-                        otherContent.classList.remove('expanded');
-                        otherContent.style.maxHeight = null;
-                    }
-                });
-
-                // Toggle current accordion
-                if (isExpanded) {
-                    button.setAttribute('aria-expanded', 'false');
-                    content.classList.remove('expanded');
-                    content.style.maxHeight = null;
-                } else {
-                    button.setAttribute('aria-expanded', 'true');
-                    content.classList.add('expanded');
-                    content.style.maxHeight = content.scrollHeight + 'px'; // Set max-height to scrollHeight for smooth transition
-                }
-            });
-        });
-
-        // Initialize animations
         animateOnScroll();
     });
   </script>
