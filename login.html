@@ -7,7 +7,7 @@
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
     <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;900&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet">
     <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <!-- Tailwind Config -->
@@ -22,8 +22,7 @@
                         green: '#1E3A2B',
                     },
                     fontFamily: {
-                        montserrat: ['Montserrat', 'sans-serif'],
-                        inter: ['Inter', 'sans-serif'],
+                        sans: ['DM Sans', 'sans-serif'], /* Consistent font */
                     },
                 }
             }
@@ -36,25 +35,57 @@
             to { opacity: 1; transform: translateY(0); }
         }
         .animate-fade-in {
-            animation: fadeIn 0.5s ease-in-out forwards;
+            animation: fadeIn 1s ease-in-out forwards;
         }
+        .delay-1 { animation-delay: 0.2s; }
+        .delay-2 { animation-delay: 0.4s; }
+        .delay-3 { animation-delay: 0.6s; }
         
         /* Enhanced glass morphism effect */
         .glass-nav {
-            background: rgba(255, 255, 255, 0.9);
+            background: rgba(255, 255, 255, 0.98); /* Adjusted opacity for consistency */
             backdrop-filter: blur(10px);
             -webkit-backdrop-filter: blur(10px);
-            border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+            border-bottom: 1px solid rgba(0, 0, 0, 0.05); /* Consistent border */
         }
         .glass-nav.scrolled {
-            background: rgba(255, 255, 255, 0.95);
-            box-shadow: 0 2px 20px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 2px 20px rgba(0, 0, 0, 0.05); /* Consistent shadow */
         }
         
-        /* Login card styling */
+        /* Smooth scrolling */
+        html {
+          scroll-behavior: smooth;
+        }
+
+        /* Custom styles for buttons and cards */
+        .btn {
+          transition: all 0.3s ease;
+        }
+        .btn-primary {
+          background-color: #D4AF37;
+          color: #000;
+        }
+        .btn-primary:hover {
+          background-color: rgba(212, 175, 55, 0.9);
+        }
+        .btn-outline {
+          border: 1px solid rgba(255, 255, 255, 0.3);
+        }
+        .btn-outline:hover {
+          background-color: rgba(255, 255, 255, 0.1);
+        }
+        .card {
+          transition: all 0.3s ease;
+        }
+        .card:hover {
+          transform: translateY(-5px);
+          box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+        }
+        
+        /* Login card styling - consistent with other cards */
         .login-card {
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
-            border-radius: 12px;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1); /* Stronger shadow */
+            border-radius: 0.75rem; /* Consistent border radius */
             overflow: hidden;
         }
         
@@ -68,10 +99,15 @@
         /* Toggle button styling */
         .toggle-btn {
             transition: all 0.3s ease;
+            color: #000; /* Default text color */
         }
         .toggle-btn.active {
             background-color: #D4AF37;
             color: black;
+            font-weight: 500; /* Slightly bolder for active */
+        }
+        .toggle-btn:not(.active):hover {
+            background-color: rgba(0, 0, 0, 0.05); /* Light hover for inactive */
         }
         
         /* Compact layout */
@@ -86,41 +122,85 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            padding: 1rem;
+            padding-top: 120px; /* Adjusted padding-top for removed hero section */
+            padding-bottom: 50px;
         }
         
         .compact-footer {
             flex-shrink: 0;
         }
+
+        /* Hero section background */
+        /* Removed as per user request */
+
+        /* Message Box styles */
+        .message-box-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 999;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.3s ease, visibility 0.3s ease;
+        }
+        .message-box {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background-color: #fff;
+            border: 1px solid #D4AF37;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            padding: 2rem;
+            z-index: 1000;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.3s ease, visibility 0.3s ease;
+            text-align: center;
+            max-width: 400px;
+            width: 90%;
+        }
+        .message-box.active {
+            opacity: 1;
+            visibility: visible;
+        }
+        .message-box-overlay.active {
+            opacity: 1;
+            visibility: visible;
+        }
     </style>
 </head>
-<body class="font-inter bg-grey flex flex-col min-h-screen">
-    <!-- Glass Navigation Bar -->
-    <nav class="fixed w-full glass-nav z-50 transition-all duration-300" id="navbar">
+<body class="font-sans bg-grey flex flex-col min-h-screen">
+    <!-- Navigation -->
+    <nav class="fixed w-full glass-nav z-50 transition-all duration-300 py-4" id="navbar">
         <div class="container mx-auto px-4 md:px-6 flex justify-between items-center">
             <!-- Logo -->
-            <img src="https://res.cloudinary.com/dbed0vjcr/image/upload/v1750323428/bicm_f38w95-removebg-preview_vjoybh.png" alt="BICM Logo" class="h-14 transition-all duration-300" id="logo">
+            <a href="index.html">
+                <img src="https://res.cloudinary.com/dbed0vjcr/image/upload/v1750323428/bicm_f38w95-removebg-preview_vjoybh.png" alt="BICM Logo" class="h-14 transition-all duration-300" id="logo">
+            </a>
 
             <!-- Desktop Menu -->
             <ul class="hidden md:flex space-x-8 items-center">
-                <li><a href="index.html" class="text-black hover:text-gold font-medium transition-colors duration-300">About Us</a></li>
-                
-                <!-- Employment Center Dropdown -->
+                <li><a href="index.html" class="text-black hover:text-gold font-medium transition-colors duration-300">Home</a></li>
+                <li><a href="about.html" class="text-black hover:text-gold font-medium transition-colors duration-300">About Us</a></li>
+                <li><a href="index.html#services" class="text-black hover:text-gold font-medium transition-colors duration-300">Services</a></li>
+                <li><a href="events.html" class="text-black hover:text-gold font-medium transition-colors duration-300">Events</a></li>
+                <li><a href="education.html" class="text-black hover:text-gold font-medium transition-colors duration-300">Education</a></li>
                 <li class="relative group">
-                    <a href="#" class="text-black hover:text-gold font-medium flex items-center transition-colors duration-300">
+                    <a href="#" class="text-gold font-medium flex items-center transition-colors duration-300 relative after:absolute after:bottom-[-5px] after:left-0 after:w-full after:h-[2px] after:bg-gold">
                         Employment Center <i class="fas fa-chevron-down ml-2 text-xs"></i>
                     </a>
-                    <div class="absolute left-0 mt-2 w-48 bg-white/95 shadow-lg rounded-md py-2 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 border-t-2 border-gold">
-                        <a href="#" class="block px-4 py-2 text-black hover:bg-gold/10 hover:text-gold">I'm a Job Seeker</a>
-                        <a href="#" class="block px-4 py-2 text-black hover:bg-gold/10 hover:text-gold">I'm an Employer</a>
+                    <div class="absolute left-0 mt-2 w-48 bg-white shadow-lg rounded-md py-2 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 border-t-2 border-gold">
+                        <a href="login.html" class="block px-4 py-2 text-black hover:bg-gold/10 hover:text-gold">I'm a Job Seeker</a>
+                        <a href="login.html" class="block px-4 py-2 text-black hover:bg-gold/10 hover:text-gold">I'm an Employer</a>
                     </div>
                 </li>
-                
-                <li><a href="index.html#services" class="text-black hover:text-gold font-medium transition-colors duration-300">Our Services</a></li>
-                <li><a href="education.html" class="text-black hover:text-gold font-medium transition-colors duration-300">Education</a></li>
-                <li><a href="events.html" class="text-black hover:text-gold font-medium transition-colors duration-300">Event Management</a></li>
                 <li><a href="contact.html" class="text-black hover:text-gold font-medium transition-colors duration-300">Contact Us</a></li>
-                <li><a href="login.html" class="bg-gold text-black px-6 py-2 rounded-full font-medium hover:bg-black hover:text-gold border-2 border-gold transition-colors duration-300">Login</a></li>
+                <li><a href="login.html" class="btn btn-primary px-6 py-2 rounded">Login</a></li>
             </ul>
 
             <!-- Mobile Menu Button -->
@@ -130,35 +210,34 @@
         </div>
 
         <!-- Mobile Menu -->
-        <div class="md:hidden hidden bg-white/95 w-full py-4 px-4" id="mobile-menu">
-            <a href="index.html" class="block py-2 text-black hover:text-gold">About Us</a>
-            
+        <div class="md:hidden hidden bg-white w-full py-4 px-4" id="mobile-menu">
+            <a href="index.html" class="block py-2 text-black hover:text-gold">Home</a>
+            <a href="about.html" class="block py-2 text-black hover:text-gold">About Us</a>
+            <a href="index.html#services" class="block py-2 text-black hover:text-gold">Services</a>
+            <a href="events.html" class="block py-2 text-black hover:text-gold">Events</a>
+            <a href="education.html" class="block py-2 text-black hover:text-gold">Education</a>
             <div class="py-2">
-                <button class="flex items-center justify-between w-full text-black hover:text-gold" id="employment-dropdown-button">
+                <button class="flex items-center justify-between w-full text-gold" id="employment-dropdown-button">
                     Employment Center <i class="fas fa-chevron-down ml-2 text-xs"></i>
                 </button>
                 <div class="hidden pl-4 mt-2" id="employment-dropdown">
-                    <a href="#" class="block py-2 text-black hover:text-gold">I'm a Job Seeker</a>
-                    <a href="#" class="block py-2 text-black hover:text-gold">I'm an Employer</a>
+                    <a href="login.html" class="block py-2 text-black hover:text-gold">I'm a Job Seeker</a>
+                    <a href="login.html" class="block py-2 text-black hover:text-gold">I'm an Employer</a>
                 </div>
             </div>
-            
-            <a href="index.html#services" class="block py-2 text-black hover:text-gold">Our Services</a>
-            <a href="education.html" class="block py-2 text-black hover:text-gold">Education</a>
-            <a href="events.html" class="block py-2 text-black hover:text-gold">Event Management</a>
             <a href="contact.html" class="block py-2 text-black hover:text-gold">Contact Us</a>
             <a href="login.html" class="block py-2 text-gold">Login</a>
         </div>
     </nav>
 
     <!-- Login Section -->
-    <section class="login-section pt-20 pb-8 px-4">
+    <section class="login-section px-4 animate-fade-in delay-2">
         <div class="w-full max-w-md">
             <!-- Login Card -->
             <div class="bg-white login-card">
                 <!-- Card Header -->
-                <div class="bg-gold text-black text-center py-5 px-4">
-                    <h1 class="text-2xl font-montserrat font-bold">Welcome back</h1>
+                <div class="bg-gold text-black text-center py-5 px-4 rounded-t-lg">
+                    <h1 class="text-2xl font-sans font-bold">Welcome back</h1>
                     <p class="text-sm mt-1">Sign in to your BICM account</p>
                 </div>
                 
@@ -168,11 +247,11 @@
                     <div class="mb-6">
                         <p class="text-sm text-gray-600 mb-2">Choose your account type</p>
                         <div class="flex bg-gray-100 rounded-lg p-1">
-                            <button id="jobSeekerBtn" class="flex-1 py-2 px-4 rounded-md text-sm font-medium toggle-btn active">
-                                Job Seeker
+                            <button id="jobSeekerBtn" class="flex-1 py-2 px-4 rounded-md text-sm font-medium toggle-btn active flex items-center justify-center">
+                                <i class="fas fa-user mr-2"></i> Job Seeker
                             </button>
-                            <button id="employerBtn" class="flex-1 py-2 px-4 rounded-md text-sm font-medium toggle-btn">
-                                Employer
+                            <button id="employerBtn" class="flex-1 py-2 px-4 rounded-md text-sm font-medium toggle-btn flex items-center justify-center">
+                                <i class="fas fa-building mr-2"></i> Employer
                             </button>
                         </div>
                     </div>
@@ -183,7 +262,7 @@
                         <div>
                             <label for="jsEmail" class="block text-gray-700 mb-1 text-sm font-medium">Email</label>
                             <input type="email" id="jsEmail" name="email" required 
-                                class="w-full px-4 py-2 text-sm border border-gray-300 rounded-lg input-focus focus:ring-2 focus:ring-gold focus:border-transparent"
+                                class="w-full px-4 py-2 text-sm border border-gray-300 rounded-lg input-focus"
                                 placeholder="Enter your email">
                         </div>
                         
@@ -192,7 +271,7 @@
                             <label for="jsPassword" class="block text-gray-700 mb-1 text-sm font-medium">Password</label>
                             <div class="relative">
                                 <input type="password" id="jsPassword" name="password" required 
-                                    class="w-full pl-4 pr-10 py-2 text-sm border border-gray-300 rounded-lg input-focus focus:ring-2 focus:ring-gold focus:border-transparent"
+                                    class="w-full pl-4 pr-10 py-2 text-sm border border-gray-300 rounded-lg input-focus"
                                     placeholder="Enter your password">
                                 <button type="button" class="absolute inset-y-0 right-0 pr-3 flex items-center" onclick="togglePassword('jsPassword', 'jsPasswordToggle')">
                                     <i id="jsPasswordToggle" class="fas fa-eye-slash text-gray-400 text-sm"></i>
@@ -216,7 +295,7 @@
                         
                         <!-- Submit Button -->
                         <button type="submit" 
-                            class="w-full bg-gold text-black px-4 py-2 text-sm rounded-lg font-medium hover:bg-black hover:text-gold border-2 border-gold transition-colors duration-300 mt-4">
+                            class="w-full btn btn-primary px-4 py-2 text-sm rounded-lg mt-4">
                             Sign In
                         </button>
                         
@@ -233,7 +312,7 @@
                         <div>
                             <label for="empEmail" class="block text-gray-700 mb-1 text-sm font-medium">Email</label>
                             <input type="email" id="empEmail" name="email" required 
-                                class="w-full px-4 py-2 text-sm border border-gray-300 rounded-lg input-focus focus:ring-2 focus:ring-gold focus:border-transparent"
+                                class="w-full px-4 py-2 text-sm border border-gray-300 rounded-lg input-focus"
                                 placeholder="Enter your email">
                         </div>
                         
@@ -242,7 +321,7 @@
                             <label for="empPassword" class="block text-gray-700 mb-1 text-sm font-medium">Password</label>
                             <div class="relative">
                                 <input type="password" id="empPassword" name="password" required 
-                                    class="w-full pl-4 pr-10 py-2 text-sm border border-gray-300 rounded-lg input-focus focus:ring-2 focus:ring-gold focus:border-transparent"
+                                    class="w-full pl-4 pr-10 py-2 text-sm border border-gray-300 rounded-lg input-focus"
                                     placeholder="Enter your password">
                                 <button type="button" class="absolute inset-y-0 right-0 pr-3 flex items-center" onclick="togglePassword('empPassword', 'empPasswordToggle')">
                                     <i id="empPasswordToggle" class="fas fa-eye-slash text-gray-400 text-sm"></i>
@@ -266,7 +345,7 @@
                         
                         <!-- Submit Button -->
                         <button type="submit" 
-                            class="w-full bg-gold text-black px-4 py-2 text-sm rounded-lg font-medium hover:bg-black hover:text-gold border-2 border-gold transition-colors duration-300 mt-4">
+                            class="w-full btn btn-primary px-4 py-2 text-sm rounded-lg mt-4">
                             Login as Employer
                         </button>
                         
@@ -280,14 +359,14 @@
                     <!-- Job Seeker Registration Form (hidden by default) -->
                     <form id="registrationForm" class="space-y-4 hidden">
                         <div class="text-center mb-4">
-                            <h2 class="text-xl font-montserrat font-bold text-gray-800">Create Job Seeker Account</h2>
+                            <h2 class="text-xl font-sans font-bold text-gray-800">Create Job Seeker Account</h2>
                         </div>
                         
                         <!-- Full Name -->
                         <div>
                             <label for="regName" class="block text-gray-700 mb-1 text-sm font-medium">Full Name</label>
                             <input type="text" id="regName" name="name" required 
-                                class="w-full px-4 py-2 text-sm border border-gray-300 rounded-lg input-focus focus:ring-2 focus:ring-gold focus:border-transparent"
+                                class="w-full px-4 py-2 text-sm border border-gray-300 rounded-lg input-focus"
                                 placeholder="Enter your full name">
                         </div>
                         
@@ -295,7 +374,7 @@
                         <div>
                             <label for="regEmail" class="block text-gray-700 mb-1 text-sm font-medium">Email</label>
                             <input type="email" id="regEmail" name="email" required 
-                                class="w-full px-4 py-2 text-sm border border-gray-300 rounded-lg input-focus focus:ring-2 focus:ring-gold focus:border-transparent"
+                                class="w-full px-4 py-2 text-sm border border-gray-300 rounded-lg input-focus"
                                 placeholder="Enter your email">
                         </div>
                         
@@ -304,7 +383,7 @@
                             <label for="regPassword" class="block text-gray-700 mb-1 text-sm font-medium">Password</label>
                             <div class="relative">
                                 <input type="password" id="regPassword" name="password" required 
-                                    class="w-full pl-4 pr-10 py-2 text-sm border border-gray-300 rounded-lg input-focus focus:ring-2 focus:ring-gold focus:border-transparent"
+                                    class="w-full pl-4 pr-10 py-2 text-sm border border-gray-300 rounded-lg input-focus"
                                     placeholder="Create a password">
                                 <button type="button" class="absolute inset-y-0 right-0 pr-3 flex items-center" onclick="togglePassword('regPassword', 'regPasswordToggle')">
                                     <i id="regPasswordToggle" class="fas fa-eye-slash text-gray-400 text-sm"></i>
@@ -317,7 +396,7 @@
                             <label for="regConfirmPassword" class="block text-gray-700 mb-1 text-sm font-medium">Confirm Password</label>
                             <div class="relative">
                                 <input type="password" id="regConfirmPassword" name="confirmPassword" required 
-                                    class="w-full pl-4 pr-10 py-2 text-sm border border-gray-300 rounded-lg input-focus focus:ring-2 focus:ring-gold focus:border-transparent"
+                                    class="w-full pl-4 pr-10 py-2 text-sm border border-gray-300 rounded-lg input-focus"
                                     placeholder="Confirm your password">
                                 <button type="button" class="absolute inset-y-0 right-0 pr-3 flex items-center" onclick="togglePassword('regConfirmPassword', 'regConfirmPasswordToggle')">
                                     <i id="regConfirmPasswordToggle" class="fas fa-eye-slash text-gray-400 text-sm"></i>
@@ -338,7 +417,7 @@
                         
                         <!-- Submit Button -->
                         <button type="submit" 
-                            class="w-full bg-gold text-black px-4 py-2 text-sm rounded-lg font-medium hover:bg-black hover:text-gold border-2 border-gold transition-colors duration-300 mt-4">
+                            class="w-full btn btn-primary px-4 py-2 text-sm rounded-lg mt-4">
                             Create Account
                         </button>
                         
@@ -353,12 +432,87 @@
         </div>
     </section>
 
-    <!-- Compact Footer -->
-    <footer class="bg-black text-white py-6 compact-footer">
-        <div class="container mx-auto px-4 md:px-6 text-center text-sm text-gray-400">
-            <p>&copy; 2023 BICM Group of Companies. All Rights Reserved.</p>
+    <!-- Footer - Consistent with other pages -->
+    <footer class="bg-black text-white pt-20 pb-10 compact-footer">
+        <div class="container mx-auto px-4 md:px-6">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-12">
+                <div class="md:col-span-2">
+                    <div class="flex items-center mb-6">
+                        <span class="text-2xl font-sans font-bold">BICM Group</span>
+                    </div>
+                    <p class="text-gray-400 mb-6">
+                        Delivering comprehensive business solutions through our specialized divisions, serving clients across Malawi and beyond.
+                    </p>
+                    <div class="flex space-x-4">
+                        <a href="#" class="w-10 h-10 rounded-full bg-white hover:bg-gold text-black flex items-center justify-center transition-colors duration-300">
+                            <i class="fab fa-facebook-f"></i>
+                        </a>
+                        <a href="#" class="w-10 h-10 rounded-full bg-white hover:bg-gold text-black flex items-center justify-center transition-colors duration-300">
+                            <i class="fab fa-whatsapp"></i>
+                        </a>
+                        <a href="#" class="w-10 h-10 rounded-full bg-white hover:bg-gold text-black flex items-center justify-center transition-colors duration-300">
+                            <i class="fab fa-linkedin-in"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <div>
+                    <h3 class="text-lg font-sans font-bold mb-6 pb-2 border-b border-gold/30">Quick Links</h3>
+                    <ul class="space-y-3">
+                        <li><a href="about.html" class="text-gray-400 hover:text-gold transition-colors duration-300 flex items-center">
+                            <i class="fas fa-chevron-right text-xs text-gold mr-2"></i> About Us
+                        </a></li>
+                        <li><a href="events.html" class="text-gray-400 hover:text-gold transition-colors duration-300 flex items-center">
+                            <i class="fas fa-chevron-right text-xs text-gold mr-2"></i> Events Management
+                        </a></li>
+                        <li><a href="education.html" class="text-gray-400 hover:text-gold transition-colors duration-300 flex items-center">
+                            <i class="fas fa-chevron-right text-xs text-gold mr-2"></i> Education
+                        </a></li>
+                        <li><a href="login.html" class="text-gray-400 hover:text-gold transition-colors duration-300 flex items-center">
+                            <i class="fas fa-chevron-right text-xs text-gold mr-2"></i> Employment Center
+                        </a></li>
+                        <li><a href="contact.html" class="text-gray-400 hover:text-gold transition-colors duration-300 flex items-center">
+                            <i class="fas fa-chevron-right text-xs text-gold mr-2"></i> Contact Us
+                        </a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h3 class="text-lg font-sans font-bold mb-6 pb-2 border-b border-gold/30">Contact Us</h3>
+                    <div class="space-y-4 text-gray-400">
+                        <div class="flex items-start">
+                            <i class="fas fa-map-marker-alt text-gold mt-1 mr-3"></i>
+                            <span>P.O. Box 1859, Lilongwe, Malawi</span>
+                        </div>
+                        <div class="flex items-center">
+                            <i class="fas fa-phone-alt text-gold mr-3"></i>
+                            <span>+265 888 853 888<br>+265 992 822 700</span>
+                        </div>
+                        <div class="flex items-center">
+                            <i class="fas fa-envelope text-gold mr-3"></i>
+                            <span>bicmhrconsultants@gmail.com</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="border-t border-gray-800 mt-12 pt-8 text-center text-gray-500">
+                <p>&copy; 2023 BICM Group of Companies. All Rights Reserved.</p>
+            </div>
         </div>
     </footer>
+
+    <!-- Back to Top Button -->
+    <button id="back-to-top" class="fixed bottom-8 right-8 w-12 h-12 bg-gold text-black rounded-full flex items-center justify-center opacity-0 invisible transition-all duration-300 z-50 hover:bg-black hover:text-gold border-2 border-gold">
+        <i class="fas fa-arrow-up"></i>
+    </button>
+
+    <!-- Custom Message Box for alerts -->
+    <div id="messageBoxOverlay" class="message-box-overlay"></div>
+    <div id="messageBox" class="message-box">
+        <p id="messageBoxText" class="text-lg text-black mb-4"></p>
+        <button onclick="closeMessageBox()" class="btn btn-primary px-4 py-2 rounded">OK</button>
+    </div>
 
     <!-- JavaScript -->
     <script>
@@ -383,6 +537,7 @@
         const employerBtn = document.getElementById('employerBtn');
         const jobSeekerForm = document.getElementById('jobSeekerForm');
         const employerForm = document.getElementById('employerForm');
+        const registrationForm = document.getElementById('registrationForm'); // Get registration form
         
         jobSeekerBtn.addEventListener('click', function(e) {
             e.preventDefault();
@@ -390,7 +545,9 @@
             employerBtn.classList.remove('active');
             jobSeekerForm.classList.remove('hidden');
             employerForm.classList.add('hidden');
-            document.getElementById('registrationForm').classList.add('hidden');
+            registrationForm.classList.add('hidden'); // Ensure registration form is hidden
+            document.querySelector('.login-card h1').textContent = "Welcome back";
+            document.querySelector('.login-card p').textContent = "Sign in to your BICM account";
         });
         
         employerBtn.addEventListener('click', function(e) {
@@ -399,29 +556,45 @@
             jobSeekerBtn.classList.remove('active');
             employerForm.classList.remove('hidden');
             jobSeekerForm.classList.add('hidden');
-            document.getElementById('registrationForm').classList.add('hidden');
+            registrationForm.classList.add('hidden'); // Ensure registration form is hidden
+            document.querySelector('.login-card h1').textContent = "Welcome back";
+            document.querySelector('.login-card p').textContent = "Sign in to your BICM account";
         });
         
         // Switch to registration form
         function switchToRegistration() {
-            document.getElementById('jobSeekerForm').classList.add('hidden');
-            document.getElementById('employerForm').classList.add('hidden');
-            document.getElementById('registrationForm').classList.remove('hidden');
+            jobSeekerForm.classList.add('hidden');
+            employerForm.classList.add('hidden');
+            registrationForm.classList.remove('hidden');
             document.querySelector('.login-card h1').textContent = "Create Account";
             document.querySelector('.login-card p').textContent = "Register as a Job Seeker";
         }
         
         // Switch back to login form
         function switchToLogin() {
-            document.getElementById('jobSeekerForm').classList.remove('hidden');
-            document.getElementById('employerForm').classList.add('hidden');
-            document.getElementById('registrationForm').classList.add('hidden');
+            jobSeekerForm.classList.remove('hidden');
+            employerForm.classList.add('hidden');
+            registrationForm.classList.add('hidden');
             document.querySelector('.login-card h1').textContent = "Welcome back";
             document.querySelector('.login-card p').textContent = "Sign in to your BICM account";
             jobSeekerBtn.classList.add('active');
             employerBtn.classList.remove('active');
         }
         
+        // Custom Message Box functions
+        function showMessageBox(message) {
+            document.getElementById('messageBoxText').innerText = message;
+            document.getElementById('messageBoxOverlay').classList.add('active');
+            document.getElementById('messageBox').classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeMessageBox() {
+            document.getElementById('messageBoxOverlay').classList.remove('active');
+            document.getElementById('messageBox').classList.remove('active');
+            document.body.style.overflow = 'auto';
+        }
+
         // Form Submission
         document.getElementById('jobSeekerForm').addEventListener('submit', function(e) {
             e.preventDefault();
@@ -429,13 +602,16 @@
             const password = document.getElementById('jsPassword').value;
             
             if (!email || !password) {
-                alert('Please fill in all fields');
+                showMessageBox('Please fill in all fields');
                 return;
             }
             
-            // Redirect to seeker dashboard
-            window.location.href = 'seeker.html';
-            alert('Job Seeker login successful!');
+            // In a real application, you'd send this to a server for authentication.
+            // For now, we'll just simulate success and redirect.
+            showMessageBox('Job Seeker login successful! Redirecting...');
+            setTimeout(() => {
+                window.location.href = 'seeker.html'; // Redirect to seeker dashboard
+            }, 1500); // Redirect after 1.5 seconds
         });
                 
         document.getElementById('employerForm').addEventListener('submit', function(e) {
@@ -444,12 +620,16 @@
             const password = document.getElementById('empPassword').value;
             
             if (!email || !password) {
-                alert('Please fill in all fields');
+                showMessageBox('Please fill in all fields');
                 return;
             }
             
-            // Redirect to employer dashboard
-            window.location.href = 'employer.html';
+            // In a real application, you'd send this to a server for authentication.
+            // For now, we'll just simulate success and redirect.
+            showMessageBox('Employer login successful! Redirecting...');
+            setTimeout(() => {
+                window.location.href = 'employer.html'; // Redirect to employer dashboard
+            }, 1500); // Redirect after 1.5 seconds
         });
         
         
@@ -461,28 +641,33 @@
             const confirmPassword = document.getElementById('regConfirmPassword').value;
             
             if (!name || !email || !password || !confirmPassword) {
-                alert('Please fill in all fields');
+                showMessageBox('Please fill in all fields');
                 return;
             }
             
             if (password !== confirmPassword) {
-                alert('Passwords do not match');
+                showMessageBox('Passwords do not match');
                 return;
             }
             
             if (!document.getElementById('regTerms').checked) {
-                alert('You must agree to the terms and conditions');
+                showMessageBox('You must agree to the terms and conditions');
                 return;
             }
             
-            // Redirect to seeker dashboard after registration
-            window.location.href = 'seeker.html';
+            // In a real application, you'd send this to a server for registration.
+            // For now, we'll just simulate success and redirect.
+            showMessageBox('Registration successful! Redirecting to Job Seeker Dashboard...');
+            setTimeout(() => {
+                window.location.href = 'seeker.html'; // Redirect to seeker dashboard after registration
+            }, 1500); // Redirect after 1.5 seconds
         });
 
-        // Sticky Navbar
+        // Sticky Navbar (existing code, ensure it runs after elements are loaded)
         window.addEventListener('scroll', function() {
             const navbar = document.getElementById('navbar');
             const logo = document.getElementById('logo');
+            const backToTop = document.getElementById('back-to-top');
             
             if (window.scrollY > 100) {
                 navbar.classList.add('scrolled');
@@ -490,30 +675,74 @@
                 navbar.classList.remove('py-4');
                 logo.classList.add('h-10');
                 logo.classList.remove('h-14');
+                // Check if backToTop exists before manipulating it
+                if (backToTop) {
+                    backToTop.classList.remove('opacity-0', 'invisible');
+                    backToTop.classList.add('opacity-100', 'visible');
+                }
             } else {
                 navbar.classList.remove('scrolled');
                 navbar.classList.remove('py-2');
                 navbar.classList.add('py-4');
                 logo.classList.remove('h-10');
                 logo.classList.add('h-14');
+                // Check if backToTop exists before manipulating it
+                if (backToTop) {
+                    backToTop.classList.add('opacity-0', 'invisible');
+                    backToTop.classList.remove('opacity-100', 'visible');
+                }
             }
         });
 
-        // Mobile Menu Toggle
+        // Mobile Menu Toggle (existing code, ensure it runs after elements are loaded)
         const mobileMenuButton = document.getElementById('mobile-menu-button');
         const mobileMenu = document.getElementById('mobile-menu');
         const employmentDropdownButton = document.getElementById('employment-dropdown-button');
         const employmentDropdown = document.getElementById('employment-dropdown');
         
-        mobileMenuButton.addEventListener('click', function() {
-            mobileMenu.classList.toggle('hidden');
-        });
+        if (mobileMenuButton && mobileMenu) {
+            mobileMenuButton.addEventListener('click', function() {
+                mobileMenu.classList.toggle('hidden');
+            });
+        }
         
         if (employmentDropdownButton && employmentDropdown) {
             employmentDropdownButton.addEventListener('click', function() {
                 employmentDropdown.classList.toggle('hidden');
             });
         }
+
+        // Initialize on DOM load (for animations)
+        document.addEventListener('DOMContentLoaded', function() {
+            const animateOnScroll = () => {
+                const elements = document.querySelectorAll('.animate-fade-in');
+                
+                const observer = new IntersectionObserver((entries) => {
+                    entries.forEach(entry => {
+                        if (entry.isIntersecting) {
+                            entry.target.classList.add('animate-fade-in');
+                            observer.unobserve(entry.target);
+                        }
+                    });
+                }, { threshold: 0.1 });
+                
+                elements.forEach(element => {
+                    observer.observe(element);
+                });
+            };
+            animateOnScroll();
+
+            // Back to Top Button (moved inside DOMContentLoaded to ensure button exists)
+            const backToTopBtn = document.getElementById('back-to-top');
+            if (backToTopBtn) {
+                backToTopBtn.addEventListener('click', function() {
+                    window.scrollTo({
+                        top: 0,
+                        behavior: 'smooth'
+                    });
+                });
+            }
+        });
     </script>
 </body>
 </html>
