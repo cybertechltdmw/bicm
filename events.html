@@ -7,7 +7,7 @@
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
     <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;900&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet">
     <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <!-- Glide.js for slideshow -->
@@ -24,8 +24,7 @@
                         green: '#1E3A2B',
                     },
                     fontFamily: {
-                        montserrat: ['Montserrat', 'sans-serif'],
-                        inter: ['Inter', 'sans-serif'],
+                        sans: ['DM Sans', 'sans-serif'], /* Changed to DM Sans */
                     },
                 }
             }
@@ -43,19 +42,50 @@
         .delay-1 { animation-delay: 0.2s; }
         .delay-2 { animation-delay: 0.4s; }
         .delay-3 { animation-delay: 0.6s; }
+        .delay-4 { animation-delay: 0.8s; }
+        .delay-5 { animation-delay: 1.0s; }
         
         /* Enhanced glass morphism effect */
         .glass-nav {
-            background: rgba(255, 255, 255, 0.9);
+            background: rgba(255, 255, 255, 0.98); /* Adjusted opacity for consistency */
             backdrop-filter: blur(10px);
             -webkit-backdrop-filter: blur(10px);
-            border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+            border-bottom: 1px solid rgba(0, 0, 0, 0.05); /* Consistent border */
         }
         .glass-nav.scrolled {
-            background: rgba(255, 255, 255, 0.95);
-            box-shadow: 0 2px 20px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 2px 20px rgba(0, 0, 0, 0.05); /* Consistent shadow */
         }
         
+        /* Smooth scrolling */
+        html {
+          scroll-behavior: smooth;
+        }
+
+        /* Custom styles for buttons and cards */
+        .btn {
+          transition: all 0.3s ease;
+        }
+        .btn-primary {
+          background-color: #D4AF37;
+          color: #000;
+        }
+        .btn-primary:hover {
+          background-color: rgba(212, 175, 55, 0.9);
+        }
+        .btn-outline {
+          border: 1px solid rgba(255, 255, 255, 0.3);
+        }
+        .btn-outline:hover {
+          background-color: rgba(255, 255, 255, 0.1);
+        }
+        .card {
+          transition: all 0.3s ease;
+        }
+        .card:hover {
+          transform: translateY(-5px);
+          box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+        }
+
         /* Modal styles */
         .modal {
             transition: opacity 0.3s ease, visibility 0.3s ease;
@@ -71,52 +101,80 @@
         .modal.active .modal-content {
             transform: translateY(0);
         }
-        
-        /* Slideshow arrows */
-        .glide__arrow {
-            background: rgba(0,0,0,0.5);
-            color: white;
-            border: none;
-            border-radius: 50%;
-            width: 40px;
-            height: 40px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            transition: all 0.3s ease;
+
+        /* Message Box styles */
+        .message-box {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background-color: #fff;
+            border: 1px solid #D4AF37;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            padding: 2rem;
+            z-index: 1000;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.3s ease, visibility 0.3s ease;
+            text-align: center;
+            max-width: 400px;
+            width: 90%;
         }
-        .glide__arrow:hover {
-            background: rgba(0,0,0,0.8);
+        .message-box.active {
+            opacity: 1;
+            visibility: visible;
+        }
+        .message-box-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 999;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.3s ease, visibility 0.3s ease;
+        }
+        .message-box-overlay.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        /* Glide.js specific adjustments for consistent aesthetic */
+        .glide__slide img {
+            border-radius: 0.5rem; /* Match card rounded corners */
         }
     </style>
 </head>
-<body class="font-inter bg-white text-black">
-    <!-- Glass Navigation Bar -->
-    <nav class="fixed w-full glass-nav z-50 transition-all duration-300" id="navbar">
+<body class="font-sans bg-white text-black"> <!-- Changed font-inter to font-sans -->
+    <!-- Navigation -->
+    <nav class="fixed w-full glass-nav z-50 transition-all duration-300 py-4" id="navbar">
         <div class="container mx-auto px-4 md:px-6 flex justify-between items-center">
             <!-- Logo -->
-            <img src="https://res.cloudinary.com/dbed0vjcr/image/upload/v1750323428/bicm_f38w95-removebg-preview_vjoybh.png" alt="BICM Logo" class="h-14 transition-all duration-300" id="logo">
+            <a href="index.html">
+                <img src="https://res.cloudinary.com/dbed0vjcr/image/upload/v1750323428/bicm_f38w95-removebg-preview_vjoybh.png" alt="BICM Logo" class="h-14 transition-all duration-300" id="logo">
+            </a>
 
             <!-- Desktop Menu -->
             <ul class="hidden md:flex space-x-8 items-center">
-                <li><a href="index.html" class="text-black hover:text-gold font-medium transition-colors duration-300">About Us</a></li>
-                
-                <!-- Employment Center Dropdown -->
+                <li><a href="index.html" class="text-black hover:text-gold font-medium transition-colors duration-300">Home</a></li>
+                <li><a href="about.html" class="text-black hover:text-gold font-medium transition-colors duration-300">About Us</a></li>
+                <li><a href="index.html#services" class="text-black hover:text-gold font-medium transition-colors duration-300">Services</a></li>
+                <li><a href="events.html" class="text-gold font-medium">Events</a></li>
+                <li><a href="education.html" class="text-black hover:text-gold font-medium transition-colors duration-300">Education</a></li>
                 <li class="relative group">
                     <a href="#" class="text-black hover:text-gold font-medium flex items-center transition-colors duration-300">
                         Employment Center <i class="fas fa-chevron-down ml-2 text-xs"></i>
                     </a>
-                    <div class="absolute left-0 mt-2 w-48 bg-white/95 shadow-lg rounded-md py-2 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 border-t-2 border-gold">
-                        <a href="#" class="block px-4 py-2 text-black hover:bg-gold/10 hover:text-gold">I'm a Job Seeker</a>
-                        <a href="#" class="block px-4 py-2 text-black hover:bg-gold/10 hover:text-gold">I'm an Employer</a>
+                    <div class="absolute left-0 mt-2 w-48 bg-white shadow-lg rounded-md py-2 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 border-t-2 border-gold">
+                        <a href="login.html" class="block px-4 py-2 text-black hover:bg-gold/10 hover:text-gold">I'm a Job Seeker</a>
+                        <a href="login.html" class="block px-4 py-2 text-black hover:bg-gold/10 hover:text-gold">I'm an Employer</a>
                     </div>
                 </li>
-                
-                <li><a href="index.html#services" class="text-black hover:text-gold font-medium transition-colors duration-300">Our Services</a></li>
-                <li><a href="education.html" class="text-black hover:text-gold font-medium transition-colors duration-300">Education</a></li>
-                <li><a href="events.html" class="text-gold font-medium transition-colors duration-300 relative after:absolute after:bottom-[-5px] after:left-0 after:w-full after:h-[2px] after:bg-gold">Event Management</a></li>
                 <li><a href="contact.html" class="text-black hover:text-gold font-medium transition-colors duration-300">Contact Us</a></li>
-                <li><a href="login.html" class="bg-gold text-black px-6 py-2 rounded-full font-medium hover:bg-black hover:text-gold border-2 border-gold transition-colors duration-300">Login</a></li>
+                <li><a href="login.html" class="btn btn-primary px-6 py-2 rounded">Login</a></li>
             </ul>
 
             <!-- Mobile Menu Button -->
@@ -126,137 +184,141 @@
         </div>
 
         <!-- Mobile Menu -->
-        <div class="md:hidden hidden bg-white/95 w-full py-4 px-4" id="mobile-menu">
-            <a href="index.html" class="block py-2 text-black hover:text-gold">About Us</a>
-            
+        <div class="md:hidden hidden bg-white w-full py-4 px-4" id="mobile-menu">
+            <a href="index.html" class="block py-2 text-black hover:text-gold">Home</a>
+            <a href="about.html" class="block py-2 text-black hover:text-gold">About Us</a>
+            <a href="index.html#services" class="block py-2 text-black hover:text-gold">Services</a>
+            <a href="events.html" class="block py-2 text-gold">Events</a>
+            <a href="education.html" class="block py-2 text-black hover:text-gold">Education</a>
             <div class="py-2">
                 <button class="flex items-center justify-between w-full text-black hover:text-gold" id="employment-dropdown-button">
                     Employment Center <i class="fas fa-chevron-down ml-2 text-xs"></i>
                 </button>
                 <div class="hidden pl-4 mt-2" id="employment-dropdown">
-                    <a href="#" class="block py-2 text-black hover:text-gold">I'm a Job Seeker</a>
-                    <a href="#" class="block py-2 text-black hover:text-gold">I'm an Employer</a>
+                    <a href="login.html" class="block py-2 text-black hover:text-gold">I'm a Job Seeker</a>
+                    <a href="login.html" class="block py-2 text-black hover:text-gold">I'm an Employer</a>
                 </div>
             </div>
-            
-            <a href="index.html#services" class="block py-2 text-black hover:text-gold">Our Services</a>
-            <a href="education.html" class="block py-2 text-black hover:text-gold">Education</a>
-            <a href="events.html" class="block py-2 text-gold">Event Management</a>
             <a href="contact.html" class="block py-2 text-black hover:text-gold">Contact Us</a>
             <a href="login.html" class="block py-2 text-gold">Login</a>
         </div>
     </nav>
 
-    <!-- Simplified Hero Section -->
-    <section class="pt-32 pb-20 md:pt-40 md:pb-28 bg-grey">
-        <div class="container mx-auto px-4 md:px-6 text-center">
-            <h1 class="text-4xl md:text-5xl lg:text-6xl font-montserrat font-bold mb-6 animate-fade-in text-black">Event Management Services</h1>
-            <p class="text-xl md:text-2xl mb-10 max-w-2xl mx-auto animate-fade-in delay-1 text-gray-700">Professional event planning and coordination for weddings, corporate events, and more</p>
+    <!-- Hero Section -->
+    <section class="relative pt-32 pb-20 md:pt-40 md:pb-28 bg-black">
+        <div class="absolute inset-0 overflow-hidden">
+            <img src="https://res.cloudinary.com/dbed0vjcr/image/upload/v1750790856/visax-mtCekBm6JMc-unsplash-med_qkbzph.jpg"
+                alt="Event Management Hero Background"
+                class="w-full h-full object-cover object-center opacity-70"
+                loading="eager">
+        </div>
+        <div class="container mx-auto px-4 md:px-6 text-center relative z-10">
+            <h1 class="text-4xl md:text-5xl lg:text-6xl font-sans font-bold mb-6 text-white animate-fade-in">Event Management Services</h1>
+            <p class="text-xl md:text-2xl mb-10 max-w-3xl mx-auto text-gray-300 animate-fade-in delay-1">Professional event planning and coordination for seamless experiences.</p>
             <div class="animate-fade-in delay-2">
-                <button onclick="openModal()" class="bg-gold text-black px-8 py-3 rounded-full font-medium hover:bg-black hover:text-gold border-2 border-gold transition-colors duration-300">
+                <button onclick="openModal()" class="btn btn-primary px-8 py-3 rounded">
                     Get Started
                 </button>
             </div>
         </div>
     </section>
 
-
     <!-- Event Categories Section -->
     <section class="py-20 bg-white">
         <div class="container mx-auto px-4 md:px-6">
-            <h2 class="text-3xl md:text-4xl font-montserrat font-bold text-center mb-12 relative pb-4">
+            <h2 class="text-3xl md:text-4xl font-sans font-bold text-center mb-12 relative pb-4">
                 Our Event Services
                 <span class="absolute bottom-0 left-1/2 transform -translate-x-1/2 w-20 h-1 bg-gold"></span>
             </h2>
             
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
                 <!-- Wedding Events -->
-                <div class="bg-grey p-8 rounded-lg text-center hover:shadow-lg transition-all duration-300 animate-fade-in">
+                <div class="card bg-grey p-8 rounded-lg text-center animate-fade-in">
                     <div class="text-gold text-5xl mb-6">
                         <i class="fas fa-ring"></i>
                     </div>
-                    <h3 class="text-xl font-montserrat font-bold mb-4">Weddings</h3>
+                    <h3 class="text-xl font-sans font-bold mb-4">Weddings</h3>
                     <p class="text-gray-700 mb-6">Full-service wedding planning from venue selection to catering and photography.</p>
-                    <ul class="text-left text-gray-600 space-y-2">
+                    <ul class="text-left text-gray-600 space-y-2 list-none p-0">
                         <li class="flex items-center">
-                            <i class="fas fa-check text-gold mr-2"></i>
+                            <i class="fas fa-check-circle text-gold mr-2"></i>
                             Venue sourcing
                         </li>
                         <li class="flex items-center">
-                            <i class="fas fa-check text-gold mr-2"></i>
+                            <i class="fas fa-check-circle text-gold mr-2"></i>
                             Catering coordination
                         </li>
                         <li class="flex items-center">
-                            <i class="fas fa-check text-gold mr-2"></i>
+                            <i class="fas fa-check-circle text-gold mr-2"></i>
                             Entertainment booking
                         </li>
                     </ul>
                 </div>
                 
                 <!-- Corporate Events -->
-                <div class="bg-grey p-8 rounded-lg text-center hover:shadow-lg transition-all duration-300 animate-fade-in delay-1">
+                <div class="card bg-grey p-8 rounded-lg text-center animate-fade-in delay-1">
                     <div class="text-gold text-5xl mb-6">
                         <i class="fas fa-briefcase"></i>
                     </div>
-                    <h3 class="text-xl font-montserrat font-bold mb-4">Corporate Events</h3>
+                    <h3 class="text-xl font-sans font-bold mb-4">Corporate Events</h3>
                     <p class="text-gray-700 mb-6">Professional management of conferences, seminars, and corporate retreats.</p>
-                    <ul class="text-left text-gray-600 space-y-2">
+                    <ul class="text-left text-gray-600 space-y-2 list-none p-0">
                         <li class="flex items-center">
-                            <i class="fas fa-check text-gold mr-2"></i>
+                            <i class="fas fa-check-circle text-gold mr-2"></i>
                             Conference planning
                         </li>
                         <li class="flex items-center">
-                            <i class="fas fa-check text-gold mr-2"></i>
+                            <i class="fas fa-check-circle text-gold mr-2"></i>
                             Team building activities
                         </li>
                         <li class="flex items-center">
-                            <i class="fas fa-check text-gold mr-2"></i>
+                            <i class="fas fa-check-circle text-gold mr-2"></i>
                             AV equipment rental
                         </li>
                     </ul>
                 </div>
                 
                 <!-- Training & Workshops -->
-                <div class="bg-grey p-8 rounded-lg text-center hover:shadow-lg transition-all duration-300 animate-fade-in delay-2">
+                <div class="card bg-grey p-8 rounded-lg text-center animate-fade-in delay-2">
                     <div class="text-gold text-5xl mb-6">
                         <i class="fas fa-chalkboard-teacher"></i>
                     </div>
-                    <h3 class="text-xl font-montserrat font-bold mb-4">Trainings & Workshops</h3>
+                    <h3 class="text-xl font-sans font-bold mb-4">Trainings & Workshops</h3>
                     <p class="text-gray-700 mb-6">Comprehensive training program management and facilitation.</p>
-                    <ul class="text-left text-gray-600 space-y-2">
+                    <ul class="text-left text-gray-600 space-y-2 list-none p-0">
                         <li class="flex items-center">
-                            <i class="fas fa-check text-gold mr-2"></i>
+                            <i class="fas fa-check-circle text-gold mr-2"></i>
                             Venue arrangement
                         </li>
                         <li class="flex items-center">
-                            <i class="fas fa-check text-gold mr-2"></i>
+                            <i class="fas fa-check-circle text-gold mr-2"></i>
                             Materials preparation
                         </li>
                         <li class="flex items-center">
-                            <i class="fas fa-check text-gold mr-2"></i>
+                            <i class="fas fa-check-circle text-gold mr-2"></i>
                             Participant coordination
                         </li>
                     </ul>
                 </div>
                 
                 <!-- Equipment Rental -->
-                <div class="bg-grey p-8 rounded-lg text-center hover:shadow-lg transition-all duration-300 animate-fade-in delay-3">
+                <div class="card bg-grey p-8 rounded-lg text-center animate-fade-in delay-3">
                     <div class="text-gold text-5xl mb-6">
                         <i class="fas fa-music"></i>
                     </div>
-                    <h3 class="text-xl font-montserrat font-bold mb-4">Equipment Rental</h3>
+                    <h3 class="text-xl font-sans font-bold mb-4">Equipment Rental</h3>
                     <p class="text-gray-700 mb-6">Quality rental equipment for all your event needs.</p>
-                    <ul class="text-left text-gray-600 space-y-2">
+                    <ul class="text-left text-gray-600 space-y-2 list-none p-0">
                         <li class="flex items-center">
-                            <i class="fas fa-check text-gold mr-2"></i>
+                            <i class="fas fa-check-circle text-gold mr-2"></i>
                             DJ equipment
                         </li>
                         <li class="flex items-center">
-                            <i class="fas fa-check text-gold mr-2"></i>
+                            <i class="fas fa-check-circle text-gold mr-2"></i>
                             Sound systems
                         </li>
                         <li class="flex items-center">
-                            <i class="fas fa-check text-gold mr-2"></i>
+                            <i class="fas fa-check-circle text-gold mr-2"></i>
                             Lighting setups
                         </li>
                     </ul>
@@ -268,7 +330,7 @@
     <!-- Event Gallery Section -->
     <section class="py-20 bg-grey">
         <div class="container mx-auto px-4 md:px-6">
-            <h2 class="text-3xl md:text-4xl font-montserrat font-bold text-center mb-12 relative pb-4">
+            <h2 class="text-3xl md:text-4xl font-sans font-bold text-center mb-12 relative pb-4">
                 Our Event Portfolio
                 <span class="absolute bottom-0 left-1/2 transform -translate-x-1/2 w-20 h-1 bg-gold"></span>
             </h2>
@@ -279,8 +341,8 @@
                         <li class="glide__slide">
                             <div class="relative group overflow-hidden rounded-lg h-96">
                                 <img src="https://res.cloudinary.com/dbed0vjcr/image/upload/v1750331924/sandy-millar-8vaQKYnawHw-unsplash_m84q6s.jpg" alt="Wedding Event" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110">
-                                <div class="absolute inset-0 bg-black/40 flex flex-col items-center justify-end p-6">
-                                    <h3 class="text-2xl font-montserrat font-bold text-white mb-2">Wedding Event</h3>
+                                <div class="absolute inset-0 bg-black/40 flex flex-col items-center justify-end p-6 rounded-lg"> <!-- Added rounded-lg -->
+                                    <h3 class="text-2xl font-sans font-bold text-white mb-2">Wedding Event</h3> <!-- Changed font to sans -->
                                     <p class="text-gold">Lilongwe, December 2024</p>
                                 </div>
                             </div>
@@ -288,8 +350,8 @@
                         <li class="glide__slide">
                             <div class="relative group overflow-hidden rounded-lg h-96">
                                 <img src="https://res.cloudinary.com/dbed0vjcr/image/upload/v1750331925/alexandre-pellaes-6vAjp0pscX0-unsplash_vvvqbx.jpg" alt="Corporate Event" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110">
-                                <div class="absolute inset-0 bg-black/40 flex flex-col items-center justify-end p-6">
-                                    <h3 class="text-2xl font-montserrat font-bold text-white mb-2">Annual Conference</h3>
+                                <div class="absolute inset-0 bg-black/40 flex flex-col items-center justify-end p-6 rounded-lg"> <!-- Added rounded-lg -->
+                                    <h3 class="text-2xl font-sans font-bold text-white mb-2">Annual Conference</h3> <!-- Changed font to sans -->
                                     <p class="text-gold">Blantyre, March 2025</p>
                                 </div>
                             </div>
@@ -297,8 +359,8 @@
                         <li class="glide__slide">
                             <div class="relative group overflow-hidden rounded-lg h-96">
                                 <img src="https://res.cloudinary.com/dbed0vjcr/image/upload/v1750446065/herlambang-tinasih-gusti-iBZP_xb1-34-unsplash_bbgwfl.jpg" alt="Training Event" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110">
-                                <div class="absolute inset-0 bg-black/40 flex flex-col items-center justify-end p-6">
-                                    <h3 class="text-2xl font-montserrat font-bold text-white mb-2">Leadership Training</h3>
+                                <div class="absolute inset-0 bg-black/40 flex flex-col items-center justify-end p-6 rounded-lg"> <!-- Added rounded-lg -->
+                                    <h3 class="text-2xl font-sans font-bold text-white mb-2">Leadership Training</h3> <!-- Changed font to sans -->
                                     <p class="text-gold">BICM Center, June 2024</p>
                                 </div>
                             </div>
@@ -316,7 +378,7 @@
             </div>
             
             <div class="text-center mt-12">
-                <button onclick="openModal()" class="bg-gold text-black px-8 py-3 rounded-full font-medium hover:bg-black hover:text-gold border-2 border-gold transition-colors duration-300 inline-block">
+                <button onclick="openModal()" class="btn btn-primary inline-block px-8 py-3 rounded">
                     Book Our Services
                 </button>
             </div>
@@ -326,7 +388,7 @@
     <!-- Service Providers Section -->
     <section class="py-20 bg-white">
         <div class="container mx-auto px-4 md:px-6">
-            <h2 class="text-3xl md:text-4xl font-montserrat font-bold text-center mb-12 relative pb-4">
+            <h2 class="text-3xl md:text-4xl font-sans font-bold text-center mb-12 relative pb-4">
                 Our Trusted Partners
                 <span class="absolute bottom-0 left-1/2 transform -translate-x-1/2 w-20 h-1 bg-gold"></span>
             </h2>
@@ -336,48 +398,48 @@
             </p>
             
             <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-8">
-                <div class="bg-grey p-6 rounded-lg text-center animate-fade-in">
+                <div class="card bg-grey p-6 rounded-lg text-center animate-fade-in">
                     <div class="text-gold text-4xl mb-4">
                         <i class="fas fa-utensils"></i>
                     </div>
-                    <h3 class="font-montserrat font-bold">Caterers</h3>
+                    <h3 class="font-sans font-bold">Caterers</h3>
                 </div>
-                <div class="bg-grey p-6 rounded-lg text-center animate-fade-in delay-1">
+                <div class="card bg-grey p-6 rounded-lg text-center animate-fade-in delay-1">
                     <div class="text-gold text-4xl mb-4">
                         <i class="fas fa-camera"></i>
                     </div>
-                    <h3 class="font-montserrat font-bold">Photographers</h3>
+                    <h3 class="font-sans font-bold">Photographers</h3>
                 </div>
-                <div class="bg-grey p-6 rounded-lg text-center animate-fade-in delay-2">
+                <div class="card bg-grey p-6 rounded-lg text-center animate-fade-in delay-2">
                     <div class="text-gold text-4xl mb-4">
                         <i class="fas fa-music"></i>
                     </div>
-                    <h3 class="font-montserrat font-bold">Entertainers</h3>
+                    <h3 class="font-sans font-bold">Entertainers</h3>
                 </div>
-                <div class="bg-grey p-6 rounded-lg text-center animate-fade-in">
+                <div class="card bg-grey p-6 rounded-lg text-center animate-fade-in delay-3">
                     <div class="text-gold text-4xl mb-4">
                         <i class="fas fa-hotel"></i>
                     </div>
-                    <h3 class="font-montserrat font-bold">Venues</h3>
+                    <h3 class="font-sans font-bold">Venues</h3>
                 </div>
-                <div class="bg-grey p-6 rounded-lg text-center animate-fade-in delay-1">
+                <div class="card bg-grey p-6 rounded-lg text-center animate-fade-in delay-4">
                     <div class="text-gold text-4xl mb-4">
                         <i class="fas fa-car"></i>
                     </div>
-                    <h3 class="font-montserrat font-bold">Transport</h3>
+                    <h3 class="font-sans font-bold">Transport</h3>
                 </div>
             </div>
         </div>
     </section>
 
     <!-- Compact Callback Modal -->
-    <div id="eventModal" class="modal fixed inset-0 bg-black/50 z-50 flex items-center justify-center opacity-0 invisible transition-all duration-300">
+    <div id="eventModal" class="modal fixed inset-0 bg-black/50 z-50 flex items-center justify-center opacity-0 invisible">
         <div class="modal-content bg-white rounded-lg w-full max-w-md mx-4 p-6 relative">
             <button onclick="closeModal()" class="absolute top-4 right-4 text-gray-500 hover:text-black">
                 <i class="fas fa-times text-xl"></i>
             </button>
             
-            <h2 class="text-2xl font-montserrat font-bold mb-6 text-center">Request Callback</h2>
+            <h2 class="text-2xl font-sans font-bold mb-6 text-center">Request Callback</h2>
             
             <form id="eventForm" class="space-y-4">
                 <div>
@@ -406,7 +468,7 @@
                 </div>
                 
                 <button type="submit" 
-                    class="w-full bg-gold text-black px-6 py-3 rounded font-medium hover:bg-black hover:text-gold border-2 border-gold transition-colors duration-300">
+                    class="w-full btn btn-primary px-6 py-3 rounded">
                     Request Callback
                 </button>
                 
@@ -415,49 +477,73 @@
         </div>
     </div>
 
+    <!-- Custom Message Box for alerts -->
+    <div id="messageBoxOverlay" class="message-box-overlay"></div>
+    <div id="messageBox" class="message-box">
+        <p id="messageBoxText" class="text-lg text-gray-800 mb-4"></p>
+        <button onclick="closeMessageBox()" class="btn btn-primary px-4 py-2 rounded">OK</button>
+    </div>
+
     <!-- Footer -->
-    <footer class="bg-black text-white py-16">
+    <footer class="bg-black text-white pt-20 pb-10">
         <div class="container mx-auto px-4 md:px-6">
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-12">
-                <!-- About Column -->
-                <div>
-                    <span class="text-xl font-montserrat font-bold mb-14"> BICM </span>
-                    <p class="text-gray-400 mt-6 mb-6">BICM Group delivers comprehensive business solutions through our specialized divisions, serving clients across Malawi and beyond.</p>
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-12">
+                <div class="md:col-span-2">
+                    <div class="flex items-center mb-6">
+                        <span class="text-2xl font-sans font-bold">BICM Group</span>
+                    </div>
+                    <p class="text-gray-400 mb-6">
+                        Delivering comprehensive business solutions through our specialized divisions, serving clients across Malawi and beyond.
+                    </p>
                     <div class="flex space-x-4">
-                        <a href="#" class="text-white hover:text-gold text-xl transition-colors duration-300"><i class="fab fa-facebook-f"></i></a>
-                        <a href="#" class="text-white hover:text-gold text-xl transition-colors duration-300"><i class="fab fa-whatsapp"></i></a>
-                        <a href="#" class="text-white hover:text-gold text-xl transition-colors duration-300"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="#" class="w-10 h-10 rounded-full bg-white hover:bg-gold text-black flex items-center justify-center transition-colors duration-300">
+                            <i class="fab fa-facebook-f"></i>
+                        </a>
+                        <a href="#" class="w-10 h-10 rounded-full bg-white hover:bg-gold text-black flex items-center justify-center transition-colors duration-300">
+                            <i class="fab fa-whatsapp"></i>
+                        </a>
+                        <a href="#" class="w-10 h-10 rounded-full bg-white hover:bg-gold text-black flex items-center justify-center transition-colors duration-300">
+                            <i class="fab fa-linkedin-in"></i>
+                        </a>
                     </div>
                 </div>
                 
-                <!-- Quick Links -->
                 <div>
-                    <h3 class="text-xl font-montserrat font-bold mb-6">Quick Links</h3>
+                    <h3 class="text-lg font-sans font-bold mb-6 pb-2 border-b border-gold/30">Quick Links</h3>
                     <ul class="space-y-3">
-                        <li><a href="index.html#about" class="text-gray-400 hover:text-gold transition-colors duration-300">About Us</a></li>
-                        <li><a href="index.html#services" class="text-gray-400 hover:text-gold transition-colors duration-300">Our Services</a></li>
-                        <li><a href="education.html" class="text-gray-400 hover:text-gold transition-colors duration-300">Education</a></li>
-                        <li><a href="events.html" class="text-gray-400 hover:text-gold transition-colors duration-300">Event Management</a></li>
-                        <li><a href="employment.html" class="text-gray-400 hover:text-gold transition-colors duration-300">Employment Center</a></li>
+                        <li><a href="about.html" class="text-gray-400 hover:text-gold transition-colors duration-300 flex items-center">
+                            <i class="fas fa-chevron-right text-xs text-gold mr-2"></i> About Us
+                        </a></li>
+                        <li><a href="events.html" class="text-gray-400 hover:text-gold transition-colors duration-300 flex items-center">
+                            <i class="fas fa-chevron-right text-xs text-gold mr-2"></i> Events Management
+                        </a></li>
+                        <li><a href="education.html" class="text-gray-400 hover:text-gold transition-colors duration-300 flex items-center">
+                            <i class="fas fa-chevron-right text-xs text-gold mr-2"></i> Education
+                        </a></li>
+                        <li><a href="login.html" class="text-gray-400 hover:text-gold transition-colors duration-300 flex items-center">
+                            <i class="fas fa-chevron-right text-xs text-gold mr-2"></i> Employment Center
+                        </a></li>
+                        <li><a href="contact.html" class="text-gray-400 hover:text-gold transition-colors duration-300 flex items-center">
+                            <i class="fas fa-chevron-right text-xs text-gold mr-2"></i> Contact Us
+                        </a></li>
                     </ul>
                 </div>
                 
-                <!-- Contact Info -->
                 <div>
-                    <h3 class="text-xl font-montserrat font-bold mb-6">Contact Us</h3>
+                    <h3 class="text-lg font-sans font-bold mb-6 pb-2 border-b border-gold/30">Contact Us</h3>
                     <div class="space-y-4 text-gray-400">
-                        <p class="flex items-start">
+                        <div class="flex items-start">
                             <i class="fas fa-map-marker-alt text-gold mt-1 mr-3"></i>
                             <span>P.O. Box 1859, Lilongwe, Malawi</span>
-                        </p>
-                        <p class="flex items-center">
+                        </div>
+                        <div class="flex items-center">
                             <i class="fas fa-phone-alt text-gold mr-3"></i>
-                            <span>+265 888 853 888 / +265 992 822 700</span>
+                            <span>+265 888 853 888<br>+265 992 822 700</span>
                         </p>
-                        <p class="flex items-center">
+                        <div class="flex items-center">
                             <i class="fas fa-envelope text-gold mr-3"></i>
                             <span>bicmhrconsultants@gmail.com</span>
-                        </p>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -469,7 +555,7 @@
     </footer>
 
     <!-- Back to Top Button -->
-    <button id="back-to-top" class="fixed bottom-8 right-8 w-12 h-12 bg-gold text-black rounded-full flex items-center justify-center opacity-0 invisible transition-all duration-300 z-50">
+    <button id="back-to-top" class="fixed bottom-8 right-8 w-12 h-12 bg-gold text-black rounded-full flex items-center justify-center opacity-0 invisible transition-all duration-300 z-50 hover:bg-black hover:text-gold border-2 border-gold">
         <i class="fas fa-arrow-up"></i>
     </button>
 
@@ -498,6 +584,20 @@
             document.body.style.overflow = 'auto';
         }
         
+        // Custom Message Box functions
+        function showMessageBox(message) {
+            document.getElementById('messageBoxText').innerText = message;
+            document.getElementById('messageBoxOverlay').classList.add('active');
+            document.getElementById('messageBox').classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeMessageBox() {
+            document.getElementById('messageBoxOverlay').classList.remove('active');
+            document.getElementById('messageBox').classList.remove('active');
+            document.body.style.overflow = 'auto';
+        }
+
         // Close modal when clicking outside
         document.getElementById('eventModal').addEventListener('click', function(e) {
             if (e.target === this) {
@@ -508,7 +608,7 @@
         // Form submission
         document.getElementById('eventForm').addEventListener('submit', function(e) {
             e.preventDefault();
-            alert('Thank you for your inquiry! We will contact you shortly.');
+            showMessageBox('Thank you for your inquiry! We will contact you shortly.');
             this.reset();
             closeModal();
         });
