@@ -184,54 +184,41 @@
     </div>
   </nav>
 
-<!-- Hero Section -->
-<section class="relative h-screen flex items-center justify-center overflow-hidden">
-  <!-- Background Image with Gradient Overlay -->
-  <div class="absolute inset-0 bg-black/30 z-0">
-    <img src="https://res.cloudinary.com/dbed0vjcr/image/upload/v1750325091/bicmservices1.jpeg-962f7365-1036-42e9-b7bd-b47c8f261341" 
-         alt="BICM Group Office" 
-         class="w-full h-full object-cover object-center"
-         loading="eager">
-  </div>
+<!-- Minimalist Hero Section -->
+<section class="relative h-screen flex items-center bg-gray-100">
+  <!-- Background - Gradient Option -->
+  <div class="absolute inset-0 bg-gradient-to-br from-black to-gray-800 z-0"></div>
   
-  <!-- Content Container -->
+  <!-- Optional: Image Background (comment out gradient above if using) -->
+  <!-- <div class="absolute inset-0 z-0">
+    <img src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80" 
+         alt="Business team" 
+         class="w-full h-full object-cover opacity-30"
+         loading="eager">
+  </div> -->
+
   <div class="container mx-auto px-6 z-10">
-    <div class="max-w-4xl">
-      <!-- Main Heading -->
-      <h1 class="text-4xl md:text-5xl lg:text-6xl font-montserrat font-bold text-white leading-tight mb-6">
-        Strategic Business Solutions <span class="text-gold block mt-3">Tailored for Growth</span>
+    <div class="max-w-2xl">
+      <!-- Main Heading - Simple and Bold -->
+      <h1 class="text-4xl md:text-5xl font-montserrat font-bold text-white mb-6 leading-tight">
+        Strategic Business Solutions
       </h1>
       
-      <!-- Subheading -->
-      <p class="text-lg md:text-xl text-gray-200 mb-10 max-w-2xl">
-        We deliver comprehensive HR, management, and consulting services designed to elevate your organization's performance.
+      <!-- Subheading - Minimal Text -->
+      <p class="text-lg text-gray-300 mb-8">
+        Expert HR, management, and consulting services tailored to your needs.
       </p>
       
-      <!-- CTA Buttons -->
+      <!-- Simple CTA Buttons -->
       <div class="flex flex-col sm:flex-row gap-4">
-        <a href="#services" class="bg-gold hover:bg-gold/90 text-black font-medium py-3 px-8 rounded-full transition-all duration-300 flex items-center justify-center gap-2 shadow-lg hover:shadow-gold/30">
-          <span>Our Services</span>
-          <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
-            <path fill-rule="evenodd" d="M16.707 10.293a1 1 0 010 1.414l-6 6a1 1 0 01-1.414 0l-6-6a1 1 0 111.414-1.414L9 14.586V3a1 1 0 012 0v11.586l4.293-4.293a1 1 0 011.414 0z" clip-rule="evenodd" />
-          </svg>
+        <a href="#services" class="bg-gold hover:bg-gold/90 text-black font-medium py-3 px-6 rounded-md transition-colors duration-300 text-center">
+          Explore Services
         </a>
-        <a href="contact.html" class="bg-transparent border-2 border-white hover:border-gold text-white hover:text-gold font-medium py-3 px-8 rounded-full transition-all duration-300 flex items-center justify-center gap-2 shadow-lg hover:shadow-white/10">
-          <span>Get Started</span>
-          <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
-            <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-8.707l-3-3a1 1 0 00-1.414 1.414L10.586 9H7a1 1 0 100 2h3.586l-1.293 1.293a1 1 0 101.414 1.414l3-3a1 1 0 000-1.414z" clip-rule="evenodd" />
-          </svg>
+        <a href="contact.html" class="bg-transparent border border-white hover:border-gold text-white hover:text-gold font-medium py-3 px-6 rounded-md transition-colors duration-300 text-center">
+          Contact Us
         </a>
       </div>
     </div>
-  </div>
-  
-  <!-- Scroll Indicator -->
-  <div class="absolute bottom-8 left-1/2 transform -translate-x-1/2 animate-bounce z-10">
-    <a href="#about" class="text-white hover:text-gold transition-colors duration-300">
-      <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3" />
-      </svg>
-    </a>
   </div>
 </section>
 
