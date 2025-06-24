@@ -4,12 +4,19 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>BICM Group - Education & Training</title>
+
+    <!-- SEO Meta -->
+    <meta name="description" content="BICM Group offers comprehensive Human Resource, Management, Training, Event Management, ICT, and Business Consulting services in Malawi and internationally.">
+
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
+
     <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;900&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet">
+
     <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
     <!-- Tailwind Config -->
     <script>
         tailwind.config = {
@@ -22,8 +29,7 @@
                         green: '#1E3A2B',
                     },
                     fontFamily: {
-                        montserrat: ['Montserrat', 'sans-serif'],
-                        inter: ['Inter', 'sans-serif'],
+                        sans: ['DM Sans', 'sans-serif'], /* Consistent font */
                     },
                 }
             }
@@ -44,24 +50,53 @@
         
         /* Enhanced glass morphism effect */
         .glass-nav {
-            background: rgba(255, 255, 255, 0.9);
+            background: rgba(255, 255, 255, 0.98); /* Adjusted opacity for consistency */
             backdrop-filter: blur(10px);
             -webkit-backdrop-filter: blur(10px);
-            border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+            border-bottom: 1px solid rgba(0, 0, 0, 0.05); /* Consistent border */
         }
         .glass-nav.scrolled {
-            background: rgba(255, 255, 255, 0.95);
-            box-shadow: 0 2px 20px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 2px 20px rgba(0, 0, 0, 0.05); /* Consistent shadow */
         }
         
-        /* Compact Modal styles */
+        /* Smooth scrolling */
+        html {
+          scroll-behavior: smooth;
+        }
+
+        /* Custom styles for buttons and cards */
+        .btn {
+          transition: all 0.3s ease;
+        }
+        .btn-primary {
+          background-color: #D4AF37;
+          color: #000;
+        }
+        .btn-primary:hover {
+          background-color: rgba(212, 175, 55, 0.9);
+        }
+        .btn-outline {
+          border: 1px solid rgba(255, 255, 255, 0.3);
+        }
+        .btn-outline:hover {
+          background-color: rgba(255, 255, 255, 0.1);
+        }
+        .card {
+          transition: all 0.3s ease;
+        }
+        .card:hover {
+          transform: translateY(-5px);
+          box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+        }
+        
+        /* Modal styles */
         .modal {
             transition: opacity 0.3s ease, visibility 0.3s ease;
         }
         .modal-content {
-            transform: translateY(-10px);
+            transform: translateY(-20px);
             transition: transform 0.3s ease;
-            max-height: 90vh;
+            max-height: 90vh; /* Ensure modal content is scrollable if tall */
             overflow-y: auto;
         }
         .modal.active {
@@ -71,19 +106,62 @@
         .modal.active .modal-content {
             transform: translateY(0);
         }
-        
-        /* Course card hover effect */
-        .course-card {
-            transition: all 0.3s ease;
+
+        /* Message Box styles - Consistent with events.html */
+        .message-box {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background-color: #fff;
+            border: 1px solid #D4AF37;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            padding: 2rem;
+            z-index: 1000;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.3s ease, visibility 0.3s ease;
+            text-align: center;
+            max-width: 400px;
+            width: 90%;
         }
-        .course-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+        .message-box.active {
+            opacity: 1;
+            visibility: visible;
         }
-        
-        /* Simplified hero background */
-        .hero-gradient {
-            background: linear-gradient(135deg, rgba(30, 58, 43, 0.9) 0%, rgba(0, 0, 0, 0.8) 100%);
+        .message-box-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 999;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.3s ease, visibility 0.3s ease;
+        }
+        .message-box-overlay.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        /* Hero section background */
+        .hero-background {
+            background-image: url('https://res.cloudinary.com/dbed0vjcr/image/upload/v1750790856/visax-mtCekBm6JMc-unsplash-med_qkbzph.jpg');
+            background-size: cover;
+            background-position: center;
+            position: relative;
+        }
+        .hero-background::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: rgba(0, 0, 0, 0.7); /* Dark overlay */
         }
         
         /* Search bar */
@@ -99,6 +177,7 @@
             position: absolute;
             right: 4px;
             top: 4px;
+            height: calc(100% - 8px); /* Adjust height to fit input */
         }
         
         /* Course filter chips */
@@ -111,33 +190,33 @@
         }
     </style>
 </head>
-<body class="font-inter bg-white text-black">
-    <!-- Glass Navigation Bar -->
-    <nav class="fixed w-full glass-nav z-50 transition-all duration-300" id="navbar">
+<body class="font-sans bg-white text-black"> <!-- Changed font-inter to font-sans -->
+    <!-- Navigation -->
+    <nav class="fixed w-full glass-nav z-50 transition-all duration-300 py-4" id="navbar">
         <div class="container mx-auto px-4 md:px-6 flex justify-between items-center">
             <!-- Logo -->
-            <img src="https://res.cloudinary.com/dbed0vjcr/image/upload/v1750323428/bicm_f38w95-removebg-preview_vjoybh.png" alt="BICM Logo" class="h-14 transition-all duration-300" id="logo">
+            <a href="index.html">
+                <img src="https://res.cloudinary.com/dbed0vjcr/image/upload/v1750323428/bicm_f38w95-removebg-preview_vjoybh.png" alt="BICM Logo" class="h-14 transition-all duration-300" id="logo">
+            </a>
 
             <!-- Desktop Menu -->
             <ul class="hidden md:flex space-x-8 items-center">
-                <li><a href="index.html" class="text-black hover:text-gold font-medium transition-colors duration-300">About Us</a></li>
-                
-                <!-- Employment Center Dropdown -->
+                <li><a href="index.html" class="text-black hover:text-gold font-medium transition-colors duration-300">Home</a></li>
+                <li><a href="about.html" class="text-black hover:text-gold font-medium transition-colors duration-300">About Us</a></li>
+                <li><a href="index.html#services" class="text-black hover:text-gold font-medium transition-colors duration-300">Services</a></li>
+                <li><a href="events.html" class="text-black hover:text-gold font-medium transition-colors duration-300">Events</a></li>
+                <li><a href="education.html" class="text-gold font-medium transition-colors duration-300">Education</a></li>
                 <li class="relative group">
                     <a href="#" class="text-black hover:text-gold font-medium flex items-center transition-colors duration-300">
                         Employment Center <i class="fas fa-chevron-down ml-2 text-xs"></i>
                     </a>
-                    <div class="absolute left-0 mt-2 w-48 bg-white/95 shadow-lg rounded-md py-2 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 border-t-2 border-gold">
-                        <a href="#" class="block px-4 py-2 text-black hover:bg-gold/10 hover:text-gold">I'm a Job Seeker</a>
-                        <a href="#" class="block px-4 py-2 text-black hover:bg-gold/10 hover:text-gold">I'm an Employer</a>
+                    <div class="absolute left-0 mt-2 w-48 bg-white shadow-lg rounded-md py-2 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 border-t-2 border-gold">
+                        <a href="login.html" class="block px-4 py-2 text-black hover:bg-gold/10 hover:text-gold">I'm a Job Seeker</a>
+                        <a href="login.html" class="block px-4 py-2 text-black hover:bg-gold/10 hover:text-gold">I'm an Employer</a>
                     </div>
                 </li>
-                
-                <li><a href="index.html#services" class="text-black hover:text-gold font-medium transition-colors duration-300">Our Services</a></li>
-                <li><a href="education.html" class="text-gold font-medium transition-colors duration-300 relative after:absolute after:bottom-[-5px] after:left-0 after:w-full after:h-[2px] after:bg-gold">Education</a></li>
-                <li><a href="events.html" class="text-black hover:text-gold font-medium transition-colors duration-300">Events</a></li>
                 <li><a href="contact.html" class="text-black hover:text-gold font-medium transition-colors duration-300">Contact Us</a></li>
-                <li><a href="login.html" class="bg-gold text-black px-6 py-2 rounded-full font-medium hover:bg-black hover:text-gold border-2 border-gold transition-colors duration-300">Login</a></li>
+                <li><a href="login.html" class="btn btn-primary px-6 py-2 rounded">Login</a></li>
             </ul>
 
             <!-- Mobile Menu Button -->
@@ -147,37 +226,36 @@
         </div>
 
         <!-- Mobile Menu -->
-        <div class="md:hidden hidden bg-white/95 w-full py-4 px-4" id="mobile-menu">
-            <a href="index.html" class="block py-2 text-black hover:text-gold">About Us</a>
-            
+        <div class="md:hidden hidden bg-white w-full py-4 px-4" id="mobile-menu">
+            <a href="index.html" class="block py-2 text-black hover:text-gold">Home</a>
+            <a href="about.html" class="block py-2 text-black hover:text-gold">About Us</a>
+            <a href="index.html#services" class="block py-2 text-black hover:text-gold">Services</a>
+            <a href="events.html" class="block py-2 text-black hover:text-gold">Events</a>
+            <a href="education.html" class="block py-2 text-gold">Education</a>
             <div class="py-2">
                 <button class="flex items-center justify-between w-full text-black hover:text-gold" id="employment-dropdown-button">
                     Employment Center <i class="fas fa-chevron-down ml-2 text-xs"></i>
                 </button>
                 <div class="hidden pl-4 mt-2" id="employment-dropdown">
-                    <a href="#" class="block py-2 text-black hover:text-gold">I'm a Job Seeker</a>
-                    <a href="#" class="block py-2 text-black hover:text-gold">I'm an Employer</a>
+                    <a href="login.html" class="block py-2 text-black hover:text-gold">I'm a Job Seeker</a>
+                    <a href="login.html" class="block py-2 text-black hover:text-gold">I'm an Employer</a>
                 </div>
             </div>
-            
-            <a href="index.html#services" class="block py-2 text-black hover:text-gold">Our Services</a>
-            <a href="education.html" class="block py-2 text-gold">Education</a>
-            <a href="events.html" class="block py-2 text-black hover:text-gold">Events</a>
             <a href="contact.html" class="block py-2 text-black hover:text-gold">Contact Us</a>
             <a href="login.html" class="block py-2 text-gold">Login</a>
         </div>
     </nav>
 
-    <!-- Hero Section with Simplified Background -->
-    <section class="pt-32 pb-20 md:pt-40 md:pb-28 hero-gradient relative">
+    <!-- Hero Section -->
+    <section class="pt-32 pb-20 md:pt-40 md:pb-28 hero-background relative">
         <div class="container mx-auto px-4 md:px-6 text-center relative z-10">
-            <h1 class="text-4xl md:text-5xl lg:text-6xl font-montserrat font-bold mb-6 animate-fade-in text-white">BICM School of Management</h1>
-            <p class="text-xl md:text-2xl mb-10 max-w-2xl mx-auto animate-fade-in delay-1 text-grey">Developing leaders through practical, outcome-based education and training programs</p>
-            <div class="animate-fade-in delay-2">
-                <button onclick="openModal()" class="bg-gold text-black px-8 py-3 rounded-full font-medium hover:bg-black hover:text-gold border-2 border-gold transition-colors duration-300 mr-4">
+            <h1 class="text-4xl md:text-5xl lg:text-6xl font-sans font-bold mb-6 animate-fade-in text-white">BICM School of Management</h1>
+            <p class="text-xl md:text-2xl mb-10 max-w-2xl mx-auto animate-fade-in delay-1 text-gray-300">Developing leaders through practical, outcome-based education and training programs</p>
+            <div class="animate-fade-in delay-2 flex flex-col sm:flex-row gap-4 justify-center">
+                <button onclick="openModal()" class="btn btn-primary px-8 py-3 rounded">
                     Apply Now
                 </button>
-                <a href="#courses" class="bg-transparent text-white px-8 py-3 rounded-full font-medium hover:bg-white hover:text-black border-2 border-white transition-colors duration-300">
+                <a href="#courses" class="btn btn-outline text-white px-8 py-3 rounded">
                     Explore Courses
                 </a>
             </div>
@@ -189,7 +267,7 @@
         <div class="container mx-auto px-4 md:px-6">
             <div class="flex flex-col md:flex-row items-center gap-12">
                 <div class="md:w-1/2 animate-fade-in">
-                    <h2 class="text-3xl md:text-4xl font-montserrat font-bold mb-6 relative pb-4">
+                    <h2 class="text-3xl md:text-4xl font-sans font-bold mb-6 relative pb-4">
                         Our Educational Philosophy
                         <span class="absolute bottom-0 left-0 w-20 h-1 bg-gold"></span>
                     </h2>
@@ -200,7 +278,7 @@
                         We follow a holistic and participatory approach where learning is focused on the results to be achieved, striving for competence in all domains of human performance.
                     </p>
                     <div class="bg-grey p-6 rounded-lg">
-                        <h3 class="text-xl font-montserrat font-bold mb-4 text-gold">Why Choose BICM?</h3>
+                        <h3 class="text-xl font-sans font-bold mb-4 text-gold">Why Choose BICM?</h3>
                         <ul class="space-y-3 text-gray-700">
                             <li class="flex items-start">
                                 <i class="fas fa-check text-gold mr-3 mt-1"></i>
@@ -231,9 +309,9 @@
                         </div>
                     </div>
                     <div class="mt-8 bg-gold text-black p-6 rounded-lg">
-                        <h3 class="text-xl font-montserrat font-bold mb-4">BICM School of Management</h3>
+                        <h3 class="text-xl font-sans font-bold mb-4">BICM School of Management</h3>
                         <p class="mb-4">Our flagship institution offering comprehensive management development programs designed to transform professionals into effective leaders.</p>
-                        <button onclick="openModal('BICM School of Management')" class="bg-black text-gold px-6 py-2 rounded-full font-medium hover:bg-white hover:text-black border-2 border-black transition-colors duration-300">
+                        <button onclick="openModal('BICM School of Management')" class="btn btn-primary px-6 py-2 rounded">
                             Learn More
                         </button>
                     </div>
@@ -245,7 +323,7 @@
     <!-- Course Categories -->
     <section class="py-20 bg-grey" id="courses">
         <div class="container mx-auto px-4 md:px-6">
-            <h2 class="text-3xl md:text-4xl font-montserrat font-bold text-center mb-12 relative pb-4">
+            <h2 class="text-3xl md:text-4xl font-sans font-bold text-center mb-12 relative pb-4">
                 Our Course Categories
                 <span class="absolute bottom-0 left-1/2 transform -translate-x-1/2 w-20 h-1 bg-gold"></span>
             </h2>
@@ -261,12 +339,12 @@
                 
                 <div class="flex flex-wrap justify-center gap-3 mt-6">
                     <button onclick="filterCourses('all')" class="filter-chip active bg-gold text-black px-4 py-2 rounded-full text-sm font-medium">All Courses</button>
-                    <button onclick="filterCourses('leadership')" class="filter-chip bg-black/10 hover:bg-black/20 px-4 py-2 rounded-full text-sm font-medium">Leadership</button>
-                    <button onclick="filterCourses('business')" class="filter-chip bg-black/10 hover:bg-black/20 px-4 py-2 rounded-full text-sm font-medium">Business Skills</button>
-                    <button onclick="filterCourses('hr')" class="filter-chip bg-black/10 hover:bg-black/20 px-4 py-2 rounded-full text-sm font-medium">HR Consulting</button>
-                    <button onclick="filterCourses('industrial')" class="filter-chip bg-black/10 hover:bg-black/20 px-4 py-2 rounded-full text-sm font-medium">Industrial Relations</button>
-                    <button onclick="filterCourses('life')" class="filter-chip bg-black/10 hover:bg-black/20 px-4 py-2 rounded-full text-sm font-medium">Life Skills</button>
-                    <button onclick="filterCourses('health')" class="filter-chip bg-black/10 hover:bg-black/20 px-4 py-2 rounded-full text-sm font-medium">Public Health</button>
+                    <button onclick="filterCourses('leadership')" class="filter-chip bg-black/10 text-black hover:bg-gold/20 px-4 py-2 rounded-full text-sm font-medium">Leadership</button>
+                    <button onclick="filterCourses('business')" class="filter-chip bg-black/10 text-black hover:bg-gold/20 px-4 py-2 rounded-full text-sm font-medium">Business Skills</button>
+                    <button onclick="filterCourses('hr')" class="filter-chip bg-black/10 text-black hover:bg-gold/20 px-4 py-2 rounded-full text-sm font-medium">HR Consulting</button>
+                    <button onclick="filterCourses('industrial')" class="filter-chip bg-black/10 text-black hover:bg-gold/20 px-4 py-2 rounded-full text-sm font-medium">Industrial Relations</button>
+                    <button onclick="filterCourses('life')" class="filter-chip bg-black/10 text-black hover:bg-gold/20 px-4 py-2 rounded-full text-sm font-medium">Life Skills</button>
+                    <button onclick="filterCourses('health')" class="filter-chip bg-black/10 text-black hover:bg-gold/20 px-4 py-2 rounded-full text-sm font-medium">Public Health</button>
                 </div>
             </div>
             
@@ -276,7 +354,7 @@
                     <div class="text-gold text-4xl mb-6">
                         <i class="fas fa-chess-king"></i>
                     </div>
-                    <h3 class="text-xl font-montserrat font-bold mb-4">Leadership Courses</h3>
+                    <h3 class="text-xl font-sans font-bold mb-4">Leadership Courses</h3>
                     <p class="text-gray-700 mb-6">Develop essential leadership skills to drive organizational success.</p>
                     <ul class="space-y-2 text-gray-600">
                         <li class="flex items-center">
@@ -297,7 +375,7 @@
                         </li>
                     </ul>
                     <div class="mt-6 flex justify-between items-center">
-                        <button onclick="openModal('Leadership Courses')" class="text-gold font-medium hover:text-black transition-colors duration-300 flex items-center">
+                        <button onclick="openCourseModal('Leadership Courses')" class="text-gold font-medium hover:text-black transition-colors duration-300 flex items-center">
                             View All <i class="fas fa-arrow-right ml-2"></i>
                         </button>
                         <span class="bg-gold/10 text-gold px-3 py-1 rounded-full text-xs">4 Courses</span>
@@ -309,7 +387,7 @@
                     <div class="text-gold text-4xl mb-6">
                         <i class="fas fa-briefcase"></i>
                     </div>
-                    <h3 class="text-xl font-montserrat font-bold mb-4">Business Skills</h3>
+                    <h3 class="text-xl font-sans font-bold mb-4">Business Skills</h3>
                     <p class="text-gray-700 mb-6">Master essential business competencies for professional growth.</p>
                     <ul class="space-y-2 text-gray-600">
                         <li class="flex items-center">
@@ -330,7 +408,7 @@
                         </li>
                     </ul>
                     <div class="mt-6 flex justify-between items-center">
-                        <button onclick="openModal('Business Skills')" class="text-gold font-medium hover:text-black transition-colors duration-300 flex items-center">
+                        <button onclick="openCourseModal('Business Skills')" class="text-gold font-medium hover:text-black transition-colors duration-300 flex items-center">
                             View All <i class="fas fa-arrow-right ml-2"></i>
                         </button>
                         <span class="bg-gold/10 text-gold px-3 py-1 rounded-full text-xs">5 Courses</span>
@@ -342,7 +420,7 @@
                     <div class="text-gold text-4xl mb-6">
                         <i class="fas fa-users"></i>
                     </div>
-                    <h3 class="text-xl font-montserrat font-bold mb-4">HR Consulting</h3>
+                    <h3 class="text-xl font-sans font-bold mb-4">HR Consulting</h3>
                     <p class="text-gray-700 mb-6">Develop HR expertise to manage your organization's most valuable asset.</p>
                     <ul class="space-y-2 text-gray-600">
                         <li class="flex items-center">
@@ -363,7 +441,7 @@
                         </li>
                     </ul>
                     <div class="mt-6 flex justify-between items-center">
-                        <button onclick="openModal('HR Consulting')" class="text-gold font-medium hover:text-black transition-colors duration-300 flex items-center">
+                        <button onclick="openCourseModal('HR Consulting')" class="text-gold font-medium hover:text-black transition-colors duration-300 flex items-center">
                             View All <i class="fas fa-arrow-right ml-2"></i>
                         </button>
                         <span class="bg-gold/10 text-gold px-3 py-1 rounded-full text-xs">6 Courses</span>
@@ -375,7 +453,7 @@
                     <div class="text-gold text-4xl mb-6">
                         <i class="fas fa-handshake"></i>
                     </div>
-                    <h3 class="text-xl font-montserrat font-bold mb-4">Industrial Relations</h3>
+                    <h3 class="text-xl font-sans font-bold mb-4">Industrial Relations</h3>
                     <p class="text-gray-700 mb-6">Navigate workplace relations with confidence and expertise.</p>
                     <ul class="space-y-2 text-gray-600">
                         <li class="flex items-center">
@@ -396,7 +474,7 @@
                         </li>
                     </ul>
                     <div class="mt-6 flex justify-between items-center">
-                        <button onclick="openModal('Industrial Relations')" class="text-gold font-medium hover:text-black transition-colors duration-300 flex items-center">
+                        <button onclick="openCourseModal('Industrial Relations')" class="text-gold font-medium hover:text-black transition-colors duration-300 flex items-center">
                             View All <i class="fas fa-arrow-right ml-2"></i>
                         </button>
                         <span class="bg-gold/10 text-gold px-3 py-1 rounded-full text-xs">4 Courses</span>
@@ -408,7 +486,7 @@
                     <div class="text-gold text-4xl mb-6">
                         <i class="fas fa-brain"></i>
                     </div>
-                    <h3 class="text-xl font-montserrat font-bold mb-4">Life Skills</h3>
+                    <h3 class="text-xl font-sans font-bold mb-4">Life Skills</h3>
                     <p class="text-gray-700 mb-6">Enhance personal effectiveness and professional communication.</p>
                     <ul class="space-y-2 text-gray-600">
                         <li class="flex items-center">
@@ -429,7 +507,7 @@
                         </li>
                     </ul>
                     <div class="mt-6 flex justify-between items-center">
-                        <button onclick="openModal('Life Skills')" class="text-gold font-medium hover:text-black transition-colors duration-300 flex items-center">
+                        <button onclick="openCourseModal('Life Skills')" class="text-gold font-medium hover:text-black transition-colors duration-300 flex items-center">
                             View All <i class="fas fa-arrow-right ml-2"></i>
                         </button>
                         <span class="bg-gold/10 text-gold px-3 py-1 rounded-full text-xs">5 Courses</span>
@@ -441,7 +519,7 @@
                     <div class="text-gold text-4xl mb-6">
                         <i class="fas fa-medkit"></i>
                     </div>
-                    <h3 class="text-xl font-montserrat font-bold mb-4">Public Health</h3>
+                    <h3 class="text-xl font-sans font-bold mb-4">Public Health</h3>
                     <p class="text-gray-700 mb-6">Specialized training for health and community development professionals.</p>
                     <ul class="space-y-2 text-gray-600">
                         <li class="flex items-center">
@@ -462,7 +540,7 @@
                         </li>
                     </ul>
                     <div class="mt-6 flex justify-between items-center">
-                        <button onclick="openModal('Public Health')" class="text-gold font-medium hover:text-black transition-colors duration-300 flex items-center">
+                        <button onclick="openCourseModal('Public Health')" class="text-gold font-medium hover:text-black transition-colors duration-300 flex items-center">
                             View All <i class="fas fa-arrow-right ml-2"></i>
                         </button>
                         <span class="bg-gold/10 text-gold px-3 py-1 rounded-full text-xs">4 Courses</span>
@@ -478,23 +556,23 @@
             <div class="bg-gold text-black p-12 rounded-lg relative overflow-hidden">
                 <div class="absolute inset-0 bg-black/10"></div>
                 <div class="relative z-10">
-                    <h2 class="text-3xl md:text-4xl font-montserrat font-bold mb-6">Customized Corporate Training</h2>
+                    <h2 class="text-3xl md:text-4xl font-sans font-bold mb-6">Customized Corporate Training</h2>
                     <p class="text-xl mb-8 max-w-2xl">We design and deliver tailored training programs to meet your organization's specific needs and challenges.</p>
                     <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
                         <div class="bg-black/10 p-6 rounded-lg backdrop-blur-sm">
-                            <h3 class="text-xl font-montserrat font-bold mb-4">Needs Assessment</h3>
+                            <h3 class="text-xl font-sans font-bold mb-4">Needs Assessment</h3>
                             <p>We conduct thorough assessments to identify your organization's unique training requirements.</p>
                         </div>
                         <div class="bg-black/10 p-6 rounded-lg backdrop-blur-sm">
-                            <h3 class="text-xl font-montserrat font-bold mb-4">Custom Content</h3>
+                            <h3 class="text-xl font-sans font-bold mb-4">Custom Content</h3>
                             <p>Programs are tailored to your industry, culture, and specific business objectives.</p>
                         </div>
                         <div class="bg-black/10 p-6 rounded-lg backdrop-blur-sm">
-                            <h3 class="text-xl font-montserrat font-bold mb-4">Follow-up Support</h3>
+                            <h3 class="text-xl font-sans font-bold mb-4">Follow-up Support</h3>
                             <p>We provide post-training support to ensure skills are effectively applied in the workplace.</p>
                         </div>
                     </div>
-                    <button onclick="openModal('Corporate Training')" class="mt-8 bg-black text-gold px-8 py-3 rounded-full font-medium hover:bg-white hover:text-black border-2 border-black transition-colors duration-300">
+                    <button onclick="openModal('Corporate Training')" class="btn btn-primary mt-8 px-8 py-3 rounded">
                         Request Custom Training
                     </button>
                 </div>
@@ -505,7 +583,7 @@
     <!-- Testimonials with Interactive Carousel -->
     <section class="py-20 bg-grey">
         <div class="container mx-auto px-4 md:px-6">
-            <h2 class="text-3xl md:text-4xl font-montserrat font-bold text-center mb-12 relative pb-4">
+            <h2 class="text-3xl md:text-4xl font-sans font-bold text-center mb-12 relative pb-4">
                 What Our Clients Say
                 <span class="absolute bottom-0 left-1/2 transform -translate-x-1/2 w-20 h-1 bg-gold"></span>
             </h2>
@@ -520,7 +598,7 @@
                         <div class="flex items-center">
                             <div class="bg-gold w-12 h-12 rounded-full flex items-center justify-center text-black font-bold mr-4">GM</div>
                             <div>
-                                <h4 class="font-montserrat font-bold">George Mwale</h4>
+                                <h4 class="font-sans font-bold">George Mwale</h4>
                                 <p class="text-gray-500">G4S Malawi</p>
                             </div>
                         </div>
@@ -534,7 +612,7 @@
                         <div class="flex items-center">
                             <div class="bg-gold w-12 h-12 rounded-full flex items-center justify-center text-black font-bold mr-4">AM</div>
                             <div>
-                                <h4 class="font-montserrat font-bold">Alice Msiska</h4>
+                                <h4 class="font-sans font-bold">Alice Msiska</h4>
                                 <p class="text-gray-500">Air Malawi</p>
                             </div>
                         </div>
@@ -548,7 +626,7 @@
                         <div class="flex items-center">
                             <div class="bg-gold w-12 h-12 rounded-full flex items-center justify-center text-black font-bold mr-4">MM</div>
                             <div>
-                                <h4 class="font-montserrat font-bold">Mary Mwale</h4>
+                                <h4 class="font-sans font-bold">Mary Mwale</h4>
                                 <p class="text-gray-500">Malawi Red Cross</p>
                             </div>
                         </div>
@@ -567,13 +645,13 @@
     <!-- Application CTA -->
     <section class="py-20 bg-white">
         <div class="container mx-auto px-4 md:px-6 text-center">
-            <h2 class="text-3xl md:text-4xl font-montserrat font-bold mb-6">Ready to Transform Your Career or Organization?</h2>
+            <h2 class="text-3xl md:text-4xl font-sans font-bold mb-6">Ready to Transform Your Career or Organization?</h2>
             <p class="text-xl mb-10 max-w-2xl mx-auto text-gray-700">Join our next training session or request a customized program for your team.</p>
             <div class="flex flex-col sm:flex-row justify-center gap-4">
-                <button onclick="openModal()" class="bg-gold text-black px-8 py-3 rounded-full font-medium hover:bg-black hover:text-gold border-2 border-gold transition-colors duration-300">
+                <button onclick="openModal()" class="btn btn-primary px-8 py-3 rounded">
                     Apply Now
                 </button>
-                <a href="contact.html" class="bg-transparent text-black px-8 py-3 rounded-full font-medium hover:bg-grey border-2 border-black transition-colors duration-300">
+                <a href="contact.html" class="btn btn-outline text-black px-8 py-3 rounded">
                     Contact Us
                 </a>
             </div>
@@ -587,7 +665,7 @@
                 <i class="fas fa-times text-xl"></i>
             </button>
             
-            <h2 class="text-2xl font-montserrat font-bold mb-6 text-center" id="modalTitle">Training Application</h2>
+            <h2 class="text-2xl font-sans font-bold mb-6 text-center" id="modalTitle">Training Application</h2>
             
             <form id="applicationForm" class="space-y-4">
                 <div>
@@ -625,7 +703,7 @@
                 </div>
                 
                 <button type="submit" 
-                    class="w-full bg-gold text-black px-6 py-3 rounded font-medium hover:bg-black hover:text-gold border-2 border-gold transition-colors duration-300">
+                    class="btn btn-primary w-full px-6 py-3 rounded">
                     Submit Application
                 </button>
                 
@@ -654,61 +732,85 @@
                 <i class="fas fa-times text-xl"></i>
             </button>
             
-            <h2 class="text-2xl font-montserrat font-bold mb-6" id="courseModalTitle">Course Details</h2>
+            <h2 class="text-2xl font-sans font-bold mb-6" id="courseModalTitle">Course Details</h2>
             
             <div class="space-y-6" id="courseModalContent">
                 <!-- Content will be dynamically inserted here -->
             </div>
             
-            <button onclick="openModal()" class="mt-6 bg-gold text-black px-6 py-2 rounded-full font-medium hover:bg-black hover:text-gold border-2 border-gold transition-colors duration-300">
+            <button onclick="openModal()" class="btn btn-primary mt-6 px-6 py-2 rounded">
                 Apply Now
             </button>
         </div>
     </div>
 
+    <!-- Custom Message Box for alerts - Consistent with events.html -->
+    <div id="messageBoxOverlay" class="message-box-overlay"></div>
+    <div id="messageBox" class="message-box">
+        <p id="messageBoxText" class="text-lg text-gray-800 mb-4"></p>
+        <button onclick="closeMessageBox()" class="btn btn-primary px-4 py-2 rounded">OK</button>
+    </div>
+
     <!-- Footer -->
-    <footer class="bg-black text-white py-16">
+    <footer class="bg-black text-white pt-20 pb-10">
         <div class="container mx-auto px-4 md:px-6">
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-12">
-                <!-- About Column -->
-                <div>
-                    <span class="text-xl font-montserrat font-bold mb-14"> BICM </span>
-                    <p class="text-gray-400 mt-6 mb-6">BICM Group delivers comprehensive business solutions through our specialized divisions, serving clients across Malawi and beyond.</p>
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-12">
+                <div class="md:col-span-2">
+                    <div class="flex items-center mb-6">
+                        <span class="text-2xl font-sans font-bold">BICM Group</span>
+                    </div>
+                    <p class="text-gray-400 mb-6">
+                        Delivering comprehensive business solutions through our specialized divisions, serving clients across Malawi and beyond.
+                    </p>
                     <div class="flex space-x-4">
-                        <a href="#" class="text-white hover:text-gold text-xl transition-colors duration-300"><i class="fab fa-facebook-f"></i></a>
-                        <a href="#" class="text-white hover:text-gold text-xl transition-colors duration-300"><i class="fab fa-whatsapp"></i></a>
-                        <a href="#" class="text-white hover:text-gold text-xl transition-colors duration-300"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="#" class="w-10 h-10 rounded-full bg-white hover:bg-gold text-black flex items-center justify-center transition-colors duration-300">
+                            <i class="fab fa-facebook-f"></i>
+                        </a>
+                        <a href="#" class="w-10 h-10 rounded-full bg-white hover:bg-gold text-black flex items-center justify-center transition-colors duration-300">
+                            <i class="fab fa-whatsapp"></i>
+                        </a>
+                        <a href="#" class="w-10 h-10 rounded-full bg-white hover:bg-gold text-black flex items-center justify-center transition-colors duration-300">
+                            <i class="fab fa-linkedin-in"></i>
+                        </a>
                     </div>
                 </div>
                 
-                <!-- Quick Links -->
                 <div>
-                    <h3 class="text-xl font-montserrat font-bold mb-6">Quick Links</h3>
+                    <h3 class="text-lg font-sans font-bold mb-6 pb-2 border-b border-gold/30">Quick Links</h3>
                     <ul class="space-y-3">
-                        <li><a href="index.html#about" class="text-gray-400 hover:text-gold transition-colors duration-300">About Us</a></li>
-                        <li><a href="index.html#services" class="text-gray-400 hover:text-gold transition-colors duration-300">Our Services</a></li>
-                        <li><a href="education.html" class="text-gray-400 hover:text-gold transition-colors duration-300">Education</a></li>
-                        <li><a href="events.html" class="text-gray-400 hover:text-gold transition-colors duration-300">Event Management</a></li>
-                        <li><a href="#" class="text-gray-400 hover:text-gold transition-colors duration-300">Employment Center</a></li>
+                        <li><a href="about.html" class="text-gray-400 hover:text-gold transition-colors duration-300 flex items-center">
+                            <i class="fas fa-chevron-right text-xs text-gold mr-2"></i> About Us
+                        </a></li>
+                        <li><a href="events.html" class="text-gray-400 hover:text-gold transition-colors duration-300 flex items-center">
+                            <i class="fas fa-chevron-right text-xs text-gold mr-2"></i> Events Management
+                        </a></li>
+                        <li><a href="education.html" class="text-gray-400 hover:text-gold transition-colors duration-300 flex items-center">
+                            <i class="fas fa-chevron-right text-xs text-gold mr-2"></i> Education
+                        </a></li>
+                        <li><a href="login.html" class="text-gray-400 hover:text-gold transition-colors duration-300 flex items-center">
+                            <i class="fas fa-chevron-right text-xs text-gold mr-2"></i> Employment Center
+                        </a></li>
+                        <li><a href="contact.html" class="text-gray-400 hover:text-gold transition-colors duration-300 flex items-center">
+                            <i class="fas fa-chevron-right text-xs text-gold mr-2"></i> Contact Us
+                        </a></li>
                     </ul>
                 </div>
                 
-                <!-- Contact Info -->
                 <div>
-                    <h3 class="text-xl font-montserrat font-bold mb-6">Contact Us</h3>
+                    <h3 class="text-lg font-sans font-bold mb-6 pb-2 border-b border-gold/30">Contact Us</h3>
                     <div class="space-y-4 text-gray-400">
-                        <p class="flex items-start">
+                        <div class="flex items-start">
                             <i class="fas fa-map-marker-alt text-gold mt-1 mr-3"></i>
                             <span>P.O. Box 1859, Lilongwe, Malawi</span>
-                        </p>
-                        <p class="flex items-center">
+                        </div>
+                        <div class="flex items-center">
                             <i class="fas fa-phone-alt text-gold mr-3"></i>
-                            <span>+265 888 853 888 / +265 992 822 700</span>
-                        </p>
-                        <p class="flex items-center">
+                            <span>+265 888 853 888<br>+265 992 822 700</span>
+                        </div>
+                        <div class="flex items-center">
                             <i class="fas fa-envelope text-gold mr-3"></i>
                             <span>bicmhrconsultants@gmail.com</span>
-                        </p>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -720,7 +822,7 @@
     </footer>
 
     <!-- Back to Top Button -->
-    <button id="back-to-top" class="fixed bottom-8 right-8 w-12 h-12 bg-gold text-black rounded-full flex items-center justify-center opacity-0 invisible transition-all duration-300 z-50">
+    <button id="back-to-top" class="fixed bottom-8 right-8 w-12 h-12 bg-gold text-black rounded-full flex items-center justify-center opacity-0 invisible transition-all duration-300 z-50 hover:bg-black hover:text-gold border-2 border-gold">
         <i class="fas fa-arrow-up"></i>
     </button>
 
@@ -770,12 +872,15 @@
             ]
         };
 
-        // Modal functions
+        // Modal functions (Application Modal)
         function openModal(courseType = '') {
             const modal = document.getElementById('applicationModal');
             if (courseType) {
                 document.getElementById('modalTitle').textContent = `Apply for ${courseType}`;
                 document.getElementById('courseInterest').value = courseType;
+            } else {
+                document.getElementById('modalTitle').textContent = `Training Application`;
+                document.getElementById('courseInterest').value = ''; // Reset if no specific course type
             }
             modal.classList.add('active');
             document.body.style.overflow = 'hidden';
@@ -786,21 +891,23 @@
             document.body.style.overflow = 'auto';
         }
         
+        // Video Modal functions
         function openVideoModal() {
             const modal = document.getElementById('videoModal');
-            // Replace with your actual video ID
-            document.getElementById('videoFrame').src = "https://www.youtube.com/embed/example?autoplay=1";
+            // Replace with your actual video ID or a generic placeholder if no video is available
+            document.getElementById('videoFrame').src = "https://www.youtube.com/embed/dQw4w9WgXcQ?autoplay=1"; // Example YouTube video
             modal.classList.add('active');
             document.body.style.overflow = 'hidden';
         }
         
         function closeVideoModal() {
             const modal = document.getElementById('videoModal');
-            document.getElementById('videoFrame').src = "";
+            document.getElementById('videoFrame').src = ""; // Stop video playback
             modal.classList.remove('active');
             document.body.style.overflow = 'auto';
         }
         
+        // Course Details Modal functions
         function openCourseModal(courseCategory) {
             const modal = document.getElementById('courseModal');
             document.getElementById('courseModalTitle').textContent = courseCategory;
@@ -812,33 +919,37 @@
             const courseList = document.createElement('div');
             courseList.className = 'space-y-6';
             
-            courses[courseCategory].forEach(course => {
-                const courseDiv = document.createElement('div');
-                courseDiv.className = 'border-b border-gray-200 pb-4';
-                
-                const titleDiv = document.createElement('div');
-                titleDiv.className = 'flex justify-between items-start mb-2';
-                
-                const nameSpan = document.createElement('h3');
-                nameSpan.className = 'font-montserrat font-bold text-lg';
-                nameSpan.textContent = course.name;
-                
-                const durationSpan = document.createElement('span');
-                durationSpan.className = 'bg-gold/10 text-gold px-2 py-1 rounded-full text-xs';
-                durationSpan.textContent = course.duration;
-                
-                titleDiv.appendChild(nameSpan);
-                titleDiv.appendChild(durationSpan);
-                
-                const descP = document.createElement('p');
-                descP.className = 'text-gray-700';
-                descP.textContent = course.description;
-                
-                courseDiv.appendChild(titleDiv);
-                courseDiv.appendChild(descP);
-                
-                courseList.appendChild(courseDiv);
-            });
+            if (courses[courseCategory]) {
+                courses[courseCategory].forEach(course => {
+                    const courseDiv = document.createElement('div');
+                    courseDiv.className = 'border-b border-gray-200 pb-4'; // Added border-b for separation
+                    
+                    const titleDiv = document.createElement('div');
+                    titleDiv.className = 'flex justify-between items-start mb-2';
+                    
+                    const nameSpan = document.createElement('h3');
+                    nameSpan.className = 'font-sans font-bold text-lg'; // Changed to font-sans
+                    nameSpan.textContent = course.name;
+                    
+                    const durationSpan = document.createElement('span');
+                    durationSpan.className = 'bg-gold/10 text-gold px-2 py-1 rounded-full text-xs';
+                    durationSpan.textContent = course.duration;
+                    
+                    titleDiv.appendChild(nameSpan);
+                    titleDiv.appendChild(durationSpan);
+                    
+                    const descP = document.createElement('p');
+                    descP.className = 'text-gray-700';
+                    descP.textContent = course.description;
+                    
+                    courseDiv.appendChild(titleDiv);
+                    courseDiv.appendChild(descP);
+                    
+                    courseList.appendChild(courseDiv);
+                });
+            } else {
+                courseList.innerHTML = '<p class="text-gray-600">No details available for this category.</p>';
+            }
             
             contentDiv.appendChild(courseList);
             
@@ -869,11 +980,25 @@
                 closeCourseModal();
             }
         });
+
+        // Custom Message Box functions
+        function showMessageBox(message) {
+            document.getElementById('messageBoxText').innerText = message;
+            document.getElementById('messageBoxOverlay').classList.add('active');
+            document.getElementById('messageBox').classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeMessageBox() {
+            document.getElementById('messageBoxOverlay').classList.remove('active');
+            document.getElementById('messageBox').classList.remove('active');
+            document.body.style.overflow = 'auto';
+        }
         
         // Form submission
         document.getElementById('applicationForm').addEventListener('submit', function(e) {
             e.preventDefault();
-            alert('Thank you for your application! We will contact you shortly to discuss the next steps.');
+            showMessageBox('Thank you for your application! We will contact you shortly to discuss the next steps.');
             this.reset();
             closeModal();
         });
@@ -886,14 +1011,22 @@
             courseCards.forEach(card => {
                 const title = card.querySelector('h3').textContent.toLowerCase();
                 const description = card.querySelector('p').textContent.toLowerCase();
-                
-                if (title.includes(searchTerm)) {
-                    card.style.display = 'block';
-                } else if (description.includes(searchTerm)) {
-                    card.style.display = 'block';
-                } else {
-                    card.style.display = 'none';
+                let displayCard = false;
+
+                // Check card's title and description
+                if (title.includes(searchTerm) || description.includes(searchTerm)) {
+                    displayCard = true;
                 }
+                
+                // Also check content of individual courses within the category for broader search
+                const category = card.getAttribute('data-category');
+                if (courses[category]) {
+                    if (courses[category].some(course => course.name.toLowerCase().includes(searchTerm) || course.description.toLowerCase().includes(searchTerm))) {
+                        displayCard = true;
+                    }
+                }
+
+                card.style.display = displayCard ? 'block' : 'none';
             });
         }
         
@@ -906,10 +1039,10 @@
             filterButtons.forEach(button => {
                 if (button.textContent.toLowerCase().includes(category) || (category === 'all' && button.textContent === 'All Courses')) {
                     button.classList.add('active', 'bg-gold', 'text-black');
-                    button.classList.remove('bg-black/10', 'hover:bg-black/20');
+                    button.classList.remove('bg-black/10', 'hover:bg-gold/20');
                 } else {
                     button.classList.remove('active', 'bg-gold', 'text-black');
-                    button.classList.add('bg-black/10', 'hover:bg-black/20');
+                    button.classList.add('bg-black/10', 'hover:bg-gold/20');
                 }
             });
             
@@ -949,10 +1082,13 @@
         }
         
         // Auto-rotate testimonials
-        setInterval(() => {
-            currentTestimonial = (currentTestimonial + 1) % testimonials.length;
-            showTestimonial(currentTestimonial);
-        }, 5000);
+        // Only start if there are more than 1 testimonial
+        if (testimonials.length > 1) {
+            setInterval(() => {
+                currentTestimonial = (currentTestimonial + 1) % testimonials.length;
+                showTestimonial(currentTestimonial);
+            }, 5000);
+        }
         
         // Back to top button functionality
         const backToTopButton = document.getElementById('back-to-top');
@@ -996,13 +1132,16 @@
         // Initialize on DOM load
         document.addEventListener('DOMContentLoaded', function() {
             // Set first testimonial as active
-            showTestimonial(0);
+            if (testimonials.length > 0) {
+              showTestimonial(0);
+            }
             
             // Make course category buttons clickable to open modal
-            document.querySelectorAll('[onclick^="openModal"]').forEach(button => {
-                const match = button.getAttribute('onclick').match(/openModal\('([^']+)'\)/);
-                if (match) {
-                    button.onclick = function() { openCourseModal(match[1]) };
+            document.querySelectorAll('#coursesContainer .course-card button').forEach(button => {
+                const category = button.parentElement.parentElement.getAttribute('data-category');
+                if (category) {
+                    // Ensure the button explicitly calls openCourseModal for category cards
+                    button.onclick = function() { openCourseModal(button.closest('.course-card').querySelector('h3').textContent) };
                 }
             });
         });
