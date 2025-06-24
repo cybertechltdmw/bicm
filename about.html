@@ -5,14 +5,19 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>BICM Group - About Us</title>
 
+  <!-- SEO Meta -->
   <meta name="description" content="BICM HR Consultants delivers strategic HR solutions, training, event management, ICT, recruitment, and consultancy services tailored for organizations in Malawi and beyond.">
 
+  <!-- Tailwind CSS -->
   <script src="https://cdn.tailwindcss.com"></script>
 
+  <!-- Google Fonts -->
   <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet">
 
+  <!-- Font Awesome -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
+  <!-- Tailwind Config -->
   <script>
     tailwind.config = {
       theme: {
@@ -119,27 +124,30 @@
 </head>
 
 <body class="font-sans bg-white text-black">
+  <!-- Navigation -->
   <nav class="fixed w-full glass-nav z-50 transition-all duration-300 py-4" id="navbar">
     <div class="container mx-auto px-4 md:px-6 flex justify-between items-center">
+      <!-- Logo -->
       <a href="index.html">
         <img src="https://res.cloudinary.com/dbed0vjcr/image/upload/v1750323428/bicm_f38w95-removebg-preview_vjoybh.png" alt="BICM Logo" class="h-14 transition-all duration-300" id="logo">
       </a>
       
+      <!-- Desktop Menu -->
       <ul class="hidden md:flex space-x-8 items-center">
         <li><a href="index.html" class="text-black hover:text-gold font-medium transition-colors duration-300">Home</a></li>
         <li><a href="about.html" class="text-gold font-medium">About Us</a></li>
+        <li><a href="index.html#services" class="text-black hover:text-gold font-medium transition-colors duration-300">Services</a></li>
+        <li><a href="events.html" class="text-black hover:text-gold font-medium transition-colors duration-300">Events</a></li>
+        <li><a href="education.html" class="text-black hover:text-gold font-medium transition-colors duration-300">Education</a></li>
         <li class="relative group">
           <a href="#" class="text-black hover:text-gold font-medium flex items-center transition-colors duration-300">
             Employment Center <i class="fas fa-chevron-down ml-2 text-xs"></i>
           </a>
           <div class="absolute left-0 mt-2 w-48 bg-white shadow-lg rounded-md py-2 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 border-t-2 border-gold">
-            <a href="seeker.html" class="block px-4 py-2 text-black hover:bg-gold/10 hover:text-gold">I'm a Job Seeker</a>
-            <a href="employer.html" class="block px-4 py-2 text-black hover:bg-gold/10 hover:text-gold">I'm an Employer</a>
+            <a href="login.html" class="block px-4 py-2 text-black hover:bg-gold/10 hover:text-gold">I'm a Job Seeker</a>
+            <a href="login.html" class="block px-4 py-2 text-black hover:bg-gold/10 hover:text-gold">I'm an Employer</a>
           </div>
         </li>
-        <li><a href="index.html#services" class="text-black hover:text-gold font-medium transition-colors duration-300">Our Services</a></li>
-        <li><a href="education.html" class="text-black hover:text-gold font-medium transition-colors duration-300">Education</a></li>
-        <li><a href="events.html" class="text-black hover:text-gold font-medium transition-colors duration-300">Events</a></li>
         <li><a href="contact.html" class="text-black hover:text-gold font-medium transition-colors duration-300">Contact Us</a></li>
         <li><a href="login.html" class="btn btn-primary px-6 py-2 rounded">Login</a></li>
       </ul>
@@ -148,26 +156,28 @@
       </button>
     </div>
 
+    <!-- Mobile Menu -->
     <div class="md:hidden hidden bg-white w-full py-4 px-4" id="mobile-menu">
       <a href="index.html" class="block py-2 text-black hover:text-gold">Home</a>
       <a href="about.html" class="block py-2 text-gold">About Us</a>
+      <a href="index.html#services" class="block py-2 text-black hover:text-gold">Services</a>
+      <a href="events.html" class="block py-2 text-black hover:text-gold">Events</a>
+      <a href="education.html" class="block py-2 text-black hover:text-gold">Education</a>
       <div class="py-2">
         <button class="flex items-center justify-between w-full text-black hover:text-gold" id="employment-dropdown-button">
           Employment Center <i class="fas fa-chevron-down ml-2 text-xs"></i>
         </button>
         <div class="hidden pl-4 mt-2" id="employment-dropdown">
-          <a href="seeker.html" class="block py-2 text-black hover:text-gold">I'm a Job Seeker</a>
-          <a href="employer.html" class="block py-2 text-black hover:text-gold">I'm an Employer</a>
+          <a href="login.html" class="block py-2 text-black hover:text-gold">I'm a Job Seeker</a>
+          <a href="login.html" class="block py-2 text-black hover:text-gold">I'm an Employer</a>
         </div>
       </div>
-      <a href="index.html#services" class="block py-2 text-black hover:text-gold">Our Services</a>
-      <a href="education.html" class="block py-2 text-black hover:text-gold">Education</a>
-      <a href="events.html" class="block py-2 text-black hover:text-gold">Events</a>
       <a href="contact.html" class="block py-2 text-black hover:text-gold">Contact Us</a>
       <a href="login.html" class="block py-2 text-gold">Login</a>
     </div>
   </nav>
 
+  <!-- Hero Section for About Us -->
   <section class="relative pt-32 pb-20 md:pt-40 md:pb-28 bg-black">
     <div class="absolute inset-0 overflow-hidden">
       <img src="https://res.cloudinary.com/dbed0vjcr/image/upload/v1750790856/visax-mtCekBm6JMc-unsplash-med_qkbzph.jpg" 
@@ -181,6 +191,7 @@
     </div>
   </section>
 
+  <!-- About Us Section Content -->
   <section class="py-20 bg-white" id="about-content">
     <div class="container mx-auto px-4 md:px-6">
       <div class="text-center max-w-3xl mx-auto mb-16 animate-fade-in">
@@ -212,6 +223,7 @@
             Our partners and consulting personnel possess a unique blend of knowledge, skill, attitudes and experience in a broad range of disciplines that include but not limited to:
         </p>
         <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+            <!-- HR & Organizational Development -->
             <div class="bg-grey p-6 rounded-lg shadow-md text-center flex flex-col items-center justify-start">
                 <i class="fas fa-users-cog text-gold text-3xl mb-4"></i>
                 <h4 class="text-lg font-bold mb-3">HR & Organizational Development</h4>
@@ -225,6 +237,7 @@
                 </ul>
             </div>
 
+            <!-- Economic & Financial Consulting -->
             <div class="bg-grey p-6 rounded-lg shadow-md text-center flex flex-col items-center justify-start">
                 <i class="fas fa-chart-line text-gold text-3xl mb-4"></i>
                 <h4 class="text-lg font-bold mb-3">Economic & Financial Consulting</h4>
@@ -235,6 +248,7 @@
                 </ul>
             </div>
 
+            <!-- Research & Strategy -->
             <div class="bg-grey p-6 rounded-lg shadow-md text-center flex flex-col items-center justify-start">
                 <i class="fas fa-search text-gold text-3xl mb-4"></i>
                 <h4 class="text-lg font-bold mb-3">Research & Strategy</h4>
@@ -247,6 +261,7 @@
                 </ul>
             </div>
 
+            <!-- Training & Capacity Building -->
             <div class="bg-grey p-6 rounded-lg shadow-md text-center flex flex-col items-center justify-start">
                 <i class="fas fa-chalkboard-teacher text-gold text-3xl mb-4"></i>
                 <h4 class="text-lg font-bold mb-3">Training & Capacity Building</h4>
@@ -259,6 +274,7 @@
                 </ul>
             </div>
 
+            <!-- General Management & Cross-cutting Issues -->
             <div class="bg-grey p-6 rounded-lg shadow-md text-center flex flex-col items-center justify-start col-span-1 sm:col-span-2 lg:col-span-4">
                 <i class="fas fa-cogs text-gold text-3xl mb-4"></i>
                 <h4 class="text-lg font-bold mb-3">General Management & Cross-cutting Issues</h4>
@@ -274,6 +290,7 @@
     </div>
   </section>
 
+<!-- Leadership -->
 <section class="py-20 bg-white">
     <div class="container mx-auto px-4 md:px-6">
         <div class="text-center max-w-3xl mx-auto mb-16 animate-fade-in">
@@ -288,6 +305,7 @@
         </div>
         
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-8">
+            <!-- Christopher Mchenga -->
             <div class="card bg-grey p-6 rounded-lg shadow-md animate-fade-in flex flex-col items-center h-full text-center">
                 <img src="https://res.cloudinary.com/dbed0vjcr/image/upload/v1750326058/images_jpp7gg.jpg" alt="Christopher Mchenga" class="w-32 h-32 rounded-full object-cover border-4 border-gold mb-6">
                 <div class="leadership-card-content">
@@ -301,6 +319,7 @@
                 </div>
             </div>
             
+            <!-- Peter Mwanza -->
             <div class="card bg-grey p-6 rounded-lg shadow-md animate-fade-in delay-1 flex flex-col items-center h-full text-center">
                 <img src="https://res.cloudinary.com/dbed0vjcr/image/upload/v1750327890/default-placeholder-profile-icon_hxpj2a.webp" alt="Peter Mwanza" class="w-32 h-32 rounded-full object-cover border-4 border-gold mb-6">
                 <div class="leadership-card-content">
@@ -314,6 +333,7 @@
                 </div>
             </div>
             
+            <!-- Charles Mtonga -->
             <div class="card bg-grey p-6 rounded-lg shadow-md animate-fade-in delay-2 flex flex-col items-center h-full text-center">
                 <img src="https://res.cloudinary.com/dbed0vjcr/image/upload/v1750327890/default-placeholder-profile-icon_hxpj2a.webp" alt="Charles Mtonga" class="w-32 h-32 rounded-full object-cover border-4 border-gold mb-6">
                 <div class="leadership-card-content">
@@ -327,6 +347,7 @@
                 </div>
             </div>
             
+            <!-- Shepherd Musvibe -->
             <div class="card bg-grey p-6 rounded-lg shadow-md animate-fade-in delay-3 flex flex-col items-center h-full text-center">
                 <img src="https://res.cloudinary.com/dbed0vjcr/image/upload/v1750327890/default-placeholder-profile-icon_hxpj2a.webp" alt="Shepherd Musvibe" class="w-32 h-32 rounded-full object-cover border-4 border-gold mb-6">
                 <div class="leadership-card-content">
@@ -340,6 +361,7 @@
                 </div>
             </div>
             
+            <!-- Mathias Mbendela -->
             <div class="card bg-grey p-6 rounded-lg shadow-md animate-fade-in delay-4 flex flex-col items-center h-full text-center">
                 <img src="https://res.cloudinary.com/dbed0vjcr/image/upload/v1750327890/default-placeholder-profile-icon_hxpj2a.webp" alt="Mathias Mbendela" class="w-32 h-32 rounded-full object-cover border-4 border-gold mb-6">
                 <div class="leadership-card-content">
@@ -356,6 +378,7 @@
     </div>
 </section>
 
+    <!-- Clients Section -->
     <section class="py-20 bg-grey">
         <div class="container mx-auto px-4 md:px-6">
             <div class="text-center max-w-3xl mx-auto mb-16 animate-fade-in">
@@ -379,6 +402,7 @@
         </div>
     </section>
 
+  <!-- Footer -->
   <footer class="bg-black text-white pt-20 pb-10">
     <div class="container mx-auto px-4 md:px-6">
       <div class="grid grid-cols-1 md:grid-cols-4 gap-12">
@@ -405,26 +429,20 @@
         <div>
           <h3 class="text-lg font-sans font-bold mb-6 pb-2 border-b border-gold/30">Quick Links</h3>
           <ul class="space-y-3">
-            <li><a href="index.html" class="text-gray-400 hover:text-gold transition-colors duration-300 flex items-center">
-              <i class="fas fa-chevron-right text-xs text-gold mr-2"></i> Home
-            </a></li>
             <li><a href="about.html" class="text-gray-400 hover:text-gold transition-colors duration-300 flex items-center">
               <i class="fas fa-chevron-right text-xs text-gold mr-2"></i> About Us
-            </a></li>
-            <li><a href="#services" class="text-gray-400 hover:text-gold transition-colors duration-300 flex items-center">
-              <i class="fas fa-chevron-right text-xs text-gold mr-2"></i> Our Services
-            </a></li>
-            <li><a href="education.html" class="text-gray-400 hover:text-gold transition-colors duration-300 flex items-center">
-              <i class="fas fa-chevron-right text-xs text-gold mr-2"></i> Education
             </a></li>
             <li><a href="events.html" class="text-gray-400 hover:text-gold transition-colors duration-300 flex items-center">
               <i class="fas fa-chevron-right text-xs text-gold mr-2"></i> Events Management
             </a></li>
-            <li><a href="contact.html" class="text-gray-400 hover:text-gold transition-colors duration-300 flex items-center">
-              <i class="fas fa-chevron-right text-xs text-gold mr-2"></i> Contact Us
+            <li><a href="education.html" class="text-gray-400 hover:text-gold transition-colors duration-300 flex items-center">
+              <i class="fas fa-chevron-right text-xs text-gold mr-2"></i> Education
             </a></li>
             <li><a href="login.html" class="text-gray-400 hover:text-gold transition-colors duration-300 flex items-center">
-              <i class="fas fa-chevron-right text-xs text-gold mr-2"></i> Login
+              <i class="fas fa-chevron-right text-xs text-gold mr-2"></i> Employment Center
+            </a></li>
+            <li><a href="contact.html" class="text-gray-400 hover:text-gold transition-colors duration-300 flex items-center">
+              <i class="fas fa-chevron-right text-xs text-gold mr-2"></i> Contact Us
             </a></li>
           </ul>
         </div>
@@ -454,10 +472,12 @@
     </div>
   </footer>
 
+  <!-- Back to Top Button -->
   <button id="back-to-top" class="fixed bottom-8 right-8 w-12 h-12 bg-gold text-black rounded-full flex items-center justify-center opacity-0 invisible transition-all duration-300 z-50 hover:bg-black hover:text-gold border-2 border-gold">
       <i class="fas fa-arrow-up"></i>
   </button>
 
+  <!-- JavaScript -->
   <script>
     // Sticky Navbar
     window.addEventListener('scroll', function() {
