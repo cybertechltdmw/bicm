@@ -5,19 +5,14 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>BICM Group - Strategic Business Solutions</title>
 
-  <!-- SEO Meta -->
   <meta name="description" content="BICM Group offers comprehensive Human Resource, Management, Training, Event Management, ICT, and Business Consulting services in Malawi and internationally.">
 
-  <!-- Tailwind CSS -->
   <script src="https://cdn.tailwindcss.com"></script>
 
-  <!-- Google Fonts -->
-  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;900&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet">
 
-  <!-- Font Awesome -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
-  <!-- Tailwind Config -->
   <script>
     tailwind.config = {
       theme: {
@@ -29,8 +24,7 @@
             green: '#1E3A2B',
           },
           fontFamily: {
-            montserrat: ['Montserrat', 'sans-serif'],
-            inter: ['Inter', 'sans-serif'],
+            sans: ['DM Sans', 'sans-serif'],
           },
         }
       }
@@ -101,16 +95,13 @@
   </style>
 </head>
 
-<body class="font-inter bg-white text-black">
-  <!-- Navigation -->
+<body class="font-sans bg-white text-black">
   <nav class="fixed w-full glass-nav z-50 transition-all duration-300 py-4" id="navbar">
     <div class="container mx-auto px-4 md:px-6 flex justify-between items-center">
-      <!-- Logo -->
       <a href="index.html">
         <img src="https://res.cloudinary.com/dbed0vjcr/image/upload/v1750323428/bicm_f38w95-removebg-preview_vjoybh.png" alt="BICM Logo" class="h-14 transition-all duration-300" id="logo">
       </a>
       
-      <!-- Desktop Menu -->
       <ul class="hidden md:flex space-x-8 items-center">
         <li><a href="index.html" class="text-gold font-medium">Home</a></li>
         <li><a href="about.html" class="text-black hover:text-gold font-medium transition-colors duration-300">About Us</a></li>
@@ -134,7 +125,6 @@
       </button>
     </div>
 
-    <!-- Mobile Menu -->
     <div class="md:hidden hidden bg-white w-full py-4 px-4" id="mobile-menu">
       <a href="index.html" class="block py-2 text-gold">Home</a>
       <a href="about.html" class="block py-2 text-black hover:text-gold">About Us</a>
@@ -155,7 +145,6 @@
     </div>
   </nav>
 
-  <!-- Hero Section -->
   <section class="relative h-screen flex items-center justify-center bg-black">
     <div class="absolute inset-0 overflow-hidden">
       <img src="https://res.cloudinary.com/dbed0vjcr/image/upload/v1750325091/bicmservices1.jpeg-962f7365-1036-42e9-b7bd-b47c8f261341" 
@@ -164,9 +153,9 @@
            loading="eager">
     </div>
     
-    <div class="container mx-auto px-6 z-10">
-      <div class="max-w-2xl text-center">
-        <h1 class="text-4xl md:text-5xl lg:text-6xl font-montserrat font-bold text-white leading-tight mb-6">
+    <div class="container mx-auto px-6 z-10 flex justify-center text-center">
+      <div class="max-w-2xl">
+        <h1 class="text-4xl md:text-5xl lg:text-6xl font-sans font-bold text-white leading-tight mb-6">
           Strategic Business Solutions
         </h1>
         
@@ -185,7 +174,6 @@
       </div>
     </div>
     
-    <!-- Scroll Indicator -->
     <div class="absolute bottom-8 left-1/2 transform -translate-x-1/2 animate-bounce z-10">
       <a href="#about" class="text-white hover:text-gold transition-colors duration-300">
         <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -195,47 +183,38 @@
     </div>
   </section>
 
-  <!-- About Section -->
   <section class="py-20 bg-white" id="about">
     <div class="container mx-auto px-4 md:px-6">
       <div class="max-w-4xl mx-auto">
         <span class="text-gold font-semibold tracking-wider">ABOUT BICM</span>
-        <h2 class="text-3xl md:text-4xl font-montserrat font-bold mt-2 mb-6">
+        <h2 class="text-3xl md:text-4xl font-sans font-bold mt-2 mb-6">
           Empowering Organizations Through Strategic Solutions
         </h2>
         <div class="h-1 w-20 bg-gold mb-8"></div>
         
-        <div class="grid md:grid-cols-2 gap-12 items-center">
-          <div>
-            <p class="text-gray-700 mb-6">
-              Behaviour, Intelligence and Competency Managers (BICM) is a leading Malawian-owned company dedicated to empowering organizations and individuals.
-            </p>
-            <p class="text-gray-700 mb-8">
-              We specialize in Human Resource training, management services, business consulting, and organizational development, focusing on delivering impactful and sustainable solutions tailored to your unique needs.
-            </p>
-            <a href="about.html" class="inline-flex items-center text-gold font-semibold hover:text-black transition-colors duration-300">
-              Learn more about us
-              <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 ml-2" viewBox="0 0 20 20" fill="currentColor">
-                <path fill-rule="evenodd" d="M12.293 5.293a1 1 0 011.414 0l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-2.293-2.293a1 1 0 010-1.414z" clip-rule="evenodd" />
-              </svg>
-            </a>
-          </div>
-          <div class="bg-gray-100 rounded-lg overflow-hidden">
-            <img src="https://res.cloudinary.com/dbed0vjcr/image/upload/v1750325091/bicmservices1.jpeg-962f7365-1036-42e9-b7bd-b47c8f261341" 
-                 alt="BICM Team" 
-                 class="w-full h-full object-cover">
-          </div>
+        <div>
+          <p class="text-gray-700 mb-6">
+            Behaviour, Intelligence and Competency Managers (BICM) is a leading Malawian-owned company dedicated to empowering organizations and individuals.
+          </p>
+          <p class="text-gray-700 mb-8">
+            We specialize in Human Resource training, management services, business consulting, and organizational development, focusing on delivering impactful and sustainable solutions tailored to your unique needs.
+          </p>
+          <a href="about.html" class="inline-flex items-center text-gold font-semibold hover:text-black transition-colors duration-300">
+            Learn more about us
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 ml-2" viewBox="0 0 20 20" fill="currentColor">
+              <path fill-rule="evenodd" d="M12.293 5.293a1 1 0 011.414 0l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-2.293-2.293a1 1 0 010-1.414z" clip-rule="evenodd" />
+            </svg>
+          </a>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- Services Section -->
   <section class="py-20 bg-grey" id="services">
     <div class="container mx-auto px-4 md:px-6">
       <div class="text-center max-w-3xl mx-auto mb-16">
         <span class="text-gold font-semibold tracking-wider">OUR SERVICES</span>
-        <h2 class="text-3xl md:text-4xl font-montserrat font-bold mt-2 mb-4">
+        <h2 class="text-3xl md:text-4xl font-sans font-bold mt-2 mb-4">
           Comprehensive Business Solutions
         </h2>
         <p class="text-gray-600">
@@ -244,32 +223,12 @@
       </div>
       
       <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-        <!-- Service Card 1 -->
-        <div class="card bg-white rounded-lg overflow-hidden">
-          <div class="p-8">
-            <div class="text-gold text-3xl mb-4">
-              <i class="fas fa-briefcase"></i>
-            </div>
-            <h3 class="text-xl font-montserrat font-bold mb-3">Management Consulting</h3>
-            <p class="text-gray-600 mb-6">
-              Expert guidance in Human Resources, Administration, Finance, ICT, Marketing, Public Policy, and more.
-            </p>
-            <a href="about.html#about" class="text-gold font-medium hover:text-black transition-colors duration-300 inline-flex items-center">
-              Learn more
-              <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 ml-1" viewBox="0 0 20 20" fill="currentColor">
-                <path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd" />
-              </svg>
-            </a>
-          </div>
-        </div>
-        
-        <!-- Service Card 2 -->
         <div class="card bg-white rounded-lg overflow-hidden">
           <div class="p-8">
             <div class="text-gold text-3xl mb-4">
               <i class="fas fa-users"></i>
             </div>
-            <h3 class="text-xl font-montserrat font-bold mb-3">Recruitment & Staffing</h3>
+            <h3 class="text-xl font-sans font-bold mb-3">Recruitment & Staffing</h3>
             <p class="text-gray-600 mb-6">
               Streamlined recruitment, executive placements, CV development, and vacancy management.
             </p>
@@ -282,13 +241,12 @@
           </div>
         </div>
         
-        <!-- Service Card 3 -->
         <div class="card bg-white rounded-lg overflow-hidden">
           <div class="p-8">
             <div class="text-gold text-3xl mb-4">
               <i class="fas fa-graduation-cap"></i>
             </div>
-            <h3 class="text-xl font-montserrat font-bold mb-3">Training & Education</h3>
+            <h3 class="text-xl font-sans font-bold mb-3">Training & Education</h3>
             <p class="text-gray-600 mb-6">
               From short courses in IT skills to comprehensive management training and support for private schools.
             </p>
@@ -301,13 +259,12 @@
           </div>
         </div>
         
-        <!-- Service Card 4 -->
         <div class="card bg-white rounded-lg overflow-hidden">
           <div class="p-8">
             <div class="text-gold text-3xl mb-4">
               <i class="fas fa-calendar-alt"></i>
             </div>
-            <h3 class="text-xl font-montserrat font-bold mb-3">Event Management</h3>
+            <h3 class="text-xl font-sans font-bold mb-3">Event Management</h3>
             <p class="text-gray-600 mb-6">
               Full-service event planning, equipment hire, and coordination for seamless workshops, meetings, and special occasions.
             </p>
@@ -320,18 +277,17 @@
           </div>
         </div>
         
-        <!-- Service Card 5 -->
         <div class="card bg-white rounded-lg overflow-hidden">
           <div class="p-8">
             <div class="text-gold text-3xl mb-4">
-              <i class="fas fa-laptop-code"></i>
+              <i class="fas fa-briefcase"></i>
             </div>
-            <h3 class="text-xl font-montserrat font-bold mb-3">ICT Solutions</h3>
+            <h3 class="text-xl font-sans font-bold mb-3">Management Consulting</h3>
             <p class="text-gray-600 mb-6">
-              Graphics design, hardware/software installation, system upgrades, networking, website, and software development.
+              Expert guidance in Human Resources, Administration, Finance, ICT, Marketing, Public Policy, and more.
             </p>
-            <a href="education.html#ICT" class="text-gold font-medium hover:text-black transition-colors duration-300 inline-flex items-center">
-              Learn More
+            <a href="contact.html" class="text-gold font-medium hover:text-black transition-colors duration-300 inline-flex items-center">
+              Contact Us
               <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 ml-1" viewBox="0 0 20 20" fill="currentColor">
                 <path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd" />
               </svg>
@@ -339,18 +295,35 @@
           </div>
         </div>
         
-        <!-- Service Card 6 -->
+        <div class="card bg-white rounded-lg overflow-hidden">
+          <div class="p-8">
+            <div class="text-gold text-3xl mb-4">
+              <i class="fas fa-laptop-code"></i>
+            </div>
+            <h3 class="text-xl font-sans font-bold mb-3">ICT Solutions</h3>
+            <p class="text-gray-600 mb-6">
+              Graphics design, hardware/software installation, system upgrades, networking, website, and software development.
+            </p>
+            <a href="contact.html" class="text-gold font-medium hover:text-black transition-colors duration-300 inline-flex items-center">
+              Contact Us
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 ml-1" viewBox="0 0 20 20" fill="currentColor">
+                <path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd" />
+              </svg>
+            </a>
+          </div>
+        </div>
+        
         <div class="card bg-white rounded-lg overflow-hidden">
           <div class="p-8">
             <div class="text-gold text-3xl mb-4">
               <i class="fas fa-lightbulb"></i>
             </div>
-            <h3 class="text-xl font-montserrat font-bold mb-3">Advertising & Supplies</h3>
+            <h3 class="text-xl font-sans font-bold mb-3">Advertising & Supplies</h3>
             <p class="text-gray-600 mb-6">
               Billboards, digital marketing, branding, logo design, printing services, and comprehensive stationary supplies.
             </p>
             <a href="contact.html" class="text-gold font-medium hover:text-black transition-colors duration-300 inline-flex items-center">
-              Get a Quote
+              Contact Us
               <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 ml-1" viewBox="0 0 20 20" fill="currentColor">
                 <path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd" />
               </svg>
@@ -361,37 +334,12 @@
     </div>
   </section>
 
-  <!-- CTA Section -->
-  <section class="py-20 bg-green text-white">
-    <div class="container mx-auto px-4 md:px-6 text-center">
-      <div class="max-w-2xl mx-auto">
-        <h2 class="text-3xl md:text-4xl font-montserrat font-bold mb-6">
-          Ready to transform your business?
-        </h2>
-        <p class="text-xl text-gray-300 mb-10">
-          Partner with BICM Group for innovative solutions that drive growth and efficiency.
-        </p>
-        <div class="flex flex-col sm:flex-row gap-4 justify-center">
-          <a href="contact.html" class="btn btn-primary px-8 py-4 rounded">
-            Get Started
-          </a>
-          <a href="tel:+265888853888" class="btn btn-outline px-8 py-4 rounded">
-            Call Now
-          </a>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Footer -->
   <footer class="bg-black text-white pt-20 pb-10">
     <div class="container mx-auto px-4 md:px-6">
       <div class="grid grid-cols-1 md:grid-cols-4 gap-12">
-        <!-- Logo and About -->
         <div class="md:col-span-2">
           <div class="flex items-center mb-6">
-            <img src="https://res.cloudinary.com/dbed0vjcr/image/upload/v1750323428/bicm_f38w95-removebg-preview_vjoybh.png" alt="BICM Logo" class="h-16 mr-4">
-            <span class="text-2xl font-montserrat font-bold">BICM Group</span>
+            <span class="text-2xl font-sans font-bold">BICM Group</span>
           </div>
           <p class="text-gray-400 mb-6">
             Delivering comprehensive business solutions through our specialized divisions, serving clients across Malawi and beyond.
@@ -409,9 +357,8 @@
           </div>
         </div>
         
-        <!-- Quick Links -->
         <div>
-          <h3 class="text-lg font-montserrat font-bold mb-6 pb-2 border-b border-gold/30">Quick Links</h3>
+          <h3 class="text-lg font-sans font-bold mb-6 pb-2 border-b border-gold/30">Quick Links</h3>
           <ul class="space-y-3">
             <li><a href="index.html" class="text-gray-400 hover:text-gold transition-colors duration-300 flex items-center">
               <i class="fas fa-chevron-right text-xs text-gold mr-2"></i> Home
@@ -437,9 +384,8 @@
           </ul>
         </div>
         
-        <!-- Contact Info -->
         <div>
-          <h3 class="text-lg font-montserrat font-bold mb-6 pb-2 border-b border-gold/30">Contact Us</h3>
+          <h3 class="text-lg font-sans font-bold mb-6 pb-2 border-b border-gold/30">Contact Us</h3>
           <div class="space-y-4 text-gray-400">
             <div class="flex items-start">
               <i class="fas fa-map-marker-alt text-gold mt-1 mr-3"></i>
@@ -463,12 +409,10 @@
     </div>
   </footer>
 
-  <!-- Back to Top Button -->
   <button id="back-to-top" class="fixed bottom-8 right-8 w-12 h-12 bg-gold text-black rounded-full flex items-center justify-center opacity-0 invisible transition-all duration-300 z-50 hover:bg-black hover:text-gold border-2 border-gold">
       <i class="fas fa-arrow-up"></i>
   </button>
 
-  <!-- JavaScript -->
   <script>
     // Sticky Navbar
     window.addEventListener('scroll', function() {
