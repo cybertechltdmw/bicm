@@ -188,9 +188,21 @@
             background-color: #D4AF37;
             color: black;
         }
+
+        /* Testimonial card sizing for single display */
+        .testimonial-item {
+            display: none; /* Hide all by default, JS will show one */
+            width: 100%;
+            max-width: 800px; /* Adjust as needed for centering */
+            margin: 0 auto; /* Center the card */
+            box-sizing: border-box; /* Include padding/border in width */
+        }
+        .testimonial-item.active {
+            display: block;
+        }
     </style>
 </head>
-<body class="font-sans bg-white text-black"> <!-- Changed font-inter to font-sans -->
+<body class="font-sans bg-white text-black">
     <!-- Navigation -->
     <nav class="fixed w-full glass-nav z-50 transition-all duration-300 py-4" id="navbar">
         <div class="container mx-auto px-4 md:px-6 flex justify-between items-center">
@@ -301,19 +313,12 @@
                 </div>
                 <div class="md:w-1/2 animate-fade-in delay-1">
                     <div class="relative group overflow-hidden rounded-lg shadow-xl h-96">
-                        <img src="https://res.cloudinary.com/dbed0vjcr/image/upload/v1750326824/johannes-schenk-ncQLjWIoLPs-unsplash_t81cvp.jpg" alt="BICM Training Session" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105">
+                        <img src="https://res.cloudinary.com/dbed0vjcr/image/upload/v1750446297/rut-miit-YIdkWynJdSk-unsplash_xnztc3.jpg" alt="BICM Training Session" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105">
                         <div class="absolute inset-0 bg-black/20 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
                             <button onclick="openVideoModal()" class="bg-gold text-black p-4 rounded-full hover:bg-black hover:text-gold transition-colors duration-300">
                                 <i class="fas fa-play text-xl"></i>
                             </button>
                         </div>
-                    </div>
-                    <div class="mt-8 bg-gold text-black p-6 rounded-lg">
-                        <h3 class="text-xl font-sans font-bold mb-4">BICM School of Management</h3>
-                        <p class="mb-4">Our flagship institution offering comprehensive management development programs designed to transform professionals into effective leaders.</p>
-                        <button onclick="openModal('BICM School of Management')" class="btn btn-primary px-6 py-2 rounded">
-                            Learn More
-                        </button>
                     </div>
                 </div>
             </div>
@@ -365,14 +370,6 @@
                             <i class="fas fa-check text-gold mr-2"></i>
                             Effective Supervisory Skills
                         </li>
-                        <li class="flex items-center">
-                            <i class="fas fa-check text-gold mr-2"></i>
-                            Team Building
-                        </li>
-                        <li class="flex items-center">
-                            <i class="fas fa-check text-gold mr-2"></i>
-                            Training of Trainers
-                        </li>
                     </ul>
                     <div class="mt-6 flex justify-between items-center">
                         <button onclick="openCourseModal('Leadership Courses')" class="text-gold font-medium hover:text-black transition-colors duration-300 flex items-center">
@@ -397,14 +394,6 @@
                         <li class="flex items-center">
                             <i class="fas fa-check text-gold mr-2"></i>
                             Business Process Re-engineering
-                        </li>
-                        <li class="flex items-center">
-                            <i class="fas fa-check text-gold mr-2"></i>
-                            Developing Business Plans
-                        </li>
-                        <li class="flex items-center">
-                            <i class="fas fa-check text-gold mr-2"></i>
-                            Business Strategic Development
                         </li>
                     </ul>
                     <div class="mt-6 flex justify-between items-center">
@@ -431,14 +420,6 @@
                             <i class="fas fa-check text-gold mr-2"></i>
                             Job Evaluation and Grading
                         </li>
-                        <li class="flex items-center">
-                            <i class="fas fa-check text-gold mr-2"></i>
-                            Training Needs Analysis
-                        </li>
-                        <li class="flex items-center">
-                            <i class="fas fa-check text-gold mr-2"></i>
-                            Recruitment and Selection
-                        </li>
                     </ul>
                     <div class="mt-6 flex justify-between items-center">
                         <button onclick="openCourseModal('HR Consulting')" class="text-gold font-medium hover:text-black transition-colors duration-300 flex items-center">
@@ -463,14 +444,6 @@
                         <li class="flex items-center">
                             <i class="fas fa-check text-gold mr-2"></i>
                             Labour Laws
-                        </li>
-                        <li class="flex items-center">
-                            <i class="fas fa-check text-gold mr-2"></i>
-                            Disciplinary Procedures
-                        </li>
-                        <li class="flex items-center">
-                            <i class="fas fa-check text-gold mr-2"></i>
-                            Collective Bargaining
                         </li>
                     </ul>
                     <div class="mt-6 flex justify-between items-center">
@@ -497,14 +470,6 @@
                             <i class="fas fa-check text-gold mr-2"></i>
                             Customer Service
                         </li>
-                        <li class="flex items-center">
-                            <i class="fas fa-check text-gold mr-2"></i>
-                            Report/Appraisal Writing
-                        </li>
-                        <li class="flex items-center">
-                            <i class="fas fa-check text-gold mr-2"></i>
-                            Time Management
-                        </li>
                     </ul>
                     <div class="mt-6 flex justify-between items-center">
                         <button onclick="openCourseModal('Life Skills')" class="text-gold font-medium hover:text-black transition-colors duration-300 flex items-center">
@@ -529,14 +494,6 @@
                         <li class="flex items-center">
                             <i class="fas fa-check text-gold mr-2"></i>
                             Project Development
-                        </li>
-                        <li class="flex items-center">
-                            <i class="fas fa-check text-gold mr-2"></i>
-                            HIV/AIDS Programming
-                        </li>
-                        <li class="flex items-center">
-                            <i class="fas fa-check text-gold mr-2"></i>
-                            Water Sanitation
                         </li>
                     </ul>
                     <div class="mt-6 flex justify-between items-center">
@@ -589,8 +546,8 @@
             </h2>
             
             <div class="relative">
-                <div class="grid grid-cols-1 md:grid-cols-3 gap-8" id="testimonialContainer">
-                    <div class="bg-white p-8 rounded-lg shadow-md animate-fade-in">
+                <div class="flex justify-center" id="testimonialContainer">
+                    <div class="bg-white p-8 rounded-lg shadow-md animate-fade-in testimonial-item">
                         <div class="text-gold text-2xl mb-4">
                             <i class="fas fa-quote-left"></i>
                         </div>
@@ -604,7 +561,7 @@
                         </div>
                     </div>
                     
-                    <div class="bg-white p-8 rounded-lg shadow-md animate-fade-in delay-1">
+                    <div class="bg-white p-8 rounded-lg shadow-md animate-fade-in delay-1 testimonial-item">
                         <div class="text-gold text-2xl mb-4">
                             <i class="fas fa-quote-left"></i>
                         </div>
@@ -618,7 +575,7 @@
                         </div>
                     </div>
                     
-                    <div class="bg-white p-8 rounded-lg shadow-md animate-fade-in delay-2">
+                    <div class="bg-white p-8 rounded-lg shadow-md animate-fade-in delay-2 testimonial-item">
                         <div class="text-gold text-2xl mb-4">
                             <i class="fas fa-quote-left"></i>
                         </div>
@@ -641,115 +598,6 @@
             </div>
         </div>
     </section>
-
-    <!-- Application CTA -->
-    <section class="py-20 bg-white">
-        <div class="container mx-auto px-4 md:px-6 text-center">
-            <h2 class="text-3xl md:text-4xl font-sans font-bold mb-6">Ready to Transform Your Career or Organization?</h2>
-            <p class="text-xl mb-10 max-w-2xl mx-auto text-gray-700">Join our next training session or request a customized program for your team.</p>
-            <div class="flex flex-col sm:flex-row justify-center gap-4">
-                <button onclick="openModal()" class="btn btn-primary px-8 py-3 rounded">
-                    Apply Now
-                </button>
-                <a href="contact.html" class="btn btn-outline text-black px-8 py-3 rounded">
-                    Contact Us
-                </a>
-            </div>
-        </div>
-    </section>
-
-    <!-- Compact Application Modal -->
-    <div id="applicationModal" class="modal fixed inset-0 bg-black/50 z-50 flex items-center justify-center opacity-0 invisible transition-all duration-300 p-4">
-        <div class="modal-content bg-white rounded-lg w-full max-w-md p-6 relative">
-            <button onclick="closeModal()" class="absolute top-4 right-4 text-gray-500 hover:text-black">
-                <i class="fas fa-times text-xl"></i>
-            </button>
-            
-            <h2 class="text-2xl font-sans font-bold mb-6 text-center" id="modalTitle">Training Application</h2>
-            
-            <form id="applicationForm" class="space-y-4">
-                <div>
-                    <label for="applicantName" class="block text-gray-700 mb-2">Full Name*</label>
-                    <input type="text" id="applicantName" name="name" required 
-                        class="w-full px-4 py-2 border border-gray-300 rounded focus:outline-none focus:border-gold">
-                </div>
-                
-                <div>
-                    <label for="applicantEmail" class="block text-gray-700 mb-2">Email Address*</label>
-                    <input type="email" id="applicantEmail" name="email" required
-                        class="w-full px-4 py-2 border border-gray-300 rounded focus:outline-none focus:border-gold">
-                </div>
-                
-                <div>
-                    <label for="applicantPhone" class="block text-gray-700 mb-2">Phone Number*</label>
-                    <input type="tel" id="applicantPhone" name="phone" required
-                        class="w-full px-4 py-2 border border-gray-300 rounded focus:outline-none focus:border-gold">
-                </div>
-                
-                <div>
-                    <label for="courseInterest" class="block text-gray-700 mb-2">Course/Program Interest*</label>
-                    <select id="courseInterest" name="courseInterest" required
-                        class="w-full px-4 py-2 border border-gray-300 rounded focus:outline-none focus:border-gold">
-                        <option value="">Select course</option>
-                        <option value="Leadership Courses">Leadership Courses</option>
-                        <option value="Business Skills">Business Skills</option>
-                        <option value="HR Consulting">HR Consulting</option>
-                        <option value="Industrial Relations">Industrial Relations</option>
-                        <option value="Life Skills">Life Skills</option>
-                        <option value="Public Health">Public Health</option>
-                        <option value="Corporate Training">Corporate Training</option>
-                        <option value="BICM School of Management">BICM School of Management</option>
-                    </select>
-                </div>
-                
-                <button type="submit" 
-                    class="btn btn-primary w-full px-6 py-3 rounded">
-                    Submit Application
-                </button>
-                
-                <p class="text-sm text-gray-500 mt-4">We'll contact you within 48 hours to confirm your application and discuss next steps.</p>
-            </form>
-        </div>
-    </div>
-
-    <!-- Video Modal -->
-    <div id="videoModal" class="modal fixed inset-0 bg-black/50 z-50 flex items-center justify-center opacity-0 invisible transition-all duration-300 p-4">
-        <div class="modal-content bg-white rounded-lg w-full max-w-3xl p-6 relative">
-            <button onclick="closeVideoModal()" class="absolute top-4 right-4 text-gray-500 hover:text-black z-10">
-                <i class="fas fa-times text-xl"></i>
-            </button>
-            
-            <div class="aspect-w-16 aspect-h-9 w-full">
-                <iframe id="videoFrame" class="w-full h-96 rounded-lg" src="https://www.youtube.com/embed/example" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-            </div>
-        </div>
-    </div>
-
-    <!-- Course Details Modal -->
-    <div id="courseModal" class="modal fixed inset-0 bg-black/50 z-50 flex items-center justify-center opacity-0 invisible transition-all duration-300 p-4">
-        <div class="modal-content bg-white rounded-lg w-full max-w-2xl p-6 relative">
-            <button onclick="closeCourseModal()" class="absolute top-4 right-4 text-gray-500 hover:text-black">
-                <i class="fas fa-times text-xl"></i>
-            </button>
-            
-            <h2 class="text-2xl font-sans font-bold mb-6" id="courseModalTitle">Course Details</h2>
-            
-            <div class="space-y-6" id="courseModalContent">
-                <!-- Content will be dynamically inserted here -->
-            </div>
-            
-            <button onclick="openModal()" class="btn btn-primary mt-6 px-6 py-2 rounded">
-                Apply Now
-            </button>
-        </div>
-    </div>
-
-    <!-- Custom Message Box for alerts - Consistent with events.html -->
-    <div id="messageBoxOverlay" class="message-box-overlay"></div>
-    <div id="messageBox" class="message-box">
-        <p id="messageBoxText" class="text-lg text-gray-800 mb-4"></p>
-        <button onclick="closeMessageBox()" class="btn btn-primary px-4 py-2 rounded">OK</button>
-    </div>
 
     <!-- Footer -->
     <footer class="bg-black text-white pt-20 pb-10">
@@ -894,8 +742,8 @@
         // Video Modal functions
         function openVideoModal() {
             const modal = document.getElementById('videoModal');
-            // Replace with your actual video ID or a generic placeholder if no video is available
-            document.getElementById('videoFrame').src = "https://www.youtube.com/embed/dQw4w9WgXcQ?autoplay=1"; // Example YouTube video
+            // Using a generic YouTube video for demonstration. Replace with your actual video.
+            document.getElementById('videoFrame').src = "https://www.youtube.com/embed/dQw4w9WgXcQ?autoplay=1";
             modal.classList.add('active');
             document.body.style.overflow = 'hidden';
         }
@@ -922,13 +770,13 @@
             if (courses[courseCategory]) {
                 courses[courseCategory].forEach(course => {
                     const courseDiv = document.createElement('div');
-                    courseDiv.className = 'border-b border-gray-200 pb-4'; // Added border-b for separation
+                    courseDiv.className = 'border-b border-gray-200 pb-4'; 
                     
                     const titleDiv = document.createElement('div');
                     titleDiv.className = 'flex justify-between items-start mb-2';
                     
                     const nameSpan = document.createElement('h3');
-                    nameSpan.className = 'font-sans font-bold text-lg'; // Changed to font-sans
+                    nameSpan.className = 'font-sans font-bold text-lg'; 
                     nameSpan.textContent = course.name;
                     
                     const durationSpan = document.createElement('span');
@@ -1019,9 +867,9 @@
                 }
                 
                 // Also check content of individual courses within the category for broader search
-                const category = card.getAttribute('data-category');
-                if (courses[category]) {
-                    if (courses[category].some(course => course.name.toLowerCase().includes(searchTerm) || course.description.toLowerCase().includes(searchTerm))) {
+                const categoryElement = card.getAttribute('data-category');
+                if (courses[categoryElement]) {
+                    if (courses[categoryElement].some(course => course.name.toLowerCase().includes(searchTerm) || course.description.toLowerCase().includes(searchTerm))) {
                         displayCard = true;
                     }
                 }
@@ -1063,17 +911,17 @@
         
         // Testimonial carousel
         let currentTestimonial = 0;
-        const testimonials = document.querySelectorAll('#testimonialContainer > div');
+        const testimonials = document.querySelectorAll('.testimonial-item'); // Select by the new class
         const dots = document.querySelectorAll('.testimonial-dot');
         
         function showTestimonial(index) {
             testimonials.forEach((testimonial, i) => {
                 if (i === index) {
-                    testimonial.style.display = 'block';
+                    testimonial.classList.add('active');
                     dots[i].classList.add('bg-gold');
                     dots[i].classList.remove('bg-gray-300');
                 } else {
-                    testimonial.style.display = 'none';
+                    testimonial.classList.remove('active');
                     dots[i].classList.remove('bg-gold');
                     dots[i].classList.add('bg-gray-300');
                 }
@@ -1122,26 +970,33 @@
             });
         }
         
-        // Search on Enter key press
-        document.getElementById('courseSearch').addEventListener('keypress', function(e) {
-            if (e.key === 'Enter') {
-                searchCourses();
-            }
-        });
-        
         // Initialize on DOM load
         document.addEventListener('DOMContentLoaded', function() {
+            // Search on Enter key press - MOVED INSIDE DOMContentLoaded
+            const courseSearchInput = document.getElementById('courseSearch');
+            if (courseSearchInput) {
+                courseSearchInput.addEventListener('keypress', function(e) {
+                    if (e.key === 'Enter') {
+                        searchCourses();
+                    }
+                });
+            }
+
             // Set first testimonial as active
             if (testimonials.length > 0) {
               showTestimonial(0);
             }
             
-            // Make course category buttons clickable to open modal
-            document.querySelectorAll('#coursesContainer .course-card button').forEach(button => {
-                const category = button.parentElement.parentElement.getAttribute('data-category');
-                if (category) {
-                    // Ensure the button explicitly calls openCourseModal for category cards
-                    button.onclick = function() { openCourseModal(button.closest('.course-card').querySelector('h3').textContent) };
+            // Adjust the event listener for course category buttons to open Course Modal
+            document.querySelectorAll('.course-card button').forEach(button => {
+                // Check if the button's parent element (the card) has a data-category attribute
+                const card = button.closest('.course-card');
+                if (card) {
+                    const categoryText = card.querySelector('h3').textContent; // Get the category text from the h3
+                    button.onclick = function(event) {
+                        event.stopPropagation(); // Prevent card hover effect from interfering if button is clicked
+                        openCourseModal(categoryText);
+                    };
                 }
             });
         });
