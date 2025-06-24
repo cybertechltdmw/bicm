@@ -5,19 +5,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>BICM Group - Education & Training</title>
 
-    <!-- SEO Meta -->
     <meta name="description" content="BICM Group offers comprehensive Human Resource, Management, Training, Event Management, ICT, and Business Consulting services in Malawi and internationally.">
 
-    <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
 
-    <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet">
 
-    <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
-    <!-- Tailwind Config -->
     <script>
         tailwind.config = {
             theme: {
@@ -91,13 +86,32 @@
         
         /* Modal styles */
         .modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.7);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 1000;
+            opacity: 0;
+            visibility: hidden;
             transition: opacity 0.3s ease, visibility 0.3s ease;
         }
         .modal-content {
+            background-color: #fff;
+            padding: 2.5rem;
+            border-radius: 0.75rem;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+            position: relative;
             transform: translateY(-20px);
             transition: transform 0.3s ease;
+            max-width: 90%;
             max-height: 90vh; /* Ensure modal content is scrollable if tall */
             overflow-y: auto;
+            width: 500px; /* Default width for application/course modal */
         }
         .modal.active {
             opacity: 1;
@@ -106,8 +120,46 @@
         .modal.active .modal-content {
             transform: translateY(0);
         }
+        .modal-close-button {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: #333;
+        }
+        .modal-close-button:hover {
+            color: #D4AF37;
+        }
+
+        /* Video Modal specific adjustments */
+        #videoModal .modal-content {
+            width: 90%; /* Wider for video */
+            max-width: 800px;
+            padding: 0; /* Remove padding for video */
+            overflow: hidden;
+        }
+        #videoFrame {
+            width: 100%;
+            height: 450px; /* Fixed height for video */
+            display: block;
+        }
 
         /* Message Box styles - Consistent with events.html */
+        .message-box-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 999;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.3s ease, visibility 0.3s ease;
+        }
         .message-box {
             position: fixed;
             top: 50%;
@@ -129,18 +181,6 @@
         .message-box.active {
             opacity: 1;
             visibility: visible;
-        }
-        .message-box-overlay {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.5);
-            z-index: 999;
-            opacity: 0;
-            visibility: hidden;
-            transition: opacity 0.3s ease, visibility 0.3s ease;
         }
         .message-box-overlay.active {
             opacity: 1;
@@ -203,15 +243,12 @@
     </style>
 </head>
 <body class="font-sans bg-white text-black">
-    <!-- Navigation -->
     <nav class="fixed w-full glass-nav z-50 transition-all duration-300 py-4" id="navbar">
         <div class="container mx-auto px-4 md:px-6 flex justify-between items-center">
-            <!-- Logo -->
             <a href="index.html">
                 <img src="https://res.cloudinary.com/dbed0vjcr/image/upload/v1750323428/bicm_f38w95-removebg-preview_vjoybh.png" alt="BICM Logo" class="h-14 transition-all duration-300" id="logo">
             </a>
 
-            <!-- Desktop Menu -->
             <ul class="hidden md:flex space-x-8 items-center">
                 <li><a href="index.html" class="text-black hover:text-gold font-medium transition-colors duration-300">Home</a></li>
                 <li><a href="about.html" class="text-black hover:text-gold font-medium transition-colors duration-300">About Us</a></li>
@@ -231,13 +268,11 @@
                 <li><a href="login.html" class="btn btn-primary px-6 py-2 rounded">Login</a></li>
             </ul>
 
-            <!-- Mobile Menu Button -->
             <button class="md:hidden text-black text-xl focus:outline-none" id="mobile-menu-button">
                 <i class="fas fa-bars"></i>
             </button>
         </div>
 
-        <!-- Mobile Menu -->
         <div class="md:hidden hidden bg-white w-full py-4 px-4" id="mobile-menu">
             <a href="index.html" class="block py-2 text-black hover:text-gold">Home</a>
             <a href="about.html" class="block py-2 text-black hover:text-gold">About Us</a>
@@ -258,7 +293,6 @@
         </div>
     </nav>
 
-    <!-- Hero Section -->
     <section class="pt-32 pb-20 md:pt-40 md:pb-28 hero-background relative">
         <div class="container mx-auto px-4 md:px-6 text-center relative z-10">
             <h1 class="text-4xl md:text-5xl lg:text-6xl font-sans font-bold mb-6 animate-fade-in text-white">BICM School of Management</h1>
@@ -274,7 +308,6 @@
         </div>
     </section>
 
-    <!-- About BICM Education -->
     <section class="py-20 bg-white">
         <div class="container mx-auto px-4 md:px-6">
             <div class="flex flex-col md:flex-row items-center gap-12">
@@ -325,7 +358,6 @@
         </div>
     </section>
 
-    <!-- Course Categories -->
     <section class="py-20 bg-grey" id="courses">
         <div class="container mx-auto px-4 md:px-6">
             <h2 class="text-3xl md:text-4xl font-sans font-bold text-center mb-12 relative pb-4">
@@ -333,9 +365,8 @@
                 <span class="absolute bottom-0 left-1/2 transform -translate-x-1/2 w-20 h-1 bg-gold"></span>
             </h2>
             
-            <!-- Search and Filter Section -->
             <div class="mb-12 animate-fade-in">
-                <div class="search-container">
+                <div class="search-container flex items-center">
                     <input type="text" id="courseSearch" placeholder="Search courses..." class="w-full px-6 py-3 rounded-full border border-gray-300 focus:outline-none focus:ring-2 focus:ring-gold focus:border-transparent">
                     <button onclick="searchCourses()" class="bg-gold text-black px-4 py-2 rounded-full font-medium hover:bg-black hover:text-gold transition-colors duration-300">
                         <i class="fas fa-search"></i>
@@ -354,7 +385,6 @@
             </div>
             
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8" id="coursesContainer">
-                <!-- Leadership Courses -->
                 <div class="bg-white p-8 rounded-lg shadow-md course-card animate-fade-in" data-category="leadership">
                     <div class="text-gold text-4xl mb-6">
                         <i class="fas fa-chess-king"></i>
@@ -372,14 +402,13 @@
                         </li>
                     </ul>
                     <div class="mt-6 flex justify-between items-center">
-                        <button onclick="openCourseModal('Leadership Courses')" class="text-gold font-medium hover:text-black transition-colors duration-300 flex items-center">
+                        <button class="text-gold font-medium hover:text-black transition-colors duration-300 flex items-center">
                             View All <i class="fas fa-arrow-right ml-2"></i>
                         </button>
                         <span class="bg-gold/10 text-gold px-3 py-1 rounded-full text-xs">4 Courses</span>
                     </div>
                 </div>
                 
-                <!-- Business Skills -->
                 <div class="bg-white p-8 rounded-lg shadow-md course-card animate-fade-in delay-1" data-category="business">
                     <div class="text-gold text-4xl mb-6">
                         <i class="fas fa-briefcase"></i>
@@ -397,14 +426,13 @@
                         </li>
                     </ul>
                     <div class="mt-6 flex justify-between items-center">
-                        <button onclick="openCourseModal('Business Skills')" class="text-gold font-medium hover:text-black transition-colors duration-300 flex items-center">
+                        <button class="text-gold font-medium hover:text-black transition-colors duration-300 flex items-center">
                             View All <i class="fas fa-arrow-right ml-2"></i>
                         </button>
                         <span class="bg-gold/10 text-gold px-3 py-1 rounded-full text-xs">5 Courses</span>
                     </div>
                 </div>
                 
-                <!-- HR Consulting -->
                 <div class="bg-white p-8 rounded-lg shadow-md course-card animate-fade-in delay-2" data-category="hr">
                     <div class="text-gold text-4xl mb-6">
                         <i class="fas fa-users"></i>
@@ -422,14 +450,13 @@
                         </li>
                     </ul>
                     <div class="mt-6 flex justify-between items-center">
-                        <button onclick="openCourseModal('HR Consulting')" class="text-gold font-medium hover:text-black transition-colors duration-300 flex items-center">
+                        <button class="text-gold font-medium hover:text-black transition-colors duration-300 flex items-center">
                             View All <i class="fas fa-arrow-right ml-2"></i>
                         </button>
                         <span class="bg-gold/10 text-gold px-3 py-1 rounded-full text-xs">6 Courses</span>
                     </div>
                 </div>
                 
-                <!-- Industrial Relations -->
                 <div class="bg-white p-8 rounded-lg shadow-md course-card animate-fade-in" data-category="industrial">
                     <div class="text-gold text-4xl mb-6">
                         <i class="fas fa-handshake"></i>
@@ -447,14 +474,13 @@
                         </li>
                     </ul>
                     <div class="mt-6 flex justify-between items-center">
-                        <button onclick="openCourseModal('Industrial Relations')" class="text-gold font-medium hover:text-black transition-colors duration-300 flex items-center">
+                        <button class="text-gold font-medium hover:text-black transition-colors duration-300 flex items-center">
                             View All <i class="fas fa-arrow-right ml-2"></i>
                         </button>
                         <span class="bg-gold/10 text-gold px-3 py-1 rounded-full text-xs">4 Courses</span>
                     </div>
                 </div>
                 
-                <!-- Life Skills -->
                 <div class="bg-white p-8 rounded-lg shadow-md course-card animate-fade-in delay-1" data-category="life">
                     <div class="text-gold text-4xl mb-6">
                         <i class="fas fa-brain"></i>
@@ -472,14 +498,13 @@
                         </li>
                     </ul>
                     <div class="mt-6 flex justify-between items-center">
-                        <button onclick="openCourseModal('Life Skills')" class="text-gold font-medium hover:text-black transition-colors duration-300 flex items-center">
+                        <button class="text-gold font-medium hover:text-black transition-colors duration-300 flex items-center">
                             View All <i class="fas fa-arrow-right ml-2"></i>
                         </button>
                         <span class="bg-gold/10 text-gold px-3 py-1 rounded-full text-xs">5 Courses</span>
                     </div>
                 </div>
                 
-                <!-- Public Health -->
                 <div class="bg-white p-8 rounded-lg shadow-md course-card animate-fade-in delay-2" data-category="health">
                     <div class="text-gold text-4xl mb-6">
                         <i class="fas fa-medkit"></i>
@@ -497,7 +522,7 @@
                         </li>
                     </ul>
                     <div class="mt-6 flex justify-between items-center">
-                        <button onclick="openCourseModal('Public Health')" class="text-gold font-medium hover:text-black transition-colors duration-300 flex items-center">
+                        <button class="text-gold font-medium hover:text-black transition-colors duration-300 flex items-center">
                             View All <i class="fas fa-arrow-right ml-2"></i>
                         </button>
                         <span class="bg-gold/10 text-gold px-3 py-1 rounded-full text-xs">4 Courses</span>
@@ -507,7 +532,6 @@
         </div>
     </section>
 
-    <!-- Custom Training Section -->
     <section class="py-20 bg-white">
         <div class="container mx-auto px-4 md:px-6">
             <div class="bg-gold text-black p-12 rounded-lg relative overflow-hidden">
@@ -537,7 +561,6 @@
         </div>
     </section>
 
-    <!-- Testimonials with Interactive Carousel -->
     <section class="py-20 bg-grey">
         <div class="container mx-auto px-4 md:px-6">
             <h2 class="text-3xl md:text-4xl font-sans font-bold text-center mb-12 relative pb-4">
@@ -599,7 +622,6 @@
         </div>
     </section>
 
-    <!-- Footer -->
     <footer class="bg-black text-white pt-20 pb-10">
         <div class="container mx-auto px-4 md:px-6">
             <div class="grid grid-cols-1 md:grid-cols-4 gap-12">
@@ -664,17 +686,72 @@
             </div>
             
             <div class="border-t border-gray-800 mt-12 pt-8 text-center text-gray-500">
-                <p>&copy; 2023 BICM Group of Companies. All Rights Reserved.</p>
+                <p>© 2023 BICM Group of Companies. All Rights Reserved.</p>
             </div>
         </div>
     </footer>
 
-    <!-- Back to Top Button -->
     <button id="back-to-top" class="fixed bottom-8 right-8 w-12 h-12 bg-gold text-black rounded-full flex items-center justify-center opacity-0 invisible transition-all duration-300 z-50 hover:bg-black hover:text-gold border-2 border-gold">
         <i class="fas fa-arrow-up"></i>
     </button>
 
-    <!-- JavaScript -->
+    <div id="applicationModal" class="modal">
+        <div class="modal-content">
+            <button onclick="closeModal()" class="modal-close-button">&times;</button>
+            <h2 id="modalTitle" class="text-2xl font-bold mb-6 text-center">Training Application</h2>
+            <form id="applicationForm" class="space-y-4">
+                <div>
+                    <label for="fullName" class="block text-gray-700 text-sm font-bold mb-2">Full Name:</label>
+                    <input type="text" id="fullName" name="fullName" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" required>
+                </div>
+                <div>
+                    <label for="email" class="block text-gray-700 text-sm font-bold mb-2">Email:</label>
+                    <input type="email" id="email" name="email" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" required>
+                </div>
+                <div>
+                    <label for="phone" class="block text-gray-700 text-sm font-bold mb-2">Phone Number:</label>
+                    <input type="tel" id="phone" name="phone" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
+                </div>
+                <div>
+                    <label for="company" class="block text-gray-700 text-sm font-bold mb-2">Company (Optional):</label>
+                    <input type="text" id="company" name="company" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
+                </div>
+                <div>
+                    <label for="courseInterest" class="block text-gray-700 text-sm font-bold mb-2">Course of Interest:</label>
+                    <input type="text" id="courseInterest" name="courseInterest" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" placeholder="e.g., Leadership Courses, Custom Training">
+                </div>
+                <div>
+                    <label for="message" class="block text-gray-700 text-sm font-bold mb-2">Additional Message:</label>
+                    <textarea id="message" name="message" rows="4" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"></textarea>
+                </div>
+                <button type="submit" class="btn btn-primary w-full py-2 rounded">Submit Application</button>
+            </form>
+        </div>
+    </div>
+
+    <div id="videoModal" class="modal">
+        <div class="modal-content">
+            <button onclick="closeVideoModal()" class="modal-close-button">&times;</button>
+            <iframe id="videoFrame" src="" frameborder="0" allow="autoplay; fullscreen" allowfullscreen></iframe>
+        </div>
+    </div>
+
+    <div id="courseModal" class="modal">
+        <div class="modal-content">
+            <button onclick="closeCourseModal()" class="modal-close-button">&times;</button>
+            <h2 id="courseModalTitle" class="text-2xl font-bold mb-6 text-center">Course Details</h2>
+            <div id="courseModalContent" class="text-gray-800">
+                </div>
+             <button onclick="openModal(document.getElementById('courseModalTitle').textContent)" class="btn btn-primary w-full py-2 rounded mt-6">Apply for this Course</button>
+        </div>
+    </div>
+
+    <div id="messageBoxOverlay" class="message-box-overlay"></div>
+    <div id="messageBox" class="message-box">
+        <p id="messageBoxText" class="text-lg font-medium text-black mb-4"></p>
+        <button onclick="closeMessageBox()" class="btn btn-primary px-6 py-2 rounded">OK</button>
+    </div>
+
     <script>
         // Course data for search and filtering
         const courses = {
@@ -743,7 +820,7 @@
         function openVideoModal() {
             const modal = document.getElementById('videoModal');
             // Using a generic YouTube video for demonstration. Replace with your actual video.
-            document.getElementById('videoFrame').src = "https://www.youtube.com/embed/dQw4w9WgXcQ?autoplay=1";
+            document.getElementById('videoFrame').src = "https://www.youtube.com/embed/your-video-id"; // Replace with actual video ID
             modal.classList.add('active');
             document.body.style.overflow = 'hidden';
         }
@@ -972,7 +1049,7 @@
         
         // Initialize on DOM load
         document.addEventListener('DOMContentLoaded', function() {
-            // Search on Enter key press - MOVED INSIDE DOMContentLoaded
+            // Search on Enter key press
             const courseSearchInput = document.getElementById('courseSearch');
             if (courseSearchInput) {
                 courseSearchInput.addEventListener('keypress', function(e) {
@@ -989,14 +1066,13 @@
             
             // Adjust the event listener for course category buttons to open Course Modal
             document.querySelectorAll('.course-card button').forEach(button => {
-                // Check if the button's parent element (the card) has a data-category attribute
                 const card = button.closest('.course-card');
                 if (card) {
                     const categoryText = card.querySelector('h3').textContent; // Get the category text from the h3
-                    button.onclick = function(event) {
+                    button.addEventListener('click', function(event) {
                         event.stopPropagation(); // Prevent card hover effect from interfering if button is clicked
                         openCourseModal(categoryText);
-                    };
+                    });
                 }
             });
         });
