@@ -93,6 +93,64 @@
     .client-logo:hover {
         transform: scale(1.1);
     }
+
+    /* Accordion styles for expertise section */
+    .accordion-button {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        width: 100%;
+        padding: 1.5rem;
+        background-color: #F5F5F5;
+        border-radius: 0.5rem;
+        font-weight: 700;
+        text-align: left;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+    }
+    .accordion-button:hover {
+        background-color: #eaeaea;
+    }
+    .accordion-button .fas {
+        transition: transform 0.3s ease;
+    }
+    .accordion-button[aria-expanded="true"] .fas {
+        transform: rotate(180deg);
+    }
+    .accordion-content {
+        max-height: 0;
+        overflow: hidden;
+        transition: max-height 0.5s ease-out, padding 0.5s ease-out;
+        background-color: #ffffff;
+        border-radius: 0.5rem;
+        margin-top: 0.5rem;
+    }
+    .accordion-content.expanded {
+        max-height: 500px; /* Adjust based on content height */
+        padding: 1rem 1.5rem;
+    }
+
+    /* Adjusting leadership card height for consistent alignment */
+    .leadership-card-content {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between; /* Distribute space evenly */
+        height: 100%; /* Ensure content takes full height of the card */
+    }
+    .leadership-card-content h3,
+    .leadership-card-content p {
+        flex-shrink: 0; /* Prevent text from shrinking */
+        display: flex; /* Use flexbox to center content vertically within its space */
+        align-items: center; /* Center items vertically */
+        justify-content: center; /* Center items horizontally */
+        text-align: center;
+    }
+    .leadership-card-content h3 {
+        min-height: 3rem; /* Ensure consistent height for names */
+    }
+    .leadership-card-content p {
+        min-height: 2.5rem; /* Ensure consistent height for titles */
+    }
   </style>
 </head>
 
@@ -146,7 +204,7 @@
     </div>
   </nav>
 
-  <section class="pt-32 pb-20 md:pt-40 md:pb-28 bg-black">
+  <section class="relative pt-32 pb-20 md:pt-40 md:pb-28 bg-black">
     <div class="absolute inset-0 overflow-hidden">
       <img src="https://res.cloudinary.com/dbed0vjcr/image/upload/v1750790856/visax-mtCekBm6JMc-unsplash-med_qkbzph.jpg" 
            alt="Background Photo Home Page" 
@@ -161,7 +219,8 @@
 
   <section class="py-20 bg-white" id="about-content">
     <div class="container mx-auto px-4 md:px-6">
-      <div class="text-center max-w-3xl mx-auto mb-16 animate-fade-in pt-8"> <span class="text-gold font-semibold tracking-wider">OUR STORY</span>
+      <div class="text-center max-w-3xl mx-auto mb-16 animate-fade-in">
+        <span class="text-gold font-semibold tracking-wider">OUR STORY</span>
         <h2 class="text-3xl md:text-4xl font-sans font-bold mt-2 mb-4">
           Empowering Organizations Through Strategic Solutions
         </h2>
@@ -184,102 +243,102 @@
         </div>
       </div>
        <div class="max-w-5xl mx-auto mt-16 animate-fade-in delay-3">
-        <h3 class="text-2xl md:text-3xl font-sans font-bold text-center mb-8">Our Expertise</h3>
+        <h3 class="text-2xl md:text-3xl font-sans font-bold text-center mb-8">Our Consulting Expertise</h3>
         <p class="text-lg text-gray-700 text-center mb-10">
             Our partners and consulting personnel possess a unique blend of knowledge, skill, attitudes and experience in a broad range of disciplines that include but not limited to:
         </p>
-        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-            <div class="bg-grey p-6 rounded-lg shadow-md flex items-center space-x-4">
-                <i class="fas fa-building text-gold text-2xl"></i>
-                <p class="text-gray-700 font-medium">Institutional Development</p>
+        <div id="expertise-accordion" class="space-y-4">
+            <div class="accordion-item rounded-lg shadow-md">
+                <button class="accordion-button" aria-expanded="false" aria-controls="content-hr">
+                    <span class="flex items-center space-x-4">
+                        <i class="fas fa-users-cog text-gold text-xl"></i>
+                        <span class="text-lg font-bold">HR & Organizational Development</span>
+                    </span>
+                    <i class="fas fa-chevron-down text-gold"></i>
+                </button>
+                <div id="content-hr" class="accordion-content">
+                    <ul class="list-disc pl-5 space-y-2 text-gray-700 text-base">
+                        <li>Job Evaluation and Salary Restructuring</li>
+                        <li>Functional Reviews</li>
+                        <li>Terms and Conditions of Service</li>
+                        <li>Organizational Analysis and Design</li>
+                        <li>Performance Management</li>
+                        <li>Recruitment and Selection</li>
+                    </ul>
+                </div>
             </div>
-            <div class="bg-grey p-6 rounded-lg shadow-md flex items-center space-x-4">
-                <i class="fas fa-chart-line text-gold text-2xl"></i>
-                <p class="text-gray-700 font-medium">Economic and Policy Analysis</p>
+
+            <div class="accordion-item rounded-lg shadow-md">
+                <button class="accordion-button" aria-expanded="false" aria-controls="content-economic">
+                    <span class="flex items-center space-x-4">
+                        <i class="fas fa-chart-line text-gold text-xl"></i>
+                        <span class="text-lg font-bold">Economic & Financial Consulting</span>
+                    </span>
+                    <i class="fas fa-chevron-down text-gold"></i>
+                </button>
+                <div id="content-economic" class="accordion-content">
+                    <ul class="list-disc pl-5 space-y-2 text-gray-700 text-base">
+                        <li>Economic and Policy Analysis</li>
+                        <li>Financial and Project Management</li>
+                        <li>Micro-finance</li>
+                    </ul>
+                </div>
             </div>
-            <div class="bg-grey p-6 rounded-lg shadow-md flex items-center space-x-4">
-                <i class="fas fa-users-cog text-gold text-2xl"></i>
-                <p class="text-gray-700 font-medium">Capacity Building</p>
+
+            <div class="accordion-item rounded-lg shadow-md">
+                <button class="accordion-button" aria-expanded="false" aria-controls="content-research">
+                    <span class="flex items-center space-x-4">
+                        <i class="fas fa-search text-gold text-xl"></i>
+                        <span class="text-lg font-bold">Research & Strategy</span>
+                    </span>
+                    <i class="fas fa-chevron-down text-gold"></i>
+                </button>
+                <div id="content-research" class="accordion-content">
+                    <ul class="list-disc pl-5 space-y-2 text-gray-700 text-base">
+                        <li>Baseline Surveys</li>
+                        <li>Monitoring and Evaluation</li>
+                        <li>Impact Assessments</li>
+                        <li>Strategic Planning</li>
+                        <li>Environmental Assessment & Management</li>
+                    </ul>
+                </div>
             </div>
-            <div class="bg-grey p-6 rounded-lg shadow-md flex items-center space-x-4">
-                <i class="fas fa-money-check-alt text-gold text-2xl"></i>
-                <p class="text-gray-700 font-medium">Financial and Project Management</p>
+
+            <div class="accordion-item rounded-lg shadow-md">
+                <button class="accordion-button" aria-expanded="false" aria-controls="content-training">
+                    <span class="flex items-center space-x-4">
+                        <i class="fas fa-chalkboard-teacher text-gold text-xl"></i>
+                        <span class="text-lg font-bold">Training & Capacity Building</span>
+                    </span>
+                    <i class="fas fa-chevron-down text-gold"></i>
+                </button>
+                <div id="content-training" class="accordion-content">
+                    <ul class="list-disc pl-5 space-y-2 text-gray-700 text-base">
+                        <li>Capacity Building</li>
+                        <li>Training Needs Assessment and Training Plan Development</li>
+                        <li>Training Evaluation</li>
+                        <li>Facilitation of Workshops and Seminars</li>
+                        <li>Capacity Assessments</li>
+                    </ul>
+                </div>
             </div>
-            <div class="bg-grey p-6 rounded-lg shadow-md flex items-center space-x-4">
-                <i class="fas fa-sitemap text-gold text-2xl"></i>
-                <p class="text-gray-700 font-medium">Organisation Development</p>
-            </div>
-            <div class="bg-grey p-6 rounded-lg shadow-md flex items-center space-x-4">
-                <i class="fas fa-search text-gold text-2xl"></i>
-                <p class="text-gray-700 font-medium">Baseline Surveys</p>
-            </div>
-            <div class="bg-grey p-6 rounded-lg shadow-md flex items-center space-x-4">
-                <i class="fas fa-balance-scale text-gold text-2xl"></i>
-                <p class="text-gray-700 font-medium">Job Evaluation and Salary Restructuring</p>
-            </div>
-            <div class="bg-grey p-6 rounded-lg shadow-md flex items-center space-x-4">
-                <i class="fas fa-file-alt text-gold text-2xl"></i>
-                <p class="text-gray-700 font-medium">Functional Reviews</p>
-            </div>
-            <div class="bg-grey p-6 rounded-lg shadow-md flex items-center space-x-4">
-                <i class="fas fa-cogs text-gold text-2xl"></i>
-                <p class="text-gray-700 font-medium">General Management</p>
-            </div>
-            <div class="bg-grey p-6 rounded-lg shadow-md flex items-center space-x-4">
-                <i class="fas fa-handshake text-gold text-2xl"></i>
-                <p class="text-gray-700 font-medium">Terms and Conditions of Service</p>
-            </div>
-            <div class="bg-grey p-6 rounded-lg shadow-md flex items-center space-x-4">
-                <i class="fas fa-chalkboard-teacher text-gold text-2xl"></i>
-                <p class="text-gray-700 font-medium">Training Needs Assessment and Training Plan Development</p>
-            </div>
-            <div class="bg-grey p-6 rounded-lg shadow-md flex items-center space-x-4">
-                <i class="fas fa-chart-pie text-gold text-2xl"></i>
-                <p class="text-gray-700 font-medium">Training Evaluation</p>
-            </div>
-            <div class="bg-grey p-6 rounded-lg shadow-md flex items-center space-x-4">
-                <i class="fas fa-project-diagram text-gold text-2xl"></i>
-                <p class="text-gray-700 font-medium">Organizational Analysis and Design</p>
-            </div>
-            <div class="bg-grey p-6 rounded-lg shadow-md flex items-center space-x-4">
-                <i class="fas fa-chart-bar text-gold text-2xl"></i>
-                <p class="text-gray-700 font-medium">Performance Management</p>
-            </div>
-            <div class="bg-grey p-6 rounded-lg shadow-md flex items-center space-x-4">
-                <i class="fas fa-coins text-gold text-2xl"></i>
-                <p class="text-gray-700 font-medium">Micro-finance</p>
-            </div>
-            <div class="bg-grey p-6 rounded-lg shadow-md flex items-center space-x-4">
-                <i class="fas fa-comments text-gold text-2xl"></i>
-                <p class="text-gray-700 font-medium">Facilitation of Workshops and Seminars</p>
-            </div>
-            <div class="bg-grey p-6 rounded-lg shadow-md flex items-center space-x-4">
-                <i class="fas fa-tasks text-gold text-2xl"></i>
-                <p class="text-gray-700 font-medium">Monitoring and Evaluation</p>
-            </div>
-            <div class="bg-grey p-6 rounded-lg shadow-md flex items-center space-x-4">
-                <i class="fas fa-chart-area text-gold text-2xl"></i>
-                <p class="text-gray-700 font-medium">Impact Assessments</p>
-            </div>
-            <div class="bg-grey p-6 rounded-lg shadow-md flex items-center space-x-4">
-                <i class="fas fa-bullseye text-gold text-2xl"></i>
-                <p class="text-gray-700 font-medium">Strategic Planning</p>
-            </div>
-            <div class="bg-grey p-6 rounded-lg shadow-md flex items-center space-x-4">
-                <i class="fas fa-user-plus text-gold text-2xl"></i>
-                <p class="text-gray-700 font-medium">Recruitment and Selection</p>
-            </div>
-            <div class="bg-grey p-6 rounded-lg shadow-md flex items-center space-x-4">
-                <i class="fas fa-clipboard-check text-gold text-2xl"></i>
-                <p class="text-gray-700 font-medium">Capacity Assessments</p>
-            </div>
-            <div class="bg-grey p-6 rounded-lg shadow-md flex items-center space-x-4">
-                <i class="fas fa-leaf text-gold text-2xl"></i>
-                <p class="text-gray-700 font-medium">Environmental Assessment & Management</p>
-            </div>
-            <div class="bg-grey p-6 rounded-lg shadow-md flex items-center space-x-4">
-                <i class="fas fa-venus-mars text-gold text-2xl"></i>
-                <p class="text-gray-700 font-medium">Integrated Gender, HIV and AIDS Management</p>
+
+            <div class="accordion-item rounded-lg shadow-md">
+                <button class="accordion-button" aria-expanded="false" aria-controls="content-general">
+                    <span class="flex items-center space-x-4">
+                        <i class="fas fa-cogs text-gold text-xl"></i>
+                        <span class="text-lg font-bold">General Management & Cross-cutting Issues</span>
+                    </span>
+                    <i class="fas fa-chevron-down text-gold"></i>
+                </button>
+                <div id="content-general" class="accordion-content">
+                    <ul class="list-disc pl-5 space-y-2 text-gray-700 text-base">
+                        <li>Institutional Development</li>
+                        <li>Organisation Development</li>
+                        <li>General Management</li>
+                        <li>Integrated Gender, HIV and AIDS Management</li>
+                    </ul>
+                </div>
             </div>
         </div>
       </div>
@@ -302,7 +361,7 @@
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-8">
             <div class="card bg-grey p-6 rounded-lg shadow-md animate-fade-in flex flex-col items-center h-full text-center">
                 <img src="https://res.cloudinary.com/dbed0vjcr/image/upload/v1750326058/images_jpp7gg.jpg" alt="Christopher Mchenga" class="w-32 h-32 rounded-full object-cover border-4 border-gold mb-6">
-                <div class="flex-grow">
+                <div class="leadership-card-content">
                     <h3 class="text-xl font-sans font-bold mb-2">Christopher Mchenga</h3>
                     <p class="text-gold mb-3">Managing Consultant</p>
                 </div>
@@ -315,7 +374,7 @@
             
             <div class="card bg-grey p-6 rounded-lg shadow-md animate-fade-in delay-1 flex flex-col items-center h-full text-center">
                 <img src="https://res.cloudinary.com/dbed0vjcr/image/upload/v1750327890/default-placeholder-profile-icon_hxpj2a.webp" alt="Peter Mwanza" class="w-32 h-32 rounded-full object-cover border-4 border-gold mb-6">
-                <div class="flex-grow">
+                <div class="leadership-card-content">
                     <h3 class="text-xl font-sans font-bold mb-2">Peter Mwanza</h3>
                     <p class="text-gold mb-3">Management Development Consultant</p>
                 </div>
@@ -328,7 +387,7 @@
             
             <div class="card bg-grey p-6 rounded-lg shadow-md animate-fade-in delay-2 flex flex-col items-center h-full text-center">
                 <img src="https://res.cloudinary.com/dbed0vjcr/image/upload/v1750327890/default-placeholder-profile-icon_hxpj2a.webp" alt="Charles Mtonga" class="w-32 h-32 rounded-full object-cover border-4 border-gold mb-6">
-                <div class="flex-grow">
+                <div class="leadership-card-content">
                     <h3 class="text-xl font-sans font-bold mb-2">Charles Mtonga</h3>
                     <p class="text-gold mb-3">Principal Researcher</p>
                 </div>
@@ -341,7 +400,7 @@
             
             <div class="card bg-grey p-6 rounded-lg shadow-md animate-fade-in delay-3 flex flex-col items-center h-full text-center">
                 <img src="https://res.cloudinary.com/dbed0vjcr/image/upload/v1750327890/default-placeholder-profile-icon_hxpj2a.webp" alt="Shepherd Musvibe" class="w-32 h-32 rounded-full object-cover border-4 border-gold mb-6">
-                <div class="flex-grow">
+                <div class="leadership-card-content">
                     <h3 class="text-xl font-sans font-bold mb-2">Shepherd Musvibe</h3>
                     <p class="text-gold mb-3">HR Training & Development Practitioner</p>
                 </div>
@@ -354,7 +413,7 @@
             
             <div class="card bg-grey p-6 rounded-lg shadow-md animate-fade-in delay-4 flex flex-col items-center h-full text-center">
                 <img src="https://res.cloudinary.com/dbed0vjcr/image/upload/v1750327890/default-placeholder-profile-icon_hxpj2a.webp" alt="Mathias Mbendela" class="w-32 h-32 rounded-full object-cover border-4 border-gold mb-6">
-                <div class="flex-grow">
+                <div class="leadership-card-content">
                     <h3 class="text-xl font-sans font-bold mb-2">Mathias Mbendela</h3>
                     <p class="text-gold mb-3">Development Specialist</p>
                 </div>
@@ -538,8 +597,39 @@
         });
     };
 
-    // Initialize on DOM load
-    document.addEventListener('DOMContentLoaded', function() {
+    // Accordion functionality for Expertise section
+    document.addEventListener('DOMContentLoaded', () => {
+        const accordionButtons = document.querySelectorAll('.accordion-button');
+
+        accordionButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                const content = document.getElementById(button.getAttribute('aria-controls'));
+                const isExpanded = button.getAttribute('aria-expanded') === 'true';
+
+                // Close all other open accordions
+                accordionButtons.forEach(otherButton => {
+                    if (otherButton !== button) {
+                        const otherContent = document.getElementById(otherButton.getAttribute('aria-controls'));
+                        otherButton.setAttribute('aria-expanded', 'false');
+                        otherContent.classList.remove('expanded');
+                        otherContent.style.maxHeight = null;
+                    }
+                });
+
+                // Toggle current accordion
+                if (isExpanded) {
+                    button.setAttribute('aria-expanded', 'false');
+                    content.classList.remove('expanded');
+                    content.style.maxHeight = null;
+                } else {
+                    button.setAttribute('aria-expanded', 'true');
+                    content.classList.add('expanded');
+                    content.style.maxHeight = content.scrollHeight + 'px'; // Set max-height to scrollHeight for smooth transition
+                }
+            });
+        });
+
+        // Initialize animations
         animateOnScroll();
     });
   </script>
