@@ -126,9 +126,18 @@
         margin-top: 0.5rem;
     }
     .accordion-content.expanded {
-        max-height: 500px; /* Adjust based on content height */
-        padding: 1rem 1.5rem;
+        max-height: 500px; /* Increased max-height to ensure all content is visible */
+        padding: 1.5rem; /* Increased padding for better spacing */
     }
+    .accordion-content ul {
+        list-style: disc;
+        padding-left: 1.5rem; /* Adjusted padding for list items */
+    }
+    .accordion-content li {
+        margin-bottom: 0.5rem; /* Added margin between list items */
+        line-height: 1.5; /* Improved line height for readability */
+    }
+
 
     /* Adjusting leadership card height for consistent alignment */
     .leadership-card-content {
