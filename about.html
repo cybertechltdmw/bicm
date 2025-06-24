@@ -85,6 +85,14 @@
       transform: translateY(-5px);
       box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
     }
+
+    /* Client logo hover effect */
+    .client-logo {
+        transition: transform 0.3s ease-in-out;
+    }
+    .client-logo:hover {
+        transform: scale(1.1);
+    }
   </style>
 </head>
 
@@ -153,17 +161,13 @@
 
   <section class="py-20 bg-white" id="about-content">
     <div class="container mx-auto px-4 md:px-6">
-      <div class="text-center max-w-3xl mx-auto mb-16 animate-fade-in">
-        <span class="text-gold font-semibold tracking-wider">OUR STORY</span>
+      <div class="text-center max-w-3xl mx-auto mb-16 animate-fade-in pt-8"> <span class="text-gold font-semibold tracking-wider">OUR STORY</span>
         <h2 class="text-3xl md:text-4xl font-sans font-bold mt-2 mb-4">
           Empowering Organizations Through Strategic Solutions
         </h2>
         <div class="h-1 w-20 bg-gold mx-auto mb-8"></div>
         <p class="text-gray-700 text-lg mb-6">
-          Behaviour, Intelligence and Competency Managers (BICM) is a leading Malawian-owned company dedicated to empowering organizations and individuals.
-        </p>
-        <p class="text-gray-700 text-lg mb-8">
-          We specialize in Human Resource training, management services, business consulting, and organizational development, focusing on delivering impactful and sustainable solutions tailored to your unique needs.
+          Behaviour, Intelligence and Competency Managers (BICM) is a leading Malawian-owned company devoted to Human Resource Training, Education and Development, as well as provision of Management Services, Business Consulting and Organisation Development initiatives. Our focus and pride on the planning, development, budgeting, implementation, monitoring and evaluation of contemporary and strategic policies, procedures, systems and frameworks that are in line with the operational objectives of our esteemed clients.
         </p>
       </div>
 
@@ -179,36 +183,105 @@
           <p class="text-gray-700">To be the world class provider of socio-economic innovations, training & education, and entrepreneurship services to our esteemed clients.</p>
         </div>
       </div>
-       <div class="max-w-4xl mx-auto mt-16 animate-fade-in delay-3">
+       <div class="max-w-5xl mx-auto mt-16 animate-fade-in delay-3">
         <h3 class="text-2xl md:text-3xl font-sans font-bold text-center mb-8">Our Expertise</h3>
-        <p class="text-lg text-gray-700 text-center">
+        <p class="text-lg text-gray-700 text-center mb-10">
             Our partners and consulting personnel possess a unique blend of knowledge, skill, attitudes and experience in a broad range of disciplines that include but not limited to:
         </p>
-        <ul class="list-disc list-inside text-gray-700 text-lg mt-6 grid grid-cols-1 md:grid-cols-2 gap-2">
-            <li>Institutional Development</li>
-            <li>Economic and Policy Analysis</li>
-            <li>Capacity Building</li>
-            <li>Financial and Project Management</li>
-            <li>Organisation Development</li>
-            <li>Baseline Surveys</li>
-            <li>Job Evaluation and Salary Restructuring</li>
-            <li>Functional Reviews</li>
-            <li>General Management</li>
-            <li>Terms and Conditions of Service</li>
-            <li>Training Needs Assessment and Training Plan Development</li>
-            <li>Training Evaluation</li>
-            <li>Organizational Analysis and Design</li>
-            <li>Performance Management</li>
-            <li>Micro-finance</li>
-            <li>Facilitation of Workshops and Seminars</li>
-            <li>Monitoring and Evaluation</li>
-            <li>Impact Assessments</li>
-            <li>Strategic Planning</li>
-            <li>Recruitment and Selection</li>
-            <li>Capacity Assessments</li>
-            <li>Environmental Assessment & Management</li>
-            <li>Integrated Gender, HIV and AIDS Management</li>
-        </ul>
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+            <div class="bg-grey p-6 rounded-lg shadow-md flex items-center space-x-4">
+                <i class="fas fa-building text-gold text-2xl"></i>
+                <p class="text-gray-700 font-medium">Institutional Development</p>
+            </div>
+            <div class="bg-grey p-6 rounded-lg shadow-md flex items-center space-x-4">
+                <i class="fas fa-chart-line text-gold text-2xl"></i>
+                <p class="text-gray-700 font-medium">Economic and Policy Analysis</p>
+            </div>
+            <div class="bg-grey p-6 rounded-lg shadow-md flex items-center space-x-4">
+                <i class="fas fa-users-cog text-gold text-2xl"></i>
+                <p class="text-gray-700 font-medium">Capacity Building</p>
+            </div>
+            <div class="bg-grey p-6 rounded-lg shadow-md flex items-center space-x-4">
+                <i class="fas fa-money-check-alt text-gold text-2xl"></i>
+                <p class="text-gray-700 font-medium">Financial and Project Management</p>
+            </div>
+            <div class="bg-grey p-6 rounded-lg shadow-md flex items-center space-x-4">
+                <i class="fas fa-sitemap text-gold text-2xl"></i>
+                <p class="text-gray-700 font-medium">Organisation Development</p>
+            </div>
+            <div class="bg-grey p-6 rounded-lg shadow-md flex items-center space-x-4">
+                <i class="fas fa-search text-gold text-2xl"></i>
+                <p class="text-gray-700 font-medium">Baseline Surveys</p>
+            </div>
+            <div class="bg-grey p-6 rounded-lg shadow-md flex items-center space-x-4">
+                <i class="fas fa-balance-scale text-gold text-2xl"></i>
+                <p class="text-gray-700 font-medium">Job Evaluation and Salary Restructuring</p>
+            </div>
+            <div class="bg-grey p-6 rounded-lg shadow-md flex items-center space-x-4">
+                <i class="fas fa-file-alt text-gold text-2xl"></i>
+                <p class="text-gray-700 font-medium">Functional Reviews</p>
+            </div>
+            <div class="bg-grey p-6 rounded-lg shadow-md flex items-center space-x-4">
+                <i class="fas fa-cogs text-gold text-2xl"></i>
+                <p class="text-gray-700 font-medium">General Management</p>
+            </div>
+            <div class="bg-grey p-6 rounded-lg shadow-md flex items-center space-x-4">
+                <i class="fas fa-handshake text-gold text-2xl"></i>
+                <p class="text-gray-700 font-medium">Terms and Conditions of Service</p>
+            </div>
+            <div class="bg-grey p-6 rounded-lg shadow-md flex items-center space-x-4">
+                <i class="fas fa-chalkboard-teacher text-gold text-2xl"></i>
+                <p class="text-gray-700 font-medium">Training Needs Assessment and Training Plan Development</p>
+            </div>
+            <div class="bg-grey p-6 rounded-lg shadow-md flex items-center space-x-4">
+                <i class="fas fa-chart-pie text-gold text-2xl"></i>
+                <p class="text-gray-700 font-medium">Training Evaluation</p>
+            </div>
+            <div class="bg-grey p-6 rounded-lg shadow-md flex items-center space-x-4">
+                <i class="fas fa-project-diagram text-gold text-2xl"></i>
+                <p class="text-gray-700 font-medium">Organizational Analysis and Design</p>
+            </div>
+            <div class="bg-grey p-6 rounded-lg shadow-md flex items-center space-x-4">
+                <i class="fas fa-chart-bar text-gold text-2xl"></i>
+                <p class="text-gray-700 font-medium">Performance Management</p>
+            </div>
+            <div class="bg-grey p-6 rounded-lg shadow-md flex items-center space-x-4">
+                <i class="fas fa-coins text-gold text-2xl"></i>
+                <p class="text-gray-700 font-medium">Micro-finance</p>
+            </div>
+            <div class="bg-grey p-6 rounded-lg shadow-md flex items-center space-x-4">
+                <i class="fas fa-comments text-gold text-2xl"></i>
+                <p class="text-gray-700 font-medium">Facilitation of Workshops and Seminars</p>
+            </div>
+            <div class="bg-grey p-6 rounded-lg shadow-md flex items-center space-x-4">
+                <i class="fas fa-tasks text-gold text-2xl"></i>
+                <p class="text-gray-700 font-medium">Monitoring and Evaluation</p>
+            </div>
+            <div class="bg-grey p-6 rounded-lg shadow-md flex items-center space-x-4">
+                <i class="fas fa-chart-area text-gold text-2xl"></i>
+                <p class="text-gray-700 font-medium">Impact Assessments</p>
+            </div>
+            <div class="bg-grey p-6 rounded-lg shadow-md flex items-center space-x-4">
+                <i class="fas fa-bullseye text-gold text-2xl"></i>
+                <p class="text-gray-700 font-medium">Strategic Planning</p>
+            </div>
+            <div class="bg-grey p-6 rounded-lg shadow-md flex items-center space-x-4">
+                <i class="fas fa-user-plus text-gold text-2xl"></i>
+                <p class="text-gray-700 font-medium">Recruitment and Selection</p>
+            </div>
+            <div class="bg-grey p-6 rounded-lg shadow-md flex items-center space-x-4">
+                <i class="fas fa-clipboard-check text-gold text-2xl"></i>
+                <p class="text-gray-700 font-medium">Capacity Assessments</p>
+            </div>
+            <div class="bg-grey p-6 rounded-lg shadow-md flex items-center space-x-4">
+                <i class="fas fa-leaf text-gold text-2xl"></i>
+                <p class="text-gray-700 font-medium">Environmental Assessment & Management</p>
+            </div>
+            <div class="bg-grey p-6 rounded-lg shadow-md flex items-center space-x-4">
+                <i class="fas fa-venus-mars text-gold text-2xl"></i>
+                <p class="text-gray-700 font-medium">Integrated Gender, HIV and AIDS Management</p>
+            </div>
+        </div>
       </div>
     </div>
   </section>
@@ -232,7 +305,6 @@
                 <div class="flex-grow">
                     <h3 class="text-xl font-sans font-bold mb-2">Christopher Mchenga</h3>
                     <p class="text-gold mb-3">Managing Consultant</p>
-                    <p class="text-sm text-gray-600">IMPA; BA: hrm; DipEd</p>
                 </div>
                 <div class="mt-4">
                     <a href="#" class="text-gold hover:text-black transition-colors duration-300">
@@ -246,7 +318,6 @@
                 <div class="flex-grow">
                     <h3 class="text-xl font-sans font-bold mb-2">Peter Mwanza</h3>
                     <p class="text-gold mb-3">Management Development Consultant</p>
-                    <p class="text-sm text-gray-600">MSc. Development Economics</p>
                 </div>
                 <div class="mt-4">
                     <a href="#" class="text-gold hover:text-black transition-colors duration-300">
@@ -260,7 +331,6 @@
                 <div class="flex-grow">
                     <h3 class="text-xl font-sans font-bold mb-2">Charles Mtonga</h3>
                     <p class="text-gold mb-3">Principal Researcher</p>
-                    <p class="text-sm text-gray-600">Bachelors Degree in Economics, Masters Degree in Development Studies (current)</p>
                 </div>
                 <div class="mt-4">
                     <a href="#" class="text-gold hover:text-black transition-colors duration-300">
@@ -274,7 +344,6 @@
                 <div class="flex-grow">
                     <h3 class="text-xl font-sans font-bold mb-2">Shepherd Musvibe</h3>
                     <p class="text-gold mb-3">HR Training & Development Practitioner</p>
-                    <p class="text-sm text-gray-600">MSc. Business Administration; BSc. Public Administration; Dip. Adult Education; Dip. Training Management</p>
                 </div>
                 <div class="mt-4">
                     <a href="#" class="text-gold hover:text-black transition-colors duration-300">
@@ -288,7 +357,6 @@
                 <div class="flex-grow">
                     <h3 class="text-xl font-sans font-bold mb-2">Mathias Mbendela</h3>
                     <p class="text-gold mb-3">Development Specialist</p>
-                    <p class="text-sm text-gray-600">Masters Degree in Development Studies; Bachelors Degree in Agricultural Economics</p>
                 </div>
                 <div class="mt-4">
                     <a href="#" class="text-gold hover:text-black transition-colors duration-300">
@@ -314,11 +382,11 @@
             </div>
             
             <div class="flex flex-wrap justify-center items-center gap-12 md:gap-20">
-                <img src="https://res.cloudinary.com/dbed0vjcr/image/upload/v1750323644/g4s-logo-vector-400x400_y1iyez.webp" alt="G4S" class="h-12 md:h-16 grayscale hover:grayscale-0 opacity-70 hover:opacity-100 transition-all duration-300 animate-fade-in delay-1">
-                <img src="https://res.cloudinary.com/dbed0vjcr/image/upload/v1750323797/Air_Malawi-Logo.wine-removebg-preview_o3omfm.png" alt="Air Malawi" class="h-12 md:h-16 grayscale hover:grayscale-0 opacity-70 hover:opacity-100 transition-all duration-300 animate-fade-in delay-2">
-                <img src="https://res.cloudinary.com/dbed0vjcr/image/upload/v1750323966/MISA_Malawi_logo-removebg-preview_ftx3c5.png" alt="MISA" class="h-12 md:h-16 grayscale hover:grayscale-0 opacity-70 hover:opacity-100 transition-all duration-300 animate-fade-in delay-3">
-                <img src="https://res.cloudinary.com/dbed0vjcr/image/upload/v1750324355/undp-logo-blue.4f32e17f_wl7bxd.jpg" alt="UNDP" class="h-12 md:h-16 grayscale hover:grayscale-0 opacity-70 hover:opacity-100 transition-all duration-300 animate-fade-in delay-4">
-                <img src="https://res.cloudinary.com/dbed0vjcr/image/upload/v1750324228/mrcs-logo_0-removebg-preview_kbsuws.png" alt="Malawi Red Cross" class="h-12 md:h-16 grayscale hover:grayscale-0 opacity-70 hover:opacity-100 transition-all duration-300 animate-fade-in delay-5">
+                <img src="https://res.cloudinary.com/dbed0vjcr/image/upload/v1750323644/g4s-logo-vector-400x400_y1iyez.webp" alt="G4S" class="h-12 md:h-16 client-logo transition-all duration-300 animate-fade-in delay-1">
+                <img src="https://res.cloudinary.com/dbed0vjcr/image/upload/v1750323797/Air_Malawi-Logo.wine-removebg-preview_o3omfm.png" alt="Air Malawi" class="h-12 md:h-16 client-logo transition-all duration-300 animate-fade-in delay-2">
+                <img src="https://res.cloudinary.com/dbed0vjcr/image/upload/v1750323966/MISA_Malawi_logo-removebg-preview_ftx3c5.png" alt="MISA" class="h-12 md:h-16 client-logo transition-all duration-300 animate-fade-in delay-3">
+                <img src="https://res.cloudinary.com/dbed0vjcr/image/upload/v1750324355/undp-logo-blue.4f32e17f_wl7bxd.jpg" alt="UNDP" class="h-12 md:h-16 client-logo transition-all duration-300 animate-fade-in delay-4">
+                <img src="https://res.cloudinary.com/dbed0vjcr/image/upload/v1750324228/mrcs-logo_0-removebg-preview_kbsuws.png" alt="Malawi Red Cross" class="h-12 md:h-16 client-logo transition-all duration-300 animate-fade-in delay-5">
             </div>
         </div>
     </section>
