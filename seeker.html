@@ -7,7 +7,7 @@
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
     <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;900&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet">
     <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <!-- Tailwind Config -->
@@ -22,8 +22,7 @@
                         green: '#1E3A2B',
                     },
                     fontFamily: {
-                        montserrat: ['Montserrat', 'sans-serif'],
-                        inter: ['Inter', 'sans-serif'],
+                        sans: ['DM Sans', 'sans-serif'], /* Consistent font */
                     },
                 }
             }
@@ -38,7 +37,11 @@
         .animate-fade-in {
             animation: fadeIn 0.5s ease-in-out forwards;
         }
-        
+        .delay-1 { animation-delay: 0.1s; }
+        .delay-2 { animation-delay: 0.2s; }
+        .delay-3 { animation-delay: 0.3s; }
+        .delay-4 { animation-delay: 0.4s; }
+
         /* Sidebar styling */
         .sidebar-link {
             transition: all 0.3s ease;
@@ -49,6 +52,10 @@
         .sidebar-link.active {
             background-color: rgba(212, 175, 55, 0.2);
             border-left: 4px solid #D4AF37;
+            padding-left: 12px; /* Adjust for border */
+        }
+        .sidebar-link:not(.active) {
+            padding-left: 16px; /* Default padding when not active */
         }
         
         /* Stats card styling */
@@ -72,9 +79,49 @@
             background-color: #D4AF37;
             transition: width 0.5s ease;
         }
+
+        /* Message Box styles - Consistent with other pages */
+        .message-box-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 999;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.3s ease, visibility 0.3s ease;
+        }
+        .message-box {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background-color: #fff;
+            border: 1px solid #D4AF37;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            padding: 2rem;
+            z-index: 1000;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.3s ease, visibility 0.3s ease;
+            text-align: center;
+            max-width: 400px;
+            width: 90%;
+        }
+        .message-box.active {
+            opacity: 1;
+            visibility: visible;
+        }
+        .message-box-overlay.active {
+            opacity: 1;
+            visibility: visible;
+        }
     </style>
 </head>
-<body class="font-inter bg-grey">
+<body class="font-sans bg-grey">
     <!-- Dashboard Layout -->
     <div class="flex h-screen overflow-hidden">
         <!-- Sidebar -->
@@ -86,16 +133,16 @@
                 <div class="flex flex-col flex-grow px-4 py-4 overflow-y-auto">
                     <!-- User Profile -->
                     <div class="flex items-center mb-8 p-2 rounded-lg bg-gold/10">
-                        <img src="https://res.cloudinary.com/dbed0vjcr/image/upload/v1750327890/default-placeholder-profile-icon_hxpj2a.webp" alt="User" class="w-10 h-10 rounded-full mr-3">
+                        <img src="https://placehold.co/40x40/D4AF37/000000?text=JD" alt="User" class="w-10 h-10 rounded-full mr-3">
                         <div>
-                            <p class="font-medium">Welcome back,</p>
-                            <p class="font-bold">New User</p>
+                            <p class="font-medium text-black">Welcome back,</p>
+                            <p class="font-bold text-black">Job Seeker</p>
                         </div>
                     </div>
                     
                     <!-- Navigation -->
                     <nav class="space-y-1">
-                        <a href="#" class="sidebar-link active flex items-center px-4 py-3 text-gray-900 rounded-lg">
+                        <a href="seeker.html" class="sidebar-link active flex items-center px-4 py-3 text-gray-900 rounded-lg">
                             <i class="fas fa-tachometer-alt text-gold mr-3"></i>
                             Dashboard
                         </a>
@@ -145,16 +192,16 @@
                 <div class="flex flex-col flex-grow px-4 py-4 overflow-y-auto">
                     <!-- User Profile -->
                     <div class="flex items-center mb-8 p-2 rounded-lg bg-gold/10">
-                        <img src="https://res.cloudinary.com/dbed0vjcr/image/upload/v1750327890/default-placeholder-profile-icon_hxpj2a.webp" alt="User" class="w-10 h-10 rounded-full mr-3">
+                        <img src="https://placehold.co/40x40/D4AF37/000000?text=JD" alt="User" class="w-10 h-10 rounded-full mr-3">
                         <div>
-                            <p class="font-medium">Welcome back,</p>
-                            <p class="font-bold">New User</p>
+                            <p class="font-medium text-black">Welcome back,</p>
+                            <p class="font-bold text-black">Job Seeker</p>
                         </div>
                     </div>
                     
                     <!-- Navigation -->
                     <nav class="space-y-1">
-                        <a href="#" class="sidebar-link active flex items-center px-4 py-3 text-gray-900 rounded-lg">
+                        <a href="seeker.html" class="sidebar-link active flex items-center px-4 py-3 text-gray-900 rounded-lg">
                             <i class="fas fa-tachometer-alt text-gold mr-3"></i>
                             Dashboard
                         </a>
@@ -210,13 +257,13 @@
                         
                         <div class="relative">
                             <button id="user-menu-button" class="flex items-center focus:outline-none">
-                                <img src="https://res.cloudinary.com/dbed0vjcr/image/upload/v1750327890/default-placeholder-profile-icon_hxpj2a.webp" alt="User" class="w-8 h-8 rounded-full">
-                                <span class="ml-2 hidden md:inline">New User</span>
-                                <i class="fas fa-chevron-down ml-1 text-xs hidden md:inline"></i>
+                                <img src="https://placehold.co/32x32/D4AF37/000000?text=JD" alt="User" class="w-8 h-8 rounded-full">
+                                <span class="ml-2 hidden md:inline text-black">New User</span>
+                                <i class="fas fa-chevron-down ml-1 text-xs hidden md:inline text-gray-500"></i>
                             </button>
                             
                             <!-- User dropdown menu -->
-                            <div id="user-menu" class="hidden absolute right-0 mt-2 w-48 bg-white rounded-md shadow-lg py-1 z-50">
+                            <div id="user-menu" class="hidden absolute right-0 mt-2 w-48 bg-white rounded-md shadow-lg py-1 z-50 border border-gray-200">
                                 <a href="#" class="block px-4 py-2 text-gray-700 hover:bg-gray-100">Your Profile</a>
                                 <a href="settings.html" class="block px-4 py-2 text-gray-700 hover:bg-gray-100">Settings</a>
                                 <a href="login.html" class="block px-4 py-2 text-gray-700 hover:bg-gray-100">Sign out</a>
@@ -231,7 +278,7 @@
                 <div class="max-w-7xl mx-auto">
                     <!-- Welcome Banner -->
                     <div class="bg-white rounded-lg shadow p-6 mb-6 animate-fade-in">
-                        <h1 class="text-2xl font-montserrat font-bold text-gray-900 mb-2">Welcome back, New User!</h1>
+                        <h1 class="text-2xl font-sans font-bold text-gray-900 mb-2">Welcome back, New User!</h1>
                         <p class="text-gray-600">Here's an overview of your job search progress</p>
                     </div>
                     
@@ -307,49 +354,49 @@
                         <!-- Recent Activity and Profile Completion -->
                         <div class="lg:col-span-2 space-y-6">
                             <!-- Recent Activity -->
-                            <div class="bg-white rounded-lg shadow p-6 animate-fade-in">
+                            <div class="bg-white rounded-lg shadow p-6 animate-fade-in delay-4">
                                 <div class="flex justify-between items-center mb-4">
-                                    <h2 class="text-xl font-montserrat font-bold">Recent Activity</h2>
+                                    <h2 class="text-xl font-sans font-bold text-gray-900">Recent Activity</h2>
                                     <a href="#" class="text-sm text-gold hover:text-black">View All</a>
                                 </div>
                                 
                                 <div class="space-y-4">
-                                    <div class="flex items-start p-3 rounded-lg hover:bg-gray-50">
+                                    <div class="flex items-start p-3 rounded-lg hover:bg-gray-50 transition-colors duration-200">
                                         <div class="bg-gold/10 p-2 rounded-full mr-4">
                                             <i class="fas fa-file-upload text-gold"></i>
                                         </div>
                                         <div>
-                                            <p class="font-medium">You applied for <span class="text-gold">Frontend Developer</span> at CyberTech Ltd</p>
+                                            <p class="font-medium text-black">You applied for <span class="text-gold">Frontend Developer</span> at CyberTech Ltd</p>
                                             <p class="text-gray-500 text-sm">2 hours ago</p>
                                         </div>
                                     </div>
                                     
-                                    <div class="flex items-start p-3 rounded-lg hover:bg-gray-50">
+                                    <div class="flex items-start p-3 rounded-lg hover:bg-gray-50 transition-colors duration-200">
                                         <div class="bg-gold/10 p-2 rounded-full mr-4">
                                             <i class="fas fa-building text-gold"></i>
                                         </div>
                                         <div>
-                                            <p class="font-medium">Your profile was viewed by <span class="text-gold">Malawi Red Cross</span></p>
+                                            <p class="font-medium text-black">Your profile was viewed by <span class="text-gold">Malawi Red Cross</span></p>
                                             <p class="text-gray-500 text-sm">1 day ago</p>
                                         </div>
                                     </div>
                                     
-                                    <div class="flex items-start p-3 rounded-lg hover:bg-gray-50">
+                                    <div class="flex items-start p-3 rounded-lg hover:bg-gray-50 transition-colors duration-200">
                                         <div class="bg-gold/10 p-2 rounded-full mr-4">
                                             <i class="fas fa-download text-gold"></i>
                                         </div>
                                         <div>
-                                            <p class="font-medium">Your CV was downloaded by <span class="text-gold">G4S Malawi</span></p>
+                                            <p class="font-medium text-black">Your CV was downloaded by <span class="text-gold">G4S Malawi</span></p>
                                             <p class="text-gray-500 text-sm">2 days ago</p>
                                         </div>
                                     </div>
                                     
-                                    <div class="flex items-start p-3 rounded-lg hover:bg-gray-50">
+                                    <div class="flex items-start p-3 rounded-lg hover:bg-gray-50 transition-colors duration-200">
                                         <div class="bg-gold/10 p-2 rounded-full mr-4">
                                             <i class="fas fa-bookmark text-gold"></i>
                                         </div>
                                         <div>
-                                            <p class="font-medium">You saved <span class="text-gold">Project Manager</span> position</p>
+                                            <p class="font-medium text-black">You saved <span class="text-gold">Project Manager</span> position</p>
                                             <p class="text-gray-500 text-sm">3 days ago</p>
                                         </div>
                                     </div>
@@ -357,9 +404,9 @@
                             </div>
                             
                             <!-- Recent Applications -->
-                            <div class="bg-white rounded-lg shadow p-6 animate-fade-in delay-1">
+                            <div class="bg-white rounded-lg shadow p-6 animate-fade-in delay-5">
                                 <div class="flex justify-between items-center mb-4">
-                                    <h2 class="text-xl font-montserrat font-bold">Recent Applications</h2>
+                                    <h2 class="text-xl font-sans font-bold text-gray-900">Recent Applications</h2>
                                     <a href="#" class="text-sm text-gold hover:text-black">View All</a>
                                 </div>
                                 
@@ -425,10 +472,10 @@
                         <!-- Right Sidebar -->
                         <div class="space-y-6">
                             <!-- Profile Completion -->
-                            <div class="bg-white rounded-lg shadow p-6 animate-fade-in">
-                                <h2 class="text-xl font-montserrat font-bold mb-4">Profile Completion</h2>
+                            <div class="bg-white rounded-lg shadow p-6 animate-fade-in delay-6">
+                                <h2 class="text-xl font-sans font-bold text-gray-900 mb-4">Profile Completion</h2>
                                 <div class="mb-4">
-                                    <div class="flex justify-between text-sm mb-1">
+                                    <div class="flex justify-between text-sm mb-1 text-black">
                                         <span>75% complete</span>
                                         <span>100%</span>
                                     </div>
@@ -436,44 +483,44 @@
                                         <div class="progress-fill" style="width: 75%"></div>
                                     </div>
                                 </div>
-                                <button class="w-full bg-gold text-black px-4 py-2 rounded-lg font-medium hover:bg-black hover:text-gold border-2 border-gold transition-colors duration-300">
+                                <a href="settings.html#profile-section" class="w-full bg-gold text-black px-4 py-2 rounded-lg font-medium hover:bg-black hover:text-gold border-2 border-gold transition-colors duration-300 block text-center">
                                     Complete Profile
-                                </button>
+                                </a>
                             </div>
                             
                             <!-- Resume Builder -->
-                            <div class="bg-white rounded-lg shadow p-6 animate-fade-in delay-1">
-                                <h2 class="text-xl font-montserrat font-bold mb-4">Resume Builder</h2>
+                            <div class="bg-white rounded-lg shadow p-6 animate-fade-in delay-7">
+                                <h2 class="text-xl font-sans font-bold text-gray-900 mb-4">Resume Builder</h2>
                                 <p class="text-gray-600 mb-4">Create a professional resume in minutes</p>
                                 <div class="space-y-3">
-                                    <button class="w-full bg-white text-black px-4 py-2 rounded-lg font-medium hover:bg-grey border-2 border-gray-300 transition-colors duration-300 flex items-center justify-center">
+                                    <a href="resume.html" class="w-full bg-white text-black px-4 py-2 rounded-lg font-medium hover:bg-grey border-2 border-gray-300 transition-colors duration-300 flex items-center justify-center">
                                         <i class="fas fa-upload mr-2"></i> Upload CV
-                                    </button>
-                                    <button class="w-full bg-gold text-black px-4 py-2 rounded-lg font-medium hover:bg-black hover:text-gold border-2 border-gold transition-colors duration-300 flex items-center justify-center">
+                                    </a>
+                                    <a href="resume.html" class="w-full bg-gold text-black px-4 py-2 rounded-lg font-medium hover:bg-black hover:text-gold border-2 border-gold transition-colors duration-300 flex items-center justify-center">
                                         <i class="fas fa-magic mr-2"></i> Build Resume
-                                    </button>
+                                    </a>
                                 </div>
                             </div>
                             
                             <!-- Job Alerts -->
-                            <div class="bg-white rounded-lg shadow p-6 animate-fade-in delay-2">
-                                <h2 class="text-xl font-montserrat font-bold mb-4">Job Alerts</h2>
+                            <div class="bg-white rounded-lg shadow p-6 animate-fade-in delay-8">
+                                <h2 class="text-xl font-sans font-bold text-gray-900 mb-4">Job Alerts</h2>
                                 <p class="text-gray-600 mb-4">Get notified about new job opportunities</p>
-                                <button class="w-full bg-gold text-black px-4 py-2 rounded-lg font-medium hover:bg-black hover:text-gold border-2 border-gold transition-colors duration-300">
+                                <a href="alerts.html" class="w-full bg-gold text-black px-4 py-2 rounded-lg font-medium hover:bg-black hover:text-gold border-2 border-gold transition-colors duration-300 block text-center">
                                     Set Up Alerts
-                                </button>
+                                </a>
                             </div>
                             
                             <!-- Recommended Jobs -->
-                            <div class="bg-white rounded-lg shadow p-6 animate-fade-in delay-3">
+                            <div class="bg-white rounded-lg shadow p-6 animate-fade-in delay-9">
                                 <div class="flex justify-between items-center mb-4">
-                                    <h2 class="text-xl font-montserrat font-bold">Recommended Jobs</h2>
+                                    <h2 class="text-xl font-sans font-bold text-gray-900">Recommended Jobs</h2>
                                     <a href="employment.html" class="text-sm text-gold hover:text-black">View All</a>
                                 </div>
                                 
                                 <div class="space-y-4">
                                     <div class="border border-gray-200 rounded-lg p-4 hover:border-gold transition-colors duration-300">
-                                        <h3 class="font-bold text-lg">Project Manager</h3>
+                                        <h3 class="font-bold text-lg text-black">Project Manager</h3>
                                         <p class="text-gold mb-2">CyberTech Ltd</p>
                                         <div class="flex items-center text-sm text-gray-500 mb-3">
                                             <i class="fas fa-map-marker-alt mr-2"></i>
@@ -481,11 +528,11 @@
                                             <i class="fas fa-briefcase ml-4 mr-2"></i>
                                             <span>Full Time</span>
                                         </div>
-                                        <button class="text-sm text-gold hover:text-black font-medium">View Details</button>
+                                        <a href="employment.html" class="text-sm text-gold hover:text-black font-medium">View Details</a>
                                     </div>
                                     
                                     <div class="border border-gray-200 rounded-lg p-4 hover:border-gold transition-colors duration-300">
-                                        <h3 class="font-bold text-lg">Front End Developer</h3>
+                                        <h3 class="font-bold text-lg text-black">Front End Developer</h3>
                                         <p class="text-gold mb-2">CyberTech Ltd</p>
                                         <div class="flex items-center text-sm text-gray-500 mb-3">
                                             <i class="fas fa-map-marker-alt mr-2"></i>
@@ -493,11 +540,11 @@
                                             <i class="fas fa-briefcase ml-4 mr-2"></i>
                                             <span>Full Time</span>
                                         </div>
-                                        <button class="text-sm text-gold hover:text-black font-medium">View Details</button>
+                                        <a href="employment.html" class="text-sm text-gold hover:text-black font-medium">View Details</a>
                                     </div>
                                     
                                     <div class="border border-gray-200 rounded-lg p-4 hover:border-gold transition-colors duration-300">
-                                        <h3 class="font-bold text-lg">Back End Developer</h3>
+                                        <h3 class="font-bold text-lg text-black">Back End Developer</h3>
                                         <p class="text-gold mb-2">CyberTech Ltd</p>
                                         <div class="flex items-center text-sm text-gray-500 mb-3">
                                             <i class="fas fa-map-marker-alt mr-2"></i>
@@ -505,7 +552,7 @@
                                             <i class="fas fa-briefcase ml-4 mr-2"></i>
                                             <span>Full Time</span>
                                         </div>
-                                        <button class="text-sm text-gold hover:text-black font-medium">View Details</button>
+                                        <a href="employment.html" class="text-sm text-gold hover:text-black font-medium">View Details</a>
                                     </div>
                                 </div>
                             </div>
@@ -516,24 +563,56 @@
         </div>
     </div>
 
+    <!-- Custom Message Box for alerts -->
+    <div id="messageBoxOverlay" class="message-box-overlay"></div>
+    <div id="messageBox" class="message-box">
+        <p id="messageBoxText" class="text-lg text-black mb-4"></p>
+        <button onclick="closeMessageBox()" class="bg-gold text-black px-4 py-2 rounded-lg font-medium hover:bg-black hover:text-gold border-2 border-gold transition-colors duration-300">OK</button>
+    </div>
+
     <!-- JavaScript -->
     <script>
+        // Custom Message Box functions (for consistency)
+        function showMessageBox(message) {
+            document.getElementById('messageBoxText').innerText = message;
+            document.getElementById('messageBoxOverlay').classList.add('active');
+            document.getElementById('messageBox').classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeMessageBox() {
+            document.getElementById('messageBoxOverlay').classList.remove('active');
+            document.getElementById('messageBox').classList.remove('active');
+            document.body.style.overflow = 'auto';
+        }
+
         // Mobile sidebar toggle
         document.getElementById('open-sidebar').addEventListener('click', function() {
             document.getElementById('mobile-sidebar').style.display = 'block';
+            setTimeout(() => {
+                document.getElementById('mobile-sidebar').style.opacity = '1';
+            }, 10);
         });
         
         document.getElementById('close-sidebar').addEventListener('click', function() {
-            document.getElementById('mobile-sidebar').style.display = 'none';
+            document.getElementById('mobile-sidebar').style.opacity = '0';
+            setTimeout(() => {
+                document.getElementById('mobile-sidebar').style.display = 'none';
+            }, 300);
         });
         
         document.getElementById('sidebar-backdrop').addEventListener('click', function() {
-            document.getElementById('mobile-sidebar').style.display = 'none';
+            document.getElementById('mobile-sidebar').style.opacity = '0';
+            setTimeout(() => {
+                document.getElementById('mobile-sidebar').style.display = 'none';
+            }, 300);
         });
         
         // User dropdown toggle
-        document.getElementById('user-menu-button').addEventListener('click', function() {
-            document.getElementById('user-menu').classList.toggle('hidden');
+        document.getElementById('user-menu-button').addEventListener('click', function(event) {
+            const userMenu = document.getElementById('user-menu');
+            userMenu.classList.toggle('hidden');
+            event.stopPropagation(); // Prevent document click from closing it immediately
         });
         
         // Close user dropdown when clicking outside
@@ -541,7 +620,9 @@
             const userMenu = document.getElementById('user-menu');
             const userButton = document.getElementById('user-menu-button');
             
-            if (!userButton.contains(event.target)) {
+            if (!userMenu.classList.contains('hidden') && 
+                !userButton.contains(event.target) && 
+                !userMenu.contains(event.target)) {
                 userMenu.classList.add('hidden');
             }
         });
